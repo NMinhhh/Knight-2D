@@ -6,17 +6,21 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float maxHealth;
     [SerializeField] private float speed;
+    [SerializeField] private float hurtTime;
+    [SerializeField] private float knockbackSpeed;
     private Transform target;
     private float currentHealth;
     private float facingRight;
     private bool isMove;
     private Animator anim;
     private Rigidbody2D rb;
+    private SpriteRenderer sprite;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
         target = GameObject.FindWithTag("Player").transform;
         currentHealth = maxHealth;
         facingRight = 1;
@@ -52,18 +56,29 @@ public class Enemy : MonoBehaviour
 
     }
 
+
+
     void Damage(AttackDetail attackDetail)
     {
         currentHealth = Mathf.Clamp(currentHealth - attackDetail.damage, 0, maxHealth);
 
         if(currentHealth > 0)
         {
-            Debug.Log("hurt");
+            StartCoroutine(Hurt());
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator Hurt()
+    {
+        sprite.color = new Color(.95f,.6f , .6f, 1);
+        rb.velocity = Vector2.one;
+        rb.velocity = GetDir() * -knockbackSpeed;
+        yield return new WaitForSeconds(hurtTime);
+        sprite.color = new Color(1, 1, 1, 1);
     }
 
     void CheckIfFlip()

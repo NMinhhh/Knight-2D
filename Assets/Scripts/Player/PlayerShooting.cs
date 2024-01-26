@@ -10,19 +10,21 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float damage;
     [SerializeField] private float timeLife;
-    private Player player;
+    //private Player player;
     private Vector2 mousePos;
     private Vector3 direction;
+    Vector3 newPos;
     private float angle;
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponent<Player>();
+        //player = GetComponent<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        transform.position = GameObject.Find("Handle Weapons").transform.position;
         HandleGunRotation();
         Shooting();
     }
@@ -47,14 +49,14 @@ public class PlayerShooting : MonoBehaviour
             localScale.y = 1f;
         }
 
-        if(player.isFacingRight)
-        {
-            localScale.x = 1f;
-        }
-        else
-        {
-            localScale.x = -1f;
-        }
+        //if(player.isFacingRight)
+        //{
+        //    localScale.x = 1f;
+        //}
+        //else
+        //{
+        //    localScale.x = -1f;
+        //}
         gun.transform.localScale = localScale;
     }
 
