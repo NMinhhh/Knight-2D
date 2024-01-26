@@ -9,12 +9,9 @@ public class Shootgun : MonoBehaviour
     [SerializeField] private float timeLife;
     [SerializeField] private Transform[] attackPoint;
     [SerializeField] private GameObject bullet;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    [SerializeField] private float coolDown;
+    private float time;
+ 
     // Update is called once per frame
     void Update()
     {
@@ -23,8 +20,10 @@ public class Shootgun : MonoBehaviour
 
     void Shooting()
     {
-        if (Input.GetMouseButtonDown(0))
+        time += Time.deltaTime;
+        if (Input.GetMouseButtonDown(0) && time >= coolDown)
         {
+            time = 0;
             SpawnBullet(attackPoint[0], attackPoint[0].rotation);
             SpawnBullet(attackPoint[1], attackPoint[1].rotation);
             SpawnBullet(attackPoint[2], attackPoint[2].rotation);

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7042ccb6476e83540a36fbd4afba5e0e
+guid: bf965d9019447e44c9041a1786c1f01e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,97 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 1_0
+      name: explosion_effect_0
       rect:
         serializedVersion: 2
-        x: 160
-        y: 16
-        width: 27
-        height: 12
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8be2b7ef025d9c64e96c2ab0f98c9ecb
-      internalID: -1821758127
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1_1
-      rect:
-        serializedVersion: 2
-        x: 198
-        y: 114
-        width: 5
-        height: 3
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c8b8dac835058844f89f695b238315f4
-      internalID: -1175815762
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1_2
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 54
-        width: 30
-        height: 4
-      alignment: 9
-      pivot: {x: 0.07699992, y: 0.4046898}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ab07eb6ec6ad9774dad88163cfa7b003
-      internalID: 1595253075
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1_3
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 51459b18f68cf47449ada1abfe550e74
-      internalID: -582150619
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1_4
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 48
-        width: 34
-        height: 15
+        x: 0
+        y: 720
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1ec198681f46ec45849f4a65adfbb84
-      internalID: 1245644418
+      spriteID: f176f35dc771e47449a5d7a6cf2a8f2e
+      internalID: 1821603639
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1_5
+      name: explosion_effect_1
       rect:
         serializedVersion: 2
-        x: 83
-        y: 53
-        width: 21
-        height: 7
+        x: 0
+        y: 600
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,8 +158,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a2d51b808fc38f4383b0c16a447fdb5
-      internalID: -1708167182
+      spriteID: 2a52dd27a703a7c409e370e13d50a48c
+      internalID: 1719085635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosion_effect_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 480
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1394eb3292155664ab801846f5dc2ebb
+      internalID: -1724055239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosion_effect_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 360
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a925991b22adb9e4aa8743e1bf3e0e24
+      internalID: 16011049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosion_effect_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44b939dce381db04ea7f381f69088cd3
+      internalID: 1192368362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosion_effect_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 120
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91801e0c34c04e444801b5fbacb84d90
+      internalID: 933272584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosion_effect_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 749638a8ee721a3468f7c2f542b1ba59
+      internalID: -1094388817
       vertices: []
       indices: 
       edges: []
@@ -259,12 +280,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      1_0: -1821758127
-      1_1: -1175815762
-      1_2: -1343562503
-      1_3: -582150619
-      1_4: 1245644418
-      1_5: -1708167182
+      explosion_effect_0: 1821603639
+      explosion_effect_1: 1719085635
+      explosion_effect_2: -1724055239
+      explosion_effect_3: 16011049
+      explosion_effect_4: 1192368362
+      explosion_effect_5: 933272584
+      explosion_effect_6: -1094388817
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
