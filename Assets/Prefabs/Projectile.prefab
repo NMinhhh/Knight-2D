@@ -47,11 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb3cad54a499ef04b806df71a51b77ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 9
-  timeLife: 3
   whatIsEnemy:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 128
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 256
   boxCollider: {fileID: -4283877247063326512}
 --- !u!212 &3907610310300032725
 SpriteRenderer:

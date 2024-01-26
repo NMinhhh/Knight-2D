@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private float speed;
-    [SerializeField] private float timeLife;
     [SerializeField] private LayerMask whatIsEnemy;
+    [SerializeField] private LayerMask whatIsWall;
+    private float speed;
+    private float timeLife;
     private Rigidbody2D rb;
+
     [SerializeField]private BoxCollider2D boxCollider;
+    private AttackDetail attackDetail;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -20,8 +23,18 @@ public class Projectile : MonoBehaviour
     void FixedUpdate()
     {
         Attack();
-
+        attackDetail.attackDir = transform;
+        if (CheckWall())
+        {
+            Destroy(gameObject);
+        }
     }
+
+    bool CheckWall()
+    {
+        return Physics2D.OverlapBox(transform.position, boxCollider.bounds.size, 0, whatIsWall);
+    }
+
     void Attack()
     {
         Collider2D[] hit = Physics2D.OverlapBoxAll(transform.position, boxCollider.bounds.size, 0, whatIsEnemy);
@@ -29,7 +42,7 @@ public class Projectile : MonoBehaviour
         {
             if (hit2)
             {
-                Debug.Log("damge");
+                hit2.transform.SendMessage("Damage", attackDetail);
                 Destroy(gameObject);
             }
         }
@@ -39,5 +52,10 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject,timeLife);
     }
 
-    
+    public void CreateBullet(float damage, float speed, float timeLife)
+    {
+        attackDetail.damage = damage;
+        this.speed = speed;
+        this.timeLife = timeLife;
+    }
 }

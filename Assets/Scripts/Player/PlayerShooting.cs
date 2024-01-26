@@ -7,7 +7,9 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private GameObject gun;
     [SerializeField] private GameObject projectile;
     [SerializeField] private Transform attackPoint;
-
+    [SerializeField] private float speed;
+    [SerializeField] private float damage;
+    [SerializeField] private float timeLife;
     private Player player;
     private Vector2 mousePos;
     private Vector3 direction;
@@ -60,7 +62,9 @@ public class PlayerShooting : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            Instantiate(projectile, attackPoint.position, gun.transform.rotation);
+            GameObject projectile = Instantiate(this.projectile, attackPoint.position, gun.transform.rotation);
+            Projectile script = projectile.GetComponent<Projectile>();
+            script.CreateBullet(damage, speed, timeLife);
         }
     }
 
