@@ -21,6 +21,7 @@ public class ProjectileBomb : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        attackDetail.attackDir = transform;
         rb.velocity = transform.right * speed;
     }
 
@@ -36,6 +37,7 @@ public class ProjectileBomb : MonoBehaviour
         {
             Destroy(gameObject, timeLife);
         }
+        attackDetail.attackDir = transform;
     }
 
     private void FixedUpdate()

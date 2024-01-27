@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour
     //Other Variable
     [SerializeField] private GameObject floatingText;
     private float facingRight;
+    private int damageDir;
 
     //Components
     public Animator anim {  get; private set; }
@@ -67,7 +68,7 @@ public class Enemy : MonoBehaviour
             isMove = false;
             rb.velocity = Vector2.zero;
         }
-        else if(!PlayerDetected() && !IsAttacking())
+        else if(!PlayerDetected() && !IsAttacking() && !isKnockback)
         {
             isMove = true;
             rb.velocity = GetDir() * speed;
@@ -88,8 +89,16 @@ public class Enemy : MonoBehaviour
     void Damage(AttackDetail attackDetail)
     {
         currentHealth = Mathf.Clamp(currentHealth - attackDetail.damage, 0, maxHealth);
-       FloatingTextManager.Instance.CreateFloatingText(floatingText, transform, attackDetail.damage.ToString());
-        if(currentHealth > 0 && !isKnockback)
+        if (attackDetail.attackDir.position.x > transform.position.x)
+        {
+            damageDir = -1;
+        }
+        else
+        {
+            damageDir = 1;
+        }
+        FloatingTextManager.Instance.CreateFloatingText(floatingText, transform, attackDetail.damage.ToString(), damageDir);
+        if(currentHealth > 0)
         {
             StartCoroutine(Hurt());
         }
@@ -103,9 +112,15 @@ public class Enemy : MonoBehaviour
     {
         isKnockback = true;
         sprite.color = new Color(.95f,.6f , .6f, 1);
-        rb.velocity = Vector2.one;
-        if(!IsAttacking())
-            rb.AddForce(GetDir() * -knockbackSpeed,ForceMode2D.Impulse);
+        rb.velocity = Vector2.zero;
+        if (!IsAttacking())
+        {
+            rb.velocity = GetDir() * -knockbackSpeed/2;
+        }
+        else
+        {
+            rb.velocity = GetDir() * -knockbackSpeed;
+        }
         yield return new WaitForSeconds(hurtTime);
         sprite.color = new Color(1, 1, 1, 1);
         isKnockback = false;

@@ -5,24 +5,32 @@ using UnityEngine;
 
 public class FloatingText : MonoBehaviour
 {
-    [SerializeField] private float moveDir;
     [SerializeField] private float appearTimeMax;
-    private float currentAppearTime;
     [SerializeField] private float disappearTime;
+    public static int sortingOrder;
+    private Vector2 moveDir;
+    private float currentAppearTime;
     private TextMeshPro textMesh;
     private Color textColor;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         textMesh = GetComponent<TextMeshPro>();
+    }
+    public void SetText(string text, int direction)
+    {
+        textMesh.SetText(text);
         textColor = textMesh.color;
+        moveDir = new Vector2(Random.Range(.5f * direction, .7f), Random.Range(.7f * direction, 1f)) * 20f;
+        sortingOrder++;
+        textMesh.sortingOrder = sortingOrder;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(.7f,moveDir) * Time.deltaTime;
-        moveDir -= Time.deltaTime;
+        transform.position += (Vector3)moveDir * Time.deltaTime;
+        moveDir -= moveDir * 15f * Time.deltaTime;
 
         if(currentAppearTime < appearTimeMax *.5f)
         {
@@ -45,9 +53,5 @@ public class FloatingText : MonoBehaviour
 
     }
 
-    public void SetText(string text)
-    {
-        textMesh.SetText(text);
-    }
-
+   
 }

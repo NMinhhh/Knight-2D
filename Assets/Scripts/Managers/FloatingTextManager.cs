@@ -5,7 +5,6 @@ using UnityEngine;
 public class FloatingTextManager : MonoBehaviour
 {
     public static FloatingTextManager Instance {  get; private set; }
-    FloatingText floatingText;
     private GameObject GO; 
 
 
@@ -18,10 +17,10 @@ public class FloatingTextManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void CreateFloatingText(GameObject textGO, Transform textPos, string text)
+    public void CreateFloatingText(GameObject textGO, Transform textPos, string text, int direction)
     {
         GO = Instantiate(textGO, textPos.position, Quaternion.identity);
-        floatingText = GO.GetComponent<FloatingText>();
-        floatingText.SetText(text);
+        FloatingText floatingText = GO.GetComponent<FloatingText>();
+        floatingText.SetText(text, direction);
     }
 }

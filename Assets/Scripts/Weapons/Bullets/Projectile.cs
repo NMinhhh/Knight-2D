@@ -19,6 +19,7 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        attackDetail.attackDir = transform;
         rb.velocity = transform.right * speed;
     }
     private void Update()
@@ -31,12 +32,12 @@ public class Projectile : MonoBehaviour
         {
             Destroy(gameObject, timeLife);
         }
+        attackDetail.attackDir = transform;
     }
     // Update is called once per frame
     void FixedUpdate()
     {
         Attack();
-        attackDetail.attackDir = transform;
     }
 
     void Attack()
