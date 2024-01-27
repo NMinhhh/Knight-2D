@@ -21,7 +21,7 @@ public class Shootgun : MonoBehaviour
     void Shooting()
     {
         time += Time.deltaTime;
-        if (Input.GetMouseButtonDown(0) && time >= coolDown)
+        if (InputManager.Instance.shoting && time >= coolDown)
         {
             time = 0;
             SpawnBullet(attackPoint[0], attackPoint[0].rotation);

@@ -19,7 +19,7 @@ public class PlayerShooting : MonoBehaviour
 
     void Shooting()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(InputManager.Instance.shoting)
         {
             GameObject GO = Instantiate(this.projectile, attackPoint.position, transform.rotation);
             Projectile script = GO.GetComponent<Projectile>();

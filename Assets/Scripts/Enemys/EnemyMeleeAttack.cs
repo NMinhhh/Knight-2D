@@ -19,6 +19,7 @@ public class EnemyMeleeAttack : MonoBehaviour
     void Start()
     {
         enemy = GetComponent<Enemy>();
+        attackDetail.attackDir = transform;
     }
 
     // Update is called once per frame
@@ -45,6 +46,7 @@ public class EnemyMeleeAttack : MonoBehaviour
 
     void TriggerAnimation()
     {
+        attackDetail.attackDir = transform;
         attackDetail.damage = this.damage;
         Collider2D[] hit = Physics2D.OverlapCircleAll(attackPoint.position, radiusAttack, enemy.player);
         foreach (Collider2D col in hit)

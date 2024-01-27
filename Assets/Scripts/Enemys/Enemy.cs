@@ -117,10 +117,6 @@ public class Enemy : MonoBehaviour
         {
             rb.velocity = GetDir() * -knockbackSpeed/2;
         }
-        else
-        {
-            rb.velocity = GetDir() * -knockbackSpeed;
-        }
         yield return new WaitForSeconds(hurtTime);
         sprite.color = new Color(1, 1, 1, 1);
         isKnockback = false;

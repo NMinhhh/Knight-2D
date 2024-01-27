@@ -10,10 +10,13 @@ public class Player : MonoBehaviour
     [SerializeField] private float maxHealth;
     private float currentHelth;
     [SerializeField] private float hurtTime;
+    [Space]
+    [Space]
+    [SerializeField] private GameObject floatingText;
 
     public bool isFacingRight {  get; private set; }
     private float facingRight;
-
+    private int damageDir;
     //Component
     private Animator anim;
     private Rigidbody2D rb;
@@ -32,15 +35,23 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        InputMovement();
+        Movement();
         CheckFlip();
     }
 
     void Damage(AttackDetail attackDetail)
     {
         currentHelth = Mathf.Clamp(currentHelth - attackDetail.damage, 0, maxHealth);
-
-        if(currentHelth > 0)
+        if (attackDetail.attackDir.position.x > transform.position.x)
+        {
+            damageDir = -1;
+        }
+        else
+        {
+            damageDir = 1;
+        }
+        FloatingTextManager.Instance.CreateFloatingText(floatingText, transform, attackDetail.damage.ToString(), damageDir);
+        if (currentHelth > 0)
         {
             StartCoroutine(Hurt());
         }
@@ -57,17 +68,16 @@ public class Player : MonoBehaviour
         sprite.color = new Color(1, 1, 1, 1);
     }
 
-    void InputMovement()
+    void Movement()
     {
-        float velocityX = Input.GetAxisRaw("Horizontal");
-        float velocityY = Input.GetAxisRaw("Vertical");
-
-        Vector3 moveDir = new Vector3(velocityX * movementSpeed, velocityY * movementSpeed, 0);
+        float xInput = InputManager.Instance.xInput;
+        float yInput = InputManager.Instance.yInput;
+        Vector3 moveDir = new Vector3(xInput * movementSpeed, yInput * movementSpeed, 0);
 
         rb.velocity = moveDir;
 
 
-        anim.SetBool("move", velocityX != 0 || velocityY != 0);
+        anim.SetBool("move", xInput != 0 || yInput != 0);
     }
 
     void CheckFlip()

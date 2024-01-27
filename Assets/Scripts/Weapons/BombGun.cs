@@ -21,7 +21,7 @@ public class BombGun : MonoBehaviour
     void Shooting()
     {
         time += Time.deltaTime;
-        if (Input.GetMouseButtonDown(0) && time >= coolDown)
+        if (InputManager.Instance.shoting && time >= coolDown)
         {
             time = 0;
             GameObject GO = Instantiate(this.projectile, attackPoint.position, transform.rotation);

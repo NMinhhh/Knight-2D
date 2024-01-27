@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class HandleRotation : MonoBehaviour
 {
-    private Vector2 mousePos;
     private Vector3 direction;
-    Vector3 newPos;
     private float angle;
     private Player player;
     private void Start()
@@ -22,8 +20,7 @@ public class HandleRotation : MonoBehaviour
 
     void HandleGunRotation()
     {
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        direction = (mousePos - (Vector2)transform.position).normalized;
+        direction = (InputManager.Instance.mousePos - (Vector2)transform.position).normalized;
         transform.right = direction;
 
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
