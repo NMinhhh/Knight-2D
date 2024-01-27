@@ -5,13 +5,14 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     public static InputManager Instance {  get; private set; }
-    [SerializeField] private GameObject newMouse;
+    [SerializeField] private Texture2D newMouse;
     public float xInput {  get; private set; }
     public float yInput { get; private set; }
     public bool shoting {  get; private set; }
     public Vector2 mousePos {  get; private set; }
     void Start()
     {
+        8Cursor.SetCursor(newMouse, Vector2.zero, CursorMode.Auto);
         if(Instance == null)
         {
             Instance = this;
@@ -27,7 +28,6 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        newMouse.transform.position = mousePos;
         xInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxisRaw("Vertical");
         shoting = Input.GetMouseButtonDown(0);
