@@ -49394,7 +49394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &539355729
 Transform:
   m_ObjectHideFlags: 0
@@ -49586,7 +49586,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &774990563
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -50489,10 +50489,6 @@ PrefabInstance:
     - target: {fileID: 2362974869511345713, guid: 65f524bbffec19545a61a29c93ab780f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5576131071146603169, guid: 65f524bbffec19545a61a29c93ab780f, type: 3}
-      propertyPath: damage
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6330497205719021805, guid: 65f524bbffec19545a61a29c93ab780f, type: 3}
       propertyPath: m_Name

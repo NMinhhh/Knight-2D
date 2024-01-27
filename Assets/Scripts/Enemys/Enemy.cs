@@ -31,6 +31,8 @@ public class Enemy : MonoBehaviour
 
     //Other Variable
     [SerializeField] private GameObject floatingText;
+    [SerializeField] private GameObject blood;
+    [SerializeField] private Transform bloodPoint;
     private float facingRight;
     private int damageDir;
 
@@ -104,6 +106,7 @@ public class Enemy : MonoBehaviour
         }
         if(currentHealth <= 0)
         {
+            Instantiate(blood, bloodPoint.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
