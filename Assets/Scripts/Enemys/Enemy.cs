@@ -4,17 +4,44 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Health")]
     [SerializeField] private float maxHealth;
+    private float currentHealth;
+    [Space]
+    [Space]
+
+    [Header("Move")]
     [SerializeField] private float speed;
+    private Transform target;
+    private bool isMove;
+    [Space]
+    [Space]
+
+    [Header("Hurt")]
     [SerializeField] private float hurtTime;
     [SerializeField] private float knockbackSpeed;
-    private Transform target;
-    private float currentHealth;
+
+
+    [Header("Attack")]
+    [SerializeField] private Transform checkPlayer;
+    [SerializeField] private Vector2 sizeCheckPlayer;
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private float radiusAttack;
+    [SerializeField] private float damage;
+    [SerializeField] private float cooldownAttack;
+    private float timeAttack;
+    [SerializeField] private LayerMask whatIsPlayer;
+
+    //Other Variable
     private float facingRight;
-    private bool isMove;
+    private AttackDetail attackDetail;
+    private bool isFinishAnimation;
+    private bool isAttack;
+    //Components
     private Animator anim;
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +56,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Attack();
         CheckIfFlip();
         Movement();
     }
@@ -38,12 +66,12 @@ public class Enemy : MonoBehaviour
     }
     void Movement()
     {
-        if (Vector3.Distance(target.position, transform.position) <= 1f)
+        if (PlayerDetected())
         {
             isMove = false;
             rb.velocity = Vector2.zero;
         }
-        else
+        else if(!PlayerDetected() && !isAttack)
         {
             isMove = true;
             rb.velocity = GetDir() * speed;
@@ -51,12 +79,48 @@ public class Enemy : MonoBehaviour
         anim.SetBool("move", isMove);
     }
 
-    void AttackPlayer()
+    void Attack()
     {
-
+        timeAttack += Time.deltaTime;
+        if (isFinishAnimation)
+        {
+            anim.SetBool("attack", false);
+            isFinishAnimation = false;
+            isAttack = false;
+        }
+        else if (PlayerDetected() && !isFinishAnimation && timeAttack >= cooldownAttack)
+        {
+            timeAttack = 0;
+            isAttack = true;
+            anim.SetBool("attack", true);
+            rb.velocity = Vector2.zero;
+        }
+        
     }
 
+    void TriggerAnimation()
+    {
+        attackDetail.damage = this.damage;
+        Collider2D[] hit = Physics2D.OverlapCircleAll(attackPoint.position, radiusAttack, whatIsPlayer);
+        foreach (Collider2D col in hit)
+        {
+            if (col)
+            {
+                Debug.Log("Damage");
+                //col.transform.SendMessage("Damage", attackDetail);
+            }
+        }
+    }
 
+    void FinishAnimation()
+    {
+        isFinishAnimation = true;
+    }
+
+    bool PlayerDetected()
+    {
+        return Physics2D.OverlapBox(checkPlayer.position, sizeCheckPlayer, 0, whatIsPlayer);
+    }
 
     void Damage(AttackDetail attackDetail)
     {
@@ -83,13 +147,16 @@ public class Enemy : MonoBehaviour
 
     void CheckIfFlip()
     {
-        if(target.position.x < transform.position.x && facingRight == 1)
+        if (!isAttack)
         {
-            Flip();
-        }
-        else if(target.position.x > transform.position.x && facingRight == -1)
-        {
-            Flip();
+            if (target.position.x < transform.position.x && facingRight == 1)
+            {
+                Flip();
+            }
+            else if (target.position.x > transform.position.x && facingRight == -1)
+            {
+                Flip();
+            }
         }
     }
 
@@ -97,5 +164,11 @@ public class Enemy : MonoBehaviour
     {
         transform.Rotate(0, 180, 0);
         facingRight *= -1;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(checkPlayer.position, sizeCheckPlayer);
+        Gizmos.DrawWireSphere(attackPoint.position, radiusAttack);
     }
 }
