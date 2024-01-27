@@ -5,17 +5,28 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float movementSpeed;
+
+    [Header("Health")]
+    [SerializeField] private float maxHealth;
+    private float currentHelth;
+    [SerializeField] private float hurtTime;
+
     public bool isFacingRight {  get; private set; }
     private float facingRight;
+
+    //Component
     private Animator anim;
     private Rigidbody2D rb;
+    private SpriteRenderer sprite;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
         isFacingRight = true;
         facingRight = 1;
+        currentHelth = maxHealth;
     }
 
     // Update is called once per frame
@@ -23,6 +34,27 @@ public class Player : MonoBehaviour
     {
         InputMovement();
         CheckFlip();
+    }
+
+    void Damage(AttackDetail attackDetail)
+    {
+        currentHelth = Mathf.Clamp(currentHelth - attackDetail.damage, 0, maxHealth);
+
+        if(currentHelth > 0)
+        {
+            StartCoroutine(Hurt());
+        }
+        else
+        {
+            //Die
+        }
+    }
+
+    IEnumerator Hurt()
+    {
+        sprite.color = new Color(.95f, .55f, .55f , 1);
+        yield return new WaitForSeconds(hurtTime);
+        sprite.color = new Color(1, 1, 1, 1);
     }
 
     void InputMovement()

@@ -51,8 +51,7 @@ public class EnemyMeleeAttack : MonoBehaviour
         {
             if (col)
             {
-                Debug.Log("Damage");
-                //col.transform.SendMessage("Damage", attackDetail);
+                col.transform.SendMessage("Damage", attackDetail);
             }
         }
     }

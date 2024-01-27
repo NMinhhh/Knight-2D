@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     [Header("Hurt")]
     [SerializeField] private float hurtTime;
     [SerializeField] private float knockbackSpeed;
+    private bool isKnockback;
 
 
     [Header("Attack")]
@@ -29,6 +30,7 @@ public class Enemy : MonoBehaviour
     public LayerMask player { get; private set; }
 
     //Other Variable
+    [SerializeField] private GameObject floatingText;
     private float facingRight;
 
     //Components
@@ -65,7 +67,7 @@ public class Enemy : MonoBehaviour
             isMove = false;
             rb.velocity = Vector2.zero;
         }
-        else if(!PlayerDetected() && !anim.GetBool("attack"))
+        else if(!PlayerDetected() && !IsAttacking())
         {
             isMove = true;
             rb.velocity = GetDir() * speed;
@@ -73,6 +75,10 @@ public class Enemy : MonoBehaviour
         anim.SetBool("move", isMove);
     }
 
+    bool IsAttacking()
+    {
+        return anim.GetBool("attack");
+    }
 
     public bool PlayerDetected()
     {
@@ -82,12 +88,12 @@ public class Enemy : MonoBehaviour
     void Damage(AttackDetail attackDetail)
     {
         currentHealth = Mathf.Clamp(currentHealth - attackDetail.damage, 0, maxHealth);
-
-        if(currentHealth > 0)
+       FloatingTextManager.Instance.CreateFloatingText(floatingText, transform, attackDetail.damage.ToString());
+        if(currentHealth > 0 && !isKnockback)
         {
             StartCoroutine(Hurt());
         }
-        else
+        if(currentHealth <= 0)
         {
             Destroy(gameObject);
         }
@@ -95,16 +101,19 @@ public class Enemy : MonoBehaviour
 
     IEnumerator Hurt()
     {
+        isKnockback = true;
         sprite.color = new Color(.95f,.6f , .6f, 1);
         rb.velocity = Vector2.one;
-        rb.velocity = GetDir() * -knockbackSpeed;
+        if(!IsAttacking())
+            rb.AddForce(GetDir() * -knockbackSpeed,ForceMode2D.Impulse);
         yield return new WaitForSeconds(hurtTime);
         sprite.color = new Color(1, 1, 1, 1);
+        isKnockback = false;
     }
 
     void CheckIfFlip()
     {
-        if (!anim.GetBool("attack"))
+        if (!IsAttacking())
         {
             if (target.position.x < transform.position.x && facingRight == 1)
             {
