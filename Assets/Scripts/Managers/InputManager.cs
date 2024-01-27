@@ -10,9 +10,12 @@ public class InputManager : MonoBehaviour
     public float yInput { get; private set; }
     public bool shoting {  get; private set; }
     public Vector2 mousePos {  get; private set; }
+
+    private Vector2 hospot;
     void Start()
     {
-        8Cursor.SetCursor(newMouse, Vector2.zero, CursorMode.Auto);
+        hospot = new Vector2(newMouse.width / 2, newMouse.height / 2);
+        Cursor.SetCursor(newMouse, hospot, CursorMode.Auto);
         if(Instance == null)
         {
             Instance = this;

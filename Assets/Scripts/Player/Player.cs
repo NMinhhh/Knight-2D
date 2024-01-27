@@ -17,6 +17,10 @@ public class Player : MonoBehaviour
     public bool isFacingRight {  get; private set; }
     private float facingRight;
     private int damageDir;
+
+    private PlayerStats stats;
+
+
     //Component
     private Animator anim;
     private Rigidbody2D rb;
@@ -27,6 +31,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        stats = GetComponent<PlayerStats>();
         isFacingRight = true;
         facingRight = 1;
         currentHelth = maxHealth;
@@ -42,6 +47,7 @@ public class Player : MonoBehaviour
     void Damage(AttackDetail attackDetail)
     {
         currentHelth = Mathf.Clamp(currentHelth - attackDetail.damage, 0, maxHealth);
+        stats.UpdateHealth(currentHelth, maxHealth);
         if (attackDetail.attackDir.position.x > transform.position.x)
         {
             damageDir = -1;
