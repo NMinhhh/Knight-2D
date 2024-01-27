@@ -12,7 +12,6 @@ public class EnemyMeleeAttack : MonoBehaviour
     private float timeAttack;
     private AttackDetail attackDetail;
     private bool isFinishAnimation;
-    private bool isAttack;
 
     private Enemy enemy;
     // Start is called before the first frame update
@@ -38,7 +37,6 @@ public class EnemyMeleeAttack : MonoBehaviour
         }
         else if (enemy.PlayerDetected() && !isFinishAnimation && timeAttack >= cooldownAttack)
         {
-            timeAttack = 0;
             enemy.anim.SetBool("attack", true);
         }
 
@@ -60,6 +58,7 @@ public class EnemyMeleeAttack : MonoBehaviour
 
     void FinishAnimation()
     {
+        timeAttack = 0;
         isFinishAnimation = true;
     }
 

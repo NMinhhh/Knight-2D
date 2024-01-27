@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: be23348d38a99ed468a941cd86e4eb23
+guid: 925ea11dad3a29046abad701e587ca18
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -123,43 +123,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Blood FX Lite SpriteSheet 1B-4_0
+      name: fly_anim_spritesheet_0
       rect:
         serializedVersion: 2
-        x: 3894
-        y: 67
-        width: 116
-        height: 106
+        x: 0
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac56f7a95fb4fb34893d05290eaa1890
-      internalID: 1900447063
+      spriteID: 6943af48e2f2ea141b69f8b9998aa242
+      internalID: -382690988
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Blood FX Lite SpriteSheet 1B-4_1
+      name: fly_anim_spritesheet_1
       rect:
         serializedVersion: 2
-        x: 6764
-        y: 93
-        width: 59
-        height: 36
-      alignment: 9
-      pivot: {x: 0.48308396, y: 0.5}
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7698c7343f000ce4185f0aad9a32b8f2
-      internalID: 117911100
+      spriteID: bda5b16f570ccd54487a77722fbe067c
+      internalID: -1944915492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fly_anim_spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97612b4a409a5954294e39c6c10b4fb6
+      internalID: -545031505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fly_anim_spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d09b823b67b15c042b9e6710032af9ad
+      internalID: -626175267
       vertices: []
       indices: 
       edges: []
@@ -175,8 +217,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Blood FX Lite SpriteSheet 1B-4_0: 1900447063
-      Blood FX Lite SpriteSheet 1B-4_1: 117911100
+      fly_anim_spritesheet_0: -382690988
+      fly_anim_spritesheet_1: -1944915492
+      fly_anim_spritesheet_2: -545031505
+      fly_anim_spritesheet_3: -626175267
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

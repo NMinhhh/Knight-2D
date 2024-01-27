@@ -177,7 +177,7 @@ Transform:
   m_GameObject: {fileID: 6330497205719021805}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.22, y: 7.46, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -261,7 +261,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
-  blood: {fileID: 4892065731216023941, guid: 6a5421c8c6addc6419e74d7180e16471, type: 3}
+  blood: {fileID: 3402317314981674385, guid: 6a5421c8c6addc6419e74d7180e16471, type: 3}
   bloodPoint: {fileID: 8640563709069030634}
 --- !u!114 &5576131071146603169
 MonoBehaviour:

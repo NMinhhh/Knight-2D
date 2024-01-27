@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: be23348d38a99ed468a941cd86e4eb23
+guid: 9ea2a95851c83644989be20ebc27ef53
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,49 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Blood FX Lite SpriteSheet 1B-4_0
-      rect:
-        serializedVersion: 2
-        x: 3894
-        y: 67
-        width: 116
-        height: 106
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ac56f7a95fb4fb34893d05290eaa1890
-      internalID: 1900447063
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Blood FX Lite SpriteSheet 1B-4_1
-      rect:
-        serializedVersion: 2
-        x: 6764
-        y: 93
-        width: 59
-        height: 36
-      alignment: 9
-      pivot: {x: 0.48308396, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7698c7343f000ce4185f0aad9a32b8f2
-      internalID: 117911100
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -174,9 +132,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Blood FX Lite SpriteSheet 1B-4_0: 1900447063
-      Blood FX Lite SpriteSheet 1B-4_1: 117911100
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

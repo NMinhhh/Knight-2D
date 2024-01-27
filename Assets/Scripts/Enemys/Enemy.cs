@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Move")]
     [SerializeField] private float speed;
-    private Transform target;
+    public Transform target {  get; private set; }
     private bool isMove;
     [Space]
     [Space]
@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour
         CheckIfFlip();
         Movement();
     }
-    Vector2 GetDir()
+    public Vector2 GetDir()
     {
         return (target.position - transform.position).normalized;
     }
