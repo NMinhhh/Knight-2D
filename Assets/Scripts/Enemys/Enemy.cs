@@ -25,26 +25,21 @@ public class Enemy : MonoBehaviour
     [Header("Attack")]
     [SerializeField] private Transform checkPlayer;
     [SerializeField] private Vector2 sizeCheckPlayer;
-    [SerializeField] private Transform attackPoint;
-    [SerializeField] private float radiusAttack;
-    [SerializeField] private float damage;
-    [SerializeField] private float cooldownAttack;
-    private float timeAttack;
     [SerializeField] private LayerMask whatIsPlayer;
+    public LayerMask player { get; private set; }
 
     //Other Variable
     private float facingRight;
-    private AttackDetail attackDetail;
-    private bool isFinishAnimation;
-    private bool isAttack;
+
     //Components
-    private Animator anim;
+    public Animator anim {  get; private set; }
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = whatIsPlayer;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
@@ -56,7 +51,6 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Attack();
         CheckIfFlip();
         Movement();
     }
@@ -71,7 +65,7 @@ public class Enemy : MonoBehaviour
             isMove = false;
             rb.velocity = Vector2.zero;
         }
-        else if(!PlayerDetected() && !isAttack)
+        else if(!PlayerDetected() && !anim.GetBool("attack"))
         {
             isMove = true;
             rb.velocity = GetDir() * speed;
@@ -79,45 +73,8 @@ public class Enemy : MonoBehaviour
         anim.SetBool("move", isMove);
     }
 
-    void Attack()
-    {
-        timeAttack += Time.deltaTime;
-        if (isFinishAnimation)
-        {
-            anim.SetBool("attack", false);
-            isFinishAnimation = false;
-            isAttack = false;
-        }
-        else if (PlayerDetected() && !isFinishAnimation && timeAttack >= cooldownAttack)
-        {
-            timeAttack = 0;
-            isAttack = true;
-            anim.SetBool("attack", true);
-            rb.velocity = Vector2.zero;
-        }
-        
-    }
 
-    void TriggerAnimation()
-    {
-        attackDetail.damage = this.damage;
-        Collider2D[] hit = Physics2D.OverlapCircleAll(attackPoint.position, radiusAttack, whatIsPlayer);
-        foreach (Collider2D col in hit)
-        {
-            if (col)
-            {
-                Debug.Log("Damage");
-                //col.transform.SendMessage("Damage", attackDetail);
-            }
-        }
-    }
-
-    void FinishAnimation()
-    {
-        isFinishAnimation = true;
-    }
-
-    bool PlayerDetected()
+    public bool PlayerDetected()
     {
         return Physics2D.OverlapBox(checkPlayer.position, sizeCheckPlayer, 0, whatIsPlayer);
     }
@@ -147,7 +104,7 @@ public class Enemy : MonoBehaviour
 
     void CheckIfFlip()
     {
-        if (!isAttack)
+        if (!anim.GetBool("attack"))
         {
             if (target.position.x < transform.position.x && facingRight == 1)
             {
@@ -169,6 +126,5 @@ public class Enemy : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(checkPlayer.position, sizeCheckPlayer);
-        Gizmos.DrawWireSphere(attackPoint.position, radiusAttack);
     }
 }

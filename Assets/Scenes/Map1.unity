@@ -49454,6 +49454,7 @@ GameObject:
   - component: {fileID: 765238834}
   - component: {fileID: 765238833}
   - component: {fileID: 765238835}
+  - component: {fileID: 765238838}
   - component: {fileID: 765238832}
   - component: {fileID: 765238836}
   - component: {fileID: 765238837}
@@ -49596,10 +49597,6 @@ MonoBehaviour:
   knockbackSpeed: 5
   checkPlayer: {fileID: 1258430348}
   sizeCheckPlayer: {x: 0.7, y: 0.88}
-  attackPoint: {fileID: 750689347}
-  radiusAttack: 0.3
-  damage: 10
-  cooldownAttack: 0.5
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
@@ -49651,6 +49648,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &765238838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765238831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fa0846bd1cf61743b9704c26fd2372f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPoint: {fileID: 750689347}
+  radiusAttack: 0.3
+  damage: 0
+  cooldownAttack: 0.5
 --- !u!1 &774990562
 GameObject:
   m_ObjectHideFlags: 0
