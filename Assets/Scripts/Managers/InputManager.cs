@@ -33,6 +33,6 @@ public class InputManager : MonoBehaviour
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         xInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxisRaw("Vertical");
-        shoting = Input.GetMouseButtonDown(0);
+        shoting = Input.GetMouseButton(0);
     }
 }

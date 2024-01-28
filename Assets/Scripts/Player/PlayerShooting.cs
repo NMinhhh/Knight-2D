@@ -9,6 +9,8 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float damage;
     [SerializeField] private float timeLife;
+    [SerializeField] private float cooldownTimer;
+    private float timer;
 
     // Update is called once per frame
     void Update()
@@ -19,8 +21,10 @@ public class PlayerShooting : MonoBehaviour
 
     void Shooting()
     {
-        if(InputManager.Instance.shoting)
+        timer += Time.deltaTime;
+        if(InputManager.Instance.shoting && timer >= cooldownTimer)
         {
+            timer = 0;
             GameObject GO = Instantiate(this.projectile, attackPoint.position, transform.rotation);
             Projectile script = GO.GetComponent<Projectile>();
             script.CreateBullet(damage, speed, timeLife);
