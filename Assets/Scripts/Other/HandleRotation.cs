@@ -6,7 +6,7 @@ using UnityEngine;
 public class HandleRotation : MonoBehaviour
 {
     private Vector3 direction;
-    private float angle;
+    public float angle {  get; private set; }
     private Player player;
     private void Start()
     {

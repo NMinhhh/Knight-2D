@@ -11,6 +11,7 @@ public class BombGun : MonoBehaviour
     [SerializeField] private float timeLife;
     [SerializeField] private float coolDown;
     private float time;
+
     // Update is called once per frame
     void Update()
     {
