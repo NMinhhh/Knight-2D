@@ -1,24 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class PlayerShooting : MonoBehaviour
 {
+    [Header("Shoting")]
     [SerializeField] private GameObject projectile;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float speed;
     [SerializeField] private float damage;
     [SerializeField] private float timeLife;
+    [Header("Cooldown")]
     [SerializeField] private float cooldownTimer;
-    [SerializeField] private AudioClip clip;
     private float timer;
+
+    [Header("Reload")]
+    [SerializeField] private int maxBullet;
+    private int amountOfBullet;
+    [SerializeField] private float reloadTimer;
+    private float currentReloadTimer;
+    [SerializeField] private StatsBullet statsBullet;
+
+
+    [Header("Sound")]
+    [SerializeField] private AudioClip clip;
+
     private HandleRotation handleRotation;
 
     private void Start()
     {
         handleRotation = GetComponent<HandleRotation>();
+        amountOfBullet = maxBullet;
+        currentReloadTimer = reloadTimer;
+        statsBullet.amountOfBulletText.text = maxBullet.ToString();
+        statsBullet.reloadImage.fillAmount = 0;
     }
 
     void Update()
@@ -29,7 +45,7 @@ public class PlayerShooting : MonoBehaviour
     void Shooting()
     {
         timer += Time.deltaTime;
-        if(InputManager.Instance.shoting && timer >= cooldownTimer)
+        if(InputManager.Instance.shoting && timer >= cooldownTimer && amountOfBullet > 0)
         {
             timer = 0; 
 
@@ -47,7 +63,25 @@ public class PlayerShooting : MonoBehaviour
             GO.transform.localScale = localScale;
             Projectile script = GO.GetComponent<Projectile>();
             script.CreateBullet(damage, speed, timeLife);
+            amountOfBullet--;
+            statsBullet.amountOfBulletText.text = amountOfBullet.ToString();
+        }if(amountOfBullet <= 0)
+        {
+            currentReloadTimer -= Time.deltaTime;
+            statsBullet.reloadImage.fillAmount = currentReloadTimer / reloadTimer;
+            if(currentReloadTimer <= 0)
+            {
+                ReloadBullets();
+            }
         }
+    }
+
+    void ReloadBullets()
+    {
+        amountOfBullet = maxBullet;
+        statsBullet.amountOfBulletText.text = amountOfBullet.ToString();
+        currentReloadTimer = reloadTimer;
+        statsBullet.reloadImage.fillAmount = 0;
     }
 
 }
