@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
     [Space]
     [Space]
     [SerializeField] private GameObject floatingText;
-
     public bool isFacingRight {  get; private set; }
     private float facingRight;
     private int damageDir;
@@ -25,6 +24,10 @@ public class Player : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
+
+    [Header("Text")]
+    [SerializeField] private GameObject[] guns;
+    private int amountOfGuns;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +38,7 @@ public class Player : MonoBehaviour
         isFacingRight = true;
         facingRight = 1;
         currentHelth = maxHealth;
+        guns[amountOfGuns].SetActive(true);
     }
 
     // Update is called once per frame
@@ -42,6 +46,7 @@ public class Player : MonoBehaviour
     {
         Movement();
         CheckFlip();
+        TextCode();
     }
 
     void Damage(AttackDetail attackDetail)
@@ -101,5 +106,17 @@ public class Player : MonoBehaviour
         facingRight *= -1;
         transform.localScale = new Vector3(facingRight, 1, 1);
         isFacingRight = !isFacingRight;
+    }
+
+    void TextCode()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            guns[amountOfGuns].SetActive(false);
+            amountOfGuns++;
+            if (amountOfGuns >= guns.Length)
+                amountOfGuns = 0;
+            guns[amountOfGuns].SetActive(true);
+        }
     }
 }

@@ -273,6 +273,9 @@ MonoBehaviour:
   maxHealth: 100
   hurtTime: 0.2
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
+  guns:
+  - {fileID: 539355728}
+  - {fileID: 774990562}
 --- !u!95 &74391156
 Animator:
   serializedVersion: 5
@@ -72383,7 +72386,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &539355729
 Transform:
   m_ObjectHideFlags: 0
@@ -72498,7 +72501,7 @@ GameObject:
   m_Layer: 0
   m_Name: AttackPoint
   m_TagString: Untagged
-  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -72511,7 +72514,7 @@ Transform:
   m_GameObject: {fileID: 548838536}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.804, y: 0.171, z: 0}
+  m_LocalPosition: {x: 1.75, y: -0.015, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -72635,7 +72638,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &774990563
 SpriteRenderer:
   m_ObjectHideFlags: 0
