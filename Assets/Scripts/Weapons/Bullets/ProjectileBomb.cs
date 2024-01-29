@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ProjectileBomb : MonoBehaviour
@@ -42,22 +41,34 @@ public class ProjectileBomb : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Attack();
+        Check();
     }
 
-    void Attack()
+    void Check()
     {
         Collider2D wall = Physics2D.OverlapCircle(attackPoint.position, radius, whatIsWall);
         Collider2D enemy = Physics2D.OverlapCircle(attackPoint.position, radius, whatIsEnemy);
         if (enemy && !isDamage)
         {
             isDamage = true;
-            enemy.transform.SendMessage("Damage", attackDetail);
         }
         if (wall)
         {
             isWall = true;
         }
+    }
+
+    void Attack()
+    {
+        Collider2D[] enemy = Physics2D.OverlapCircleAll(attackPoint.position, radius, whatIsEnemy);
+        foreach(Collider2D col in enemy)
+        {
+            if(col)
+            {
+                col.transform.SendMessage("Damage", attackDetail);
+            }
+        }
+      
     }
 
     public void CreateBomb(float damage, float speed, float timeLife)
