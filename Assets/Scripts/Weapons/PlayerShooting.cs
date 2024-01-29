@@ -16,11 +16,7 @@ public class PlayerShooting : MonoBehaviour
     private float timer;
 
     [Header("Reload")]
-    [SerializeField] private int maxBullet;
-    private int amountOfBullet;
-    [SerializeField] private float reloadTimer;
-    private float currentReloadTimer;
-    [SerializeField] private StatsBullet statsBullet;
+    private ReloadBullets reloadBullets;
 
 
     [Header("Sound")]
@@ -31,10 +27,7 @@ public class PlayerShooting : MonoBehaviour
     private void Start()
     {
         handleRotation = GetComponent<HandleRotation>();
-        amountOfBullet = maxBullet;
-        currentReloadTimer = reloadTimer;
-        statsBullet.amountOfBulletText.text = maxBullet.ToString();
-        statsBullet.reloadImage.fillAmount = 0;
+        reloadBullets = GetComponent<ReloadBullets>();
     }
 
     void Update()
@@ -45,7 +38,7 @@ public class PlayerShooting : MonoBehaviour
     void Shooting()
     {
         timer += Time.deltaTime;
-        if(InputManager.Instance.shoting && timer >= cooldownTimer && amountOfBullet > 0)
+        if(InputManager.Instance.shoting && timer >= cooldownTimer && reloadBullets.amountOfBullet > 0)
         {
             timer = 0; 
 
@@ -63,25 +56,7 @@ public class PlayerShooting : MonoBehaviour
             GO.transform.localScale = localScale;
             Projectile script = GO.GetComponent<Projectile>();
             script.CreateBullet(damage, speed, timeLife);
-            amountOfBullet--;
-            statsBullet.amountOfBulletText.text = amountOfBullet.ToString();
-        }if(amountOfBullet <= 0)
-        {
-            currentReloadTimer -= Time.deltaTime;
-            statsBullet.reloadImage.fillAmount = currentReloadTimer / reloadTimer;
-            if(currentReloadTimer <= 0)
-            {
-                ReloadBullets();
-            }
+            reloadBullets.UpdateBullets();  
         }
     }
-
-    void ReloadBullets()
-    {
-        amountOfBullet = maxBullet;
-        statsBullet.amountOfBulletText.text = amountOfBullet.ToString();
-        currentReloadTimer = reloadTimer;
-        statsBullet.reloadImage.fillAmount = 0;
-    }
-
 }

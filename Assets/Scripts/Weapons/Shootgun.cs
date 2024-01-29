@@ -10,26 +10,20 @@ public class Shootgun : MonoBehaviour
     [SerializeField] private float timeLife;
     [SerializeField] private Transform[] attackPoint;
     [SerializeField] private GameObject bullet;
+
     [Header("Cooldown")]
     [SerializeField] private float coolDown;
     private float time;
+
     [Header("Reload")]
-    [Header("Reload")]
-    [SerializeField] private int maxBullet;
-    private int amountOfBullet;
-    [SerializeField] private float reloadTimer;
-    private float currentReloadTimer;
-    [SerializeField] private StatsBullet statsBullet;
+    private ReloadBullets reloadBullets;
 
     [Header("Sound")]
     [SerializeField] private AudioClip clip;
 
     private void Start()
     {
-        amountOfBullet = maxBullet;
-        currentReloadTimer = reloadTimer;
-        statsBullet.amountOfBulletText.text = maxBullet.ToString();
-        statsBullet.reloadImage.fillAmount = 0;
+        reloadBullets = GetComponent<ReloadBullets>();
     }
     // Update is called once per frame
     void Update()
@@ -41,25 +35,16 @@ public class Shootgun : MonoBehaviour
     void Shooting()
     {
         time += Time.deltaTime;
-        if (InputManager.Instance.shoting && time >= coolDown && amountOfBullet > 0)
+        if (InputManager.Instance.shoting && time >= coolDown && reloadBullets.amountOfBullet > 0)
         {
             time = 0;
             SoundFXManager.Instance.CreateAudioClip(clip, attackPoint[0], .5f);
             SpawnBullet(attackPoint[0], attackPoint[0].rotation);
             SpawnBullet(attackPoint[1], attackPoint[1].rotation);
             SpawnBullet(attackPoint[2], attackPoint[2].rotation);
-            amountOfBullet --;
-            statsBullet.amountOfBulletText.text = amountOfBullet.ToString();
+            reloadBullets.UpdateBullets();
         }
-        if (amountOfBullet <= 0)
-        {
-            currentReloadTimer -= Time.deltaTime;
-            statsBullet.reloadImage.fillAmount = currentReloadTimer / reloadTimer;
-            if (currentReloadTimer <= 0)
-            {
-                ReloadBullets();
-            }
-        }
+        
     }
 
     void SpawnBullet(Transform spawnPos, Quaternion ro)
@@ -69,11 +54,5 @@ public class Shootgun : MonoBehaviour
         script.CreateBullet(damage, speed, timeLife);
     }
 
-    void ReloadBullets()
-    {
-        amountOfBullet = maxBullet;
-        statsBullet.amountOfBulletText.text = amountOfBullet.ToString();
-        currentReloadTimer = reloadTimer;
-        statsBullet.reloadImage.fillAmount = 0;
-    }
+   
 }

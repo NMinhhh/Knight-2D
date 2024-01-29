@@ -72380,6 +72380,7 @@ GameObject:
   - component: {fileID: 539355730}
   - component: {fileID: 539355732}
   - component: {fileID: 539355731}
+  - component: {fileID: 539355733}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -72473,9 +72474,6 @@ MonoBehaviour:
   damage: 8
   timeLife: 3
   cooldownTimer: 0.2
-  maxBullet: 30
-  reloadTimer: 1.5
-  statsBullet: {fileID: 725899297}
   clip: {fileID: 8300000, guid: 080817365aa2c2742bcd09436f2f506f, type: 3}
 --- !u!114 &539355732
 MonoBehaviour:
@@ -72489,6 +72487,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b0fc1a517de25542adad5a2a902a13d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &539355733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539355728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c47f0ba38b925a846aeed1b23418f341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxBullet: 30
+  reloadTimer: 1.5
+  statsBullet: {fileID: 725899297}
 --- !u!1 &548838536
 GameObject:
   m_ObjectHideFlags: 0
@@ -72632,6 +72645,7 @@ GameObject:
   - component: {fileID: 774990563}
   - component: {fileID: 774990565}
   - component: {fileID: 774990566}
+  - component: {fileID: 774990567}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -72742,10 +72756,22 @@ MonoBehaviour:
   - {fileID: 1303531797}
   bullet: {fileID: 2458557462247786642, guid: b19e23dee31767949848fcd742b6f26b, type: 3}
   coolDown: 0.3
-  maxBullet: 15
-  reloadTimer: 2
-  statsBullet: {fileID: 725899297}
   clip: {fileID: 8300000, guid: 080817365aa2c2742bcd09436f2f506f, type: 3}
+--- !u!114 &774990567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774990562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c47f0ba38b925a846aeed1b23418f341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxBullet: 15
+  reloadTimer: 1.5
+  statsBullet: {fileID: 725899297}
 --- !u!1 &792863333
 GameObject:
   m_ObjectHideFlags: 0
@@ -73584,6 +73610,7 @@ GameObject:
   - component: {fileID: 1376449646}
   - component: {fileID: 1376449648}
   - component: {fileID: 1376449649}
+  - component: {fileID: 1376449650}
   m_Layer: 0
   m_Name: BombGun
   m_TagString: Untagged
@@ -73689,6 +73716,21 @@ MonoBehaviour:
   damage: 20
   timeLife: 4
   coolDown: 0.5
+--- !u!114 &1376449650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376449645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c47f0ba38b925a846aeed1b23418f341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxBullet: 5
+  reloadTimer: 1.5
+  statsBullet: {fileID: 725899297}
 --- !u!1 &1463678035
 GameObject:
   m_ObjectHideFlags: 0
@@ -73745,7 +73787,7 @@ Transform:
   m_GameObject: {fileID: 1525078888}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.99, y: -0, z: 0}
+  m_LocalPosition: {x: 1.14, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -73856,9 +73898,6 @@ MonoBehaviour:
   damage: 8
   timeLife: 3
   cooldownTimer: 0.2
-  maxBullet: 0
-  reloadTimer: 0
-  statsBullet: {fileID: 0}
   clip: {fileID: 0}
 --- !u!114 &1737331317
 MonoBehaviour:
