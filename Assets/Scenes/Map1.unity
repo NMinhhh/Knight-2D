@@ -274,8 +274,10 @@ MonoBehaviour:
   hurtTime: 0.2
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
   guns:
+  - {fileID: 1722048332}
   - {fileID: 539355728}
   - {fileID: 774990562}
+  - {fileID: 1376449645}
 --- !u!95 &74391156
 Animator:
   serializedVersion: 5
@@ -479,11 +481,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1722048333}
   - {fileID: 539355729}
   - {fileID: 774990564}
   - {fileID: 1376449647}
   - {fileID: 1737331314}
-  - {fileID: 1722048333}
   m_Father: {fileID: 74391153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &248466139
@@ -72388,7 +72390,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &539355729
 Transform:
   m_ObjectHideFlags: 0

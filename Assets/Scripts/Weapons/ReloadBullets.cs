@@ -9,6 +9,7 @@ public class ReloadBullets : MonoBehaviour
     [SerializeField] private float reloadTimer;
     private float currentReloadTimer;
     [SerializeField] private StatsBullet statsBullet;
+    bool isReload;
 
     void Start()
     {
@@ -19,13 +20,17 @@ public class ReloadBullets : MonoBehaviour
     }
     private void Update()
     {
-        Reload(); 
+        Reload();
+        if(amountOfBullet > 0)
+        {
+            statsBullet.reloadImage.fillAmount = 0;
+        }       
+        statsBullet.amountOfBulletText.text = amountOfBullet.ToString();
     }
 
     public void UpdateBullets()
     {
         amountOfBullet--;
-        statsBullet.amountOfBulletText.text = amountOfBullet.ToString();
     }
 
 

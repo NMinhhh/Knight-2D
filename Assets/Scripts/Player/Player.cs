@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
         isFacingRight = true;
         facingRight = 1;
         currentHelth = maxHealth;
-        //guns[amountOfGuns].SetActive(true);
+        guns[amountOfGuns].SetActive(true);
     }
 
     // Update is called once per frame
@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
     {
         Movement();
         CheckFlip();
-        //TextCode();
+        TextCode();
     }
 
     void Damage(AttackDetail attackDetail)
