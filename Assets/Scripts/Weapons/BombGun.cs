@@ -19,11 +19,10 @@ public class BombGun : MonoBehaviour
     private ReloadBullets reloadBullets;
 
 
-    private HandleRotation handleRotation;
+    [SerializeField] private HandleRotation handleRotation;
     private void Start()
     {
         reloadBullets = GetComponent<ReloadBullets>();
-        handleRotation = GetComponent<HandleRotation>();
     }
 
     // Update is called once per frame

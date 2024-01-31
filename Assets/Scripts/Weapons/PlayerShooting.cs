@@ -23,11 +23,10 @@ public class PlayerShooting : MonoBehaviour
     [Header("Sound")]
     [SerializeField] private AudioClip clip;
 
-    private HandleRotation handleRotation;
+    [SerializeField] private HandleRotation handleRotation;
 
     private void Start()
     {
-        handleRotation = GetComponent<HandleRotation>();
         reloadBullets = GetComponent<ReloadBullets>();
     }
 
