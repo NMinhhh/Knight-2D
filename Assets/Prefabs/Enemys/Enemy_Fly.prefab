@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &836188077342508342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6624513556867315123}
+  m_Layer: 7
+  m_Name: TouchPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6624513556867315123
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836188077342508342}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.009, y: -0.033, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6134793301144153906}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1406983889302024265
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,6 +158,7 @@ GameObject:
   - component: {fileID: 34595286114991438}
   - component: {fileID: 8608123940364312574}
   - component: {fileID: 8655717284063242306}
+  - component: {fileID: 9109900300055881474}
   - component: {fileID: 5684752868920124944}
   - component: {fileID: 8721474872056548907}
   - component: {fileID: 9115611513203764473}
@@ -155,6 +187,7 @@ Transform:
   - {fileID: 6291939871393520666}
   - {fileID: 4088062879749770054}
   - {fileID: 5615650079028318142}
+  - {fileID: 6624513556867315123}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &34595286114991438
@@ -251,6 +284,22 @@ MonoBehaviour:
   speedBullet: 8
   timeLife: 3
   cooldownAttack: 1
+--- !u!114 &9109900300055881474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4015314585973665254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff30f3a65a70fe345af87b4032ec5677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  touchPoint: {fileID: 6624513556867315123}
+  damage: 5
+  size: {x: 0.61, y: 0.52}
+  cooldown: 0
 --- !u!50 &5684752868920124944
 Rigidbody2D:
   serializedVersion: 4
