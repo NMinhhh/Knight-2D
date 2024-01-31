@@ -5,11 +5,11 @@ using UnityEngine;
 public class Shootgun : MonoBehaviour
 {
     [Header("Shoting")]
+    [SerializeField] private Transform[] attackPoint;
+    [SerializeField] private GameObject bullet;
     [SerializeField] private float speed;
     [SerializeField] private float damage;
     [SerializeField] private float timeLife;
-    [SerializeField] private Transform[] attackPoint;
-    [SerializeField] private GameObject bullet;
 
     [Header("Cooldown")]
     [SerializeField] private float coolDown;

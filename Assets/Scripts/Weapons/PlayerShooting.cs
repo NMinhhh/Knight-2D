@@ -11,6 +11,7 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float damage;
     [SerializeField] private float timeLife;
+
     [Header("Cooldown")]
     [SerializeField] private float cooldownTimer;
     private float timer;

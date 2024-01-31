@@ -11,6 +11,8 @@ public class InputManager : MonoBehaviour
     public bool shoting {  get; private set; }
     public Vector2 mousePos {  get; private set; }
 
+    public bool keyESC {  get; private set; }
+
     private Vector2 hospot;
     void Start()
     {
@@ -30,6 +32,11 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        keyESC = Input.GetKeyDown(KeyCode.Escape);
+        if (CanvasManager.Instance.isOpenSettingCV)
+        {
+            return;
+        }
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         xInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxisRaw("Vertical");
