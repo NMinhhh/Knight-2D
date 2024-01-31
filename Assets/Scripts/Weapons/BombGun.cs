@@ -35,7 +35,7 @@ public class BombGun : MonoBehaviour
     void Shooting()
     {
         time += Time.deltaTime;
-        if (InputManager.Instance.shoting && time >= coolDown)
+        if (InputManager.Instance.shoting && time >= coolDown && reloadBullets.amountOfBullet > 0)
         {
             time = 0;
             Vector3 localScale = Vector3.one;

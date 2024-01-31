@@ -29,6 +29,13 @@ public class CanvasManager : MonoBehaviour
             isOpenSettingCV = !isOpenSettingCV; 
             settingCV.SetActive(isOpenSettingCV);
         }
-        
+        if(isOpenSettingCV)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
 }
