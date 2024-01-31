@@ -19,6 +19,7 @@ public class PlayerShooting : MonoBehaviour
     [Header("Reload")]
     private ReloadBullets reloadBullets;
 
+    private Animator anim;
 
     [Header("Sound")]
     [SerializeField] private AudioClip clip;
@@ -28,6 +29,7 @@ public class PlayerShooting : MonoBehaviour
     private void Start()
     {
         reloadBullets = GetComponent<ReloadBullets>();
+        anim = transform.Find("MuzzleFlash").GetComponent<Animator>();
     }
 
     void Update()
@@ -41,8 +43,8 @@ public class PlayerShooting : MonoBehaviour
         if(InputManager.Instance.shoting && timer >= cooldownTimer && reloadBullets.amountOfBullet > 0)
         {
             timer = 0; 
-
             Vector3 localScale = Vector3.one;
+            anim.SetTrigger("shoot");
             SoundFXManager.Instance.CreateAudioClip(clip, attackPoint, .5f);
             GameObject GO = Instantiate(this.projectile, attackPoint.position, attackPoint.rotation);
             if (handleRotation.angle > 90 || handleRotation.angle < -90)

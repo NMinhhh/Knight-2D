@@ -21,9 +21,12 @@ public class Shootgun : MonoBehaviour
     [Header("Sound")]
     [SerializeField] private AudioClip clip;
 
+    private Animator anim;
+
     private void Start()
     {
         reloadBullets = GetComponent<ReloadBullets>();
+        anim = transform.Find("MuzzleFlash").GetComponent<Animator>();
     }
     // Update is called once per frame
     void Update()
@@ -38,6 +41,7 @@ public class Shootgun : MonoBehaviour
         if (InputManager.Instance.shoting && time >= coolDown && reloadBullets.amountOfBullet > 0)
         {
             time = 0;
+            anim.SetTrigger("shoot");
             SoundFXManager.Instance.CreateAudioClip(clip, attackPoint[0], .5f);
             SpawnBullet(attackPoint[0], attackPoint[0].rotation);
             SpawnBullet(attackPoint[1], attackPoint[1].rotation);

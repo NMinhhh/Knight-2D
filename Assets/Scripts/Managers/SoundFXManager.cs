@@ -26,6 +26,7 @@ public class SoundFXManager : MonoBehaviour
         audio.clip = clip;
         audio.volume = volume;
         audio.Play();
-        Destroy(audio,audio.clip.length);
+        float length = audio.clip.length;
+        Destroy(audio.gameObject, length);
     }
 }
