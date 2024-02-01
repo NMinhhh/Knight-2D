@@ -32,7 +32,6 @@ public class Shootgun : MonoBehaviour
     void Update()
     {
         Shooting();
-
     }
 
     void Shooting()
@@ -43,9 +42,10 @@ public class Shootgun : MonoBehaviour
             time = 0;
             anim.SetTrigger("shoot");
             SoundFXManager.Instance.CreateAudioClip(clip, attackPoint[0], .5f);
-            SpawnBullet(attackPoint[0], attackPoint[0].rotation);
-            SpawnBullet(attackPoint[1], attackPoint[1].rotation);
-            SpawnBullet(attackPoint[2], attackPoint[2].rotation);
+            foreach(Transform pos in attackPoint)
+            {
+                SpawnBullet(pos, pos.rotation);
+            }
             reloadBullets.UpdateBullets();
         }
         

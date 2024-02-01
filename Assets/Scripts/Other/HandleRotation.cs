@@ -22,7 +22,6 @@ public class HandleRotation : MonoBehaviour
     {
         direction = (InputManager.Instance.mousePos - (Vector2)transform.position).normalized;
         transform.right = direction;
-
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Vector3 localScale = Vector3.one;
 

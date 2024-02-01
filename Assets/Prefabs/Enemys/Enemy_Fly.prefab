@@ -299,7 +299,7 @@ MonoBehaviour:
   touchPoint: {fileID: 6624513556867315123}
   damage: 5
   size: {x: 0.61, y: 0.52}
-  cooldown: 0
+  cooldown: 1
 --- !u!50 &5684752868920124944
 Rigidbody2D:
   serializedVersion: 4
