@@ -4,40 +4,28 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    [SerializeField] private Transform checkPlayer;
-    [SerializeField] private Vector2 size;
-    [SerializeField] private LayerMask whatIsPlayer;
     private Animator anim;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         anim = GetComponent<Animator>();
 
     }
     private void Update()
     {
-        if (CheckPlayer())
-        {
-            Close();
-        }
+        
     }
-    void OpenDoor()
+    public void OpenDoor()
     {
         anim.SetBool("open", true);
     }
 
-    bool CheckPlayer()
-    {
-        return Physics2D.OverlapBox(checkPlayer.position, size, 0, whatIsPlayer);
-    }
 
-    void Close()
+
+    public void CloseDoor()
     {
         anim.SetBool("open", false);
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireCube(checkPlayer.position, size);
-    }
+
 }

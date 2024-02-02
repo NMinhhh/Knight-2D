@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
     {
         Movement();
         CheckFlip();
-       TextCode();
+        TextCode();
     }
 
     void Damage(AttackDetail attackDetail)

@@ -9,6 +9,9 @@ public class Spawn : MonoBehaviour
     [SerializeField] private GameObject spawnerIcon;
     [SerializeField] private Vector2 spawnTimer;
     [SerializeField] private int amountOfEnemy;
+
+    public List<GameObject> spawnList;
+    public int count;
     private int currentAmount;
     private float timer;
     // Start is called before the first frame update
@@ -28,13 +31,26 @@ public class Spawn : MonoBehaviour
             timer = Random.Range(spawnTimer.x, spawnTimer.y);
             StartCoroutine(Spawner());
         }
+        for(int i = 0; i < spawnList.Count; ++i)
+        {
+            if (spawnList[i] == null) 
+            { 
+                spawnList.RemoveAt(i);
+            }
+        }
+        count = spawnList.Count;
+        if(currentAmount <= 0 && spawnList.Count == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator Spawner()
     {
         GameObject spawn = Instantiate(spawnerIcon, new Vector2(Random.Range(12, 29), Random.Range(-9, 8)), Quaternion.identity);
         yield return new WaitForSeconds(cooldownSpawnTime);
-        Instantiate(spawnGO, spawn.transform.position, Quaternion.identity);
+        GameObject enemy = Instantiate(spawnGO, spawn.transform.position, Quaternion.identity);
+        spawnList.Add(enemy);
         Destroy(spawn);
         currentAmount--;
     }
