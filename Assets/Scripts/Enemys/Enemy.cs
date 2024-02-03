@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float speed;
     public Transform target {  get; private set; }
     private bool isMove;
+    public bool isSkill;
     [Space]
     [Space]
 
@@ -65,12 +66,12 @@ public class Enemy : MonoBehaviour
     }
     void Movement()
     {
-        if (PlayerDetected())
+        if (PlayerDetected() || isSkill)
         {
             isMove = false;
             rb.velocity = Vector2.zero;
         }
-        else if(!PlayerDetected() && !IsAttacking() && !isKnockback)
+        else if(!PlayerDetected() && !IsAttacking() && !isKnockback && !isSkill)
         {
             isMove = true;
             rb.velocity = GetDir() * speed;
