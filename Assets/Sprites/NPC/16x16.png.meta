@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 787f2343f96b49c48a0a206269fa909d
+guid: a80411394d61754409b636da80416e3f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 20
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -123,127 +123,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ChikBoy_idle_0
+      name: 16x16_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 160
-        width: 32
-        height: 32
+        x: 16
+        y: 16
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22381ddd8d52f9c43975309dddb9d455
-      internalID: 1312612104
+      spriteID: 6f6a2e8c292ba2f4da77c33e1e8d0ff8
+      internalID: -810948996
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChikBoy_idle_1
+      name: 16x16_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
-        width: 32
-        height: 32
+        x: 32
+        y: 16
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4c39b00080c790428bb21c1d4450714
-      internalID: 1574083116
+      spriteID: a6e716133b3d4504e81c41e19b46b78b
+      internalID: -272617650
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChikBoy_idle_2
+      name: 16x16_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 96
-        width: 32
-        height: 32
+        x: 48
+        y: 16
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aac3e31f32fea08489fedf32bc4c4897
-      internalID: 1971020506
+      spriteID: af36b3d3da9605b4b8b4819e8c43c876
+      internalID: -18709648
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChikBoy_idle_3
+      name: 16x16_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
-        width: 32
-        height: 32
+        x: 64
+        y: 16
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5e461af984ecf144994864680162ec3
-      internalID: -1463899485
+      spriteID: 6126fe6160d011d43bdb1ccec986289f
+      internalID: 1815732755
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChikBoy_idle_4
+      name: 16x16_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 73a6bd7f3e06762478328d5c25398d81
-      internalID: -1744871407
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ChikBoy_idle_5
-      rect:
-        serializedVersion: 2
-        x: 0
+        x: 16
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dae10a04f1b0c1a4eb91f6aa3a2d344e
-      internalID: -850116413
+      spriteID: b8465072403f62e4685c7cbb8c1ab438
+      internalID: 1938288189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 16x16_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f25edc5506872cc47967c251d883116b
+      internalID: -1921323395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 16x16_8
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8b5d3d4dfa83c24c93b10568e098bea
+      internalID: -178022218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 16x16_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06bd098fb7f935d47996642fbae3f575
+      internalID: 857573763
       vertices: []
       indices: 
       edges: []
@@ -259,12 +301,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ChikBoy_idle_0: 1312612104
-      ChikBoy_idle_1: 1574083116
-      ChikBoy_idle_2: 1971020506
-      ChikBoy_idle_3: -1463899485
-      ChikBoy_idle_4: -1744871407
-      ChikBoy_idle_5: -850116413
+      16x16_0: -909738467
+      16x16_1: -810948996
+      16x16_2: -272617650
+      16x16_3: -18709648
+      16x16_4: 1815732755
+      16x16_5: 30355715
+      16x16_6: 1938288189
+      16x16_7: -1921323395
+      16x16_8: -178022218
+      16x16_9: 857573763
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

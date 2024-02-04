@@ -13,6 +13,8 @@ public class InputManager : MonoBehaviour
 
     public bool keyESC {  get; private set; }
 
+    public bool keyEnter { get; private set; }
+
     private Vector2 hospot;
     void Start()
     {
@@ -41,5 +43,6 @@ public class InputManager : MonoBehaviour
         xInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxisRaw("Vertical");
         shoting = Input.GetMouseButton(0);
+        keyEnter = Input.GetKeyDown(KeyCode.Return);
     }
 }
