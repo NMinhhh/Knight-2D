@@ -10,6 +10,9 @@ public class Map : MonoBehaviour
     [SerializeField] private Door door1;
     [SerializeField] private Door door2;
     [SerializeField] private List<GameObject> spawner;
+    [SerializeField] private GameObject warning;
+    [SerializeField] private float timeAppearBoss;
+    private float timer;
     private bool isWin;
     void Start()
     {
@@ -24,9 +27,13 @@ public class Map : MonoBehaviour
         if (CheckPlayer())
         {
             door1.CloseDoor();
-            foreach (GameObject go in spawner)
+            //foreach (GameObject go in spawner)
+            //{
+            //    go.SetActive(true);
+            //}
+            for(int i = 0; i < spawner.Count -1; i++)
             {
-                go.SetActive(true);
+                spawner[i].SetActive(true);
             }
         }
         for (int i = 0; i < spawner.Count; i++)
@@ -34,6 +41,16 @@ public class Map : MonoBehaviour
             if (spawner[i] == null)
             {
                 spawner.RemoveAt(i);
+            }
+        }
+        if(spawner.Count == 1)
+        {
+            timer += Time.deltaTime;
+            warning.SetActive(true);
+            if(timer >= timeAppearBoss)
+            {
+                warning.SetActive(false);
+                spawner[0].SetActive(true);
             }
         }
         if (spawner.Count <= 0)
