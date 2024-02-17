@@ -35,7 +35,8 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         keyESC = Input.GetKeyDown(KeyCode.Escape);
-        if (CanvasManager.Instance.isOpenSettingCV)
+        keyEnter = Input.GetKeyDown(KeyCode.Return);
+        if (CanvasManager.Instance.isOpenSettingCV || CanvasManager.Instance.isOpenCV)
         {
             return;
         }
@@ -43,6 +44,5 @@ public class InputManager : MonoBehaviour
         xInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxisRaw("Vertical");
         shoting = Input.GetMouseButton(0);
-        keyEnter = Input.GetKeyDown(KeyCode.Return);
     }
 }

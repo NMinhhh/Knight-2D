@@ -21,8 +21,13 @@ public class Interaction : MonoBehaviour
     {
         if(InputManager.Instance.keyEnter && CheckStore())
         {
-            storeUI.SetActive(true);
+            OpenStore();
         }
+    }
+
+    void OpenStore()
+    {
+        CanvasManager.Instance.OpenUI(storeUI);
     }
 
     bool CheckStore()
