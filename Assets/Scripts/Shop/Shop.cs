@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
-
+    public static Shop Instance;
     [Header("List Weapons")]
     public List<Weapon> shopItemsList;
 
@@ -21,8 +21,9 @@ public class Shop : MonoBehaviour
 
     void Start()
     {
+        if(Instance == null)
+            Instance = this;
         SetCoinUI();
-
         int length = shopItemsList.Count;
 
         for(int i = 0; i < length; i++)
@@ -39,9 +40,8 @@ public class Shop : MonoBehaviour
             btnBuy.interactable =  !shopItemsList[i].isPurchased;
             btnBuy.onClick.AddListener(() => BuyItem(idx));
         }
-
     }
-    
+
     void BuyItem(int i)
     {
         if (GameManager.Instance.HasEnoughCoins(shopItemsList[i].price))
@@ -52,6 +52,7 @@ public class Shop : MonoBehaviour
             btnBuy.interactable = false;
             btnBuy.transform.GetChild(0).GetComponent<Text>().text = "UNLOCK";
             SetCoinUI();
+            Profile.Instance.AddWeapons(shopItemsList[i]);
         }
         else
         {
