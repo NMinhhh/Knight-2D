@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
 public class Weapon 
 {
     public string name;
-    public Image image;
-    public float damage;
-    public float bullet;
+    public Sprite image;
+    public int damage;
+    public int bullet;
     public float reload;
-    public float price;
-    public bool isUnlock;
+    public int price;
+    public bool isPurchased = false;
 }
