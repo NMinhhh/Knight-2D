@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     public int coin;
 
-    void Start()
+    void Awake()
     {
         if(Instance == null)
         {

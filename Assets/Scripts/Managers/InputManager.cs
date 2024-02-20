@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour
     public float xInput {  get; private set; }
     public float yInput { get; private set; }
     public bool shoting {  get; private set; }
+    public bool mouseRight { get; private set; }
     public Vector2 mousePos {  get; private set; }
 
     public bool keyESC {  get; private set; }
@@ -38,8 +39,11 @@ public class InputManager : MonoBehaviour
         keyEnter = Input.GetKeyDown(KeyCode.Return);
         if (CanvasManager.Instance.isOpenSettingCV || CanvasManager.Instance.isOpenCV)
         {
+            shoting = false;
+            mouseRight = false;
             return;
         }
+        mouseRight = Input.GetMouseButtonDown(1);
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         xInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxisRaw("Vertical");

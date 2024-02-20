@@ -17,13 +17,15 @@ public class Shop : MonoBehaviour
 
     [Header("Coin")]
     [SerializeField] private Text coinText;
-
+    private void Awake()
+    {
+         if(Instance == null)
+            Instance = this;
+    }
 
     void Start()
     {
-        if(Instance == null)
-            Instance = this;
-        SetCoinUI();
+       
         int length = shopItemsList.Count;
 
         for(int i = 0; i < length; i++)
@@ -39,6 +41,7 @@ public class Shop : MonoBehaviour
             btnBuy.transform.GetChild(0).GetComponent<Text>().text = shopItemsList[i].isPurchased == false ? shopItemsList[i].price.ToString() : "UNLOCK";
             btnBuy.interactable =  !shopItemsList[i].isPurchased;
             btnBuy.onClick.AddListener(() => BuyItem(idx));
+            SetCoinUI();
         }
     }
 
@@ -52,7 +55,7 @@ public class Shop : MonoBehaviour
             btnBuy.interactable = false;
             btnBuy.transform.GetChild(0).GetComponent<Text>().text = "UNLOCK";
             SetCoinUI();
-            Profile.Instance.AddWeapons(shopItemsList[i]);
+            Profile.Instance.UnlockGun(i);
         }
         else
         {

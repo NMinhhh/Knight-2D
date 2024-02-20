@@ -19,16 +19,11 @@ public class Player : MonoBehaviour
 
     private PlayerStats stats;
 
-
-    //Component
     private Animator anim;
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
 
-    [Header("Text")]
-    [SerializeField] private GameObject[] guns;
-    private int amountOfGuns;
-    // Start is called before the first frame update
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -38,15 +33,12 @@ public class Player : MonoBehaviour
         isFacingRight = true;
         facingRight = 1;
         currentHelth = maxHealth;
-        guns[amountOfGuns].SetActive(true);
     }
 
-    // Update is called once per frame
     void Update()
     {
         Movement();
         CheckFlip();
-        TextCode();
     }
 
     void Damage(AttackDetail attackDetail)
@@ -108,15 +100,5 @@ public class Player : MonoBehaviour
         isFacingRight = !isFacingRight;
     }
 
-    void TextCode()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            guns[amountOfGuns].SetActive(false);
-            amountOfGuns++;
-            if (amountOfGuns >= guns.Length)
-                amountOfGuns = 0;
-            guns[amountOfGuns].SetActive(true);
-        }
-    }
+  
 }

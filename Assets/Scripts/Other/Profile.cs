@@ -5,61 +5,72 @@ using UnityEngine.UI;
 
 public class Profile : MonoBehaviour
 {
+
+
     public static Profile Instance;
     private void Awake()
     {
         if(Instance == null)
             Instance = this;
     }
+
     private List<Weapon> listWeapons;
-    [SerializeField] private GameObject itemTemplate;
-    [SerializeField] private Transform scrollView;
+
     private GameObject go;
-    // Start is called before the first frame update
+    [Header("Select Weapon")]
+    [SerializeField] private GameObject[] guns;
+    private List<int> amountOfGuns;
+    private int selectWeapons;
+
     void Start()
     {
         SetWeapons();
+        selectWeapons = amountOfGuns[0];
+        guns[selectWeapons].SetActive(true);
+    }
+
+    private void Update()
+    {
+        TextCode();
     }
 
     void SetWeapons()
     {
+        amountOfGuns = new List<int>();
+        amountOfGuns.Clear();
         for(int i = 0; i < Shop.Instance.shopItemsList.Count; i++)
         {
             int idx = i;
-            if (Shop.Instance.shopItemsList[i].isPurchased) {
-                AddWeapons((Shop.Instance.shopItemsList[i]));
+            if (Shop.Instance.shopItemsList[idx].isPurchased) {
+                UnlockGun(idx);
             }
 
             
         }
     }
 
-    public void AddWeapons(Weapon w)
+    public void UnlockGun(int index)
     {
-        if(listWeapons == null)
-            listWeapons = new List<Weapon>();
-        Weapon weapon = new Weapon()
-        {
-            name = w.name,
-            image = w.image,
-            damage = w.damage,
-            bullet = w.bullet,
-            reload = w.reload,
-            price = w.price,
-            isPurchased = w.isPurchased,
-        };
-        listWeapons.Add(weapon);
-        go = Instantiate(itemTemplate, scrollView);
-        go.transform.GetChild(0).GetComponent<Text>().text = weapon.name;
-        go.transform.GetChild(1).GetComponent<Image>().sprite = weapon.image;
-        go.transform.GetChild(2).GetComponent<Text>().text = weapon.damage.ToString();
-        go.transform.GetChild(3).GetComponent<Text>().text = weapon.bullet.ToString();
-        go.transform.GetChild(4).GetComponent<Text>().text = weapon.reload.ToString();
+        amountOfGuns.Add(index);
     }
 
-    // Update is called once per frame
-    void Update()
+    void TextCode()
     {
-        
+        if (InputManager.Instance.mouseRight)
+        {
+            guns[selectWeapons].SetActive(false);
+            
+            if (amountOfGuns.IndexOf(selectWeapons) + 1 >= amountOfGuns.Count)
+                selectWeapons = amountOfGuns[0];
+            else 
+                selectWeapons = amountOfGuns[amountOfGuns.IndexOf(selectWeapons) + 1];
+
+            guns[selectWeapons].SetActive(true);
+        }
     }
+    public void AddWeapons2(Weapon w)
+    {
+
+    }
+
 }
