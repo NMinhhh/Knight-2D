@@ -70153,41 +70153,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopItemsList:
-  - name: Pistol
-    image: {fileID: 21300000, guid: d7d58fc54f58ac14f9f153dedccaedaa, type: 3}
-    damage: 5
-    bullet: 15
-    reload: 1
+  - name: 
+    image: {fileID: 0}
+    damage: 0
+    bullet: 0
+    reload: 0
     price: 0
-    isPurchased: 1
-  - name: Ak
-    image: {fileID: 21300000, guid: 9ba82c2e6f8b609418210cae51c409b4, type: 3}
-    damage: 8
-    bullet: 35
-    reload: 1.5
-    price: 200
     isPurchased: 0
-  - name: Shotgun
-    image: {fileID: 21300000, guid: ceee8c0c7df166a48afbbd0a13c06686, type: 3}
-    damage: 8
-    bullet: 15
-    reload: 1.5
-    price: 300
+  - name: 
+    image: {fileID: 0}
+    damage: 0
+    bullet: 0
+    reload: 0
+    price: 0
     isPurchased: 0
-  - name: Sniper
-    image: {fileID: 21300000, guid: c49f8ecb97a740542b77a707fc10db02, type: 3}
-    damage: 12
-    bullet: 20
-    reload: 1.5
-    price: 375
+  - name: 
+    image: {fileID: 0}
+    damage: 0
+    bullet: 0
+    reload: 0
+    price: 0
     isPurchased: 0
-  - name: Bazoka
-    image: {fileID: 21300000, guid: 4502ee811c1b066458259d590c0576ed, type: 3}
-    damage: 20
-    bullet: 8
-    reload: 2
-    price: 500
+  - name: 
+    image: {fileID: 0}
+    damage: 0
+    bullet: 0
+    reload: 0
+    price: 0
     isPurchased: 0
+  - name: 
+    image: {fileID: 0}
+    damage: 0
+    bullet: 0
+    reload: 0
+    price: 0
+    isPurchased: 0
+  data:
+  - {fileID: 11400000, guid: 70f57aa9934aea44ea211de8d9c8dc70, type: 2}
+  - {fileID: 11400000, guid: 7bdc268805bc12841a8f21cf50af450c, type: 2}
+  - {fileID: 11400000, guid: 1d35a87587c4d6245881422926f90322, type: 2}
+  - {fileID: 11400000, guid: bbe422292ca891340a4f1184f218c962, type: 2}
+  - {fileID: 11400000, guid: 8eee8941d6c8efc439203fc02e63d6df, type: 2}
   ItemTemplate: {fileID: 3026449762964757913, guid: 62ee6fdc5cfa8f547b09c170f87d82a9, type: 3}
   shopScrollView: {fileID: 1689906284}
   coinText: {fileID: 1211643274}
@@ -79254,9 +79260,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 205031863}
     m_Modifications:
     - target: {fileID: 941387687826449737, guid: 77d71cc43a97b7840882a3612be3953d, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d35a87587c4d6245881422926f90322, type: 2}
+    - target: {fileID: 941387687826449737, guid: 77d71cc43a97b7840882a3612be3953d, type: 3}
       propertyPath: statsBullet
       value: 
       objectReference: {fileID: 725899297}
+    - target: {fileID: 2764093896296994106, guid: 77d71cc43a97b7840882a3612be3953d, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d35a87587c4d6245881422926f90322, type: 2}
     - target: {fileID: 4156715673226320292, guid: 77d71cc43a97b7840882a3612be3953d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.53
@@ -79319,9 +79333,17 @@ PrefabInstance:
       value: BombGun
       objectReference: {fileID: 0}
     - target: {fileID: 3034051854357233035, guid: afccf61fb67675b4395a08cd76a4e4c9, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 8eee8941d6c8efc439203fc02e63d6df, type: 2}
+    - target: {fileID: 3034051854357233035, guid: afccf61fb67675b4395a08cd76a4e4c9, type: 3}
       propertyPath: statsBullet
       value: 
       objectReference: {fileID: 725899297}
+    - target: {fileID: 3069531257469949620, guid: afccf61fb67675b4395a08cd76a4e4c9, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 8eee8941d6c8efc439203fc02e63d6df, type: 2}
     - target: {fileID: 3069531257469949620, guid: afccf61fb67675b4395a08cd76a4e4c9, type: 3}
       propertyPath: handleRotation
       value: 
@@ -79424,9 +79446,17 @@ PrefabInstance:
       value: Pistol
       objectReference: {fileID: 0}
     - target: {fileID: 5713224166592002545, guid: da261095410d30f4a834402a2c120b1a, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 70f57aa9934aea44ea211de8d9c8dc70, type: 2}
+    - target: {fileID: 5713224166592002545, guid: da261095410d30f4a834402a2c120b1a, type: 3}
       propertyPath: statsBullet
       value: 
       objectReference: {fileID: 725899297}
+    - target: {fileID: 8558377585147808870, guid: da261095410d30f4a834402a2c120b1a, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 70f57aa9934aea44ea211de8d9c8dc70, type: 2}
     - target: {fileID: 8558377585147808870, guid: da261095410d30f4a834402a2c120b1a, type: 3}
       propertyPath: handleRotation
       value: 
@@ -79444,6 +79474,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 205031863}
     m_Modifications:
+    - target: {fileID: 246907997416504935, guid: 24ea234e5f46de34db4e69b8b75892d3, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 7bdc268805bc12841a8f21cf50af450c, type: 2}
     - target: {fileID: 246907997416504935, guid: 24ea234e5f46de34db4e69b8b75892d3, type: 3}
       propertyPath: statsBullet
       value: 
@@ -79488,6 +79522,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6090953043006675179, guid: 24ea234e5f46de34db4e69b8b75892d3, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 7bdc268805bc12841a8f21cf50af450c, type: 2}
     - target: {fileID: 6090953043006675179, guid: 24ea234e5f46de34db4e69b8b75892d3, type: 3}
       propertyPath: handleRotation
       value: 
@@ -79575,9 +79613,17 @@ PrefabInstance:
       value: Sniper
       objectReference: {fileID: 0}
     - target: {fileID: 5666887116380874347, guid: 243b0411456f80c40aad339df0dc3613, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: bbe422292ca891340a4f1184f218c962, type: 2}
+    - target: {fileID: 5666887116380874347, guid: 243b0411456f80c40aad339df0dc3613, type: 3}
       propertyPath: handleRotation
       value: 
       objectReference: {fileID: 205031864}
+    - target: {fileID: 7107251428971621632, guid: 243b0411456f80c40aad339df0dc3613, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: bbe422292ca891340a4f1184f218c962, type: 2}
     - target: {fileID: 7107251428971621632, guid: 243b0411456f80c40aad339df0dc3613, type: 3}
       propertyPath: statsBullet
       value: 

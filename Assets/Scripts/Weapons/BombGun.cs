@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class BombGun : MonoBehaviour
 {
-    [Header("Shoting")]
-    [SerializeField] private GameObject projectile;
-    [SerializeField] private Transform attackPoint;
-    [SerializeField] private float speed;
-    [SerializeField] private float damage;
-    [SerializeField] private float timeLife;
+    [Header("Data")]
+    [SerializeField] private WeaponObject data;
 
+    [Header("Shoting")]
+    [SerializeField] private Transform attackPoint;
+  
     [Header("Cooldown")]
-    [SerializeField] private float coolDown;
     private float time;
 
     [Header("ReloadBullet")]
@@ -34,11 +32,11 @@ public class BombGun : MonoBehaviour
     void Shooting()
     {
         time += Time.deltaTime;
-        if (InputManager.Instance.shoting && time >= coolDown && reloadBullets.amountOfBullet > 0)
+        if (InputManager.Instance.shoting && time >= data.cooldown && reloadBullets.amountOfBullet > 0)
         {
             time = 0;
             Vector3 localScale = Vector3.one;
-            GameObject GO = Instantiate(this.projectile, attackPoint.position, transform.rotation);
+            GameObject GO = Instantiate(data.bulletIcon, attackPoint.position, transform.rotation);
             if(handleRotation.angle > 90 && handleRotation.angle < -90)
             {
                 localScale.y = -1;
@@ -50,7 +48,7 @@ public class BombGun : MonoBehaviour
             }
             GO.transform.localScale = localScale;
             ProjectileBomb script = GO.GetComponent<ProjectileBomb>();
-            script.CreateBomb(damage, speed, timeLife);
+            script.CreateBomb(data.damage, data.speed, data.timeLife);
             reloadBullets.UpdateBullets();
         }
     }

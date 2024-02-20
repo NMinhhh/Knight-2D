@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Shootgun : MonoBehaviour
 {
+    [Header("Data")]
+    [SerializeField] private WeaponObject data;
     [Header("Shoting")]
     [SerializeField] private Transform[] attackPoint;
-    [SerializeField] private GameObject bullet;
-    [SerializeField] private float speed;
-    [SerializeField] private float damage;
-    [SerializeField] private float timeLife;
 
     [Header("Cooldown")]
-    [SerializeField] private float coolDown;
     private float time;
 
     [Header("Reload")]
@@ -37,7 +34,7 @@ public class Shootgun : MonoBehaviour
     void Shooting()
     {
         time += Time.deltaTime;
-        if (InputManager.Instance.shoting && time >= coolDown && reloadBullets.amountOfBullet > 0)
+        if (InputManager.Instance.shoting && time >= data.cooldown && reloadBullets.amountOfBullet > 0)
         {
             time = 0;
             anim.SetTrigger("shoot");
@@ -53,9 +50,9 @@ public class Shootgun : MonoBehaviour
 
     void SpawnBullet(Transform spawnPos, Quaternion ro)
     {
-        GameObject projectile = Instantiate(this.bullet, spawnPos.position, ro);
+        GameObject projectile = Instantiate(data.bulletIcon, spawnPos.position, ro);
         Projectile script = projectile.GetComponent<Projectile>();
-        script.CreateBullet(damage, speed, timeLife);
+        script.CreateBullet(data.damage, data.speed, data.timeLife);
     }
 
    

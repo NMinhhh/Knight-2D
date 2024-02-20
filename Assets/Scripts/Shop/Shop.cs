@@ -8,6 +8,7 @@ public class Shop : MonoBehaviour
     public static Shop Instance;
     [Header("List Weapons")]
     public List<Weapon> shopItemsList;
+    public List<WeaponObject> data;
 
     [SerializeField] private GameObject ItemTemplate;
     GameObject go;
@@ -19,7 +20,17 @@ public class Shop : MonoBehaviour
     [SerializeField] private Text coinText;
     private void Awake()
     {
-         if(Instance == null)
+        for (int i = 0; i < data.Count; i++)
+        {
+            shopItemsList[i].name = data[i].name;
+            shopItemsList[i].image = data[i].image;
+            shopItemsList[i].damage = data[i].damage;
+            shopItemsList[i].bullet = data[i].bullet;
+            shopItemsList[i].reload = data[i].reload;
+            shopItemsList[i].price = data[i].price;
+            shopItemsList[i].isPurchased = data[i].isPurchased;
+        }
+        if (Instance == null)
             Instance = this;
     }
 
@@ -27,6 +38,8 @@ public class Shop : MonoBehaviour
     {
        
         int length = shopItemsList.Count;
+
+       
 
         for(int i = 0; i < length; i++)
         {

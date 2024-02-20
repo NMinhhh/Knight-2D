@@ -5,15 +5,13 @@ using UnityEngine.UI;
 
 public class PlayerShooting : MonoBehaviour
 {
+    [Header("Data")]
+    [SerializeField] private WeaponObject data;
+
     [Header("Shoting")]
-    [SerializeField] private GameObject projectile;
     [SerializeField] private Transform attackPoint;
-    [SerializeField] private float speed;
-    [SerializeField] private float damage;
-    [SerializeField] private float timeLife;
 
     [Header("Cooldown")]
-    [SerializeField] private float cooldownTimer;
     private float timer;
 
     [Header("Reload")]
@@ -40,13 +38,13 @@ public class PlayerShooting : MonoBehaviour
     void Shooting()
     {
         timer += Time.deltaTime;
-        if(InputManager.Instance.shoting && timer >= cooldownTimer && reloadBullets.amountOfBullet > 0)
+        if(InputManager.Instance.shoting && timer >= data.cooldown && reloadBullets.amountOfBullet > 0)
         {
             timer = 0; 
             Vector3 localScale = Vector3.one;
             anim.SetTrigger("shoot");
             SoundFXManager.Instance.CreateAudioClip(clip, attackPoint, .5f);
-            GameObject GO = Instantiate(this.projectile, attackPoint.position, attackPoint.rotation);
+            GameObject GO = Instantiate(data.bulletIcon, attackPoint.position, attackPoint.rotation);
             if (handleRotation.angle > 90 || handleRotation.angle < -90)
             {
                 localScale.y = -1f;
@@ -57,7 +55,7 @@ public class PlayerShooting : MonoBehaviour
             }
             GO.transform.localScale = localScale;
             Projectile script = GO.GetComponent<Projectile>();
-            script.CreateBullet(damage, speed, timeLife);
+            script.CreateBullet(data.damage, data.speed, data.timeLife);
             reloadBullets.UpdateBullets();  
         }
     }

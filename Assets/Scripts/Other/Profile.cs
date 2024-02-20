@@ -68,9 +68,5 @@ public class Profile : MonoBehaviour
             guns[selectWeapons].SetActive(true);
         }
     }
-    public void AddWeapons2(Weapon w)
-    {
-
-    }
 
 }

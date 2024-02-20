@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class ReloadBullets : MonoBehaviour
 {
-    [SerializeField] private int maxBullet;
+    [SerializeField] private WeaponObject data;
+
     public int amountOfBullet {  get; private set; }
-    [SerializeField] private float reloadTimer;
+
     private float currentReloadTimer;
+
     [SerializeField] private StatsBullet statsBullet;
-    bool isReload;
 
     void Start()
     {
-        amountOfBullet = maxBullet;
-        currentReloadTimer = reloadTimer;
-        statsBullet.amountOfBulletText.text = maxBullet.ToString();
+        amountOfBullet = data.bullet;
+        currentReloadTimer = data.reload;
+        statsBullet.amountOfBulletText.text = data.bullet.ToString();
         statsBullet.reloadImage.fillAmount = 0;
     }
     private void Update()
@@ -40,12 +41,12 @@ public class ReloadBullets : MonoBehaviour
         if(amountOfBullet <= 0)
         {
             currentReloadTimer -= Time.deltaTime;
-            statsBullet.reloadImage.fillAmount = currentReloadTimer / reloadTimer;
+            statsBullet.reloadImage.fillAmount = currentReloadTimer / data.reload;
             if (currentReloadTimer <= 0)
             {
-                amountOfBullet = maxBullet;
+                amountOfBullet = data.bullet;
                 statsBullet.amountOfBulletText.text = amountOfBullet.ToString();
-                currentReloadTimer = reloadTimer;
+                currentReloadTimer = data.reload;
                 statsBullet.reloadImage.fillAmount = 0;
             }
         }
