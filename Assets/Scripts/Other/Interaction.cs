@@ -23,6 +23,10 @@ public class Interaction : MonoBehaviour
         {
             OpenStore();
         }
+        if (CheckStore() && !CanvasManager.Instance.isOpenCV)
+            CanvasManager.Instance.EnterActive();
+        else if(CanvasManager.Instance.isOpenCV || CheckStore())
+            CanvasManager.Instance.ExitActive();
     }
 
     void OpenStore()
@@ -32,6 +36,7 @@ public class Interaction : MonoBehaviour
 
     bool CheckStore()
     {
+
         return Physics2D.OverlapCircle(checkPoint.position, radius, whatIsStore);
     }
 

@@ -107,6 +107,7 @@ public class Enemy : MonoBehaviour
         }
         if(currentHealth <= 0)
         {
+            GameManager.Instance.PickupCoins(10);
             Instantiate(blood, bloodPoint.position, Quaternion.identity);
             Destroy(gameObject);
         }

@@ -29,7 +29,6 @@ public class InputManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame

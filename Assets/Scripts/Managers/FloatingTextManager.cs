@@ -14,7 +14,6 @@ public class FloatingTextManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
-        DontDestroyOnLoad(gameObject);
     }
 
     public void CreateFloatingText(GameObject textGO, Transform textPos, string text, int direction)

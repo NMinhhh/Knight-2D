@@ -13,11 +13,9 @@ public class Shop : MonoBehaviour
     [SerializeField] private GameObject ItemTemplate;
     GameObject go;
     [SerializeField] private Transform shopScrollView;
+    [SerializeField] private Animator anim;
     Button btnBuy;
-    [Space]
 
-    [Header("Coin")]
-    [SerializeField] private Text coinText;
     private void Awake()
     {
         for (int i = 0; i < data.Count; i++)
@@ -32,14 +30,14 @@ public class Shop : MonoBehaviour
         }
         if (Instance == null)
             Instance = this;
+        else
+            Destroy(gameObject);
     }
 
     void Start()
     {
-       
+        
         int length = shopItemsList.Count;
-
-       
 
         for(int i = 0; i < length; i++)
         {
@@ -54,7 +52,6 @@ public class Shop : MonoBehaviour
             btnBuy.transform.GetChild(0).GetComponent<Text>().text = shopItemsList[i].isPurchased == false ? shopItemsList[i].price.ToString() : "UNLOCK";
             btnBuy.interactable =  !shopItemsList[i].isPurchased;
             btnBuy.onClick.AddListener(() => BuyItem(idx));
-            SetCoinUI();
         }
     }
 
@@ -67,18 +64,14 @@ public class Shop : MonoBehaviour
             btnBuy = shopScrollView.GetChild(i).GetChild(5).GetComponent<Button>();
             btnBuy.interactable = false;
             btnBuy.transform.GetChild(0).GetComponent<Text>().text = "UNLOCK";
-            SetCoinUI();
             Profile.Instance.UnlockGun(i);
         }
         else
         {
-            Debug.Log("You don't have enough coins!!");
+            anim.SetTrigger("noCoin");
         }
 
     }
 
-    void SetCoinUI()
-    {
-        coinText.text = GameManager.Instance.coin.ToString();
-    }
+
 }
