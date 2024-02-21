@@ -65,6 +65,7 @@ public class Shop : MonoBehaviour
             btnBuy.interactable = false;
             btnBuy.transform.GetChild(0).GetComponent<Text>().text = "UNLOCK";
             Profile.Instance.UnlockGun(i);
+            data[i].isPurchased = true;
         }
         else
         {

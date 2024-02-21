@@ -40,12 +40,20 @@ public class InputManager : MonoBehaviour
         {
             shoting = false;
             mouseRight = false;
-            return;
+            xInput = 0;
+            yInput = 0;
+           
         }
-        mouseRight = Input.GetMouseButtonDown(1);
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        xInput = Input.GetAxisRaw("Horizontal");
-        yInput = Input.GetAxisRaw("Vertical");
-        shoting = Input.GetMouseButton(0);
+        else
+        {
+            mouseRight = Input.GetMouseButtonDown(1);
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            xInput = Input.GetAxisRaw("Horizontal");
+            yInput = Input.GetAxisRaw("Vertical");
+            shoting = Input.GetMouseButton(0);
+        }
+
     }
+
+
 }

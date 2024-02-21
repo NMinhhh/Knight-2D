@@ -25,7 +25,7 @@ public class Interaction : MonoBehaviour
         }
         if (CheckStore() && !CanvasManager.Instance.isOpenCV)
             CanvasManager.Instance.EnterActive();
-        else if(CanvasManager.Instance.isOpenCV || CheckStore())
+        else if(CanvasManager.Instance.isOpenCV || !CheckStore())
             CanvasManager.Instance.ExitActive();
     }
 

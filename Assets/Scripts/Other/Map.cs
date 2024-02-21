@@ -16,8 +16,8 @@ public class Map : MonoBehaviour
     private bool isWin;
     void Start()
     {
-        door1.OpenDoor();
-        door2.CloseDoor();
+        //door1.OpenDoor();
+        //door2.CloseDoor();
 
     }
 
