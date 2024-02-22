@@ -59,12 +59,12 @@ public class Shop : MonoBehaviour
     {
         if (GameManager.Instance.HasEnoughCoins(shopItemsList[i].price))
         {
-            GameManager.Instance.UseCoins(shopItemsList[i].price);
             shopItemsList[i].isPurchased = true;
             btnBuy = shopScrollView.GetChild(i).GetChild(5).GetComponent<Button>();
             btnBuy.interactable = false;
             btnBuy.transform.GetChild(0).GetComponent<Text>().text = "UNLOCK";
             Profile.Instance.UnlockGun(i);
+            GameManager.Instance.UseCoins(shopItemsList[i].price);
             data[i].isPurchased = true;
         }
         else

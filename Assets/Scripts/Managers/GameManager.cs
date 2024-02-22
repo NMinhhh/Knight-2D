@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 {
     
     public static GameManager Instance;
-
     public int coin { get; private set; }
 
     void Awake()
@@ -41,10 +40,10 @@ public class GameManager : MonoBehaviour
         SaveObject saveObject = new SaveObject()
         {
             coin = this.coin,
+            amountGun = Profile.Instance.amountOfGuns.ToArray()
         };
         string json = JsonUtility.ToJson(saveObject);
         SaveSystem.Save(json);
-        Load();
         CanvasManager.Instance.SetCoinsUI(": " + coin);
 
     }
@@ -56,6 +55,8 @@ public class GameManager : MonoBehaviour
         {
             SaveObject saveObject = JsonUtility.FromJson<SaveObject>(saveString);
             this.coin = saveObject.coin;
+            //if(saveObject.amountGun != null)
+            Profile.Instance.SetWeapons(saveObject.amountGun);
         }
     }
 
@@ -68,5 +69,6 @@ public class GameManager : MonoBehaviour
     class SaveObject
     {
         public int coin;
+        public int[] amountGun = { 0 };
     }
 }

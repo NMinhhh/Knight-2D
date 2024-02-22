@@ -19,34 +19,37 @@ public class Profile : MonoBehaviour
     private GameObject go;
     [Header("Select Weapon")]
     [SerializeField] private GameObject[] guns;
-    private List<int> amountOfGuns;
+    public List<int> amountOfGuns {  get; private set; }
     private int selectWeapons;
 
     void Start()
     {
-        SetWeapons();
         selectWeapons = amountOfGuns[0];
         guns[selectWeapons].SetActive(true);
     }
 
     private void Update()
     {
-        TextCode();
+        if (InputManager.Instance.mouseRight)
+        {
+            SelectedWeapon();
+        }
     }
 
-    void SetWeapons()
+    public void SetWeapons(int[] amount)
     {
         amountOfGuns = new List<int>();
         amountOfGuns.Clear();
-        for(int i = 0; i < Shop.Instance.shopItemsList.Count; i++)
-        {
-            int idx = i;
-            if (Shop.Instance.shopItemsList[idx].isPurchased) {
-                UnlockGun(idx);
-            }
+        amountOfGuns.AddRange(amount);
+        //for(int i = 0; i < Shop.Instance.shopItemsList.Count; i++)
+        //{
+        //    int idx = i;
+        //    if (Shop.Instance.shopItemsList[idx].isPurchased) {
+        //        UnlockGun(idx);
+        //    }
 
             
-        }
+        //}
     }
 
     public void UnlockGun(int index)
@@ -54,7 +57,7 @@ public class Profile : MonoBehaviour
         amountOfGuns.Add(index);
     }
 
-    void TextCode()
+    public void SelectedWeapon()
     {
         if (InputManager.Instance.mouseRight)
         {
@@ -62,7 +65,7 @@ public class Profile : MonoBehaviour
             
             if (amountOfGuns.IndexOf(selectWeapons) + 1 >= amountOfGuns.Count)
                 selectWeapons = amountOfGuns[0];
-            else 
+            else
                 selectWeapons = amountOfGuns[amountOfGuns.IndexOf(selectWeapons) + 1];
 
             guns[selectWeapons].SetActive(true);
