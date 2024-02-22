@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Map : MonoBehaviour
+public class MapControl : MonoBehaviour
 {
 
 
     [SerializeField] private List<GameObject> spawner;
     [SerializeField] private GameObject warning;
+    [SerializeField] private GameObject notice;
     [SerializeField] private float timeAppearBoss;
     private float timer;
     private bool isWin;
     void Start()
     {
-
+        
 
     }
 

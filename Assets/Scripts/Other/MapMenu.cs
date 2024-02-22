@@ -19,7 +19,9 @@ public class MapMenu : MonoBehaviour
                 player.position = listMaps[i].pos.position;
                 cam.m_BoundingShape2D = listMaps[i].confiner;
                 CanvasManager.Instance.CloseUI(map);
+                Debug.Log(id);
                 return;
+                
             }
         }
     }

@@ -41,15 +41,6 @@ public class Profile : MonoBehaviour
         amountOfGuns = new List<int>();
         amountOfGuns.Clear();
         amountOfGuns.AddRange(amount);
-        //for(int i = 0; i < Shop.Instance.shopItemsList.Count; i++)
-        //{
-        //    int idx = i;
-        //    if (Shop.Instance.shopItemsList[idx].isPurchased) {
-        //        UnlockGun(idx);
-        //    }
-
-            
-        //}
     }
 
     public void UnlockGun(int index)
