@@ -4,43 +4,34 @@ using UnityEngine;
 
 public class MapControl : MonoBehaviour
 {
-
-
-    [SerializeField] private List<GameObject> spawner;
-    [SerializeField] private GameObject warning;
-    [SerializeField] private GameObject notice;
-    [SerializeField] private float timeAppearBoss;
-    private float timer;
-    private bool isWin;
-    void Start()
+    [SerializeField] private GameObject[] enemyNor;
+    [SerializeField] private GameObject boss;
+    [SerializeField] private float startTimerSpawn;
+    [SerializeField] private float startTimerSpawnBoss;
+    [SerializeField] private Vector2 cooldown;
+    private bool isBoss;
+    private float time;
+    private float startTime;
+    private void Start()
     {
-        
-
+        time = Random.Range(cooldown.x,cooldown.y);
+        startTime = Time.time;
+        startTimerSpawnBoss += startTime;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
-        for (int i = 0; i < spawner.Count; i++)
+        time -= Time.deltaTime;
+        startTime += Time.deltaTime;
+        if(startTime >= startTimerSpawn && time <= 0)
         {
-            if (spawner[i] == null)
-            {
-                spawner.RemoveAt(i);
-            }
+            time = Random.Range(cooldown.x, cooldown.y);
+            SpawnerManager.Instance.SpawnEnemy(enemyNor[Random.Range(0, enemyNor.Length - 1)], new Vector2(Random.Range(-16, 26), Random.Range(-17f, 13.5f)));
         }
-        if(spawner.Count == 1)
+        if(startTime >= startTimerSpawnBoss && !isBoss)
         {
-            timer += Time.deltaTime;
-            warning.SetActive(true);
-            if(timer >= timeAppearBoss)
-            {
-                warning.SetActive(false);
-                spawner[0].SetActive(true);
-            }
+            isBoss = true;
+            SpawnerManager.Instance.SpawnEnemy(boss, new Vector2(Random.Range(-16, 26), Random.Range(-17f, 13.5f)));
         }
-
-
     }
-
 }

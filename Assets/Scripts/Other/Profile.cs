@@ -24,6 +24,8 @@ public class Profile : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.Load();
+        SetWeapons(GameManager.Instance.gunUnlock);
         selectWeapons = amountOfGuns[0];
         guns[selectWeapons].SetActive(true);
     }

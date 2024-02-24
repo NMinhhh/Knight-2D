@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public int coin { get; private set; }
 
+    private List<int> amountGun;
+    public int[] gunUnlock {  get; private set; }
+
     void Awake()
     {
         if (Instance == null)
@@ -19,9 +22,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        amountGun = new List<int>();
         SaveSystem.Init();
         Load();
-        CanvasManager.Instance.SetCoinsUI(": "+coin);
+        amountGun.AddRange(gunUnlock);
+        DontDestroyOnLoad(gameObject);
     }
 
     public void UseCoins(int amount)
@@ -40,12 +45,19 @@ public class GameManager : MonoBehaviour
         SaveObject saveObject = new SaveObject()
         {
             coin = this.coin,
-            amountGun = Profile.Instance.amountOfGuns.ToArray()
+            amountGun = this.gunUnlock,
         };
         string json = JsonUtility.ToJson(saveObject);
         SaveSystem.Save(json);
         CanvasManager.Instance.SetCoinsUI(": " + coin);
 
+    }
+
+    public void GetWeaponsUnLock(int i)
+    {
+        
+        amountGun.Add(i);
+        gunUnlock = amountGun.ToArray();
     }
 
     public void Load()
@@ -56,8 +68,9 @@ public class GameManager : MonoBehaviour
             SaveObject saveObject = JsonUtility.FromJson<SaveObject>(saveString);
             this.coin = saveObject.coin;
             //if(saveObject.amountGun != null)
-            Profile.Instance.SetWeapons(saveObject.amountGun);
+            gunUnlock = saveObject.amountGun;
         }
+        CanvasManager.Instance.SetCoinsUI(": " + coin);
     }
 
     public void PickupCoins(int amount)
@@ -66,9 +79,14 @@ public class GameManager : MonoBehaviour
         Save();
     }
 
+    public void OpenGun()
+    {
+       
+    }
+
     class SaveObject
     {
         public int coin;
-        public int[] amountGun = { 0 };
+        public int[] amountGun = {0};
     }
 }

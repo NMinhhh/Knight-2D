@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
@@ -11,13 +13,15 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private Text coinText;
     
     [Header("Setting")]
-    [SerializeField] private GameObject settingCV;
+    [SerializeField] private GameObject[] settingCV;
 
     [Header("Press Enter")]
     [SerializeField] private GameObject pressEnter;
     public bool isOpenSettingCV {  get; private set; }
 
+    private int settingID = 0;
     public bool isOpenCV {  get; private set; }
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -25,10 +29,7 @@ public class CanvasManager : MonoBehaviour
         {
             Instance = this;
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+       
     }
 
     // Update is called once per frame
@@ -36,17 +37,36 @@ public class CanvasManager : MonoBehaviour
     {
         if (InputManager.Instance.keyESC)
         {
-            isOpenSettingCV = !isOpenSettingCV; 
-            settingCV.SetActive(isOpenSettingCV);
+            if (isOpenSettingCV)
+            {
+                CloseSetting(settingID);
+            }
+            else
+            {
+                OpenSetting(settingID);
+            }
         }
-        if(isOpenSettingCV)
-        {
-            Time.timeScale = 0;
-        }
-        else
-        {
-            Time.timeScale = 1;
-        }
+       
+    }
+
+    public void LoadScence(string scenceName)
+    {
+        SceneManager.LoadScene(scenceName);
+        Time.timeScale = 1;
+        isOpenSettingCV = false;
+    }
+
+    public void OpenSetting(int i)
+    {
+        isOpenSettingCV = true;
+        settingCV[i].SetActive(true);
+        Time.timeScale = 0;
+    }
+    public void CloseSetting(int i)
+    {
+        isOpenSettingCV = false;
+        settingCV[i].SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void OpenUI(GameObject go)

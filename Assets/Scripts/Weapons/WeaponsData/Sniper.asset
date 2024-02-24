@@ -18,7 +18,7 @@ MonoBehaviour:
   bullet: 20
   reload: 1.5
   price: 375
-  isPurchased: 0
+  isPurchased: 1
   speed: 20
   timeLife: 3
   cooldown: 0.5

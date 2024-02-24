@@ -18,6 +18,7 @@ public class SoundFXManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        DontDestroyOnLoad(gameObject);
     }
     public void CreateAudioClip(AudioClip clip, Transform pos, float volume)
     {

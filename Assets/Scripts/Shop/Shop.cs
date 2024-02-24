@@ -10,10 +10,13 @@ public class Shop : MonoBehaviour
     public List<Weapon> shopItemsList;
     public List<WeaponObject> data;
 
+    public List<int> weaponsUnLock {  get; private set; }
+
     [SerializeField] private GameObject ItemTemplate;
     GameObject go;
     [SerializeField] private Transform shopScrollView;
     [SerializeField] private Animator anim;
+
     Button btnBuy;
 
     private void Awake()
@@ -38,7 +41,6 @@ public class Shop : MonoBehaviour
     {
         
         int length = shopItemsList.Count;
-
         for(int i = 0; i < length; i++)
         {
             int idx = i;
@@ -63,7 +65,7 @@ public class Shop : MonoBehaviour
             btnBuy = shopScrollView.GetChild(i).GetChild(5).GetComponent<Button>();
             btnBuy.interactable = false;
             btnBuy.transform.GetChild(0).GetComponent<Text>().text = "UNLOCK";
-            Profile.Instance.UnlockGun(i);
+            GameManager.Instance.GetWeaponsUnLock(i);
             GameManager.Instance.UseCoins(shopItemsList[i].price);
             data[i].isPurchased = true;
         }

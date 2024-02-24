@@ -16,11 +16,11 @@ public class MapMenu : MonoBehaviour
             int idx = i;
             if (listMaps[i].mapId == id)
             {
-                player.position = listMaps[i].pos.position;
-                cam.m_BoundingShape2D = listMaps[i].confiner;
-                CanvasManager.Instance.CloseUI(map);
-                Debug.Log(id);
-                return;
+                //player.position = listMaps[i].pos.position;
+                //cam.m_BoundingShape2D = listMaps[i].confiner;
+                //CanvasManager.Instance.CloseUI(map);
+                //listMaps[i].script.Notice(3);
+                //return;
                 
             }
         }
@@ -33,5 +33,6 @@ public class MapMenu : MonoBehaviour
         public bool isWin;
         public Transform pos;
         public PolygonCollider2D confiner;
+        public MapControl script;
     }
 }
