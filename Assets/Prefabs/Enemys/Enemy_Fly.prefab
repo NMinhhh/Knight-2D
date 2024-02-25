@@ -255,9 +255,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
+  ex: 15
   speed: 3
+  isSkill: 0
   hurtTime: 0.1
   knockbackSpeed: 3
+  timerH: 0.1
   checkPlayer: {fileID: 4070198486374814830}
   sizeCheckPlayer: {x: 8, y: 8}
   whatIsPlayer:

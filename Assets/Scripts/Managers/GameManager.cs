@@ -12,6 +12,13 @@ public class GameManager : MonoBehaviour
     private List<int> amountGun;
     public int[] gunUnlock {  get; private set; }
 
+    public float maxEx {  get; private set; }
+
+    private float currentEx;
+    public int level {  get; private set; }
+
+    PlayerStats exStats;
+
     void Awake()
     {
         if (Instance == null)
@@ -22,11 +29,46 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        level = 1;
+        maxEx = CalculateExperience();
         amountGun = new List<int>();
         SaveSystem.Init();
         Load();
         amountGun.AddRange(gunUnlock);
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Update()
+    {
+        if(currentEx >= maxEx)
+        {
+            LevelUp();
+        }
+    }
+
+    public void LevelUp()
+    {
+        level++;
+        currentEx = 0;
+        maxEx = CalculateExperience();
+        Debug.Log(level);
+    }
+
+    public void UpdateEx(float ex)
+    {
+        currentEx += ex;
+        exStats = GameObject.FindWithTag("Player").GetComponent<PlayerStats>();
+        exStats.UpdateEx(currentEx);
+    }
+
+    int CalculateExperience()
+    {
+        int amountOfExperience = 0;
+        for (int level = 1; level <= this.level; level++)
+        {
+            amountOfExperience += Mathf.FloorToInt(level + 300 * Mathf.Pow(2, (float)level / 7));
+        }
+        return amountOfExperience / 4;
     }
 
     public void UseCoins(int amount)

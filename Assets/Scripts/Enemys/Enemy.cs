@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     [Header("Health")]
     [SerializeField] private float maxHealth;
     private float currentHealth;
+    [SerializeField] private float ex;
     [Space]
     [Space]
 
@@ -21,6 +22,8 @@ public class Enemy : MonoBehaviour
     [Header("Hurt")]
     [SerializeField] private float hurtTime;
     [SerializeField] private float knockbackSpeed;
+    [SerializeField] private float timerH;
+    private float tim;
     private bool isKnockback;
 
 
@@ -59,6 +62,7 @@ public class Enemy : MonoBehaviour
     {
         CheckIfFlip();
         Movement();
+        tim += Time.deltaTime;
     }
     public Vector2 GetDir()
     {
@@ -91,6 +95,8 @@ public class Enemy : MonoBehaviour
 
     void Damage(AttackDetail attackDetail)
     {
+        if (tim < timerH)
+            return;
         currentHealth = Mathf.Clamp(currentHealth - attackDetail.damage, 0, maxHealth);
         if (attackDetail.attackDir.position.x > transform.position.x)
         {
@@ -108,9 +114,11 @@ public class Enemy : MonoBehaviour
         if(currentHealth <= 0)
         {
             GameManager.Instance.PickupCoins(10);
+            GameManager.Instance.UpdateEx(ex);
             Instantiate(blood, bloodPoint.position, Quaternion.identity);
             Destroy(gameObject);
         }
+        tim = 0;
     }
 
     IEnumerator Hurt()

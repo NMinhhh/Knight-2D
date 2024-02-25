@@ -95,9 +95,9 @@ public class Player : MonoBehaviour
 
     void Flip()
     {
+        isFacingRight = !isFacingRight;
         facingRight *= -1;
         transform.localScale = new Vector3(facingRight, 1, 1);
-        isFacingRight = !isFacingRight;
     }
 
   
