@@ -26,7 +26,7 @@ public class WeaponRotationSkill : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (GameManager.Instance.level > level)
+        if (GameManager.Instance.level > level && level < skillObject.Length)
         {
             level++;
             SetSkill(level);
