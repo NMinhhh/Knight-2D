@@ -6,7 +6,6 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private LayerMask whatIsEnemy;
     [SerializeField] private LayerMask whatIsWall;
-    [SerializeField] private bool isProjectileBomb;
     private float speed;
     private float timeLife;
     private Rigidbody2D rb;
