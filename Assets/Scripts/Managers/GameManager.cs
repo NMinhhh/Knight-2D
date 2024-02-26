@@ -51,7 +51,8 @@ public class GameManager : MonoBehaviour
         level++;
         currentEx = 0;
         maxEx = CalculateExperience();
-        Debug.Log(level);
+        CanvasManager.Instance.OpenMenuSkill();
+        SelectionSkill.Instance.AppearMenuSkills();
     }
 
     public void UpdateEx(float ex)

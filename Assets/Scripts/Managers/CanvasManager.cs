@@ -15,6 +15,9 @@ public class CanvasManager : MonoBehaviour
     [Header("Setting")]
     [SerializeField] private GameObject[] settingCV;
 
+    [Header("SelectionSkill")]
+    [SerializeField] private GameObject menuSkill;
+
     [Header("Press Enter")]
     [SerializeField] private GameObject pressEnter;
     public bool isOpenSettingCV {  get; private set; }
@@ -79,6 +82,18 @@ public class CanvasManager : MonoBehaviour
     {
         go.SetActive(false);
         isOpenCV = false;
+    }
+
+    public void OpenMenuSkill()
+    {
+        OpenUI(menuSkill);
+        Time.timeScale = 0;
+    }
+
+    public void CloseMenuSkill()
+    {
+        CloseUI(menuSkill);
+        Time.timeScale = 1;
     }
 
     public void SetCoinsUI(string coinString)

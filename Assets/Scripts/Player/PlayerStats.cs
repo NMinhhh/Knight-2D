@@ -31,6 +31,10 @@ public class PlayerStats : MonoBehaviour
     {
         target = currentEx / GameManager.Instance.maxEx;
         StartCoroutine(UpdateBar(exBar.image, target));
+        if(exBar.image.fillAmount >= 1)
+        {
+            exBar.image.fillAmount = 0;
+        }
     }
 
     IEnumerator UpdateBar(Image image, float target)
