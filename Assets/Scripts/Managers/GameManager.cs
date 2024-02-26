@@ -67,9 +67,10 @@ public class GameManager : MonoBehaviour
         int amountOfExperience = 0;
         for (int level = 1; level <= this.level; level++)
         {
-            amountOfExperience += Mathf.FloorToInt(level + 300 * Mathf.Pow(2, (float)level / 7));
+            amountOfExperience += Mathf.FloorToInt(level + 200 * Mathf.Pow(2, (float)level / 7));
         }
         return amountOfExperience / 4;
+        
     }
 
     public void UseCoins(int amount)

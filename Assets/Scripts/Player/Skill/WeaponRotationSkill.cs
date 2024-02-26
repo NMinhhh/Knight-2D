@@ -19,22 +19,22 @@ public class WeaponRotationSkill : MonoBehaviour
     void Start()
     {
         attackDetail.attackDir = transform;
-        level = GameManager.Instance.level;
-        SetSkill(level);
+        //level = GameManager.Instance.level;
+        //SetSkill(level);
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (GameManager.Instance.level > level && level < skillObject.Length)
-        {
-            level++;
-            SetSkill(level);
-        }
+        //if (GameManager.Instance.level > level && level < skillObject.Length)
+        //{
+        //    level++;
+        //    SetSkill(level);
+        //}
     }
 
 
-    void SetSkill(int level)
+    public void SetSkill(int level)
     {
         skillObject[level - 1].SetActive(true);
         TouchDamageSkill script = skillObject[level - 1].GetComponent<TouchDamageSkill>();

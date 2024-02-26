@@ -18,34 +18,39 @@ public class RocketSpawnSkill : MonoBehaviour
     void Start()
     {
         timer = cooldown;
-        level = 1;
-        currentDir = 1;
+        //level = 1;
+        //currentDir = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.level > level && currentDir < maxDir)
-        {
+        //if (GameManager.Instance.level > level && currentDir < maxDir)
+        //{
 
-            level++;
-            currentDir++;
-        }
+        //    level++;
+        //    currentDir++;
+        //}
         timer -= Time.deltaTime;
-        if (timer <= 0)
+        if (timer <= 0 && currentDir > 0)
         {
             timer = cooldown;
             SetSkill(currentDir);
         }
     }
 
-    void SetSkill(int level)
+    public void AddDirSkill(int i)
+    {
+        currentDir = i;
+    }
+
+    void SetSkill(int dir)
     {
         float rotationZ;
         Vector3 direction;
         GameObject enemyRam;
         GameObject[] pos = GameObject.FindGameObjectsWithTag("Enemy");
-        for (int i = 0; i < level; i++) 
+        for (int i = 0; i < dir; i++) 
         {
             if(pos.Length > 0)
             {

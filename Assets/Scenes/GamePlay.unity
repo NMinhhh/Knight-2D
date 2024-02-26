@@ -39699,7 +39699,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5886622909e94d40bf8da960dbf0552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newMouse: {fileID: 2800000, guid: 38fc78f820a42784e942e8983d752951, type: 3}
+  newMouse:
+  - {fileID: 2800000, guid: 38fc78f820a42784e942e8983d752951, type: 3}
+  - {fileID: 2800000, guid: 736b1e35a5d8fd44bbe1d2171872e16a, type: 3}
 --- !u!4 &579172715
 Transform:
   m_ObjectHideFlags: 0
@@ -39935,7 +39937,7 @@ GameObject:
   m_Layer: 0
   m_Name: Skill1
   m_TagString: Untagged
-  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -40192,16 +40194,23 @@ MonoBehaviour:
   listSkill:
   - name: Luoi cua
     level: 1
+    maxLevel: 4
     image: {fileID: 21300000, guid: 14ba73bc13e85cd4a8d76e8352f3cbfa, type: 3}
     content: Luoi cua xoay quanh nguoi choi gay sat thuong len muc tieu cham vao
   - name: Song
     level: 1
+    maxLevel: 4
     image: {fileID: 636421511, guid: 3f598949b2f7e92438cb14feb78eec85, type: 3}
     content: Con song luot qua gay sat thuong len ke thu
   - name: Ten Lua
     level: 1
+    maxLevel: 4
     image: {fileID: 21300000, guid: dd507d234a280ac44ba5514c279b7bc4, type: 3}
     content: Ban ra ten lua no ve gay sat thuong len muc tieu
+  skill:
+  - {fileID: 603851110}
+  - {fileID: 814162344}
+  - {fileID: 825876929}
   itemTemplate: {fileID: 5208295197282323918, guid: c32624008dd30944c883831c381222c5, type: 3}
   scrollView: {fileID: 2137501547}
 --- !u!1 &725899295
@@ -41692,7 +41701,7 @@ MonoBehaviour:
   - {fileID: 6330497205719021805, guid: 65f524bbffec19545a61a29c93ab780f, type: 3}
   - {fileID: 4015314585973665254, guid: 4f4e5d066b67eed4f8e7500bccb77b32, type: 3}
   - {fileID: 6961070322413347083, guid: 45bb0e2caf7d3f54abe03266d913b00d, type: 3}
-  boss: {fileID: 714186586927743945, guid: 647e465c8d7c44a41a664bd0f6b7e40b, type: 3}
+  boss: {fileID: 6961070322413347083, guid: 45bb0e2caf7d3f54abe03266d913b00d, type: 3}
   startTimerSpawn: 0
   startTimerSpawnBoss: 10
   cooldown: {x: 0.5, y: 1.5}

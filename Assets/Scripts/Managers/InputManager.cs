@@ -5,7 +5,7 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     public static InputManager Instance {  get; private set; }
-    [SerializeField] private Texture2D newMouse;
+    [SerializeField] private Texture2D[] newMouse;
     public float xInput {  get; private set; }
     public float yInput { get; private set; }
     public bool shoting {  get; private set; }
@@ -19,8 +19,6 @@ public class InputManager : MonoBehaviour
     private Vector2 hospot;
     void Start()
     {
-        hospot = new Vector2(newMouse.width / 2, newMouse.height / 2);
-        Cursor.SetCursor(newMouse, hospot, CursorMode.Auto);
         if(Instance == null)
         {
             Instance = this;
@@ -29,6 +27,19 @@ public class InputManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        MouseShoting();
+    }
+
+    public void MouseShoting()
+    {
+        hospot = new Vector2(newMouse[0].width / 2, newMouse[0].height / 2);
+        Cursor.SetCursor(newMouse[0], hospot, CursorMode.Auto);
+    }
+
+    public void MouseClick()
+    {
+        hospot = new Vector2(newMouse[1].width / 2.2f, 0);
+        Cursor.SetCursor(newMouse[1], hospot, CursorMode.Auto);
     }
 
     // Update is called once per frame
@@ -38,6 +49,7 @@ public class InputManager : MonoBehaviour
         keyEnter = Input.GetKeyDown(KeyCode.Return);
         if (CanvasManager.Instance.isOpenSettingCV || CanvasManager.Instance.isOpenCV)
         {
+            MouseClick();
             shoting = false;
             mouseRight = false;
             xInput = 0;
@@ -46,6 +58,7 @@ public class InputManager : MonoBehaviour
         }
         else
         {
+            MouseShoting();
             mouseRight = Input.GetMouseButtonDown(1);
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             xInput = Input.GetAxisRaw("Horizontal");

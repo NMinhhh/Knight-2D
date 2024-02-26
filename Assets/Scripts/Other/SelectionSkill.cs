@@ -7,10 +7,15 @@ public class SelectionSkill : MonoBehaviour
 {
     public static SelectionSkill Instance {  get; private set; }
 
+    
+
     [SerializeField] private List<Skill> listSkill;
+    [SerializeField] private GameObject[] skill;
 
     [SerializeField] private GameObject itemTemplate;
     [SerializeField] private Transform scrollView;
+
+    private List<int> idSkill;
 
     private List<GameObject> skilObj;
 
@@ -27,17 +32,19 @@ public class SelectionSkill : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //for (int i = 0; i < listSkill.Count; i++)
-        //{
-        //    int idx = i;
-        //    go = Instantiate(itemTemplate ,scrollView);
-        //    go.transform.GetChild(0).GetComponent<Text>().text = listSkill[i].name.ToUpper();
-        //    go.transform.GetChild(1).GetComponent<Text>().text = "LV: " + listSkill[i].level;
-        //    go.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = listSkill[i].image;
-        //    go.transform.GetChild(3).GetComponent<Text>().text = listSkill[i].content;
-        //    go.transform.GetChild(4).GetComponent<Text>().text = "+ 1 " + listSkill[i].name;
-            
-        //}
+        GetId();
+    }
+
+    
+
+    void GetId()
+    {
+        idSkill = new List<int>();
+        int count = listSkill.Count;
+        for(int i = 0; i < count; i++)
+        {
+            idSkill.Add(i);
+        }
     }
 
     public void AppearMenuSkills()
@@ -45,7 +52,7 @@ public class SelectionSkill : MonoBehaviour
         skilObj = new List<GameObject>();
         for (int i = 0; i < 3; i++)
         {
-            int idx = Random.Range(0, listSkill.Count - 1);
+            int idx = idSkill[Random.Range(0, idSkill.Count)];
             go = Instantiate(itemTemplate, scrollView);
             go.transform.GetChild(0).GetComponent<Text>().text = listSkill[idx].name.ToUpper();
             go.transform.GetChild(1).GetComponent<Text>().text = "LV: " + listSkill[idx].level;
@@ -59,7 +66,29 @@ public class SelectionSkill : MonoBehaviour
 
     void Selection(int i)
     {
-        Debug.Log(i);
+        switch (i)
+        {
+            case 0:
+                WeaponRotationSkill weaponRotationSkill = skill[i].GetComponent<WeaponRotationSkill>();
+                weaponRotationSkill.SetSkill(listSkill[i].level);
+                listSkill[i].level++;
+                break; 
+            case 1:
+                WaterBlastSpawnSkill waterBlastSpawnSkill = skill[i].GetComponent<WaterBlastSpawnSkill>();
+                waterBlastSpawnSkill.AddDirSkill(listSkill[i].level);
+                listSkill[i].level++;
+                break;
+            case 2:
+                RocketSpawnSkill rocketSpawnSkill = skill[i].GetComponent<RocketSpawnSkill>();
+                rocketSpawnSkill.AddDirSkill(listSkill[i].level);
+                listSkill[i].level++;
+                break;
+
+        }
+        if (listSkill[i].level > listSkill[i].maxLevel)
+        {
+            idSkill.Remove(i);
+        }
         int count = scrollView.childCount;
         for (int j = count - 1; j >= 0; j--)
         {
@@ -80,6 +109,7 @@ public class SelectionSkill : MonoBehaviour
     {
         public string name;
         public int level;
+        public int maxLevel = 4;
         public Sprite image;
         public string content;
     }

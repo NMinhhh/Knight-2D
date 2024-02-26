@@ -25,6 +25,7 @@ public class CanvasManager : MonoBehaviour
     private int settingID = 0;
     public bool isOpenCV {  get; private set; }
 
+
     // Start is called before the first frame update
     void Awake()
     {
