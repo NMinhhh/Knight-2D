@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4156715673226320292}
   - component: {fileID: 2125453792390037175}
-  - component: {fileID: 2764093896296994106}
+  - component: {fileID: 7657775140020445027}
   - component: {fileID: 941387687826449737}
   m_Layer: 0
   m_Name: Shotgun
@@ -186,7 +186,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4156715673226320292
 Transform:
   m_ObjectHideFlags: 0
@@ -258,7 +258,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2764093896296994106
+--- !u!114 &7657775140020445027
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -267,19 +267,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 6169039341581929714}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e3879f2f5d8e2e4d81875cffdd3f524, type: 3}
+  m_Script: {fileID: 11500000, guid: 17f9ac61d6e60f044bb589c9121477a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 1d35a87587c4d6245881422926f90322, type: 2}
   attackPoint:
   - {fileID: 2510851524104263447}
   - {fileID: 4068544514800755864}
   - {fileID: 6065600750049103175}
-  bullet: {fileID: 2458557462247786642, guid: b19e23dee31767949848fcd742b6f26b, type: 3}
-  speed: 18
-  damage: 6
-  timeLife: 3
-  coolDown: 0.3
   clip: {fileID: 8300000, guid: 080817365aa2c2742bcd09436f2f506f, type: 3}
+  gun: 0
+  shotGun: 1
+  grenadeLauncher: 0
 --- !u!114 &941387687826449737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,8 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c47f0ba38b925a846aeed1b23418f341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxBullet: 15
-  reloadTimer: 1.5
+  data: {fileID: 11400000, guid: 1d35a87587c4d6245881422926f90322, type: 2}
   statsBullet: {fileID: 0}
 --- !u!1 &9164428676072012010
 GameObject:
