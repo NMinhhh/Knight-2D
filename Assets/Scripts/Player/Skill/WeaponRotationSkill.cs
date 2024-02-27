@@ -6,8 +6,7 @@ public class WeaponRotationSkill : MonoBehaviour
 {
     [SerializeField] private float timeRotation;
     [SerializeField] private Player player;
-    //[SerializeField] private BoxCollider2D collider2d;
-   // [SerializeField] private LayerMask whatIsEnemy;
+
     [SerializeField] private float damage;
     [SerializeField] private GameObject[] skillObject;
     
@@ -15,24 +14,10 @@ public class WeaponRotationSkill : MonoBehaviour
     [SerializeField] private int level;
 
     AttackDetail attackDetail;
-    // Start is called before the first frame update
     void Start()
     {
         attackDetail.attackDir = transform;
-        //level = GameManager.Instance.level;
-        //SetSkill(level);
     }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        //if (GameManager.Instance.level > level && level < skillObject.Length)
-        //{
-        //    level++;
-        //    SetSkill(level);
-        //}
-    }
-
 
     public void SetSkill(int level)
     {

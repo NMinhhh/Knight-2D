@@ -88,6 +88,11 @@ public class SelectionSkill : MonoBehaviour
                 lightningSpawnSkill.SetAmount(listSkill[i].level);
                 listSkill[i].level++;
                 break;
+            case 4:
+                BulletSpawnSkill bulletSpawnSkill = skill[i].GetComponent<BulletSpawnSkill>();
+                bulletSpawnSkill.AddAmountPosSkill(listSkill[i].level);
+                listSkill[i].level++;
+                break;
 
         }
         if (listSkill[i].level > listSkill[i].maxLevel)
