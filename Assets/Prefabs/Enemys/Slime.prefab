@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 7046417513365827649}
   m_Layer: 7
   m_Name: Slime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,9 +167,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 40
+  ex: 14
   speed: 3
+  isSkill: 0
   hurtTime: 0.1
   knockbackSpeed: 3
+  timerH: 0
   checkPlayer: {fileID: 7491206705145329801}
   sizeCheckPlayer: {x: 0.5, y: 0.3}
   whatIsPlayer:

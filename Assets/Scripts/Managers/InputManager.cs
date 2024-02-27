@@ -28,6 +28,7 @@ public class InputManager : MonoBehaviour
             Destroy(gameObject);
         }
         MouseShoting();
+
     }
 
     public void MouseShoting()
@@ -49,7 +50,6 @@ public class InputManager : MonoBehaviour
         keyEnter = Input.GetKeyDown(KeyCode.Return);
         if (CanvasManager.Instance.isOpenSettingCV || CanvasManager.Instance.isOpenCV)
         {
-            MouseClick();
             shoting = false;
             mouseRight = false;
             xInput = 0;
@@ -58,7 +58,6 @@ public class InputManager : MonoBehaviour
         }
         else
         {
-            MouseShoting();
             mouseRight = Input.GetMouseButtonDown(1);
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             xInput = Input.GetAxisRaw("Horizontal");

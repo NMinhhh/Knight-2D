@@ -26,7 +26,7 @@ public class MapControl : MonoBehaviour
         if(startTime >= startTimerSpawn && time <= 0)
         {
             time = Random.Range(cooldown.x, cooldown.y);
-            SpawnerManager.Instance.SpawnEnemy(enemyNor[Random.Range(0, enemyNor.Length - 1)], new Vector2(Random.Range(-16, 26), Random.Range(-17f, 13.5f)));
+            SpawnerManager.Instance.SpawnEnemy(enemyNor[Random.Range(0, enemyNor.Length)], new Vector2(Random.Range(-16, 26), Random.Range(-17f, 13.5f)));
         }
         if(startTime >= startTimerSpawnBoss && !isBoss)
         {

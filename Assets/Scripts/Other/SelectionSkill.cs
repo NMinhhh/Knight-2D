@@ -83,6 +83,11 @@ public class SelectionSkill : MonoBehaviour
                 rocketSpawnSkill.AddDirSkill(listSkill[i].level);
                 listSkill[i].level++;
                 break;
+            case 3:
+                LightningSpawnSkill lightningSpawnSkill = skill[i].GetComponent<LightningSpawnSkill>();
+                lightningSpawnSkill.SetAmount(listSkill[i].level);
+                listSkill[i].level++;
+                break;
 
         }
         if (listSkill[i].level > listSkill[i].maxLevel)
