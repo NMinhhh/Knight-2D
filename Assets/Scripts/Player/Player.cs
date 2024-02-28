@@ -41,6 +41,12 @@ public class Player : MonoBehaviour
         CheckFlip();
     }
 
+    public void Healing(float amout)
+    {
+        currentHelth = Mathf.Clamp(currentHelth + amout, 0, maxHealth);
+        stats.UpdateHealth(currentHelth, maxHealth);
+    }
+
     void Damage(AttackDetail attackDetail)
     {
         currentHelth = Mathf.Clamp(currentHelth - attackDetail.damage, 0, maxHealth);

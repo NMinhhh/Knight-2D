@@ -8,6 +8,7 @@ public class BulletSpawnSkill : MonoBehaviour
     [SerializeField] private GameObject bullet;
     private GameObject go;
     private Projectile script;
+    private SpriteRenderer spriteRenderer;
 
     [SerializeField] private float damge;
     [SerializeField] private Vector2 speed;
@@ -16,7 +17,7 @@ public class BulletSpawnSkill : MonoBehaviour
     [SerializeField] private float cooldown;
     [SerializeField] private int amountBullet;
     private float timer;
-    [SerializeField] private int currentPos;
+    private int currentPos;
 
     void Start()
     {
@@ -34,6 +35,7 @@ public class BulletSpawnSkill : MonoBehaviour
             }
         }
     }
+
 
     public void AddAmountPosSkill(int i)
     {

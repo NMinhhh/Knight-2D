@@ -5,8 +5,14 @@ using UnityEngine;
 public class SpawnerManager : MonoBehaviour
 {
     public static SpawnerManager Instance {  get; private set; }
+
+    [Header("SpawnEnemy")]
     [SerializeField] private GameObject iconSpawner;
     private GameObject GO;
+    [Space]
+
+    [Header("Spawn Item")]
+    [SerializeField] private GameObject[] item;
 
     private void Awake()
     {
@@ -33,9 +39,13 @@ public class SpawnerManager : MonoBehaviour
         Destroy(go);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SpawnItem(GameObject item, Vector2 pos)
     {
-        
+        GameObject go = Instantiate(item, pos, Quaternion.identity);
+    }
+
+    public GameObject GetItem(int i) 
+    {
+        return item[i];
     }
 }

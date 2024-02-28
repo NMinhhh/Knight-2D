@@ -7,9 +7,11 @@ public class LightningSpawnSkill : MonoBehaviour
     [SerializeField] private GameObject lightning;
     private GameObject go;
     private Lightning script;
+
     [SerializeField] private float damage;
     [SerializeField] private float cooldown;
     private float timer;
+
     private int amountLightning;
     
 

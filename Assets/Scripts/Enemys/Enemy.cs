@@ -115,6 +115,12 @@ public class Enemy : MonoBehaviour
         {
             GameManager.Instance.PickupCoins(10);
             GameManager.Instance.UpdateEx(ex);
+            int ran = Random.Range(0, 5);
+            int ran2 = Random.Range(0, 5);
+            if (ran == ran2)
+            {
+                SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetItem(0), transform.position);
+            }
             Instantiate(blood, bloodPoint.position, Quaternion.identity);
             Destroy(gameObject);
         }

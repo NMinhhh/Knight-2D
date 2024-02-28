@@ -25,8 +25,6 @@ public class EnemyTouch : MonoBehaviour
         Attack();
     }
 
-
-
     void Attack()
     {
         time += Time.deltaTime;
