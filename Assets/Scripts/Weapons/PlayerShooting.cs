@@ -10,6 +10,8 @@ public class PlayerShooting : MonoBehaviour
 
     [Header("Shoting")]
     [SerializeField] private Transform[] attackPoint;
+    private HandleRotation handleRotation;
+
 
     [Header("Cooldown")]
     private float timer;
@@ -32,72 +34,63 @@ public class PlayerShooting : MonoBehaviour
     {
         reloadBullets = GetComponent<ReloadBullets>();
         anim = transform.Find("MuzzleFlash").GetComponent<Animator>();
+        handleRotation = GameObject.FindObjectOfType<HandleRotation>();
     }
 
     void Update()
     {
-        if(gun)
-            ShootingGun();
-        else if(shotGun)
-            ShootingShotGun();
-        else
-            ShootingBomb();
+        timer += Time.deltaTime;
+        if (!handleRotation.auto && InputManager.Instance.shoting)
+        {
+            Shooting();
+        }else if (handleRotation.auto && handleRotation.nearestObj != null)
+        {
+            Shooting();
+        }
     }
 
-    void ShootingGun()
+    void Shooting()
     {
-        timer += Time.deltaTime;
-        if(InputManager.Instance.shoting && timer >= data.cooldown && reloadBullets.amountOfBullet > 0)
+        if(timer >= data.cooldown && reloadBullets.amountOfBullet > 0)
         {
             timer = 0; 
-            Vector3 localScale = Vector3.one;
             anim.SetTrigger("shoot");
             SoundFXManager.Instance.CreateAudioClip(clip, attackPoint[0], .5f);
-            SpawnBullet(attackPoint[0], attackPoint[0].rotation);
-            //GameObject GO = Instantiate(data.bulletIcon, attackPoint[0].position, attackPoint[0].rotation);
-            //if (handleRotation.angle > 90 || handleRotation.angle < -90)
-            //{
-            //    localScale.y = -1f;
-            //}
-            //else
-            //{
-            //    localScale.y = 1f;
-            //}
-            //GO.transform.localScale = localScale;
-            //Projectile script = GO.GetComponent<Projectile>();
-            //script.CreateBullet(data.damage, data.speed, data.timeLife);
+            if (gun)
+            {
+                ShootingGun();
+            }
+            else if (shotGun)
+            {
+                ShootingShotGun();
+            }
+            else
+            {
+                ShootingBomb();
+            }
             reloadBullets.UpdateBullets();  
         }
+    }
+    
+    void ShootingGun()
+    {
+       
+        SpawnBullet(attackPoint[0], attackPoint[0].rotation);
+           
     }
 
     void ShootingShotGun()
     {
-        timer += Time.deltaTime;
-        if (InputManager.Instance.shoting && timer >= data.cooldown && reloadBullets.amountOfBullet > 0)
+        foreach (Transform pos in attackPoint)
         {
-            timer = 0;
-            anim.SetTrigger("shoot");
-            SoundFXManager.Instance.CreateAudioClip(clip, attackPoint[0], .5f);
-            foreach (Transform pos in attackPoint)
-            {
-                SpawnBullet(pos, pos.rotation);
-            }
-            reloadBullets.UpdateBullets();
+            SpawnBullet(pos, pos.rotation);
         }
-
     }
 
     void ShootingBomb()
     {
-        timer += Time.deltaTime;
-        if (InputManager.Instance.shoting && timer >= data.cooldown && reloadBullets.amountOfBullet > 0)
-        {
-            timer = 0;
-            anim.SetTrigger("shoot");
-            SoundFXManager.Instance.CreateAudioClip(clip, attackPoint[0], .5f);
-            SpawnRocket(attackPoint[0], attackPoint[0].rotation);
-            reloadBullets.UpdateBullets();
-        }
+        SpawnRocket(attackPoint[0], attackPoint[0].rotation);
+          
 
     }
 

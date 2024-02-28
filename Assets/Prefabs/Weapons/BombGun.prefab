@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4941090664287819493
 Transform:
   m_ObjectHideFlags: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 8eee8941d6c8efc439203fc02e63d6df, type: 2}
   attackPoint:
   - {fileID: 8512968242399373161}
-  clip: {fileID: 8300000, guid: 080817365aa2c2742bcd09436f2f506f, type: 3}
+  clip: {fileID: 8300000, guid: 805a9d7c905342e4a99905265245a340, type: 3}
   gun: 0
   shotGun: 0
   grenadeLauncher: 1
