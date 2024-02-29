@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     
     public static GameManager Instance;
 
+    
     public int coin { get; private set; }
 
     private List<int> amountGun;
@@ -19,6 +20,13 @@ public class GameManager : MonoBehaviour
     public int level {  get; private set; }
 
     PlayerStats exStats;
+
+    //Time in game
+    public float minutes { get; private set; }
+    public float seconds { get; private set; }
+
+    private float timer = 1;
+
 
     void Awake()
     {
@@ -44,6 +52,17 @@ public class GameManager : MonoBehaviour
         if(currentEx >= maxEx)
         {
             LevelUp();
+        }
+        timer -= Time.deltaTime;
+        if(timer <= 0)
+        {
+            timer = 1;
+            seconds++;
+            if(seconds == 60)
+            {
+                minutes++;
+                seconds = 0;
+            }
         }
     }
 
@@ -112,7 +131,6 @@ public class GameManager : MonoBehaviour
         {
             SaveObject saveObject = JsonUtility.FromJson<SaveObject>(saveString);
             this.coin = saveObject.coin;
-            //if(saveObject.amountGun != null)
             gunUnlock = saveObject.amountGun;
         }
         CanvasManager.Instance.SetCoinsUI(": " + coin);
