@@ -267,7 +267,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
-  blood: {fileID: 1073206369824264450, guid: a49e8d5b9bdb85e4ab4e17f41fa5c556, type: 3}
+  blood: {fileID: 2578279218646126725, guid: 15cd884113aec644592bc35df7dffa34, type: 3}
   bloodPoint: {fileID: 6291939871393520666}
 --- !u!114 &8655717284063242306
 MonoBehaviour:

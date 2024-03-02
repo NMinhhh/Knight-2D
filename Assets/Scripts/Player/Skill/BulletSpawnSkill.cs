@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class BulletSpawnSkill : MonoBehaviour
 {
+    [Header("Component Bullets")]
     [SerializeField] private Transform[] spawnPos;
     [SerializeField] private GameObject bullet;
     private GameObject go;
     private Projectile script;
-    private SpriteRenderer spriteRenderer;
 
+    [Header("Effect")]
+    private SpriteRenderer spriteRenderer;
+    [SerializeField] private float timerEffect;
+
+    [Header("Info Bullet")]
     [SerializeField] private float damge;
     [SerializeField] private Vector2 speed;
     [SerializeField] private float timeLife;
 
+    [Header("Cooldown")]
     [SerializeField] private float cooldown;
     [SerializeField] private int amountBullet;
     private float timer;
@@ -67,5 +73,6 @@ public class BulletSpawnSkill : MonoBehaviour
         }
     }
 
+    
 
 }

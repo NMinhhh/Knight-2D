@@ -58,7 +58,8 @@ public class SelectionSkill : MonoBehaviour
             go.transform.GetChild(1).GetComponent<Text>().text = "LV: " + listSkill[idx].level;
             go.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = listSkill[idx].image;
             go.transform.GetChild(3).GetComponent<Text>().text = listSkill[idx].content;
-            go.transform.GetChild(4).GetComponent<Text>().text = "+ 1 " + listSkill[idx].name;
+            go.transform.GetChild(4).GetComponent<Image>().fillAmount = (float)((listSkill[idx].level) / (float)(listSkill[idx].maxLevel + 1));
+            go.transform.GetChild(5).GetComponent<Text>().text = "+ 1 " + listSkill[idx].name;
             go.transform.GetComponent<Button>().onClick.AddListener(() =>  Selection(idx));
             skilObj.Add(go);
         }

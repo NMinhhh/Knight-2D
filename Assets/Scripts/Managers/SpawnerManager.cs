@@ -8,8 +8,11 @@ public class SpawnerManager : MonoBehaviour
 
     [Header("SpawnEnemy")]
     [SerializeField] private GameObject iconSpawner;
+    SpriteRenderer spriteRenderer;
     private GameObject GO;
     [Space]
+
+    private static int sortingOrder = 0;
 
     [Header("Spawn Item")]
     [SerializeField] private GameObject[] item;
@@ -36,6 +39,9 @@ public class SpawnerManager : MonoBehaviour
         GameObject go = Instantiate(iconSpawner, pos, Quaternion.identity);
         yield return new WaitForSeconds(1.5f);
         GO = Instantiate(enemy, go.transform.position, Quaternion.identity);
+        spriteRenderer = GO.GetComponent<SpriteRenderer>();
+        sortingOrder++;
+        spriteRenderer.sortingOrder = sortingOrder;
         Destroy(go);
     }
 

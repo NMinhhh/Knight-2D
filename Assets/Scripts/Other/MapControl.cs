@@ -32,7 +32,7 @@ public class MapControl : MonoBehaviour
             time = Random.Range(cooldown.x, cooldown.y) * encreaseTimeSpawn;
             SpawnerManager.Instance.SpawnEnemy(enemyNor[Random.Range(0, enemyNor.Length)], new Vector2(Random.Range(-16, 26), Random.Range(-17f, 13.5f)));
         }
-        if(startTime >= startTimerSpawnBoss && !isBoss && GameManager.Instance.level == 10)
+        if(startTime >= startTimerSpawnBoss && !isBoss && GameManager.Instance.minutes == 1)
         {
             isBoss = true;
             encreaseTimeSpawn = 2;

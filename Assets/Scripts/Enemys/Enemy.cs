@@ -75,17 +75,12 @@ public class Enemy : MonoBehaviour
             isMove = false;
             rb.velocity = Vector2.zero;
         }
-        else if(!PlayerDetected() && !IsAttacking() && !isKnockback && !isSkill)
+        else if(!PlayerDetected() && !isKnockback && !isSkill)
         {
             isMove = true;
             rb.velocity = GetDir() * speed;
         }
         anim.SetBool("move", isMove);
-    }
-
-    bool IsAttacking()
-    {
-        return anim.GetBool("attack");
     }
 
     public bool PlayerDetected()
@@ -115,8 +110,8 @@ public class Enemy : MonoBehaviour
         {
             GameManager.Instance.PickupCoins(10);
             GameManager.Instance.UpdateEx(ex);
-            int ran = Random.Range(0, 5);
-            int ran2 = Random.Range(0, 5);
+            int ran = Random.Range(0, 20);
+            int ran2 = Random.Range(0, 20);
             if (ran == ran2)
             {
                 SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetItem(0), transform.position);
@@ -132,10 +127,7 @@ public class Enemy : MonoBehaviour
         isKnockback = true;
         sprite.color = new Color(.95f,.6f , .6f, 1);
         rb.velocity = Vector2.zero;
-        if (!IsAttacking())
-        {
-            rb.velocity = GetDir() * -knockbackSpeed/2;
-        }
+        //rb.velocity = GetDir() * -knockbackSpeed / 2;
         yield return new WaitForSeconds(hurtTime);
         sprite.color = new Color(1, 1, 1, 1);
         isKnockback = false;
@@ -143,16 +135,13 @@ public class Enemy : MonoBehaviour
 
     void CheckIfFlip()
     {
-        if (!IsAttacking())
+        if (target.position.x < transform.position.x && facingRight == 1)
         {
-            if (target.position.x < transform.position.x && facingRight == 1)
-            {
-                Flip();
-            }
-            else if (target.position.x > transform.position.x && facingRight == -1)
-            {
-                Flip();
-            }
+            Flip();
+        }
+        else if (target.position.x > transform.position.x && facingRight == -1)
+        {
+            Flip();
         }
     }
 
