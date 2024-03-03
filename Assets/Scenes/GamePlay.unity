@@ -1152,6 +1152,7 @@ MonoBehaviour:
   iconSpawner: {fileID: 2804138993721818002, guid: b18fadb123f1ef54c86c84e37626f8d9, type: 3}
   item:
   - {fileID: 1929216110777424778, guid: de52d8807e96baa4aae5fd6645f73dba, type: 3}
+  - {fileID: 6636172245612806722, guid: 5f43e4177dc1c1d469ec558b2771dab1, type: 3}
 --- !u!4 &334086752
 Transform:
   m_ObjectHideFlags: 0

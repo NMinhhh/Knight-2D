@@ -48,7 +48,7 @@ public class InputManager : MonoBehaviour
     {
         keyESC = Input.GetKeyDown(KeyCode.Escape);
         keyEnter = Input.GetKeyDown(KeyCode.Return);
-        if ( CanvasManager.Instance.isOpenUI)
+        if (CanvasManager.Instance.isOpenUI)
         {
             shoting = false;
             mouseRight = false;

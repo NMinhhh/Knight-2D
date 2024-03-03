@@ -7,7 +7,6 @@ public class Enemy : MonoBehaviour
     [Header("Health")]
     [SerializeField] private float maxHealth;
     private float currentHealth;
-    [SerializeField] private float ex;
     [Space]
     [Space]
 
@@ -109,13 +108,13 @@ public class Enemy : MonoBehaviour
         if(currentHealth <= 0)
         {
             GameManager.Instance.PickupCoins(10);
-            GameManager.Instance.UpdateEx(ex);
             int ran = Random.Range(0, 20);
             int ran2 = Random.Range(0, 20);
             if (ran == ran2)
             {
                 SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetItem(0), transform.position);
             }
+            SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetItem(1), transform.position);
             Instantiate(blood, bloodPoint.position, Quaternion.identity);
             Destroy(gameObject);
         }
