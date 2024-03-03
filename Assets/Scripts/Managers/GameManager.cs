@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     private float currentEx;
     public int level {  get; private set; }
 
+    public bool isLevelUp {  get; private set; }
+
     PlayerStats exStats;
 
     //Time in game
@@ -39,6 +41,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         level = 1;
+        isLevelUp = false;
         maxEx = CalculateExperience();
         amountGun = new List<int>();
         SaveSystem.Init();
@@ -49,10 +52,17 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(currentEx >= maxEx)
+        if(currentEx >= maxEx && !isLevelUp)
         {
+            isLevelUp = true;
+        }
+
+        if(isLevelUp)
+        {
+            isLevelUp = false;
             LevelUp();
         }
+
         timer -= Time.deltaTime;
         if(timer <= 0)
         {
@@ -71,7 +81,7 @@ public class GameManager : MonoBehaviour
         level++;
         currentEx = 0;
         maxEx = CalculateExperience();
-        CanvasManager.Instance.OpenMenuSkill();
+        MenuSkillUI.Instance.OpenMenuSkill();
         SelectionSkill.Instance.AppearMenuSkills();
     }
 
@@ -87,7 +97,7 @@ public class GameManager : MonoBehaviour
         int amountOfExperience = 0;
         for (int level = 1; level <= this.level; level++)
         {
-            amountOfExperience += Mathf.FloorToInt(level + 200 * Mathf.Pow(2, (float)level / 7));
+            amountOfExperience += Mathf.FloorToInt(level + 300 * Mathf.Pow(2, (float)level / 7));
         }
         return amountOfExperience / 4;
         
@@ -113,7 +123,6 @@ public class GameManager : MonoBehaviour
         };
         string json = JsonUtility.ToJson(saveObject);
         SaveSystem.Save(json);
-        CanvasManager.Instance.SetCoinsUI(": " + coin);
 
     }
 
@@ -133,7 +142,6 @@ public class GameManager : MonoBehaviour
             this.coin = saveObject.coin;
             gunUnlock = saveObject.amountGun;
         }
-        CanvasManager.Instance.SetCoinsUI(": " + coin);
     }
 
     public void PickupCoins(int amount)

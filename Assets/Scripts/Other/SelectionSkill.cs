@@ -27,6 +27,10 @@ public class SelectionSkill : MonoBehaviour
         {
             Instance = this;
         }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Start is called before the first frame update
@@ -94,6 +98,11 @@ public class SelectionSkill : MonoBehaviour
                 bulletSpawnSkill.AddAmountPosSkill(listSkill[i].level);
                 listSkill[i].level++;
                 break;
+            case 5:
+                LightningSpawnSkill bombFire = skill[i].GetComponent<LightningSpawnSkill>();
+                bombFire.SetAmount(listSkill[i].level);
+                listSkill[i].level++;
+                break;
 
         }
         if (listSkill[i].level > listSkill[i].maxLevel)
@@ -105,8 +114,7 @@ public class SelectionSkill : MonoBehaviour
         {
             Destroy(scrollView.GetChild(j).transform.gameObject);
         }
-        CanvasManager.Instance.CloseMenuSkill();
-        
+        MenuSkillUI.Instance.CloseMenuSkill();
 
     }
 
