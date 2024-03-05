@@ -26,24 +26,26 @@ public class SettingUI : MonoBehaviour
     public void OpenSetting()
     {
         CanvasManager.Instance.OpenUI(settingUI);
-        Time.timeScale = 0;
         isSeting = true;
+        Time.timeScale = 0;
     }
 
     public void CloseSetting()
     {
-        CanvasManager.Instance.CloseUI(settingUI);
+        isSeting = false;
         if (GameObject.Find("MenuSkill") != null)
         {
             if (MenuSkillUI.Instance.isMenuOp)
                 Time.timeScale = 0;
             else
+            {
                 Time.timeScale = 1;
+                InputManager.Instance.MouseShoting();
+            }
         }
         else
         {
             Time.timeScale = 1;
         }
-        isSeting = false;
     }
 }

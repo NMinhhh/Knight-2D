@@ -16,6 +16,8 @@ public class InputManager : MonoBehaviour
 
     public bool keyEnter { get; private set; }
 
+    public bool clickInput {  get; private set; }
+
     private Vector2 hospot;
     void Start()
     {
@@ -36,10 +38,12 @@ public class InputManager : MonoBehaviour
     {
         hospot = new Vector2(newMouse[0].width / 2, newMouse[0].height / 2);
         Cursor.SetCursor(newMouse[0], hospot, CursorMode.Auto);
+        clickInput = false;
     }
 
     public void MouseClick()
     {
+        clickInput = true;
         hospot = new Vector2(newMouse[1].width / 2.2f, 0);
         Cursor.SetCursor(newMouse[1], hospot, CursorMode.Auto);
     }
@@ -50,7 +54,7 @@ public class InputManager : MonoBehaviour
         keyESC = Input.GetKeyDown(KeyCode.Escape);
         keyEnter = Input.GetKeyDown(KeyCode.Return);
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (CanvasManager.Instance.isOpenUI)
+        if (CanvasManager.Instance.isOpenUI || clickInput)
         {
             shoting = false;
             mouseRight = false;

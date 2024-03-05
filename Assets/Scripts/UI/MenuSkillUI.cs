@@ -26,6 +26,7 @@ public class MenuSkillUI : MonoBehaviour
     {
         menuSkillUI.SetActive(true);
         isMenuOp = true;
+        InputManager.Instance.MouseClick();
         Time.timeScale = 0;
     }
 
@@ -33,6 +34,7 @@ public class MenuSkillUI : MonoBehaviour
     {
         menuSkillUI.SetActive(false);
         isMenuOp = false;
+        InputManager.Instance.MouseShoting();
         Time.timeScale = 1;
     }
 }
