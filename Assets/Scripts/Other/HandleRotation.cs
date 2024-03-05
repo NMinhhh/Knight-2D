@@ -8,12 +8,12 @@ public class HandleRotation : MonoBehaviour
     private Vector3 direction;
     public float angle {  get; private set; }
     private Player player;
-    public bool auto;
+    public bool auto {  get; private set; }
     [Header("Auto")]
     private GameObject[] allObj;
     public GameObject nearestObj {  get; private set; }
     private float distance;
-    private float nearestDistance = 1000;
+    private float nearestDistance = 15;
 
 
     private void Start()
@@ -83,9 +83,8 @@ public class HandleRotation : MonoBehaviour
         transform.localScale = localScale;
     }
 
-    public void TurnAuto(GameObject go)
+    public void TurnAuto()
     {
         auto = !auto;
-        go.SetActive(auto);
     }
 }

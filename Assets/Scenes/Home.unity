@@ -534,8 +534,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 353305881}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &298918253
@@ -691,7 +690,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 298918252}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &353305882
 AudioSource:
@@ -1055,9 +1054,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMouse:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2800000, guid: 38fc78f820a42784e942e8983d752951, type: 3}
+  - {fileID: 2800000, guid: 736b1e35a5d8fd44bbe1d2171872e16a, type: 3}
 --- !u!4 &579172715
 Transform:
   m_ObjectHideFlags: 0
@@ -1316,6 +1314,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 870990680}
+  - component: {fileID: 870990681}
   m_Layer: 5
   m_Name: GamePlay
   m_TagString: Untagged
@@ -1343,6 +1342,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &870990681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870990679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c54b60c3ab254fd48a4db076552dea85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &898021285
 GameObject:
   m_ObjectHideFlags: 0
@@ -2614,16 +2625,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 691757185}
-        m_TargetAssemblyTypeName: CanvasManager, Assembly-CSharp
-        m_MethodName: LoadScence
+      - m_Target: {fileID: 870990681}
+        m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
+        m_MethodName: Load
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: GamePlay
+          m_StringArgument: Level
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1407860936
@@ -4433,6 +4444,7 @@ SceneRoots:
   - {fileID: 901593482}
   - {fileID: 579172715}
   - {fileID: 298918252}
+  - {fileID: 353305881}
   - {fileID: 1315649557}
   - {fileID: 691757186}
   - {fileID: 1770909872}

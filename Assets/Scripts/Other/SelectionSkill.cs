@@ -17,7 +17,7 @@ public class SelectionSkill : MonoBehaviour
 
     private List<int> idSkill;
 
-    private List<GameObject> skilObj;
+    public bool isAllSkillFullLevel {  get; private set; }
 
     private GameObject go;
 
@@ -37,6 +37,7 @@ public class SelectionSkill : MonoBehaviour
     void Start()
     {
         GetId();
+        isAllSkillFullLevel = false;
     }
 
     
@@ -53,7 +54,6 @@ public class SelectionSkill : MonoBehaviour
 
     public void AppearMenuSkills()
     {
-        skilObj = new List<GameObject>();
         for (int i = 0; i < 3; i++)
         {
             int idx = idSkill[Random.Range(0, idSkill.Count)];
@@ -65,7 +65,6 @@ public class SelectionSkill : MonoBehaviour
             go.transform.GetChild(4).GetComponent<Image>().fillAmount = (float)((listSkill[idx].level) / (float)(listSkill[idx].maxLevel + 1));
             go.transform.GetChild(5).GetComponent<Text>().text = "+ 1 " + listSkill[idx].name;
             go.transform.GetComponent<Button>().onClick.AddListener(() =>  Selection(idx));
-            skilObj.Add(go);
         }
     }
 
@@ -108,6 +107,10 @@ public class SelectionSkill : MonoBehaviour
         if (listSkill[i].level > listSkill[i].maxLevel)
         {
             idSkill.Remove(i);
+            if(idSkill.Count == 0) 
+            {
+                isAllSkillFullLevel = true;
+            }
         }
         int count = scrollView.childCount;
         for (int j = count - 1; j >= 0; j--)

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float movementSpeed;
+    private Vector2 movement;
 
     [Header("Health")]
     [SerializeField] private float maxHealth;
@@ -59,7 +60,7 @@ public class Player : MonoBehaviour
         {
             damageDir = 1;
         }
-        FloatingTextManager.Instance.CreateFloatingText(floatingText, transform, attackDetail.damage.ToString(), damageDir);
+        FloatingTextManager.Instance.CreateFloatingText(floatingText, transform.position, attackDetail.damage.ToString(), damageDir);
         if (currentHelth > 0)
         {
             StartCoroutine(Hurt());
@@ -79,14 +80,9 @@ public class Player : MonoBehaviour
 
     void Movement()
     {
-        float xInput = InputManager.Instance.xInput;
-        float yInput = InputManager.Instance.yInput;
-        Vector3 moveDir = new Vector3(xInput * movementSpeed, yInput * movementSpeed, 0);
-
-        rb.velocity = moveDir;
-
-
-        anim.SetBool("move", xInput != 0 || yInput != 0);
+        movement.Set(InputManager.Instance.xInput, InputManager.Instance.yInput);
+        rb.velocity = movement * movementSpeed;
+        anim.SetBool("move", movement.x != 0 || movement.y != 0);
     }
 
     void CheckFlip()

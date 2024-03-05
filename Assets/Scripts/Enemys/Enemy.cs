@@ -33,11 +33,9 @@ public class Enemy : MonoBehaviour
     public LayerMask player { get; private set; }
 
     //Other Variable
-    [SerializeField] private GameObject floatingText;
     [SerializeField] private GameObject blood;
     [SerializeField] private Transform bloodPoint;
     private float facingRight;
-    private int damageDir;
 
     //Components
     public Animator anim {  get; private set; }
@@ -92,15 +90,7 @@ public class Enemy : MonoBehaviour
         if (tim < timerH)
             return;
         currentHealth = Mathf.Clamp(currentHealth - attackDetail.damage, 0, maxHealth);
-        if (attackDetail.attackDir.position.x > transform.position.x)
-        {
-            damageDir = -1;
-        }
-        else
-        {
-            damageDir = 1;
-        }
-        FloatingTextManager.Instance.CreateFloatingText(floatingText, transform, attackDetail.damage.ToString(), damageDir);
+       
         if(currentHealth > 0)
         {
             StartCoroutine(Hurt());

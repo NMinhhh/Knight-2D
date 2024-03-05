@@ -16,9 +16,9 @@ public class FloatingTextManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void CreateFloatingText(GameObject textGO, Transform textPos, string text, int direction)
+    public void CreateFloatingText(GameObject textGO, Vector3 textPos, string text, int direction)
     {
-        GO = Instantiate(textGO, textPos.position, Quaternion.identity);
+        GO = Instantiate(textGO, textPos, Quaternion.identity);
         FloatingText floatingText = GO.GetComponent<FloatingText>();
         floatingText.SetText(text, direction);
     }
