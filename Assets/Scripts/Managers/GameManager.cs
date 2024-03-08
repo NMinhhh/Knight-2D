@@ -2,18 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    
+    #region Instance
+
     public static GameManager Instance;
 
-    
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+
+        DontDestroyOnLoad(gameObject);
+    }
+    #endregion
+
+    #region Variable
+    //Coin
     public int coin { get; private set; }
 
+    //Weapon
     private List<int> amountGun;
     public int[] gunUnlock {  get; private set; }
 
+    //Level
     public float maxEx {  get; private set; }
 
     private float currentEx;
@@ -29,25 +50,19 @@ public class GameManager : MonoBehaviour
 
     private float timer = 1;
 
+    #endregion
 
-    void Awake()
+    #region Unity Function
+
+    private void Start()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        SaveSystem.Init();
         level = 1;
         isLevelUp = false;
         maxEx = CalculateExperience();
-        amountGun = new List<int>();
-        SaveSystem.Init();
         Load();
+        amountGun = new List<int>();
         amountGun.AddRange(gunUnlock);
-        DontDestroyOnLoad(gameObject);
     }
 
     private void Update()
@@ -75,6 +90,30 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    #endregion
+
+    #region Coins
+    public void UseCoins(int amount)
+    {
+        coin -= amount;
+        Save();
+    }
+
+    public bool HasEnoughCoins(int amount)
+    {
+        return coin >= amount;
+    }
+
+    public void PickupCoins(int amount)
+    {
+        coin += amount;
+        Save();
+    }
+
+    #endregion
+
+    #region Level Up
 
     public void LevelUp()
     {
@@ -107,16 +146,9 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void UseCoins(int amount)
-    {
-        coin -= amount;
-        Save();
-    }
+    #endregion
 
-    public bool HasEnoughCoins(int amount)
-    {
-        return coin >= amount;
-    }
+    #region Save and Load
 
     public void Save()
     {
@@ -129,14 +161,6 @@ public class GameManager : MonoBehaviour
         SaveSystem.Save(json);
 
     }
-
-    public void GetWeaponsUnLock(int i)
-    {
-        
-        amountGun.Add(i);
-        gunUnlock = amountGun.ToArray();
-    }
-
     public void Load()
     {
         string saveString = SaveSystem.Load();
@@ -146,22 +170,31 @@ public class GameManager : MonoBehaviour
             this.coin = saveObject.coin;
             gunUnlock = saveObject.amountGun;
         }
+        else
+        {
+            GetWeaponsUnLock(0);
+        }
     }
 
-    public void PickupCoins(int amount)
+    #endregion
+
+    #region Weapons
+    public void GetWeaponsUnLock(int i)
     {
-        coin += amount;
-        Save();
+        
+        amountGun.Add(i);
+        gunUnlock = amountGun.ToArray();
     }
 
-    public void OpenGun()
-    {
-       
-    }
+    #endregion
+
+    #region Class SaveObject
 
     class SaveObject
     {
         public int coin;
-        public int[] amountGun = {0};
+        public int[] amountGun;
     }
+
+    #endregion
 }

@@ -32,7 +32,6 @@ public class SettingUI : MonoBehaviour
 
     public void CloseSetting()
     {
-        isSeting = false;
         if (GameObject.Find("MenuSkill") != null)
         {
             if (MenuSkillUI.Instance.isMenuOp)
@@ -47,5 +46,7 @@ public class SettingUI : MonoBehaviour
         {
             Time.timeScale = 1;
         }
+        CanvasManager.Instance.CloseUI(settingUI);
+        isSeting = false;
     }
 }

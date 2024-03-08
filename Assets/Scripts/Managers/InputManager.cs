@@ -54,7 +54,7 @@ public class InputManager : MonoBehaviour
         keyESC = Input.GetKeyDown(KeyCode.Escape);
         keyEnter = Input.GetKeyDown(KeyCode.Return);
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (CanvasManager.Instance.isOpenUI || clickInput)
+        if (CanvasManager.Instance.isOpenUI)
         {
             shoting = false;
             mouseRight = false;
@@ -64,10 +64,17 @@ public class InputManager : MonoBehaviour
         }
         else
         {
+            if(clickInput)
+            {
+                shoting = false;
+            }
+            else
+            {
+                shoting = Input.GetMouseButton(0);
+            }
             mouseRight = Input.GetMouseButtonDown(1);
             xInput = Input.GetAxisRaw("Horizontal");
             yInput = Input.GetAxisRaw("Vertical");
-            shoting = Input.GetMouseButton(0);
         }
 
     }
