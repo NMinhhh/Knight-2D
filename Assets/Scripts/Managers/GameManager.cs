@@ -50,6 +50,9 @@ public class GameManager : MonoBehaviour
 
     private float timer = 1;
 
+    //Loss
+    public bool isLoss {  get; private set; }
+
     #endregion
 
     #region Unity Function
@@ -186,6 +189,13 @@ public class GameManager : MonoBehaviour
         gunUnlock = amountGun.ToArray();
     }
 
+    #endregion
+
+    #region Loss
+    public void GameStats()
+    {
+        isLoss = !isLoss;
+    }
     #endregion
 
     #region Class SaveObject

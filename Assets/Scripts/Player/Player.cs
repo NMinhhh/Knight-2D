@@ -11,6 +11,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float maxHealth;
     private float currentHelth;
     [SerializeField] private float hurtTime;
+    [SerializeField] private float imortalTime;
+    [SerializeField] private float numberOfFlash;
+    private bool isImortal;
+    public bool isDie {  get; private set; }
     [Space]
     [Space]
     [SerializeField] private GameObject floatingText;
@@ -50,6 +54,7 @@ public class Player : MonoBehaviour
 
     void Damage(AttackDetail attackDetail)
     {
+        if (isImortal || isDie) return;
         currentHelth = Mathf.Clamp(currentHelth - attackDetail.damage, 0, maxHealth);
         stats.UpdateHealth(currentHelth, maxHealth);
         if (attackDetail.attackDir.position.x > transform.position.x)
@@ -67,7 +72,8 @@ public class Player : MonoBehaviour
         }
         else
         {
-            //Die
+            GameManager.Instance.GameStats();
+            isDie = true;
         }
     }
 
@@ -75,7 +81,30 @@ public class Player : MonoBehaviour
     {
         sprite.color = new Color(.95f, .55f, .55f , 1);
         yield return new WaitForSeconds(hurtTime);
-        sprite.color = new Color(1, 1, 1, 1);
+        sprite.color = Color.white;
+    }
+
+    IEnumerator Imortal()
+    {
+        isImortal = true;
+        for (int i = 0; i < numberOfFlash; i++)
+        {
+            sprite.color = new Color(.95f, .55f, .55f, 1);
+            yield return new WaitForSeconds(imortalTime / (numberOfFlash * 2));
+            sprite.color = Color.white;
+            yield return new WaitForSeconds(imortalTime / (numberOfFlash * 2));
+        }
+        isImortal = false;
+    }
+
+    public void Born()
+    {
+        isDie = false;
+        StartCoroutine(Imortal());
+        currentHelth = maxHealth;
+        stats.UpdateHealth(maxHealth, maxHealth);
+        GameManager.Instance.GameStats();
+
     }
 
     void Movement()
