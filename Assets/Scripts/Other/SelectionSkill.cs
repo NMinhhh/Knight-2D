@@ -101,6 +101,11 @@ public class SelectionSkill : MonoBehaviour
                 LightningSpawnSkill bombFire = skill[i].GetComponent<LightningSpawnSkill>();
                 bombFire.SetAmount(listSkill[i].level);
                 listSkill[i].level++;
+                break; 
+            case 6:
+                LaserSkill laser = skill[i].GetComponent<LaserSkill>();
+                laser.AddLaser(listSkill[i].level);
+                listSkill[i].level++;
                 break;
 
         }

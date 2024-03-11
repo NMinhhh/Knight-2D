@@ -43,7 +43,7 @@ public class HandleRotation : MonoBehaviour
             if(distance < nearestDistance)
             {
                 nearestObj = allObj[i];
-                nearestDistance = distance;
+                nearestDistance = distance;     
             }
         }
         if(nearestObj != null)
@@ -52,7 +52,7 @@ public class HandleRotation : MonoBehaviour
         }
         else
         {
-            nearestDistance = 1000;
+            nearestDistance = 15;
         }
     }
 

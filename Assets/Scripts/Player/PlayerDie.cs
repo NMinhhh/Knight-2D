@@ -16,18 +16,17 @@ public class PlayerDie : MonoBehaviour
     {
         mutiply = 1;
         player = GetComponent<Player>();
+        btnBorn.onClick.AddListener(() => { Born(); });
     }
 
     // Update is called once per frame
     void Update()
     {
-
         if(player.isDie && !isLoss)
         {
             isLoss = true;
             CanvasManager.Instance.OpenUI(dieGo);
             Time.timeScale = 0;
-            btnBorn.onClick.AddListener(() => { Born(); });
         }
         textCoin.text = (coinToBorn * mutiply).ToString();
     }

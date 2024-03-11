@@ -1,1 +1,1 @@
-{"coin":1570,"amountGun":[0,0,0]}
+{"coin":43770,"amountGun":[0,0,0]}

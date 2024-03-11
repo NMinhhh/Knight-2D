@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject blood;
     [SerializeField] private Transform bloodPoint;
     private float facingRight;
-
+    private bool isTakeDamageLaser;
     //Components
     public Animator anim {  get; private set; }
     private Rigidbody2D rb;
@@ -84,6 +84,7 @@ public class Enemy : MonoBehaviour
     {
         return Physics2D.OverlapBox(checkPlayer.position, sizeCheckPlayer, 0, whatIsPlayer);
     }
+
 
     void Damage(AttackDetail attackDetail)
     {

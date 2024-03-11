@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class RocketSpawnSkill : MonoBehaviour
 {
+    //Rocket Ogj
     [SerializeField] private GameObject spawnGo;
     private GameObject go;
     private ProjectileBomb script;
+    //Cool down
     [SerializeField] private float cooldown;
-    [SerializeField] private int maxDir;
+    private float timer;
+
+    //Dir spawn Obj
+    private int currentDir;
+
+    //Info Rocket
     [SerializeField] private float damage;
     [SerializeField] private Vector2 speed;
-    [SerializeField] private float time;
-    private int currentDir;
-    private float timer;
+    [SerializeField] private float timeLife;
+
     void Start()
     {
         timer = cooldown;
@@ -58,7 +64,7 @@ public class RocketSpawnSkill : MonoBehaviour
             }
             go = Instantiate(spawnGo,transform.position,Quaternion.Euler(0,0,rotationZ));
             script = go.GetComponent<ProjectileBomb>();
-            script.CreateBomb(damage, Random.Range(speed.x,speed.y), time);
+            script.CreateBomb(damage, Random.Range(speed.x,speed.y), timeLife);
         }
     }
 }
