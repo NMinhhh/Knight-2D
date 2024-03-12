@@ -63,8 +63,8 @@ public class GameManager : MonoBehaviour
         level = 1;
         isLevelUp = false;
         maxEx = CalculateExperience();
-        Load();
         amountGun = new List<int>();
+        Load();
         amountGun.AddRange(gunUnlock);
     }
 
@@ -176,7 +176,13 @@ public class GameManager : MonoBehaviour
         else
         {
             GetWeaponsUnLock(0);
+            Save();
         }
+    }
+    class SaveObject
+    {
+        public int coin;
+        public int[] amountGun;
     }
 
     #endregion
@@ -198,13 +204,4 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    #region Class SaveObject
-
-    class SaveObject
-    {
-        public int coin;
-        public int[] amountGun;
-    }
-
-    #endregion
 }

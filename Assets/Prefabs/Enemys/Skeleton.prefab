@@ -198,7 +198,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 30
-  ex: 15
   speed: 3
   isSkill: 0
   hurtTime: 0.1
@@ -209,7 +208,6 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
   blood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
   bloodPoint: {fileID: 6989804553080268650}
 --- !u!114 &7470274223527172805
@@ -228,6 +226,9 @@ MonoBehaviour:
   damage: 5
   size: {x: 0.61, y: 0.85}
   cooldown: 1
+  whatIsShield:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!61 &5792729593434011202
 BoxCollider2D:
   m_ObjectHideFlags: 0

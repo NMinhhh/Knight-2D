@@ -4,26 +4,38 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Movement")]
     [SerializeField] private float movementSpeed;
     private Vector2 movement;
 
     [Header("Health")]
+    //Health
     [SerializeField] private float maxHealth;
     private float currentHelth;
+    //Hurt timer
     [SerializeField] private float hurtTime;
+    //Imortal Timer
     [SerializeField] private float imortalTime;
     [SerializeField] private float numberOfFlash;
     private bool isImortal;
+
     public bool isDie {  get; private set; }
     [Space]
     [Space]
     [SerializeField] private GameObject floatingText;
+
+    //Other Variable
     public bool isFacingRight {  get; private set; }
     private float facingRight;
     private int damageDir;
 
+    //Skill state
+    private bool isProtection;
+
+
     private PlayerStats stats;
 
+    //Componet
     private Animator anim;
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
@@ -46,6 +58,16 @@ public class Player : MonoBehaviour
         CheckFlip();
     }
 
+    public void ProtectionSkillOn()
+    {
+        isProtection = true;
+    }
+
+    public void ProtectionSkillOff()
+    {
+        isProtection = false;
+    }
+
     public void Healing(float amout)
     {
         currentHelth = Mathf.Clamp(currentHelth + amout, 0, maxHealth);
@@ -54,7 +76,7 @@ public class Player : MonoBehaviour
 
     void Damage(AttackDetail attackDetail)
     {
-        if (isImortal || isDie) return;
+        if (isImortal || isDie || isProtection) return;
         currentHelth = Mathf.Clamp(currentHelth - attackDetail.damage, 0, maxHealth);
         stats.UpdateHealth(currentHelth, maxHealth);
         if (attackDetail.attackDir.position.x > transform.position.x)

@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
+    //Animation
+    [SerializeField] private Texture[] textures;
+    private int animationStep;
+    private float timeChange;
+
     [SerializeField] private Transform checkPoint;
     [SerializeField] private float radius;
 
@@ -29,7 +34,23 @@ public class Laser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       ShootLaser();
+        ShootLaser();
+        Animation();
+    }
+
+    void Animation()
+    {
+        timeChange += Time.deltaTime;
+        if(timeChange > .1f)
+        {
+            animationStep++;
+            if(animationStep == textures.Length) 
+            { 
+                animationStep = 0;
+            }
+            lineRenderer.material.SetTexture("_MainTex", textures[animationStep]);
+            timeChange = 0;
+        }
     }
 
     void ShootLaser()

@@ -9,6 +9,7 @@ public class EnemyTouch : MonoBehaviour
     [SerializeField] private Vector2 size;
     [SerializeField] private float cooldown;
     private float time;
+    [SerializeField] private LayerMask whatIsShield;
 
     private AttackDetail attackDetail;
 
@@ -31,6 +32,14 @@ public class EnemyTouch : MonoBehaviour
         attackDetail.attackDir = transform;
         attackDetail.damage = this.damage;
         Collider2D[] hit = Physics2D.OverlapBoxAll(touchPoint.position, size, 0, enemy.player);
+        Collider2D hitShield = Physics2D.OverlapBox(touchPoint.position, size, 0, whatIsShield);
+
+        if (hitShield)
+        {
+            hitShield.transform.parent.SendMessage("DamageShield");
+            return;
+        }
+
         foreach (Collider2D col in hit)
         {
             if (col && time >= cooldown)

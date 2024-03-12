@@ -107,6 +107,11 @@ public class SelectionSkill : MonoBehaviour
                 laser.AddLaser(listSkill[i].level);
                 listSkill[i].level++;
                 break;
+            case 7:
+                ProtectionSkill pro = skill[i].GetComponent<ProtectionSkill>();
+                pro.AddLevelShield(listSkill[i].level);
+                listSkill[i].level++;
+                break;
 
         }
         if (listSkill[i].level > listSkill[i].maxLevel)
