@@ -12,6 +12,7 @@ public class Laser : MonoBehaviour
 
     [SerializeField] private Transform checkPoint;
     [SerializeField] private float radius;
+    [SerializeField] private GameObject particle;
 
     //Info Skill
     private float damage;
@@ -73,6 +74,7 @@ public class Laser : MonoBehaviour
         if(nearestObj != null)
         {
             Draw2dRay(transform.position, nearestObj.transform.position);
+            Instantiate(particle, nearestObj.transform.position, Quaternion.identity);
             attackDetail.damage = damage;
             attackDetail.attackDir = transform;
             nearestObj.transform.SendMessage("Damage", attackDetail);

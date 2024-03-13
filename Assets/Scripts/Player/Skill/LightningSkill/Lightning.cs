@@ -21,7 +21,7 @@ public class Lightning : MonoBehaviour
         attackDetail.damage = damage;
         foreach (Collider2D col in hit)
         {
-            if(col != null)
+            if(col)
             {
                 col.transform.SendMessage("Damage", attackDetail);
             }

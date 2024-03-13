@@ -112,6 +112,11 @@ public class SelectionSkill : MonoBehaviour
                 pro.AddLevelShield(listSkill[i].level);
                 listSkill[i].level++;
                 break;
+            case 8:
+                MeteorSpawnSkill meteor = skill[i].GetComponent<MeteorSpawnSkill>();
+                meteor.AddDir(listSkill[i].level);
+                listSkill[i].level++;
+                break;
 
         }
         if (listSkill[i].level > listSkill[i].maxLevel)

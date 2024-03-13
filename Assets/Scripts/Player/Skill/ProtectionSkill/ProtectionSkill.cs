@@ -58,19 +58,19 @@ public class ProtectionSkill : MonoBehaviour
         if(!damageShield)
         {
             amountOfShield--;
-            StartCoroutine(Protection());
+            StartCoroutine(Protection(amountOfShield));
         }
     }
     // effect flash
-    IEnumerator Protection()
+    IEnumerator Protection(int lv)
     {
         damageShield = true;
         player.ProtectionSkillOn();
         for (int i = 0; i < numberOfFlash; i++)
         {
-            spriteRenderer.color = new Color(.95f, .55f, .55f, 1);
+            spriteRenderer.color = new Color(colorShield[lv].x, colorShield[lv].y, colorShield[lv].z, 0.3f);
             yield return new WaitForSeconds(flashTimer / (numberOfFlash * 2));
-            spriteRenderer.color = Color.white;
+            spriteRenderer.color = new Color(colorShield[lv].x, colorShield[lv].y, colorShield[lv].z, 0.5f);
             yield return new WaitForSeconds(flashTimer / (numberOfFlash * 2));
         }
         timer = cooldown;

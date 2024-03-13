@@ -6,8 +6,10 @@ public class ProjectileBomb : MonoBehaviour
 {
     [SerializeField] private LayerMask whatIsEnemy;
     [SerializeField] private LayerMask whatIsWall;
+    [SerializeField] private Transform checkPoint;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float radius;
+    [SerializeField] private float radiusDamage;
     private float speed;
     private float timeLife;
     private AttackDetail attackDetail;
@@ -46,8 +48,8 @@ public class ProjectileBomb : MonoBehaviour
 
     void Check()
     {
-        Collider2D wall = Physics2D.OverlapCircle(attackPoint.position, radius, whatIsWall);
-        Collider2D enemy = Physics2D.OverlapCircle(attackPoint.position, radius, whatIsEnemy);
+        Collider2D wall = Physics2D.OverlapCircle(checkPoint.position, radius, whatIsWall);
+        Collider2D enemy = Physics2D.OverlapCircle(checkPoint.position, radius, whatIsEnemy);
         if (enemy && !isDamage)
         {
             isDamage = true;
@@ -60,7 +62,7 @@ public class ProjectileBomb : MonoBehaviour
 
     void Attack()
     {
-        Collider2D[] enemy = Physics2D.OverlapCircleAll(attackPoint.position, radius, whatIsEnemy);
+        Collider2D[] enemy = Physics2D.OverlapCircleAll(attackPoint.position, radiusDamage, whatIsEnemy);
         foreach(Collider2D col in enemy)
         {
             if(col)
@@ -85,6 +87,7 @@ public class ProjectileBomb : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(attackPoint.position, radius);
+        Gizmos.DrawWireSphere(checkPoint.position, radius);
+        Gizmos.DrawWireSphere(attackPoint.position, radiusDamage);
     }
 }
