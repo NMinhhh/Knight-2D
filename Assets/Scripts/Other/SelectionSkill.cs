@@ -16,6 +16,7 @@ public class SelectionSkill : MonoBehaviour
     [SerializeField] private Transform scrollView;
 
     private List<int> idSkill;
+    private List<int> randomIdSkill;
 
     public bool isAllSkillFullLevel {  get; private set; }
 
@@ -37,6 +38,7 @@ public class SelectionSkill : MonoBehaviour
     void Start()
     {
         GetId();
+        randomIdSkill = new List<int>();
         isAllSkillFullLevel = false;
     }
 
@@ -51,20 +53,33 @@ public class SelectionSkill : MonoBehaviour
             idSkill.Add(i);
         }
     }
-
+    // 0 1 2 3
+    // 1
+    // 0 2 3
     public void AppearMenuSkills()
     {
+        randomIdSkill.Clear();
+        randomIdSkill.AddRange(idSkill);
         for (int i = 0; i < 3; i++)
         {
-            int idx = idSkill[Random.Range(0, idSkill.Count)];
+            int id;
+            if (idSkill.Count <= 3)
+            {
+                id = randomIdSkill[Random.Range(0, randomIdSkill.Count)];
+            }
+            else
+            {
+                id = randomIdSkill[Random.Range(0, randomIdSkill.Count)];
+                randomIdSkill.RemoveAt(randomIdSkill.IndexOf(id));
+            }
             go = Instantiate(itemTemplate, scrollView);
-            go.transform.GetChild(0).GetComponent<Text>().text = listSkill[idx].name.ToUpper();
-            go.transform.GetChild(1).GetComponent<Text>().text = "LV: " + listSkill[idx].level;
-            go.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = listSkill[idx].image;
-            go.transform.GetChild(3).GetComponent<Text>().text = listSkill[idx].content;
-            go.transform.GetChild(4).GetComponent<Image>().fillAmount = (float)((listSkill[idx].level) / (float)(listSkill[idx].maxLevel + 1));
-            go.transform.GetChild(5).GetComponent<Text>().text = "+ 1 " + listSkill[idx].name;
-            go.transform.GetComponent<Button>().onClick.AddListener(() =>  Selection(idx));
+            go.transform.GetChild(0).GetComponent<Text>().text = listSkill[id].name.ToUpper();
+            go.transform.GetChild(1).GetComponent<Text>().text = "LV: " + listSkill[id].level;
+            go.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = listSkill[id].image;
+            go.transform.GetChild(3).GetComponent<Text>().text = listSkill[id].content;
+            go.transform.GetChild(4).GetComponent<Image>().fillAmount = (float)((listSkill[id].level) / (float)(listSkill[id].maxLevel + 1));
+            go.transform.GetChild(5).GetComponent<Text>().text = "+ 1 " + listSkill[id].name;
+            go.transform.GetComponent<Button>().onClick.AddListener(() =>  Selection(id));
         }
     }
 
