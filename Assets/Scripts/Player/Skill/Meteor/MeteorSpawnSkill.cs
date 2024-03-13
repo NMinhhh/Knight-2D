@@ -44,20 +44,21 @@ public class MeteorSpawnSkill : MonoBehaviour
     {
         float rotationZ;
         Vector3 direction;
+        int amountOfEnemy = 0;
         GameObject enemyRam;
-        GameObject[] enemy = GameObject.FindGameObjectsWithTag("Enemy");
+        Collider2D[] enemys = EnemysPosition.Instance.GetEnemysPosition();
         for (int i = 0; i < dir; i++)
         {
-            if (enemy.Length > 0)
+            if (enemys.Length > 0 && amountOfEnemy < enemys.Length)
             {
-                enemyRam = enemy[Random.Range(0, enemy.Length)];
+                amountOfEnemy++;
+                enemyRam = enemys[i].gameObject;
                 direction = (enemyRam.transform.position - transform.position).normalized;
                 rotationZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             }
             else
             {
                 rotationZ = Random.Range(0, 360);
-
             }
             go = Instantiate(meteorGo, transform.position, Quaternion.Euler(0, 0, rotationZ));
             script = go.GetComponent<Meteor>();

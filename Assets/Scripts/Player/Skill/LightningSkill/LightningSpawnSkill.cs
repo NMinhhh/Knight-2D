@@ -40,12 +40,13 @@ public class LightningSpawnSkill : MonoBehaviour
     void SetSkill(int amount)
     {
         Vector3 pos;
-        GameObject[] enemy = GameObject.FindGameObjectsWithTag("Enemy");
+        Collider2D[] enemy = EnemysPosition.Instance.GetEnemysPosition();
+        int amountOfEnemy = 0;
         for (int i = 0; i < amount; i++)
         {
-            if (enemy.Length > 0)
+            if (enemy.Length > 0 && amountOfEnemy < enemy.Length)
             {
-                pos = enemy[Random.Range(0, enemy.Length)].transform.position;
+                pos = enemy[i].transform.position;
             }
             else
             {

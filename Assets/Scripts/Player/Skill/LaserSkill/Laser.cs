@@ -10,8 +10,6 @@ public class Laser : MonoBehaviour
     private int animationStep;
     private float timeChange;
 
-    [SerializeField] private Transform checkPoint;
-    [SerializeField] private float radius;
     [SerializeField] private GameObject particle;
 
     //Info Skill
@@ -22,7 +20,7 @@ public class Laser : MonoBehaviour
     private LineRenderer lineRenderer;
 
     //Look pos enemy
-    private GameObject nearestObj;
+    private GameObject enemyRamdom;
 
 
     AttackDetail attackDetail;
@@ -56,28 +54,20 @@ public class Laser : MonoBehaviour
 
     void ShootLaser()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius, whatIsEnemy);
-        if(hits.Length > 0 && nearestObj == null)
+        //Get position enemy detected
+        Collider2D[] hits = EnemysPosition.Instance.GetEnemysPosition();
+        if(hits.Length > 0 && enemyRamdom == null)
         {
-            nearestObj = hits[Random.Range(0, hits.Length)].gameObject;
+            enemyRamdom = hits[Random.Range(0, hits.Length)].gameObject;
         }
-        //allObj = GameObject.FindGameObjectsWithTag("Enemy");
-        //for (int i = 0; i < allObj.Length; i++)
-        //{
-        //    distance = Vector3.Distance(transform.position, allObj[i].transform.position);
-        //    if (distance < nearestDis && nearestObj == null)
-        //    {
-        //        nearestObj = allObj[i];
-        //        nearestDis = distance;
-        //    }
-        //}
-        if(nearestObj != null)
+
+        if(enemyRamdom != null)
         {
-            Draw2dRay(transform.position, nearestObj.transform.position);
-            Instantiate(particle, nearestObj.transform.position, Quaternion.identity);
+            Draw2dRay(transform.position, enemyRamdom.transform.position);
+            Instantiate(particle, enemyRamdom.transform.position, Quaternion.identity);
             attackDetail.damage = damage;
             attackDetail.attackDir = transform;
-            nearestObj.transform.SendMessage("Damage", attackDetail);
+            enemyRamdom.transform.SendMessage("Damage", attackDetail);
         }
         else
         {
@@ -96,8 +86,5 @@ public class Laser : MonoBehaviour
         this.damage = damage;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position, radius);
-    }
+   
 }

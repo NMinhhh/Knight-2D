@@ -48,12 +48,14 @@ public class RocketSpawnSkill : MonoBehaviour
         float rotationZ;
         Vector3 direction;
         GameObject enemyRam;
-        GameObject[] enemy = GameObject.FindGameObjectsWithTag("Enemy");
+        int amountOfEnemy = 0;
+        Collider2D[] enemys = EnemysPosition.Instance.GetEnemysPosition();
         for (int i = 0; i < dir; i++) 
         {
-            if(enemy.Length > 0)
+            if(enemys.Length > 0 && amountOfEnemy < enemys.Length)
             {
-                enemyRam = enemy[Random.Range(0, enemy.Length)];
+                enemyRam = enemys[i].gameObject;
+                amountOfEnemy++;
                 direction = (enemyRam.transform.position - transform.position).normalized;
                 rotationZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             }

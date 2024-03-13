@@ -5,9 +5,9 @@ using UnityEngine;
 public class MapControl : MonoBehaviour
 {
     [Header("Position spawn enemy")]
-    [SerializeField] private Transform player;
-    [SerializeField] private Vector2 sizeX;
-    [SerializeField] private Vector2 sizeY;
+    [SerializeField] private Transform[] spawnPoint;
+    [SerializeField] private List<Vector2> sizeSpawnPoint;
+
     Vector2[] pos;
 
     [Header("Warning UI")]
@@ -19,7 +19,6 @@ public class MapControl : MonoBehaviour
     [SerializeField] private GameObject[] enemyNor;
     [SerializeField] private GameObject boss;
     //Cooldown Spawn
-    [SerializeField] private Vector2 cooldown;
     public float startTimerSpawn;
     private List<GameObject> listBoss;
 
@@ -29,13 +28,11 @@ public class MapControl : MonoBehaviour
 
     // time start spawn enemy
     private float time;
-    private float startTime;
     private float timeCheck;
 
     private void Start()
     {
         //time = Random.Range(cooldown.x,cooldown.y);
-        startTimerSpawn = cooldown.x;
         time = startTimerSpawn;
         listBoss = new List<GameObject>();
         timeWarningCur = timeWarningMax;
@@ -46,7 +43,6 @@ public class MapControl : MonoBehaviour
     private void Update()
     {
         time -= Time.deltaTime;
-        startTime = GameManager.Instance.minutes;
         timeCheck -= Time.deltaTime;
         if(timeCheck <= 0 && startTimerSpawn > 0)
         {
@@ -75,15 +71,15 @@ public class MapControl : MonoBehaviour
             }
           
         }
-        
-       Vector2 GetPos()
-       {
 
-            pos[0] = new Vector2(player.position.x + Random.Range(-15, 15), player.position.y + sizeY.x);
-            pos[1] = new Vector2(player.position.x + Random.Range(-15, 15), player.position.y + sizeY.y);
-            pos[2] = new Vector2(player.position.x + sizeX.x, player.position.y + Random.Range(-9, 9));
-            pos[3] = new Vector2(player.position.x + sizeX.y, player.position.y + Random.Range(-9, 9));
+        Vector2 GetPos()
+        {
+
+            pos[0] = new Vector2(Random.Range(spawnPoint[0].position.x + sizeSpawnPoint[0].x, spawnPoint[0].position.x + sizeSpawnPoint[0].y), spawnPoint[0].position.y);
+            pos[1] = new Vector2(spawnPoint[1].position.x, Random.Range(spawnPoint[1].position.y + sizeSpawnPoint[1].x, spawnPoint[1].position.y + sizeSpawnPoint[1].y));
+            pos[2] = new Vector2(Random.Range(spawnPoint[2].position.x + sizeSpawnPoint[0].x, spawnPoint[2].position.x + sizeSpawnPoint[0].y), spawnPoint[2].position.y);
+            pos[3] = new Vector2(spawnPoint[3].position.x, Random.Range(spawnPoint[3].position.y + sizeSpawnPoint[1].x, spawnPoint[3].position.y + sizeSpawnPoint[1].y));
             return pos[Random.Range(0, pos.Length)];
-       }
+        }
     }
 }

@@ -40,12 +40,14 @@ public class WaterBlastSpawnSkill : MonoBehaviour
     void SetSkill(int level)
     {
         Vector3 pos;
-        GameObject[] enemy = GameObject.FindGameObjectsWithTag("Enemy");
+        int amountOfEnemy = 0;
+        Collider2D[] enemy = EnemysPosition.Instance.GetEnemysPosition();
         for (int i = 0; i < level; i++)
         {
-            if (enemy.Length > 0)
+            if (enemy.Length > 0 && amountOfEnemy < enemy.Length)
             {
-                pos = enemy[Random.Range(0, enemy.Length)].transform.position;
+                amountOfEnemy++;
+                pos = enemy[i].transform.position;
             }
             else
             {

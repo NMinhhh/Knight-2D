@@ -63,7 +63,7 @@ public class SelectionSkill : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             int id;
-            if (idSkill.Count <= 3)
+            if (idSkill.Count < 3)
             {
                 id = randomIdSkill[Random.Range(0, randomIdSkill.Count)];
             }

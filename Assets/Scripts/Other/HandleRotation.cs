@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class HandleRotation : MonoBehaviour
@@ -9,8 +8,7 @@ public class HandleRotation : MonoBehaviour
     public float angle {  get; private set; }
     private Player player;
     public bool auto {  get; private set; }
-    [Header("Auto")]
-    private GameObject[] allObj;
+
     public GameObject nearestObj {  get; private set; }
     private float distance;
     private float nearestDistance = 15;
@@ -36,13 +34,14 @@ public class HandleRotation : MonoBehaviour
 
     void HandleGunRotationEnemy()
     {
-        allObj = GameObject.FindGameObjectsWithTag("Enemy");
-        for(int i = 0; i < allObj.Length; i++)
+        Collider2D[] enemys = EnemysPosition.Instance.GetEnemysPosition();
+
+        for(int i = 0; i < enemys.Length; i++)
         {
-            distance = Vector3.Distance(transform.position, allObj[i].transform.position);
+            distance = Vector3.Distance(transform.position, enemys[i].transform.position);
             if(distance < nearestDistance)
             {
-                nearestObj = allObj[i];
+                nearestObj = enemys[i].gameObject;
                 nearestDistance = distance;     
             }
         }
