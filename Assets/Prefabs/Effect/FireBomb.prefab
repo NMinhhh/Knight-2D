@@ -98,10 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba2facdc1491334288438b8efa4c415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damagePoint: {fileID: 242876551992494149}
+  radius: 2.44
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 128
-  radius: 1.9
 --- !u!95 &8782106775052672693
 Animator:
   serializedVersion: 5

@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class WaterBlastSpawnSkill : MonoBehaviour
 {
+    //WaterBlast Obj
     [SerializeField] private GameObject spawnGo;
     private GameObject go;
     private WaterBlast script;
+    //Cooldown
     [SerializeField] private float cooldown;
-    [SerializeField] private int maxDir;
+    private float timer;
+
+    //Info Water
     [SerializeField] private float damage;
     [SerializeField] private Vector2 speed;
-    [SerializeField] private float time;
+    [SerializeField] private float timeLife;
+
     private int currentDir;
-    private float timer;
+
     void Start()
     {
         timer = cooldown;
@@ -55,7 +60,7 @@ public class WaterBlastSpawnSkill : MonoBehaviour
             }
             go = Instantiate(spawnGo, transform.position, Quaternion.identity);
             script = go.GetComponent<WaterBlast>();
-            script.SetSkill(damage, Random.Range(speed.x, speed.y), time, pos);
+            script.SetSkill(damage, Random.Range(speed.x, speed.y), timeLife, pos);
         }
     }
 }

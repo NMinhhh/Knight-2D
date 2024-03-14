@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Lightning : MonoBehaviour
 {
-    [SerializeField] private LayerMask whatIsEnemy;
+    [SerializeField] private Transform damagePoint;
     [SerializeField] private float radius;
+    [SerializeField] private LayerMask whatIsEnemy;
     private float damage;
     AttackDetail attackDetail;
 
@@ -16,9 +17,10 @@ public class Lightning : MonoBehaviour
 
     void TriggerAnimation()
     {
-        Collider2D[] hit = Physics2D.OverlapCircleAll(transform.position, radius, whatIsEnemy);
+        Collider2D[] hit = Physics2D.OverlapCircleAll(damagePoint.position, radius, whatIsEnemy);
         attackDetail.attackDir = transform;
         attackDetail.damage = damage;
+        attackDetail.continousDamage = false;
         foreach (Collider2D col in hit)
         {
             if(col)
@@ -36,6 +38,6 @@ public class Lightning : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, radius);
+        Gizmos.DrawWireSphere(damagePoint.position, radius);
     }
 }

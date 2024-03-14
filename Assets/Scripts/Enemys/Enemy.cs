@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject blood;
     [SerializeField] private Transform bloodPoint;
     private float facingRight;
-    private bool isTakeDamageLaser;
+
     //Components
     public Animator anim {  get; private set; }
     private Rigidbody2D rb;
@@ -85,22 +85,18 @@ public class Enemy : MonoBehaviour
         return Physics2D.OverlapBox(checkPlayer.position, sizeCheckPlayer, 0, whatIsPlayer);
     }
 
-
-    void Damage(AttackDetail attackDetail)
+    void RecieveDamage(AttackDetail attackDetail)
     {
-        if (tim < timerH)
-            return;
         currentHealth = Mathf.Clamp(currentHealth - attackDetail.damage, 0, maxHealth);
-       
-        if(currentHealth > 0)
+        if (currentHealth > 0)
         {
             StartCoroutine(Hurt());
         }
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             GameManager.Instance.PickupCoins(10);
-            int ran = Random.Range(0, 20);
-            int ran2 = Random.Range(0, 20);
+            int ran = Random.Range(0, 100);
+            int ran2 = Random.Range(0, 100);
             if (ran == ran2)
             {
                 SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetItem(0), transform.position);
@@ -109,7 +105,20 @@ public class Enemy : MonoBehaviour
             Instantiate(blood, bloodPoint.position, Quaternion.identity);
             Destroy(gameObject);
         }
-        tim = 0;
+    }
+
+    void Damage(AttackDetail attackDetail)
+    {
+        if (attackDetail.continousDamage)
+        {
+            if (tim < timerH) return;
+            RecieveDamage(attackDetail);
+            tim = 0;
+        }
+        else
+        {
+            RecieveDamage(attackDetail);
+        }
     }
 
     IEnumerator Hurt()

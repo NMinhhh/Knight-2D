@@ -123,12 +123,12 @@ public class GameManager : MonoBehaviour
         level++;
         currentEx = 0;
         maxEx = CalculateExperience();
-        if(!SelectionSkill.Instance.isAllSkillFullLevel)
+        if (!SelectionSkill.Instance.isAllSkillFullLevel)
         {
             MenuSkillUI.Instance.OpenMenuSkill();
             SelectionSkill.Instance.AppearMenuSkills();
         }
-       
+
     }
 
     public void UpdateEx(float ex)

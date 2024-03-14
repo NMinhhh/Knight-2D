@@ -17,6 +17,7 @@ public class MapControl : MonoBehaviour
 
     [Header("Enemy")]
     [SerializeField] private GameObject[] enemyNor;
+    [SerializeField] private GameObject[] enemyMed;
     [SerializeField] private GameObject boss;
     //Cooldown Spawn
     public float startTimerSpawn;
@@ -44,7 +45,7 @@ public class MapControl : MonoBehaviour
     {
         time -= Time.deltaTime;
         timeCheck -= Time.deltaTime;
-        if(timeCheck <= 0 && startTimerSpawn > 0)
+        if(timeCheck <= 0 && startTimerSpawn > 0.1f)
         {
             timeCheck = 15;
             startTimerSpawn -= startTimerSpawn * 10 / 100; 
@@ -54,7 +55,10 @@ public class MapControl : MonoBehaviour
         if (time <= 0)
         {
             time = startTimerSpawn;
-            SpawnerManager.Instance.SpawnItem(enemyNor[Random.Range(0, enemyNor.Length)], GetPos());
+            if( startTimerSpawn > .8f)
+                SpawnerManager.Instance.SpawnItem(enemyNor[Random.Range(0, enemyNor.Length)], GetPos());
+            else
+                SpawnerManager.Instance.SpawnItem(enemyMed[Random.Range(0, enemyMed.Length)], GetPos());
         }
 
         if(!isBoss && GameManager.Instance.minutes == 10)

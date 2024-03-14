@@ -7,7 +7,6 @@ public class LaserSkill : MonoBehaviour
     [SerializeField] private GameObject[] lasers;
     private Laser script;
 
-
     //amout laser
     private int amoutLaser;
 
@@ -17,6 +16,7 @@ public class LaserSkill : MonoBehaviour
 
     //Info 
     [SerializeField] private float damage;
+    [SerializeField] private float damageTime;
 
     //Turn Skill
     [SerializeField] private float timeLife;
@@ -70,7 +70,7 @@ public class LaserSkill : MonoBehaviour
         {
             lasers[i].SetActive(true);
             script = lasers[i].GetComponent<Laser>();
-            script.SetLaser(damage);
+            script.SetLaser(damage, damageTime);
         }
     }
 

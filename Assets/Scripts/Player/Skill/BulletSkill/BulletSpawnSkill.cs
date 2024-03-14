@@ -10,10 +10,6 @@ public class BulletSpawnSkill : MonoBehaviour
     private GameObject go;
     private Projectile script;
 
-    [Header("Effect")]
-    private SpriteRenderer spriteRenderer;
-    [SerializeField] private float timerEffect;
-
     [Header("Info Bullet")]
     [SerializeField] private float damge;
     [SerializeField] private Vector2 speed;
@@ -23,7 +19,10 @@ public class BulletSpawnSkill : MonoBehaviour
     [SerializeField] private float cooldown;
     [SerializeField] private int amountBullet;
     private float timer;
+
+    //AmountOf point spawn Bullet
     private int currentPos;
+
 
     void Start()
     {
@@ -54,12 +53,12 @@ public class BulletSpawnSkill : MonoBehaviour
         float rotationZ;
         Vector3 direction;
         GameObject enemyRam;
-        GameObject[] enemy = GameObject.FindGameObjectsWithTag("Enemy");
+        Collider2D[] enemy = EnemysPosition.Instance.GetEnemysPosition();
         for (int i = 0; i < amountBullet; i++)
         {
             if(enemy.Length > 0)
             {
-                enemyRam = enemy[Random.Range(0,enemy.Length)];
+                enemyRam = enemy[Random.Range(0,enemy.Length)].gameObject;
                 direction = (enemyRam.transform.position - pos.position).normalized;
                 rotationZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             }

@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class WeaponRotationSkill : MonoBehaviour
 {
-    [SerializeField] private float timeRotation;
-    [SerializeField] private Player player;
+    [SerializeField] private float valueRotationZ;
 
     [SerializeField] private float damage;
     [SerializeField] private GameObject[] skillObject;
     
-    [SerializeField] private float rotationZ;
-    [SerializeField] private int level;
+    private float rotationZ;
 
     AttackDetail attackDetail;
+
     void Start()
     {
         attackDetail.attackDir = transform;
@@ -33,7 +32,7 @@ public class WeaponRotationSkill : MonoBehaviour
 
     public void RotationZ()
     {
-        rotationZ += timeRotation;
+        rotationZ += valueRotationZ;
         transform.rotation = Quaternion.Euler(0, 0, rotationZ);
         if(rotationZ <= -360)
         {

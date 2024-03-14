@@ -441,6 +441,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fill: {fileID: 1548764382}
   timerLoader: 3
+  color:
+  - {r: 1, g: 0.216981, b: 0.216981, a: 1}
+  - {r: 0.9559748, g: 0.4679115, b: 0.051105503, a: 1}
+  - {r: 1, g: 0.13521993, b: 0.6385605, a: 1}
+  - {r: 0.25887695, g: 0.23604673, b: 0.9748427, a: 1}
+  - {r: 0.31045455, g: 0.9433962, b: 0.097899504, a: 1}
+  time: 0.2
 --- !u!4 &1254885775
 Transform:
   m_ObjectHideFlags: 0

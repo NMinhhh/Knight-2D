@@ -63,6 +63,7 @@ public class ProjectileBomb : MonoBehaviour
     void Attack()
     {
         Collider2D[] enemy = Physics2D.OverlapCircleAll(attackPoint.position, radiusDamage, whatIsEnemy);
+        attackDetail.continousDamage = false;
         foreach(Collider2D col in enemy)
         {
             if(col)

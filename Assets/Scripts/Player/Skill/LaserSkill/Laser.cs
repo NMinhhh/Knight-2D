@@ -14,6 +14,8 @@ public class Laser : MonoBehaviour
 
     //Info Skill
     private float damage;
+    private float damageTime;
+    private float damageTimeCur;
     [SerializeField] private LayerMask whatIsEnemy;
 
     //draw line
@@ -67,7 +69,13 @@ public class Laser : MonoBehaviour
             Instantiate(particle, enemyRamdom.transform.position, Quaternion.identity);
             attackDetail.damage = damage;
             attackDetail.attackDir = transform;
-            enemyRamdom.transform.SendMessage("Damage", attackDetail);
+            attackDetail.continousDamage = false;
+            damageTimeCur += Time.deltaTime;
+            if(damageTimeCur >= damageTime)
+            {
+                enemyRamdom.transform.SendMessage("Damage", attackDetail);
+                damageTimeCur = 0;
+            }
         }
         else
         {
@@ -81,9 +89,10 @@ public class Laser : MonoBehaviour
         lineRenderer.SetPosition(1, endPos);
     }
 
-    public void SetLaser(float damage)
+    public void SetLaser(float damage, float damageTime)
     {
         this.damage = damage;
+        this.damageTime = damageTime;
     }
 
    

@@ -6,4 +6,5 @@ struct AttackDetail
 {
     public float damage;
     public Transform attackDir;
+    public bool continousDamage;
 }

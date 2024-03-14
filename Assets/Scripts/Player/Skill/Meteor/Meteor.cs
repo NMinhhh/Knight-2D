@@ -48,6 +48,7 @@ public class Meteor : MonoBehaviour
     {
         Collider2D hit = Physics2D.OverlapCircle(checkPoint.position, radius, whatIsEnemy);
         attackDetail.damage = damage;
+        attackDetail.continousDamage = true;
         if (hit)
         {
             Instantiate(particle, hit.transform.position, Quaternion.identity);

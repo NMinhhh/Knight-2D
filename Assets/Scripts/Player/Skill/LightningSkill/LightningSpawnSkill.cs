@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class LightningSpawnSkill : MonoBehaviour
 {
+    //LightningObj
     [SerializeField] private GameObject lightning;
     private GameObject go;
     private Lightning script;
 
+    //Cooldown and damage
     [SerializeField] private float damage;
     [SerializeField] private float cooldown;
     private float timer;
@@ -15,13 +17,11 @@ public class LightningSpawnSkill : MonoBehaviour
     private int amountLightning;
     
 
-    // Start is called before the first frame update
     void Start()
     {
         timer = cooldown;
     }
 
-    // Update is called once per frame
     void Update()
     {
         timer -= Time.deltaTime;
@@ -47,6 +47,7 @@ public class LightningSpawnSkill : MonoBehaviour
             if (enemy.Length > 0 && amountOfEnemy < enemy.Length)
             {
                 pos = enemy[i].transform.position;
+                amountOfEnemy++;
             }
             else
             {

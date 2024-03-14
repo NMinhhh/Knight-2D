@@ -32,6 +32,7 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject, timeLife);
         }
         attackDetail.attackDir = transform;
+        attackDetail.continousDamage = false;
     }
     // Update is called once per frame
     void FixedUpdate()
