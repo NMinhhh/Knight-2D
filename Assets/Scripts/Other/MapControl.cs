@@ -24,6 +24,8 @@ public class MapControl : MonoBehaviour
     private List<GameObject> listBoss;
 
 
+    private int minute;
+
     //index cooldown Spawn
     private bool isBoss;
 
@@ -43,29 +45,30 @@ public class MapControl : MonoBehaviour
 
     private void Update()
     {
+
         time -= Time.deltaTime;
         timeCheck -= Time.deltaTime;
-        if(timeCheck <= 0 && startTimerSpawn > 0.1f)
+        if (timeCheck <= 0 && startTimerSpawn > 0.1f)
         {
             timeCheck = 15;
-            startTimerSpawn -= startTimerSpawn * 10 / 100; 
+            startTimerSpawn -= startTimerSpawn * 10 / 100;
         }
 
 
         if (time <= 0)
         {
             time = startTimerSpawn;
-            if( startTimerSpawn > .8f)
+            if (startTimerSpawn > .8f)
                 SpawnerManager.Instance.SpawnItem(enemyNor[Random.Range(0, enemyNor.Length)], GetPos());
             else
                 SpawnerManager.Instance.SpawnItem(enemyMed[Random.Range(0, enemyMed.Length)], GetPos());
         }
 
-        if(!isBoss && GameManager.Instance.minutes == 10)
+        if (!isBoss && GameManager.Instance.minutes == 10)
         {
             warningBoss.SetActive(true);
             timeWarningCur -= Time.deltaTime;
-            if(timeWarningCur < 0)
+            if (timeWarningCur < 0)
             {
                 warningBoss.SetActive(false);
                 isBoss = true;
@@ -73,7 +76,7 @@ public class MapControl : MonoBehaviour
                 GameObject go = Instantiate(boss, new Vector2(Random.Range(-16, 26), Random.Range(-17f, 13.5f)), Quaternion.identity);
                 listBoss.Add(go);
             }
-          
+
         }
 
         Vector2 GetPos()

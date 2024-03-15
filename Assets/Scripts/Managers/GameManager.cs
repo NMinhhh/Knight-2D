@@ -45,8 +45,8 @@ public class GameManager : MonoBehaviour
     PlayerStats exStats;
 
     //Time in game
-    public float minutes { get; private set; }
-    public float seconds { get; private set; }
+    public int minutes { get; private set; }
+    public int seconds { get; private set; }
 
     private float timer = 1;
 
@@ -80,13 +80,22 @@ public class GameManager : MonoBehaviour
             isLevelUp = false;
             LevelUp();
         }
+        Timer();
+     
+    }
 
+    #endregion
+
+    #region Time in Game
+
+    void Timer()
+    {
         timer -= Time.deltaTime;
-        if(timer <= 0)
+        if (timer <= 0)
         {
             timer = 1;
             seconds++;
-            if(seconds == 60)
+            if (seconds == 60)
             {
                 minutes++;
                 seconds = 0;
