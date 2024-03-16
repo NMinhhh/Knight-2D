@@ -369,6 +369,7 @@ GameObject:
   - component: {fileID: 6764200420568322436}
   - component: {fileID: 1391342485704898043}
   - component: {fileID: 6485828796436752856}
+  - component: {fileID: 7522302413991743911}
   m_Layer: 5
   m_Name: WeaponItem
   m_TagString: Untagged
@@ -383,7 +384,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3026449762964757913}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -439,6 +440,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7522302413991743911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3026449762964757913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd596f4919533b345aff3d110ce57ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameWeapon: {fileID: 1692104675488269625}
+  image: {fileID: 6485828796436752856}
+  damageText: {fileID: 7914228023782499054}
+  bullets: {fileID: 2931755381645822393}
+  reloadText: {fileID: 7003348991993560781}
+  button: {fileID: 5209048166671530828}
+  price: {fileID: 39043902325573546}
 --- !u!1 &4740667693758517132
 GameObject:
   m_ObjectHideFlags: 0
