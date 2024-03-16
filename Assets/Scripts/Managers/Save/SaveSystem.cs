@@ -15,16 +15,16 @@ public static class SaveSystem
         }
     }
 
-    public static void Save(string saveString)
+    public static void Save(string saveName,string saveString)
     {
-        File.WriteAllText(SAVE_FOLDER + "save.txt", saveString);
+        File.WriteAllText(SAVE_FOLDER + saveName, saveString);
     }
 
-    public static string Load()
+    public static string Load(string saveName)
     {
-        if(File.Exists(SAVE_FOLDER + "save.txt")) 
+        if(File.Exists(SAVE_FOLDER + saveName)) 
         {
-            string saveString = File.ReadAllText(SAVE_FOLDER + "save.txt");
+            string saveString = File.ReadAllText(SAVE_FOLDER + saveName);
             return saveString;
         }
         else

@@ -53,19 +53,23 @@ public class GameManager : MonoBehaviour
     //Loss
     public bool isLoss {  get; private set; }
 
+    public Weapon weaponObject;
+
     #endregion
 
     #region Unity Function
 
     private void Start()
     {
-        SaveSystem.Init();
+        //SaveSystem.Init();
         level = 1;
         isLevelUp = false;
+        weaponObject = new Weapon();
         maxEx = CalculateExperience();
         amountGun = new List<int>();
-        Load();
+        //Load();
         amountGun.AddRange(gunUnlock);
+        
     }
 
     private void Update()
@@ -109,7 +113,7 @@ public class GameManager : MonoBehaviour
     public void UseCoins(int amount)
     {
         coin -= amount;
-        Save();
+        //Save();
     }
 
     public bool HasEnoughCoins(int amount)
@@ -120,7 +124,7 @@ public class GameManager : MonoBehaviour
     public void PickupCoins(int amount)
     {
         coin += amount;
-        Save();
+        //Save();
     }
 
     #endregion
@@ -162,36 +166,39 @@ public class GameManager : MonoBehaviour
 
     #region Save and Load
 
-    public void Save()
-    {
-        SaveObject saveObject = new SaveObject()
-        {
-            coin = this.coin,
-            amountGun = this.gunUnlock,
-        };
-        string json = JsonUtility.ToJson(saveObject);
-        SaveSystem.Save(json);
+    //public void Save()
+    //{
+    //    SaveObject saveObject = new SaveObject()
+    //    {
+    //        coin = this.coin,
+    //        amountGun = this.gunUnlock,
+    //        ak = this.weaponObject.ToString(),
+    //    };
+    //    string json = JsonUtility.ToJson(saveObject);
+    //    SaveSystem.Save(json);
 
-    }
-    public void Load()
-    {
-        string saveString = SaveSystem.Load();
-        if (saveString != null)
-        {
-            SaveObject saveObject = JsonUtility.FromJson<SaveObject>(saveString);
-            this.coin = saveObject.coin;
-            gunUnlock = saveObject.amountGun;
-        }
-        else
-        {
-            GetWeaponsUnLock(0);
-            Save();
-        }
-    }
+    //}
+    //public void Load()
+    //{
+    //    string saveString = SaveSystem.Load();
+    //    if (saveString != null)
+    //    {
+    //        SaveObject saveObject = JsonUtility.FromJson<SaveObject>(saveString);
+    //        this.coin = saveObject.coin;
+    //        gunUnlock = saveObject.amountGun;
+            
+    //    }
+    //    else
+    //    {
+    //        GetWeaponsUnLock(0);
+    //        Save();
+    //    }
+    //}
     class SaveObject
     {
         public int coin;
         public int[] amountGun;
+        public string ak;
     }
 
     #endregion

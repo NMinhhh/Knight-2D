@@ -69252,7 +69252,7 @@ MonoBehaviour:
   - {fileID: 8460712489137955136, guid: 89b4ed0d9a970ec4ba233cbc0486affe, type: 3}
   enemyMed:
   - {fileID: 5088724075178999559, guid: 5d270272317e2cd4d8a14906a16a51a4, type: 3}
-  cooldown: 1.5
+  cooldown: 1.2
   timeChecktoDecreaseCooldown: 1
 --- !u!4 &1694445552
 Transform:
@@ -71185,6 +71185,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8761b7625e09e5741aec3ae981cf5ba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponObject:
+    name: 0
+    image: {fileID: 0}
+    damage: 0
+    bullet: 0
+    reload: 0
+    price: 0
+    isPurchased: 0
 --- !u!4 &2044209092
 Transform:
   m_ObjectHideFlags: 0
