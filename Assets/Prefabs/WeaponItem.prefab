@@ -453,7 +453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameWeapon: {fileID: 1692104675488269625}
-  image: {fileID: 6485828796436752856}
+  image: {fileID: 4779239556152196495}
   damageText: {fileID: 7914228023782499054}
   bullets: {fileID: 2931755381645822393}
   reloadText: {fileID: 7003348991993560781}

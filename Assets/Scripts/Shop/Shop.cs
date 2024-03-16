@@ -13,6 +13,7 @@ public class Shop : MonoBehaviour
     public List<int> weaponsUnLock {  get; private set; }
 
     [SerializeField] private GameObject ItemTemplate;
+    private WeaponItemUI weaponItemUI;
     GameObject go;
     [SerializeField] private Transform shopScrollView;
     [SerializeField] private Animator anim;
@@ -44,30 +45,47 @@ public class Shop : MonoBehaviour
         for(int i = 0; i < length; i++)
         {
             int idx = i;
-            go = Instantiate(ItemTemplate, shopScrollView);
-            go.transform.GetChild(0).GetComponent<Text>().text = shopItemsList[i].name;
-            go.transform.GetChild(1).GetComponent<Image>().sprite = shopItemsList[i].image;
-            go.transform.GetChild(2).GetComponent<Text>().text = shopItemsList[i].damage.ToString();
-            go.transform.GetChild(3).GetComponent<Text>().text = shopItemsList[i].bullet.ToString();
-            go.transform.GetChild(4).GetComponent<Text>().text = shopItemsList[i].reload.ToString();
-            btnBuy = go.transform.GetChild(5).GetComponent<Button>();
-            btnBuy.transform.GetChild(0).GetComponent<Text>().text = shopItemsList[i].isPurchased == false ? shopItemsList[i].price.ToString() : "UNLOCK";
-            btnBuy.interactable =  !shopItemsList[i].isPurchased;
-            btnBuy.onClick.AddListener(() => BuyItem(idx));
+            weaponItemUI = Instantiate(ItemTemplate, shopScrollView).GetComponent<WeaponItemUI>();
+            weaponItemUI.SetWeaponName(shopItemsList[idx].name);
+            weaponItemUI.SetWeaponImage(shopItemsList[(int)idx].image);
+            weaponItemUI.SetWeaponDamage(shopItemsList[((int)idx)].damage.ToString());
+            weaponItemUI.SetWeaponBullets(shopItemsList[idx].bullet.ToString());
+            weaponItemUI.SetWeaponReload(shopItemsList[idx].reload.ToString());
+           
+            if (!shopItemsList[idx].isPurchased)
+            {
+                weaponItemUI.OnWeaponUnlockButton(idx, BuyItem);
+                weaponItemUI.SetWeaponPrice(shopItemsList[idx].price.ToString());
+            }
+            else
+            {
+                weaponItemUI.SetWeaponUnlockButton();
+            }
+            //go = Instantiate(ItemTemplate, shopScrollView);
+            //go.transform.GetChild(0).GetComponent<Text>().text = shopItemsList[i].name;
+            //go.transform.GetChild(1).GetComponent<Image>().sprite = shopItemsList[i].image;
+            //go.transform.GetChild(2).GetComponent<Text>().text = shopItemsList[i].damage.ToString();
+            //go.transform.GetChild(3).GetComponent<Text>().text = shopItemsList[i].bullet.ToString();
+            //go.transform.GetChild(4).GetComponent<Text>().text = shopItemsList[i].reload.ToString();
+            //btnBuy = go.transform.GetChild(5).GetComponent<Button>();
+            //btnBuy.transform.GetChild(0).GetComponent<Text>().text = shopItemsList[i].isPurchased == false ? shopItemsList[i].price.ToString() : "UNLOCK";
+            //btnBuy.interactable =  !shopItemsList[i].isPurchased;
+            //btnBuy.onClick.AddListener(() => BuyItem(idx));
+
         }
     }
 
     void BuyItem(int i)
     {
-        if (GameManager.Instance.HasEnoughCoins(shopItemsList[i].price))
+        if (CoinManager.Instance.HasEnoughCoins(shopItemsList[i].price))
         {
             shopItemsList[i].isPurchased = true;
             btnBuy = shopScrollView.GetChild(i).GetChild(5).GetComponent<Button>();
             btnBuy.interactable = false;
             btnBuy.transform.GetChild(0).GetComponent<Text>().text = "UNLOCK";
-            GameManager.Instance.GetWeaponsUnLock(i);
-            GameManager.Instance.UseCoins(shopItemsList[i].price);
-            data[i].isPurchased = true;
+            //GameManager.Instance.GetWeaponsUnLock(i);
+            CoinManager.Instance.UseCoins(shopItemsList[i].price);
+            //data[i].isPurchased = true;
         }
         else
         {

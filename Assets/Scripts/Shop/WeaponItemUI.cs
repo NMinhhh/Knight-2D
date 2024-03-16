@@ -50,7 +50,7 @@ public class WeaponItemUI : MonoBehaviour
         price.text = "UNLOCK"; 
     }
 
-    public void OnWeaponUnlock(int idx, Action<int> action)
+    public void OnWeaponUnlockButton(int idx, Action<int> action)
     {
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() => action(idx));
