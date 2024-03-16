@@ -7,5 +7,5 @@ public class CoinUI : MonoBehaviour
 {
     [SerializeField] private Text coinText;
 
-    void Update() => coinText.text = GameManager.Instance.coin.ToString();
+    void Update() => coinText.text = CoinManager.Instance.coin.ToString();
 }

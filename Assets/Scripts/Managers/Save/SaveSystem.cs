@@ -17,14 +17,15 @@ public static class SaveSystem
 
     public static void Save(string saveName,string saveString)
     {
-        File.WriteAllText(SAVE_FOLDER + saveName, saveString);
+        File.WriteAllText(SAVE_FOLDER + saveName+".txt", saveString);
     }
 
     public static string Load(string saveName)
     {
-        if(File.Exists(SAVE_FOLDER + saveName)) 
+        string file = SAVE_FOLDER + saveName + ".txt";
+        if(File.Exists(file)) 
         {
-            string saveString = File.ReadAllText(SAVE_FOLDER + saveName);
+            string saveString = File.ReadAllText(file);
             return saveString;
         }
         else

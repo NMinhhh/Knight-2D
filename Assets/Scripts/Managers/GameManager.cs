@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        amountGun = new List<int>();
 
 
         DontDestroyOnLoad(gameObject);
@@ -58,17 +59,15 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Unity Function
-
+    
     private void Start()
     {
         //SaveSystem.Init();
         level = 1;
         isLevelUp = false;
-        weaponObject = new Weapon();
         maxEx = CalculateExperience();
-        amountGun = new List<int>();
         //Load();
-        amountGun.AddRange(gunUnlock);
+        //amountGun.AddRange(gunUnlock);
         
     }
 

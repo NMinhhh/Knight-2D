@@ -22,7 +22,12 @@ public class SaveManager : MonoBehaviour
         SaveSystem.Init();
         LoadSaveGame();
     }
-    
+
+    private void OnApplicationQuit()
+    {
+        SaveGame();
+    }
+
     private string GetSaveName(string nameData)
     {
         return SaveManager.Save + "_" + nameData;
@@ -30,25 +35,18 @@ public class SaveManager : MonoBehaviour
 
     public void LoadSaveGame()
     {
-        string stringSave = SaveSystem.Load(GetSaveName(""));
-        if(stringSave != null)
-        {
-            SaveObject saveObject = JsonUtility.FromJson<SaveObject>(stringSave);
-            
+        string stringSave = SaveSystem.Load(GetSaveName("CoinManager"));
+        if(stringSave != null) 
+        { 
+            CoinManager.Instance.FromJson(stringSave);
         }
     }
 
     public void SaveGame()
     {
-        SaveObject saveObject = new SaveObject();
-        string saveString = JsonUtility.ToJson(saveObject);
-        SaveSystem.Save(GetSaveName(""), saveString);
+        
+        string saveString = JsonUtility.ToJson(CoinManager.Instance);
+        SaveSystem.Save(GetSaveName("CoinManager"), saveString);
     }
 
-    class SaveObject
-    {
-        public int coin;
-        public int[] amountGun;
-        public string ak;
-    }
 }

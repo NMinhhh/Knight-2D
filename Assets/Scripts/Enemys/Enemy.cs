@@ -94,7 +94,7 @@ public class Enemy : MonoBehaviour
         }
         if (currentHealth <= 0)
         {
-            GameManager.Instance.PickupCoins(10);
+            CoinManager.Instance.PickupCoins(10);
             int ran = Random.Range(0, 100);
             int ran2 = Random.Range(0, 100);
             if (ran == ran2)
