@@ -12,5 +12,10 @@ public class Weapon
     public int bullet;
     public float reload;
     public int price;
-    public bool isPurchased = false;
+    public float speed = 10f;
+    public float timeLife = 3f;
+    public float cooldown = 0.1f;
+    public GameObject bulletIcon;
+    public bool isPurchased;
+    public bool isEquiped;
 }

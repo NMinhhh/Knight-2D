@@ -55,5 +55,21 @@ public class WeaponItemUI : MonoBehaviour
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() => action(idx));
     }
+
+    public void OnWeaponEquipButton(int idx, Action<int> action)
+    {
+        button.interactable = false;
+        price.text = "UnEquip";
+        button.onClick.RemoveAllListeners();
+        button.onClick.AddListener(() => action(idx));
+    }
+
+    public void OnWeaponUnEqipButton(int idx, Action<int> action)
+    {
+        button.interactable = true;
+        price.text = "Equip";
+        button.onClick.RemoveAllListeners();
+        button.onClick.AddListener(() => action(idx));
+    }
 }
 

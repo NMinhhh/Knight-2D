@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb373755a8dc1774bb79e9686abc3f76, type: 3}
+  m_Name: WeaponData
+  m_EditorClassIdentifier: 
+  weapon:
+  - name: Pistol
+    image: {fileID: 21300000, guid: d7d58fc54f58ac14f9f153dedccaedaa, type: 3}
+    damage: 6
+    bullet: 20
+    reload: 1
+    price: 0
+    speed: 18
+    timeLife: 3
+    cooldown: 0.1
+    bulletIcon: {fileID: 2458557462247786642, guid: b19e23dee31767949848fcd742b6f26b, type: 3}
+    isPurchased: 1
+    isEquiped: 1
+  - name: AK
+    image: {fileID: 21300000, guid: 9ba82c2e6f8b609418210cae51c409b4, type: 3}
+    damage: 8
+    bullet: 45
+    reload: 1.5
+    price: 200
+    speed: 18
+    timeLife: 3
+    cooldown: 0.1
+    bulletIcon: {fileID: 2458557462247786642, guid: b19e23dee31767949848fcd742b6f26b, type: 3}
+    isPurchased: 0
+    isEquiped: 0
+  - name: Sniper
+    image: {fileID: 21300000, guid: c49f8ecb97a740542b77a707fc10db02, type: 3}
+    damage: 15
+    bullet: 20
+    reload: 1.5
+    price: 375
+    speed: 20
+    timeLife: 3
+    cooldown: 0.5
+    bulletIcon: {fileID: 2458557462247786642, guid: b19e23dee31767949848fcd742b6f26b, type: 3}
+    isPurchased: 0
+    isEquiped: 0
+  - name: Shotgun
+    image: {fileID: 21300000, guid: ceee8c0c7df166a48afbbd0a13c06686, type: 3}
+    damage: 8
+    bullet: 15
+    reload: 1.5
+    price: 275
+    speed: 18
+    timeLife: 3
+    cooldown: 0.3
+    bulletIcon: {fileID: 2458557462247786642, guid: b19e23dee31767949848fcd742b6f26b, type: 3}
+    isPurchased: 0
+    isEquiped: 0
+  - name: Bazoka
+    image: {fileID: 21300000, guid: 4502ee811c1b066458259d590c0576ed, type: 3}
+    damage: 20
+    bullet: 8
+    reload: 2
+    price: 500
+    speed: 18
+    timeLife: 3
+    cooldown: 0.5
+    bulletIcon: {fileID: 3875696009280236879, guid: 203023f5d3eccc94cac4bcb809344ea1, type: 3}
+    isPurchased: 0
+    isEquiped: 0
