@@ -89,7 +89,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5642528663432868398
 Transform:
   m_ObjectHideFlags: 0
@@ -175,6 +175,8 @@ MonoBehaviour:
   movementSpeed: 8
   maxHealth: 200
   hurtTime: 0.2
+  imortalTime: 0
+  numberOfFlash: 0
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
 --- !u!114 &7016895860403512239
 MonoBehaviour:

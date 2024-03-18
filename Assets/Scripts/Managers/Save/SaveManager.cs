@@ -7,7 +7,9 @@ public class SaveManager : MonoBehaviour
     public static SaveManager Instance;
     private const string Save = "Save";
     void Awake()
-    {
+    { 
+        SaveSystem.Init();
+        LoadSaveGame();
         if(Instance == null)
         {
             Instance = this;
@@ -19,8 +21,7 @@ public class SaveManager : MonoBehaviour
     }
     private void Start()
     {
-        SaveSystem.Init();
-        LoadSaveGame();
+       
     }
 
     private void OnApplicationQuit()

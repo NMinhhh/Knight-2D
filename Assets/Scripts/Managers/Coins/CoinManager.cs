@@ -7,6 +7,8 @@ public class CoinManager : MonoBehaviour
     public static CoinManager Instance {  get; private set; }
 
     public int coin;
+    public Weapon[] weapons;
+    public int selectedWeaponIndex;
 
     void Awake()
     {
@@ -19,6 +21,7 @@ public class CoinManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    //Coin
     public void UseCoins(int amount)
     {
         coin -= amount;
@@ -34,9 +37,33 @@ public class CoinManager : MonoBehaviour
         coin += amount;
     }
 
+    //Weapons
+
+    public int GetWeaponsLength()
+    {
+        return weapons.Length;
+    }
+
+    public Weapon GetWeapon(int idx)
+    {
+        return weapons[idx];
+    }
+
+    public void WeaponPurchased(int idx)
+    {
+        weapons[idx].isPurchased = true;
+    }
+
+    public void ChangeWeapon(int idx)
+    {
+        selectedWeaponIndex = idx;
+    }
+
     public void FromJson(string stringSave)
     {
         CoinData saveObj = JsonUtility.FromJson<CoinData>(stringSave);
         this.coin = saveObj.coin;
+        this.weapons = saveObj.weapons;
+        this.selectedWeaponIndex = saveObj.selectedWeaponIndex;
     }
 }
