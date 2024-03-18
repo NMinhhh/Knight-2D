@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerShooting : MonoBehaviour
 {
     [Header("Data")]
+    //[SerializeField] private WeaponObject weaponData;
     Weapon weapon;
 
     [Header("Shoting")]
@@ -32,7 +33,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void Start()
     {
-        weapon = CoinManager.Instance.GetWeapon(CoinManager.Instance.selectedWeaponIndex);
+        weapon = CoinManager.Instance.GetWeaponSelected();
         reloadBullets = GetComponent<ReloadBullets>();
         anim = transform.Find("MuzzleFlash").GetComponent<Animator>();
         handleRotation = GameObject.FindObjectOfType<HandleRotation>();

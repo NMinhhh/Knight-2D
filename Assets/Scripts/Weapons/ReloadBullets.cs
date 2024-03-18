@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ReloadBullets : MonoBehaviour
 {
-    //[SerializeField] private WeaponObject data;
+    //[SerializeField] private WeaponObject weaponsData;
     Weapon weapon;
 
     public int amountOfBullet {  get; private set; }
@@ -15,7 +15,7 @@ public class ReloadBullets : MonoBehaviour
 
     void Start()
     {
-        weapon = CoinManager.Instance.GetWeapon(CoinManager.Instance.selectedWeaponIndex);
+        weapon = CoinManager.Instance.GetWeaponSelected();
         statsBullet.weaponIcon.sprite = weapon.image;
         amountOfBullet = weapon.bullet;
         currentReloadTimer = weapon.reload;

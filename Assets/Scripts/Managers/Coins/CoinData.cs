@@ -5,6 +5,6 @@ using UnityEngine;
 public class CoinData 
 {
     public int coin;
-    public Weapon[] weapons;
+    public List<int> weaponsPurchasedIndex = new List<int>();
     public int selectedWeaponIndex;
 }

@@ -6,4 +6,19 @@ using UnityEngine;
 public class WeaponObject : ScriptableObject
 {
     public Weapon[] weapons;
+
+    public int GetWeaponsLength()
+    {
+        return weapons.Length;
+    }
+
+    public Weapon GetWeapon(int idx)
+    {
+        return weapons[idx];
+    }
+
+    public void WeaponPurchased(int idx)
+    {
+        weapons[idx].isPurchased = true;
+    }
 }

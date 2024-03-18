@@ -44,9 +44,8 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
-            Shop.Instance.SetData();
+            CoinManager.Instance.AddWeaponPurchasedIndex(0);
         }
-        
     }
 
     public void SaveGame()

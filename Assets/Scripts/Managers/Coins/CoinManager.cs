@@ -7,8 +7,10 @@ public class CoinManager : MonoBehaviour
     public static CoinManager Instance {  get; private set; }
 
     public int coin;
-    public Weapon[] weapons;
+    public List<int> weaponsPurchasedIndex = new List<int>();
     public int selectedWeaponIndex;
+
+    Weapon weaponSelected;
 
     void Awake()
     {
@@ -20,7 +22,7 @@ public class CoinManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        weaponsPurchasedIndex = new List<int>();
         DontDestroyOnLoad(gameObject);
     }
     //Coin
@@ -41,36 +43,49 @@ public class CoinManager : MonoBehaviour
 
     //Weapons
 
-    public void SetWeaponData(WeaponObject weapon)
+    public void SetWeaponSelected(Weapon weapon)
     {
-        weapons = weapon.weapons;
+        weaponSelected = weapon;
     }
 
-    public int GetWeaponsLength()
+    public Weapon GetWeaponSelected()
     {
-        return weapons.Length;
+        return weaponSelected;
     }
 
-    public Weapon GetWeapon(int idx)
+    //Weapon Index
+    public int GetWeaponSelectedIndex()
     {
-        return weapons[idx];
+        return selectedWeaponIndex;
     }
 
-    public void WeaponPurchased(int idx)
-    {
-        weapons[idx].isPurchased = true;
-    }
-
-    public void ChangeWeapon(int idx)
+    public void ChangeWeaponIndex(int idx)
     {
         selectedWeaponIndex = idx;
     }
 
+    //Weapon Purchased
+    public int GetWeaponPurchased(int idx)
+    {
+        return weaponsPurchasedIndex[idx];
+    }
+
+    public List<int> GetAllWeaponPurchased()
+    {
+        return weaponsPurchasedIndex;
+    }
+
+    public void AddWeaponPurchasedIndex(int idx)
+    {
+        weaponsPurchasedIndex.Add(idx);
+    }
+
+    //Json
     public void FromJson(string stringSave)
     {
         CoinData saveObj = JsonUtility.FromJson<CoinData>(stringSave);
         this.coin = saveObj.coin;
-        this.weapons = saveObj.weapons;
+        this.weaponsPurchasedIndex = saveObj.weaponsPurchasedIndex;
         this.selectedWeaponIndex = saveObj.selectedWeaponIndex;
     }
 }

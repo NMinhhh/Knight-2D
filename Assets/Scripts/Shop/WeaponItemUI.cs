@@ -61,7 +61,7 @@ public class WeaponItemUI : MonoBehaviour
     public void OnWeaponEquipButton()
     {
         button.interactable = false;
-        price.text = "UnEqip";
+        price.text = "UnEquip";
     }
 }
 

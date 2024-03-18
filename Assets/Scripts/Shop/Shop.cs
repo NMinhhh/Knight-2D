@@ -10,7 +10,6 @@ public class Shop : MonoBehaviour
     [SerializeField] private WeaponObject weaponData;
 
     [SerializeField] private GameObject ItemTemplate;
-    GameObject go;
     [SerializeField] private Transform shopScrollView;
     [SerializeField] private Animator anim;
 
@@ -26,17 +25,30 @@ public class Shop : MonoBehaviour
 
     void Start()
     {
-        for(int i = 0; i < CoinManager.Instance.GetWeaponsLength(); i++)
+        GenerateShopUI();
+
+        
+    }
+
+    void GenerateShopUI()
+    {
+        for (int i = 0; i < CoinManager.Instance.GetAllWeaponPurchased().Count; i++)
+        {
+            int idxWeaponPurchased = CoinManager.Instance.GetWeaponPurchased(i);
+            weaponData.WeaponPurchased(idxWeaponPurchased);
+        }
+
+        for (int i = 0; i < weaponData.GetWeaponsLength(); i++)
         {
             int idx = i;
-            Weapon weapon = CoinManager.Instance.GetWeapon(idx);
+            Weapon weapon = weaponData.GetWeapon(idx);
             WeaponItemUI weaponItemUI = Instantiate(ItemTemplate, shopScrollView).GetComponent<WeaponItemUI>();
             weaponItemUI.SetWeaponName(weapon.name);
             weaponItemUI.SetWeaponImage(weapon.image);
             weaponItemUI.SetWeaponDamage(weapon.damage.ToString());
             weaponItemUI.SetWeaponBullets(weapon.bullet.ToString());
             weaponItemUI.SetWeaponReload(weapon.reload.ToString());
-           
+
             if (!weapon.isPurchased)
             {
                 weaponItemUI.OnWeaponUnlockButton(idx, BuyItem);
@@ -44,9 +56,10 @@ public class Shop : MonoBehaviour
             }
             else
             {
-                if(idx == CoinManager.Instance.selectedWeaponIndex)
+                if (idx == CoinManager.Instance.selectedWeaponIndex)
                 {
                     weaponItemUI.OnWeaponEquipButton();
+                    CoinManager.Instance.SetWeaponSelected(weapon);
                 }
                 else
                 {
@@ -58,13 +71,11 @@ public class Shop : MonoBehaviour
 
     void BuyItem(int idx)
     {
-        Weapon weapon = CoinManager.Instance.GetWeapon(idx);
-        WeaponItemUI weaponItemUI = GetWeaponItemUI(idx);
+        Weapon weapon = weaponData.GetWeapon(idx);
         if (CoinManager.Instance.HasEnoughCoins(weapon.price))
         {
-            //GameManager.Instance.GetWeaponsUnLock(i);
             CoinManager.Instance.UseCoins(weapon.price);
-            CoinManager.Instance.WeaponPurchased(idx);
+            CoinManager.Instance.AddWeaponPurchasedIndex(idx);
             EquipWeapon(idx);
         }
         else
@@ -76,21 +87,23 @@ public class Shop : MonoBehaviour
 
     void EquipWeapon(int idx)
     {
+        //Get newWeaponUI
         WeaponItemUI newWeaponItemUI = GetWeaponItemUI(idx);
-        WeaponItemUI oldWeaponItemUI = GetWeaponItemUI(CoinManager.Instance.selectedWeaponIndex);
+        //Get oldWeaponUI
+        WeaponItemUI oldWeaponItemUI = GetWeaponItemUI(CoinManager.Instance.GetWeaponSelectedIndex());
+        //New Weapon Equiped
         newWeaponItemUI.OnWeaponEquipButton();
-        oldWeaponItemUI.OnWeaponUnEquipButton(CoinManager.Instance.selectedWeaponIndex, EquipWeapon);
-        CoinManager.Instance.ChangeWeapon(idx);
+        //Old Weapon UnEquiped
+        oldWeaponItemUI.OnWeaponUnEquipButton(CoinManager.Instance.GetWeaponSelectedIndex(), EquipWeapon);
+        //Change ID Weapon
+        CoinManager.Instance.ChangeWeaponIndex(idx);
+        //Set Weapon Selected
+        CoinManager.Instance.SetWeaponSelected(weaponData.GetWeapon(idx));
     }
 
     public WeaponItemUI GetWeaponItemUI(int i)
     {
         return shopScrollView.GetChild(i).GetComponent<WeaponItemUI>();
-    }
-
-    public void SetData()
-    {
-        CoinManager.Instance.SetWeaponData(weaponData);
     }
 
 
