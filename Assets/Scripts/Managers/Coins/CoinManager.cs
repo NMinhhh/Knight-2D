@@ -20,6 +20,8 @@ public class CoinManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        DontDestroyOnLoad(gameObject);
     }
     //Coin
     public void UseCoins(int amount)
@@ -38,6 +40,11 @@ public class CoinManager : MonoBehaviour
     }
 
     //Weapons
+
+    public void SetWeaponData(WeaponObject weapon)
+    {
+        weapons = weapon.weapons;
+    }
 
     public int GetWeaponsLength()
     {

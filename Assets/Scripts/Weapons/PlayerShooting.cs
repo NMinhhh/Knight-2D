@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerShooting : MonoBehaviour
 {
     [Header("Data")]
-    [SerializeField] private WeaponObject data;
+    Weapon weapon;
 
     [Header("Shoting")]
     [SerializeField] private Transform[] attackPoint;
@@ -32,9 +32,11 @@ public class PlayerShooting : MonoBehaviour
 
     private void Start()
     {
+        weapon = CoinManager.Instance.GetWeapon(CoinManager.Instance.selectedWeaponIndex);
         reloadBullets = GetComponent<ReloadBullets>();
         anim = transform.Find("MuzzleFlash").GetComponent<Animator>();
         handleRotation = GameObject.FindObjectOfType<HandleRotation>();
+        
     }
 
     void Update()
@@ -51,9 +53,9 @@ public class PlayerShooting : MonoBehaviour
 
     void Shooting()
     {
-        if(timer >= data.cooldown && reloadBullets.amountOfBullet > 0)
+        if (timer >= weapon.cooldown && reloadBullets.amountOfBullet > 0)
         {
-            timer = 0; 
+            timer = 0;
             anim.SetTrigger("shoot");
             SoundFXManager.Instance.CreateAudioClip(clip, attackPoint[0], .5f);
             if (gun)
@@ -68,7 +70,7 @@ public class PlayerShooting : MonoBehaviour
             {
                 ShootingBomb();
             }
-            reloadBullets.UpdateBullets();  
+            reloadBullets.UpdateBullets();
         }
     }
     
@@ -96,15 +98,15 @@ public class PlayerShooting : MonoBehaviour
 
     void SpawnBullet(Transform spawnPos, Quaternion ro)
     {
-        GameObject projectile = Instantiate(data.bulletIcon, spawnPos.position, ro);
+        GameObject projectile = Instantiate(weapon.bulletIcon, spawnPos.position, ro);
         Projectile script = projectile.GetComponent<Projectile>();
-        script.CreateBullet(data.damage, data.speed, data.timeLife);
+        script.CreateBullet(weapon.damage, weapon.speed, weapon.timeLife);
     }
 
     void SpawnRocket(Transform spawnPos, Quaternion ro)
     {
-        GameObject projectile = Instantiate(data.bulletIcon, spawnPos.position, ro);
+        GameObject projectile = Instantiate(weapon.bulletIcon, spawnPos.position, ro);
         ProjectileBomb script = projectile.GetComponent<ProjectileBomb>();
-        script.CreateBomb(data.damage, data.speed, data.timeLife);
+        script.CreateBomb(weapon.damage, weapon.speed, weapon.timeLife);
     }
 }

@@ -20,20 +20,12 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        amountGun = new List<int>();
 
 
-        DontDestroyOnLoad(gameObject);
     }
     #endregion
 
     #region Variable
-    //Coin
-    public int coin { get; private set; }
-
-    //Weapon
-    private List<int> amountGun;
-    public int[] gunUnlock {  get; private set; }
 
     //Level
     public float maxEx {  get; private set; }
@@ -54,7 +46,6 @@ public class GameManager : MonoBehaviour
     //Loss
     public bool isLoss {  get; private set; }
 
-    public Weapon weaponObject;
 
     #endregion
 
@@ -108,25 +99,7 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    #region Coins
-    public void UseCoins(int amount)
-    {
-        coin -= amount;
-        //Save();
-    }
 
-    public bool HasEnoughCoins(int amount)
-    {
-        return coin >= amount;
-    }
-
-    public void PickupCoins(int amount)
-    {
-        coin += amount;
-        //Save();
-    }
-
-    #endregion
 
     #region Level Up
 
@@ -159,55 +132,6 @@ public class GameManager : MonoBehaviour
         }
         return amountOfExperience / 4;
         
-    }
-
-    #endregion
-
-    #region Save and Load
-
-    //public void Save()
-    //{
-    //    SaveObject saveObject = new SaveObject()
-    //    {
-    //        coin = this.coin,
-    //        amountGun = this.gunUnlock,
-    //        ak = this.weaponObject.ToString(),
-    //    };
-    //    string json = JsonUtility.ToJson(saveObject);
-    //    SaveSystem.Save(json);
-
-    //}
-    //public void Load()
-    //{
-    //    string saveString = SaveSystem.Load();
-    //    if (saveString != null)
-    //    {
-    //        SaveObject saveObject = JsonUtility.FromJson<SaveObject>(saveString);
-    //        this.coin = saveObject.coin;
-    //        gunUnlock = saveObject.amountGun;
-            
-    //    }
-    //    else
-    //    {
-    //        GetWeaponsUnLock(0);
-    //        Save();
-    //    }
-    //}
-    class SaveObject
-    {
-        public int coin;
-        public int[] amountGun;
-        public string ak;
-    }
-
-    #endregion
-
-    #region Weapons
-    public void GetWeaponsUnLock(int i)
-    {
-        
-        amountGun.Add(i);
-        gunUnlock = amountGun.ToArray();
     }
 
     #endregion

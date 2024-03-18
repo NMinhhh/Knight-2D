@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ReloadBullets : MonoBehaviour
 {
-    [SerializeField] private WeaponObject data;
+    //[SerializeField] private WeaponObject data;
+    Weapon weapon;
 
     public int amountOfBullet {  get; private set; }
 
@@ -14,21 +15,21 @@ public class ReloadBullets : MonoBehaviour
 
     void Start()
     {
-        statsBullet.weaponIcon.sprite = data.image;
-        amountOfBullet = data.bullet;
-        currentReloadTimer = data.reload;
-        statsBullet.amountOfBulletText.text = data.bullet.ToString();
+        weapon = CoinManager.Instance.GetWeapon(CoinManager.Instance.selectedWeaponIndex);
+        statsBullet.weaponIcon.sprite = weapon.image;
+        amountOfBullet = weapon.bullet;
+        currentReloadTimer = weapon.reload;
+        statsBullet.amountOfBulletText.text = weapon.bullet.ToString();
         statsBullet.reloadImage.fillAmount = 0;
     }
     private void Update()
     {
         Reload();
-        if(amountOfBullet > 0)
-        {
-            statsBullet.reloadImage.fillAmount = 0;
-        }       
+        //if(amountOfBullet > 0)
+        //{
+        //    statsBullet.reloadImage.fillAmount = 0;
+        //}       
         statsBullet.amountOfBulletText.text = amountOfBullet.ToString();
-        statsBullet.weaponIcon.sprite = data.image;
     }
 
     public void UpdateBullets()
@@ -40,15 +41,15 @@ public class ReloadBullets : MonoBehaviour
 
     void Reload()
     {
-        if(amountOfBullet <= 0)
+        if (amountOfBullet <= 0)
         {
             currentReloadTimer -= Time.deltaTime;
-            statsBullet.reloadImage.fillAmount = currentReloadTimer / data.reload;
+            statsBullet.reloadImage.fillAmount = currentReloadTimer / weapon.reload;
             if (currentReloadTimer <= 0)
             {
-                amountOfBullet = data.bullet;
+                amountOfBullet = weapon.bullet;
                 statsBullet.amountOfBulletText.text = amountOfBullet.ToString();
-                currentReloadTimer = data.reload;
+                currentReloadTimer = weapon.reload;
                 statsBullet.reloadImage.fillAmount = 0;
             }
         }

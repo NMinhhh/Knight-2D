@@ -34,7 +34,7 @@ public class PlayerDie : MonoBehaviour
     public void Born()
     {
         Time.timeScale = 1;
-        GameManager.Instance.UseCoins(coinToBorn * mutiply);
+        CoinManager.Instance.UseCoins(coinToBorn * mutiply);
         mutiply += 2;
         CanvasManager.Instance.CloseUI(dieGo);
         player.Born();

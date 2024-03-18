@@ -52,10 +52,7 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         keyESC = Input.GetKeyDown(KeyCode.Escape);
-        if (!GameManager.Instance.isLoss)
-        {
-            keyEnter = Input.GetKeyDown(KeyCode.Return);
-        }
+        
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (CanvasManager.Instance.isOpenUI)
         {

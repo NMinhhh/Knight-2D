@@ -6,11 +6,8 @@ using UnityEngine.UI;
 public class Shop : MonoBehaviour
 {
     public static Shop Instance;
-    [Header("List Weapons")]
-    public List<Weapon> shopItemsList;
-    public List<WeaponObject> data;
 
-    public List<int> weaponsUnLock {  get; private set; }
+    [SerializeField] private WeaponObject weaponData;
 
     [SerializeField] private GameObject ItemTemplate;
     GameObject go;
@@ -21,16 +18,6 @@ public class Shop : MonoBehaviour
 
     private void Awake()
     {
-        //for (int i = 0; i < data.Count; i++)
-        //{
-        //    shopItemsList[i].name = data[i].name;
-        //    shopItemsList[i].image = data[i].image;
-        //    shopItemsList[i].damage = data[i].damage;
-        //    shopItemsList[i].bullet = data[i].bullet;
-        //    shopItemsList[i].reload = data[i].reload;
-        //    shopItemsList[i].price = data[i].price;
-        //    shopItemsList[i].isPurchased = data[i].isPurchased;
-        //}
         if (Instance == null)
             Instance = this;
         else
@@ -39,8 +26,6 @@ public class Shop : MonoBehaviour
 
     void Start()
     {
-        
-        int length = shopItemsList.Count;
         for(int i = 0; i < CoinManager.Instance.GetWeaponsLength(); i++)
         {
             int idx = i;
@@ -68,11 +53,8 @@ public class Shop : MonoBehaviour
                     weaponItemUI.OnWeaponUnEquipButton(idx, EquipWeapon);
                 }
             }
-      
-
         }
     }
-
 
     void BuyItem(int idx)
     {
@@ -98,7 +80,6 @@ public class Shop : MonoBehaviour
         WeaponItemUI oldWeaponItemUI = GetWeaponItemUI(CoinManager.Instance.selectedWeaponIndex);
         newWeaponItemUI.OnWeaponEquipButton();
         oldWeaponItemUI.OnWeaponUnEquipButton(CoinManager.Instance.selectedWeaponIndex, EquipWeapon);
-        Debug.Log(idx + " --> " + CoinManager.Instance.selectedWeaponIndex);
         CoinManager.Instance.ChangeWeapon(idx);
     }
 
@@ -107,6 +88,10 @@ public class Shop : MonoBehaviour
         return shopScrollView.GetChild(i).GetComponent<WeaponItemUI>();
     }
 
+    public void SetData()
+    {
+        CoinManager.Instance.SetWeaponData(weaponData);
+    }
 
 
 }

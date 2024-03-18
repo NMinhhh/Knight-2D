@@ -8,8 +8,7 @@ public class SaveManager : MonoBehaviour
     private const string Save = "Save";
     void Awake()
     { 
-        SaveSystem.Init();
-        LoadSaveGame();
+        
         if(Instance == null)
         {
             Instance = this;
@@ -18,10 +17,12 @@ public class SaveManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        DontDestroyOnLoad(gameObject);
     }
     private void Start()
     {
-       
+       SaveSystem.Init();
+        LoadSaveGame();
     }
 
     private void OnApplicationQuit()
@@ -41,6 +42,11 @@ public class SaveManager : MonoBehaviour
         { 
             CoinManager.Instance.FromJson(stringSave);
         }
+        else
+        {
+            Shop.Instance.SetData();
+        }
+        
     }
 
     public void SaveGame()
