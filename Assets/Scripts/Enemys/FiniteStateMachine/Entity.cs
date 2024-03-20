@@ -27,6 +27,10 @@ public class Entity : MonoBehaviour
     private float timeTouch;
 
 
+    //skill
+    private float currentCooldoolSkill1;
+    public bool isSkillReady;
+
     public Transform target { get; private set; }
     public int facingRight {  get; private set; }
 
@@ -45,6 +49,7 @@ public class Entity : MonoBehaviour
         currentDamageTimeCon = data.damageTimeCon;
         currentHealth = data.maxHealth;
         timeTouch = data.cooldownTouchDamage;
+        currentCooldoolSkill1 = data.cooldownSkill1;
     }
 
     // Update is called once per frame
@@ -52,6 +57,11 @@ public class Entity : MonoBehaviour
     {
         stateMachine.currentState.LogicUpdate();
         currentDamageTimeCon -= Time.deltaTime;
+        currentCooldoolSkill1 -= Time.deltaTime;
+        if(currentCooldoolSkill1 < 0)
+        {
+            isSkillReady = true;
+        }
         TouchDamagePlayer();
     }
 
@@ -60,6 +70,12 @@ public class Entity : MonoBehaviour
          stateMachine.currentState.PhysicUpdate();
     }
     //Set function
+
+    public void SetSkill1()
+    {
+        currentCooldoolSkill1 = data.cooldownSkill1;
+        isSkillReady = false;
+    }
     public void SetMovement(float speed)
     {
         rb.velocity = GetDir() * speed;
@@ -179,6 +195,7 @@ public class Entity : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(checkPlayerPos.position, data.sizeCheck);
+        Gizmos.DrawWireCube(touchDamagePos.position, data.sizeTouch);
     }
 
 }

@@ -19,4 +19,8 @@ public class EntityData : ScriptableObject
     public Vector2 sizeTouch;
     public float cooldownTouchDamage;
     public LayerMask whatIsShield;
+
+    [Header("Cooldown Skill")]
+    public float cooldownSkill1 = 5f;
+
 }
