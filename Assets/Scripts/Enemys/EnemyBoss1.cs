@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyBoss1 : MonoBehaviour
 {
+    //Skill1
     [Header("Skill Point and Bullet")]
     [SerializeField] private Transform skillPoint;
     [SerializeField] private GameObject bullet;
@@ -29,7 +30,20 @@ public class EnemyBoss1 : MonoBehaviour
 
     private Enemy enemy;
 
-    // Start is called before the first frame update
+    //Skill2
+    [Header("Skill2")]
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private float radius;
+    [SerializeField] private float damageSkill2;
+    [Space]
+    //Cooldown Skill2
+    [SerializeField] private float cooldownSkill2;
+    
+
+
+    AttackDetail attackDetail;
+
+
     void Start()
     {
         enemy = GetComponent<Enemy>();
@@ -61,6 +75,9 @@ public class EnemyBoss1 : MonoBehaviour
             }
         }
     }
+
+    #region Skill1
+
     public void StartSkill()
     {
         enemy.anim.SetBool("startSkill", true);
@@ -98,4 +115,13 @@ public class EnemyBoss1 : MonoBehaviour
     {
         return (enemy.target.position - skillPoint.position).normalized;
     }
+
+    #endregion
+
+    #region Skill2
+
+
+
+
+    #endregion
 }

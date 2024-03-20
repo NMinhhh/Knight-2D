@@ -103,9 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6072270404647924835}
   - component: {fileID: 1162415840691009546}
-  - component: {fileID: 2151496747829953040}
-  - component: {fileID: 14693312973547417}
-  - component: {fileID: 4931685066581317484}
+  - component: {fileID: 9188227045520706776}
   - component: {fileID: 8657019091072247821}
   - component: {fileID: 6591911978788771824}
   - component: {fileID: 674342389232913778}
@@ -187,7 +185,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2151496747829953040
+--- !u!114 &9188227045520706776
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,61 +194,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5971886380988696063}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87180fdb7da8bd0479c084e4ab822040, type: 3}
+  m_Script: {fileID: 11500000, guid: 312883f72869ed844ab7d2e2923bed2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 500
-  speed: 3
-  isSkill: 0
-  hurtTime: 0.1
-  knockbackSpeed: 0
-  timerH: 0.1
-  checkPlayer: {fileID: 8723549348542143332}
-  sizeCheckPlayer: {x: 0.82, y: 2.41}
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 64
-  blood: {fileID: 2578279218646126725, guid: 15cd884113aec644592bc35df7dffa34, type: 3}
-  bloodPoint: {fileID: 7687533477281912381}
---- !u!114 &14693312973547417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5971886380988696063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff30f3a65a70fe345af87b4032ec5677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  touchPoint: {fileID: 7758763130830480515}
-  damage: 10
-  size: {x: 1.83, y: 2.9}
-  cooldown: 1
-  whatIsShield:
-    serializedVersion: 2
-    m_Bits: 2048
---- !u!114 &4931685066581317484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5971886380988696063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc6e52b01b1ab7a4aafb134c2171e477, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillPoint: {fileID: 4637206967874775007}
-  bullet: {fileID: 8120458309972390933, guid: 933430637ed5882428d611f536b5917d, type: 3}
-  speed: 18
-  damage: 10
-  timeLife: 3
-  cooldown: 2
-  amountBullet: 10
-  skillTime: 0.3
 --- !u!50 &8657019091072247821
 Rigidbody2D:
   serializedVersion: 4
