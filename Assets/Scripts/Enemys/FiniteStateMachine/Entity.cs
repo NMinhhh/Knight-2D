@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.U2D;
 
 public class Entity : MonoBehaviour
 {
     protected StateMachine stateMachine;
 
     [SerializeField] private EntityData data;
-    
+
+    AttackDetail attackDetail;
 
     //Component
     public Animator anim {  get; private set; }
@@ -16,10 +16,16 @@ public class Entity : MonoBehaviour
     private SpriteRenderer sprite;
     //Other Variable
     [SerializeField] private Transform checkPlayerPos;
+    [SerializeField] private Transform touchDamagePos;
 
+    //Hurt
     private float currentHealth;
     private bool isKnockback;
     private float currentDamageTimeCon;
+
+    //Touch Damage Player
+    private float timeTouch;
+
 
     public Transform target { get; private set; }
     public int facingRight {  get; private set; }
@@ -38,6 +44,7 @@ public class Entity : MonoBehaviour
         facingRight = 1;
         currentDamageTimeCon = data.damageTimeCon;
         currentHealth = data.maxHealth;
+        timeTouch = data.cooldownTouchDamage;
     }
 
     // Update is called once per frame
@@ -45,6 +52,7 @@ public class Entity : MonoBehaviour
     {
         stateMachine.currentState.LogicUpdate();
         currentDamageTimeCon -= Time.deltaTime;
+        TouchDamagePlayer();
     }
 
     protected virtual void FixedUpdate()
@@ -82,6 +90,31 @@ public class Entity : MonoBehaviour
         }
     }
     //Other Funtion
+
+    void TouchDamagePlayer()
+    {
+        timeTouch -= Time.deltaTime;
+        attackDetail.attackDir = transform;
+        attackDetail.damage = data.touchDamage;
+        Collider2D[] hit = Physics2D.OverlapBoxAll(touchDamagePos.position, data.sizeTouch, 0, data.whatIsPlayer);
+        Collider2D hitShield = Physics2D.OverlapBox(touchDamagePos.position, data.sizeTouch, 0, data.whatIsShield);
+
+        if (hitShield)
+        {
+            hitShield.transform.parent.SendMessage("DamageShield");
+            return;
+        }
+
+        foreach (Collider2D col in hit)
+        {
+            if (col && timeTouch <= 0)
+            {
+                col.transform.SendMessage("Damage", attackDetail);
+                timeTouch = data.cooldownTouchDamage;
+            }
+        }
+    }
+
     IEnumerator Hurt()
     {
         isKnockback = true;

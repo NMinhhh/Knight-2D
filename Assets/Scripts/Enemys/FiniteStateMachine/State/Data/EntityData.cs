@@ -14,4 +14,9 @@ public class EntityData : ScriptableObject
 
     public float damageTimeCon = 0.1f;
 
+    [Header("Touch Damage")]
+    public float touchDamage;
+    public Vector2 sizeTouch;
+    public float cooldownTouchDamage;
+    public LayerMask whatIsShield;
 }
