@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss1 : MonoBehaviour
+public class Boss1 : Entity
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private EnemyMoveData moveData;
+
+    public Boss1_IdleState IdleState {  get; private set; }
+
+    public Boss1_MoveState MoveState { get; private set; }
+
+    protected override void Start()
     {
-        
+        base.Start();
+        IdleState = new Boss1_IdleState(this, stateMachine, "idle", this);
+        MoveState = new Boss1_MoveState(this, stateMachine, "move", moveData, this);
+        stateMachine.Initiate(IdleState);
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        
+        base.Update();
     }
 }

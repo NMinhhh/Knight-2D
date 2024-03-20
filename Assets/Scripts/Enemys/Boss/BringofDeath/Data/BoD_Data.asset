@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff71835be6d00ec478913132f56bbf4f, type: 3}
   m_Name: BoD_Data
   m_EditorClassIdentifier: 
-  sizeCheck: {x: 0, y: 0}
+  sizeCheck: {x: 0.75, y: 2.3}
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
+  maxHealth: 999
+  knockbackSpeed: 0
+  hurtTime: 0.1
+  damageTimeCon: 0.1
