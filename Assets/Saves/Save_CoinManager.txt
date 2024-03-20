@@ -1,1 +1,1 @@
-{"coin":115,"weaponsPurchasedIndex":[0,1,3],"selectedWeaponIndex":1}
+{"coin":3040,"weaponsPurchasedIndex":[1],"selectedWeaponIndex":1}

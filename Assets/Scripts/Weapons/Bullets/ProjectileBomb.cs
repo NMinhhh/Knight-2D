@@ -5,7 +5,7 @@ using UnityEngine;
 public class ProjectileBomb : MonoBehaviour
 {
     [SerializeField] private LayerMask whatIsEnemy;
-    [SerializeField] private LayerMask whatIsWall;
+    [SerializeField] private LayerMask whatIsShield;
     [SerializeField] private Transform checkPoint;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float radius;
@@ -17,7 +17,6 @@ public class ProjectileBomb : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
     private bool isDamage;
-    private bool isWall;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -29,7 +28,7 @@ public class ProjectileBomb : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isDamage || isWall)
+        if(isDamage)
         {
             rb.velocity = Vector3.zero;
             anim.SetBool("explode", true);
@@ -48,22 +47,24 @@ public class ProjectileBomb : MonoBehaviour
 
     void Check()
     {
-        Collider2D wall = Physics2D.OverlapCircle(checkPoint.position, radius, whatIsWall);
         Collider2D enemy = Physics2D.OverlapCircle(checkPoint.position, radius, whatIsEnemy);
         if (enemy && !isDamage)
         {
             isDamage = true;
         }
-        if (wall)
-        {
-            isWall = true;
-        }
+     
     }
 
     void Attack()
     {
         Collider2D[] enemy = Physics2D.OverlapCircleAll(attackPoint.position, radiusDamage, whatIsEnemy);
+        Collider2D hitShield = Physics2D.OverlapCircle(checkPoint.position, radius, whatIsShield);
         attackDetail.continousDamage = false;
+        if (hitShield)
+        {
+            hitShield.transform.parent.SendMessage("DamageShield");
+            return;
+        }
         foreach(Collider2D col in enemy)
         {
             if(col)
