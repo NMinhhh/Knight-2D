@@ -30,7 +30,7 @@ public class EnemySpawnState : State
     public override void Exit()
     {
         base.Exit();
-        entity.SetSkill1();
+        entity.SetCooldownAttack(entity.stateAttackSelected);
     }
 
     public override void FinishAnimation()

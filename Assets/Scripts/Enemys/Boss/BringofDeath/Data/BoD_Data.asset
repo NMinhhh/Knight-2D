@@ -27,3 +27,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   cooldownSkill1: 3
+  cooldownAttack:
+  - 5

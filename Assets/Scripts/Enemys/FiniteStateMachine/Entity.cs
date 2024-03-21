@@ -28,8 +28,15 @@ public class Entity : MonoBehaviour
 
 
     //skill
-    private float currentCooldoolSkill1;
-    public bool isSkillReady;
+
+    //Get cooldown attack
+    private List<float> currentCooldownAttack;
+    //attack selected
+    public int stateAttackSelected { get; private set; }
+
+    //state attack ready start
+    public bool[] isReady { get; private set; }
+
 
     public Transform target { get; private set; }
     public int facingRight {  get; private set; }
@@ -49,7 +56,16 @@ public class Entity : MonoBehaviour
         currentDamageTimeCon = data.damageTimeCon;
         currentHealth = data.maxHealth;
         timeTouch = data.cooldownTouchDamage;
-        currentCooldoolSkill1 = data.cooldownSkill1;
+
+        //Init
+        currentCooldownAttack = new List<float>();
+        //add cooldown data
+        currentCooldownAttack.AddRange(data.cooldownAttack);
+        //Init 
+        isReady = new bool[data.cooldownAttack.Count];
+        //Set State Attack 
+        SelectedStateAttack(0);
+
     }
 
     // Update is called once per frame
@@ -57,11 +73,10 @@ public class Entity : MonoBehaviour
     {
         stateMachine.currentState.LogicUpdate();
         currentDamageTimeCon -= Time.deltaTime;
-        currentCooldoolSkill1 -= Time.deltaTime;
-        if(currentCooldoolSkill1 < 0)
-        {
-            isSkillReady = true;
-        }
+        
+        SetCooldownSkill(stateAttackSelected);
+
+       
         TouchDamagePlayer();
     }
 
@@ -69,12 +84,13 @@ public class Entity : MonoBehaviour
     {
          stateMachine.currentState.PhysicUpdate();
     }
-    //Set function
 
-    public void SetSkill1()
+    //Set function
+    //Reset cooldown attack
+    public void SetCooldownAttack(int idx)
     {
-        currentCooldoolSkill1 = data.cooldownSkill1;
-        isSkillReady = false;
+        currentCooldownAttack[idx] = data.cooldownAttack[idx];
+        isReady[idx] = false;
     }
     public void SetMovement(float speed)
     {
@@ -87,6 +103,20 @@ public class Entity : MonoBehaviour
     }
 
     //Check fuction
+    //Set State Attack 
+    public void SelectedStateAttack(int idx)
+    {
+        stateAttackSelected = idx;
+    }
+    //Check State attack ready start
+    void SetCooldownSkill(int id)
+    {
+        currentCooldownAttack[id] -= Time.deltaTime;
+        if (currentCooldownAttack[id] <= 0)
+        {
+            isReady[id] = true;
+        }
+    }
 
     public bool CheckPlayer()
     {

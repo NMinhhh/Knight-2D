@@ -27,7 +27,8 @@ public class Boss1 : Entity
     protected override void Update()
     {
         base.Update();
-        if(isSkillReady)
+        if (isReady == null) return;
+        if (isReady[stateAttackSelected])
         {
             stateMachine.ChangeState(SpawnState);
         }
