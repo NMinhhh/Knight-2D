@@ -8,7 +8,7 @@ public class Entity : MonoBehaviour
 
     [SerializeField] private EntityData data;
 
-    AttackDetail attackDetail;
+    public AttackDetail attackDetail;
 
     //Component
     public Animator anim {  get; private set; }
@@ -37,6 +37,8 @@ public class Entity : MonoBehaviour
     //state attack ready start
     public bool[] isReady { get; private set; }
 
+    //Dash
+    public bool isDash {  get; private set; }
 
     public Transform target { get; private set; }
     public int facingRight {  get; private set; }
@@ -56,7 +58,7 @@ public class Entity : MonoBehaviour
         currentDamageTimeCon = data.damageTimeCon;
         currentHealth = data.maxHealth;
         timeTouch = data.cooldownTouchDamage;
-
+        isDash = true;
         //Init
         currentCooldownAttack = new List<float>();
         //add cooldown data
@@ -136,6 +138,25 @@ public class Entity : MonoBehaviour
         }
     }
     //Other Funtion
+
+    public void IsDashing()
+    {
+        isDash = true;
+    }
+
+    public void StartDashing(float dashSpeed, float dashTime, Vector2 dir)
+    {
+        StartCoroutine(Dash(dashSpeed, dashTime, dir));
+    }
+
+    public IEnumerator Dash(float dashSpeed, float dashTime, Vector2 dir)
+    {
+        rb.velocity = dir * dashSpeed;
+        yield return new WaitForSeconds(dashTime);
+        isDash = false;
+        SetVelocityZero();
+        
+    }
 
     void TouchDamagePlayer()
     {
@@ -222,7 +243,7 @@ public class Entity : MonoBehaviour
 
     public void FinishAnimtion() => stateMachine.currentState.FinishAnimation();
 
-    private void OnDrawGizmos()
+    protected virtual void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(checkPlayerPos.position, data.sizeCheck);
         Gizmos.DrawWireCube(touchDamagePos.position, data.sizeTouch);
