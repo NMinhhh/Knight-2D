@@ -23,7 +23,6 @@ public class Boss1_DashAttackState : EnemyDashAttackState
     public override void Exit()
     {
         base.Exit();
-        entity.SelectedStateAttack(0);
     }
 
     public override void FinishAnimation()

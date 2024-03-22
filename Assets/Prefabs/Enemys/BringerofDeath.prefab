@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4637206967874775007}
   m_Layer: 7
-  m_Name: SkillPoint
+  m_Name: SpawnSkillPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,7 +87,7 @@ Transform:
   m_GameObject: {fileID: 3581516581764787336}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 0.4599998, z: 0}
+  m_LocalPosition: {x: 0.05, y: 0.4599998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -131,6 +131,7 @@ Transform:
   - {fileID: 7687533477281912381}
   - {fileID: 7758763130830480515}
   - {fileID: 4637206967874775007}
+  - {fileID: 4382288863156206943}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1162415840691009546
@@ -173,7 +174,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2104547341
   m_SortingLayer: 5
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1022192067, guid: 4becc88174781aa4f8d5cf153694a149, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -199,7 +200,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: eb5e9b3b663f1c1449cfcc164f3c4786, type: 2}
   checkPlayerPos: {fileID: 8723549348542143332}
+  touchDamagePos: {fileID: 7758763130830480515}
   moveData: {fileID: 11400000, guid: f036d630d6b86a8479e70522249e781f, type: 2}
+  spawnData: {fileID: 11400000, guid: 6677742ced24a3c43ac9e700299ec898, type: 2}
+  dashAttackData: {fileID: 11400000, guid: dec33b5d74468484ba747032921d1eab, type: 2}
+  spawnPoint: {fileID: 4637206967874775007}
+  attackPoint: {fileID: 4382288863156206943}
 --- !u!50 &8657019091072247821
 Rigidbody2D:
   serializedVersion: 4
@@ -324,6 +330,37 @@ PolygonCollider2D:
       - {x: 0.6624999, y: 0.5250015}
       - {x: 0.5999999, y: 0.5875015}
   m_UseDelaunayMesh: 0
+--- !u!1 &7571746015776901520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4382288863156206943}
+  m_Layer: 7
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4382288863156206943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7571746015776901520}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.99, y: 1.09, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6072270404647924835}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8357646115787225646
 GameObject:
   m_ObjectHideFlags: 0

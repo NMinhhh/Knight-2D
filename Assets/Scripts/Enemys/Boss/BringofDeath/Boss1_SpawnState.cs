@@ -25,7 +25,6 @@ public class Boss1_SpawnState : EnemySpawnState
     public override void Exit()
     {
         base.Exit();
-        entity.SelectedStateAttack(1);
     }
 
     public override void FinishAnimation()

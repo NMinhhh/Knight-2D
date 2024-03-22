@@ -39,6 +39,7 @@ public class Entity : MonoBehaviour
 
     //Dash
     public bool isDash {  get; private set; }
+    public Vector2 currentTarget {  get; private set; }
 
     public Transform target { get; private set; }
     public int facingRight {  get; private set; }
@@ -104,7 +105,6 @@ public class Entity : MonoBehaviour
         rb.velocity = Vector2.zero;
     }
 
-    //Check fuction
     //Set State Attack 
     public void SelectedStateAttack(int idx)
     {
@@ -117,6 +117,16 @@ public class Entity : MonoBehaviour
         if (currentCooldownAttack[id] <= 0)
         {
             isReady[id] = true;
+        }
+    }
+    //Check fuction
+
+    public void CheckDistanceToStopDash(Vector3 a, Vector3 b, float distance)
+    {
+        if (Vector2.Distance(a, b) <= distance)
+        {
+            isDash = false;
+            SetVelocityZero();
         }
     }
 
@@ -139,23 +149,36 @@ public class Entity : MonoBehaviour
     }
     //Other Funtion
 
+    public int GetRandomAttackState()
+    {
+        return Random.Range(0, currentCooldownAttack.Count);
+    }
+
     public void IsDashing()
     {
         isDash = true;
     }
 
-    public void StartDashing(float dashSpeed, float dashTime, Vector2 dir)
+    public void GetCurrentTargetToDashing()
     {
-        StartCoroutine(Dash(dashSpeed, dashTime, dir));
+        currentTarget = target.position;
     }
 
-    public IEnumerator Dash(float dashSpeed, float dashTime, Vector2 dir)
+    public void Dash(float dashSpeed, Vector2 dir)
     {
-        rb.velocity = dir * dashSpeed;
-        yield return new WaitForSeconds(dashTime);
-        isDash = false;
-        SetVelocityZero();
-        
+        if(isDash)
+        {
+            rb.velocity = dir * dashSpeed;
+            GameObject obj = new GameObject();
+            SpriteRenderer sr = obj.AddComponent<SpriteRenderer>();
+            sr.sprite = sprite.sprite;
+            sr.flipX = true;
+            sr.sortingLayerName = "Enemy";
+            obj.transform.position = transform.position;
+            obj.transform.localScale = transform.localScale;
+            Destroy(obj, .1f);
+        }
+           
     }
 
     void TouchDamagePlayer()

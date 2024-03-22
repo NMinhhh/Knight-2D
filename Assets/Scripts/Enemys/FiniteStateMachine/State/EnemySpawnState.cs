@@ -31,6 +31,7 @@ public class EnemySpawnState : State
     {
         base.Exit();
         entity.SetCooldownAttack(entity.stateAttackSelected);
+        entity.SelectedStateAttack(entity.GetRandomAttackState());
     }
 
     public override void FinishAnimation()

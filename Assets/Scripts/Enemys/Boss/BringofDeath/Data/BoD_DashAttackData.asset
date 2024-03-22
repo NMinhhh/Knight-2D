@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 840191ebb379a9f46b9c22a09cd40428, type: 3}
   m_Name: BoD_DashAttackData
   m_EditorClassIdentifier: 
-  dashSpeed: 15
-  dashTime: 0.5
-  radius: 2.2
+  dashSpeed: 25
+  distance: 0.5
+  radius: 2.3
   damage: 10
   whatIsPlayer:
     serializedVersion: 2

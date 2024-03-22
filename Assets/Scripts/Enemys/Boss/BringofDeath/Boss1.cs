@@ -32,7 +32,8 @@ public class Boss1 : Entity
     protected override void Update()
     {
         base.Update();
-        if (isReady == null) return;
+        if (isReady == null || stateMachine.currentState == SpawnState || stateMachine.currentState == DashAttackState) return;
+
         if (isReady[0])
         {
             stateMachine.ChangeState(SpawnState);

@@ -7,6 +7,7 @@ public class EnemyDashAttackState : State
 {
     protected EnemyDashAttackData data;
     protected Transform attackPoint;
+    protected Vector2 dir;
     public EnemyDashAttackState(Entity entity, StateMachine stateMachine, string isBoolName, EnemyDashAttackData data, Transform attackPoint) : base(entity, stateMachine, isBoolName)
     {
         this.data = data;
@@ -21,8 +22,9 @@ public class EnemyDashAttackState : State
     public override void Enter()
     {
         base.Enter();
+        entity.GetCurrentTargetToDashing();
         entity.SetVelocityZero();
-        entity.StartDashing(data.dashSpeed, data.dashTime, entity.GetDir());
+        dir = GetDir();
     }
 
     public override void Exit()
@@ -30,6 +32,7 @@ public class EnemyDashAttackState : State
         base.Exit();
         entity.IsDashing();
         entity.SetCooldownAttack(entity.stateAttackSelected);
+        entity.SelectedStateAttack(entity.GetRandomAttackState());
     }
 
     public override void FinishAnimation()
@@ -40,6 +43,9 @@ public class EnemyDashAttackState : State
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        entity.Dash(data.dashSpeed, dir);
+        entity.CheckDistanceToStopDash(attackPoint.position, entity.currentTarget, data.distance);
+
     }
 
     public override void PhysicUpdate()
@@ -68,5 +74,9 @@ public class EnemyDashAttackState : State
         }
     }
 
+    public Vector2 GetDir()
+    {
+        return (entity.target.position - attackPoint.position).normalized;
+    }
    
 }

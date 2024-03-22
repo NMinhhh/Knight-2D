@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyDashAttackData : ScriptableObject
 {
     public float dashSpeed = 5;
-    public float dashTime;
+    public float distance = 1.5f;
     public float radius = .5f;
     public float damage = 10;
     public LayerMask whatIsPlayer;
