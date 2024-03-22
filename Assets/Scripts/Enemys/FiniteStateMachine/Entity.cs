@@ -41,6 +41,10 @@ public class Entity : MonoBehaviour
     public bool isDash {  get; private set; }
     public Vector2 currentTarget {  get; private set; }
 
+
+    //Death
+    protected bool isDead;
+
     public Transform target { get; private set; }
     public int facingRight {  get; private set; }
 
@@ -215,29 +219,33 @@ public class Entity : MonoBehaviour
         isKnockback = false;
     }
 
+    public void DropItem()
+    {
+        //int ran = Random.Range(0, 100);
+        //int ran2 = Random.Range(0, 100);
+        //if (ran == ran2)
+        //{
+        //    SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetItem(0), transform.position);
+        //}
+        SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetItem(1), transform.position);
+    }
+
     void RecieveDamage(AttackDetail attackDetail)
     {
+        if(isDead) return;
         currentHealth = Mathf.Clamp(currentHealth - attackDetail.damage, 0, data.maxHealth);
         if (currentHealth > 0)
         {
             StartCoroutine(Hurt());
         }
-        if (currentHealth <= 0)
+        else
         {
-            CoinManager.Instance.PickupCoins(10);
-            int ran = Random.Range(0, 100);
-            int ran2 = Random.Range(0, 100);
-            if (ran == ran2)
-            {
-                SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetItem(0), transform.position);
-            }
-            SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetItem(1), transform.position);
-            //Instantiate(blood, bloodPoint.position, Quaternion.identity);
-            Destroy(gameObject);
+            isDead = true;
+
         }
     }
 
-    void Damage(AttackDetail attackDetail)
+    public virtual void Damage(AttackDetail attackDetail)
     {
         if (attackDetail.continousDamage)
         {

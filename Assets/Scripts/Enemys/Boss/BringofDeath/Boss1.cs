@@ -7,6 +7,7 @@ public class Boss1 : Entity
     [SerializeField] private EnemyMoveData moveData;
     [SerializeField] private EnemySpawnData spawnData;
     [SerializeField] private EnemyDashAttackData dashAttackData;
+    [SerializeField] private EnemyDeathData deathData;
 
     public Boss1_IdleState IdleState {  get; private set; }
 
@@ -15,6 +16,7 @@ public class Boss1 : Entity
     public Boss1_SpawnState SpawnState { get; private set; }
 
     public Boss1_DashAttackState DashAttackState { get; private set; }
+    public Boss1_DeathState DeathState { get; private set; }
 
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Transform attackPoint;
@@ -26,6 +28,7 @@ public class Boss1 : Entity
         MoveState = new Boss1_MoveState(this, stateMachine, "move", moveData, this);
         SpawnState = new Boss1_SpawnState(this, stateMachine, "spawn", spawnPoint, spawnData, this);
         DashAttackState = new Boss1_DashAttackState(this, stateMachine, "dashAttack", dashAttackData, attackPoint, this);
+        DeathState = new Boss1_DeathState(this, stateMachine, "dead", deathData, this);
         stateMachine.Initiate(IdleState);
     }
 
@@ -47,5 +50,14 @@ public class Boss1 : Entity
     {
         base.OnDrawGizmos();
         Gizmos.DrawWireSphere(attackPoint.position, dashAttackData.radius);
+    }
+
+    public override void Damage(AttackDetail attackDetail)
+    {
+        base.Damage(attackDetail);
+        if (isDead)
+        {
+            stateMachine.ChangeState(DeathState);
+        }
     }
 }
