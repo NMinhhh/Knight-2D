@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 932632424523138298}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.002, y: 0.028, z: 0}
+  m_LocalPosition: {x: 0.002, y: 0.023, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -62,37 +62,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6991939931114337306}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2658778178489758104
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3394415407235199548}
-  m_Layer: 7
-  m_Name: Dead Point
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3394415407235199548
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2658778178489758104}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.04, y: -0.37, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6991939931114337306}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4112388723531464881
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,8 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6991939931114337306}
   - component: {fileID: 2653819122833289613}
-  - component: {fileID: 2401763581907118036}
-  - component: {fileID: 2939380826476272196}
+  - component: {fileID: 978891052242996244}
   - component: {fileID: 4818829014944530813}
   - component: {fileID: 5409729256286601028}
   - component: {fileID: 124394288974938129}
@@ -129,7 +97,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9168813450142583935}
-  - {fileID: 3394415407235199548}
   - {fileID: 5736010635295170709}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -185,7 +152,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2401763581907118036
+--- !u!114 &978891052242996244
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -194,41 +161,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4112388723531464881}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87180fdb7da8bd0479c084e4ab822040, type: 3}
+  m_Script: {fileID: 11500000, guid: a63261061dce9c24a9edc0c21b6a8bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
-  speed: 3
-  isSkill: 0
-  hurtTime: 0.1
-  knockbackSpeed: 3
-  timerH: 0.1
-  checkPlayer: {fileID: 9168813450142583935}
-  sizeCheckPlayer: {x: 0.3, y: 0.47}
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 64
-  blood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
-  bloodPoint: {fileID: 3394415407235199548}
---- !u!114 &2939380826476272196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4112388723531464881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff30f3a65a70fe345af87b4032ec5677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  touchPoint: {fileID: 5736010635295170709}
-  damage: 5
-  size: {x: 0.5, y: 1}
-  cooldown: 1
-  whatIsShield:
-    serializedVersion: 2
-    m_Bits: 2048
+  data: {fileID: 11400000, guid: ed23c7c444b58514ea9cbfb8b2de6900, type: 2}
+  checkPlayerPos: {fileID: 9168813450142583935}
+  touchDamagePos: {fileID: 5736010635295170709}
+  haveAttackStates: 0
+  moveData: {fileID: 11400000, guid: 72da4fe3083075e4cb36700d0189c582, type: 2}
+  deathData: {fileID: 11400000, guid: 071b622c777ee7946a348bba2b0fdb7e, type: 2}
 --- !u!61 &4818829014944530813
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,24 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyIdleState : State
+public class Enemy1_DeathState : EnemyDeathState
 {
-    protected bool isPlayerDetected;
-    public EnemyIdleState(Entity entity, StateMachine stateMachine, string isBoolName) : base(entity, stateMachine, isBoolName)
+    private Enemy1 enemy;
+    public Enemy1_DeathState(Entity entity, StateMachine stateMachine, string isBoolName, EnemyDeathData data) : base(entity, stateMachine, isBoolName, data)
     {
     }
 
     public override void DoCheck()
     {
         base.DoCheck();
-        isPlayerDetected = entity.CheckPlayer();
     }
 
     public override void Enter()
     {
         base.Enter();
-        entity.SetVelocityZero();
+        entity.DropItem();
+        GameObject.Instantiate(data.particle, entity.transform.position, Quaternion.identity);
+        GameObject.Destroy(entity.gameObject);
     }
 
     public override void Exit()
@@ -34,7 +36,6 @@ public class EnemyIdleState : State
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        entity.CheckIfFlip();
     }
 
     public override void PhysicUpdate()

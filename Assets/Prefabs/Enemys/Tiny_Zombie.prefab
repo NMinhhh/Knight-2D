@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2190603290518201067}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.028, y: -0.22, z: 0}
+  m_LocalPosition: {x: 0.028, y: -0.169, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -41,8 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8099292222468492837}
   - component: {fileID: 8954082213551288157}
-  - component: {fileID: 6899918238468137583}
-  - component: {fileID: 8779206982811774620}
+  - component: {fileID: 1110966363875408321}
   - component: {fileID: 4679955538557024815}
   - component: {fileID: 1827922670606246722}
   - component: {fileID: 2787292107620918495}
@@ -67,7 +66,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5387394921900098296}
-  - {fileID: 3800343641746150021}
   - {fileID: 6523380395895437191}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -123,7 +121,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6899918238468137583
+--- !u!114 &1110966363875408321
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,41 +130,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5088724075178999559}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87180fdb7da8bd0479c084e4ab822040, type: 3}
+  m_Script: {fileID: 11500000, guid: a63261061dce9c24a9edc0c21b6a8bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
-  speed: 5
-  isSkill: 0
-  hurtTime: 0.1
-  knockbackSpeed: 3
-  timerH: 0.1
-  checkPlayer: {fileID: 5387394921900098296}
-  sizeCheckPlayer: {x: 0.3, y: 0.3}
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 64
-  blood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
-  bloodPoint: {fileID: 3800343641746150021}
---- !u!114 &8779206982811774620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5088724075178999559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff30f3a65a70fe345af87b4032ec5677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  touchPoint: {fileID: 6523380395895437191}
-  damage: 5
-  size: {x: 0.55, y: 0.5}
-  cooldown: 1
-  whatIsShield:
-    serializedVersion: 2
-    m_Bits: 2048
+  data: {fileID: 11400000, guid: 2a55677af168e804685bffbd2a27eb25, type: 2}
+  checkPlayerPos: {fileID: 5387394921900098296}
+  touchDamagePos: {fileID: 6523380395895437191}
+  haveAttackStates: 0
+  moveData: {fileID: 11400000, guid: de107c9868dba264e8ac5de86b65e93f, type: 2}
+  deathData: {fileID: 11400000, guid: c1fdd5f6bafcce3449f8cd6a91dcbb34, type: 2}
 --- !u!61 &4679955538557024815
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -199,7 +171,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.000230968, y: -0.03127122}
+  m_Offset: {x: 0.027581692, y: -0.19119278}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -210,7 +182,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5166336, y: 0.948812}
+  m_Size: {x: 0.57225895, y: 0.6289689}
   m_EdgeRadius: 0
 --- !u!95 &1827922670606246722
 Animator:
@@ -260,37 +232,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!1 &7090279739253029254
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3800343641746150021}
-  m_Layer: 7
-  m_Name: Dead Point
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3800343641746150021
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7090279739253029254}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.04, y: -0.37, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8099292222468492837}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8738475226366579980
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,22 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff71835be6d00ec478913132f56bbf4f, type: 3}
-  m_Name: BoD_Data
+  m_Name: Z_Data
   m_EditorClassIdentifier: 
-  sizeCheck: {x: 0.75, y: 2.3}
+  sizeCheck: {x: 0.25, y: 0.49}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  maxHealth: 2000
+  maxHealth: 30
   knockbackSpeed: 0
   hurtTime: 0.1
   damageTimeCon: 0.1
   touchDamage: 10
-  sizeTouch: {x: 1.3, y: 3.15}
+  sizeTouch: {x: 0.51, y: 1}
   cooldownTouchDamage: 1
   whatIsShield:
     serializedVersion: 2
     m_Bits: 2048
-  cooldownAttack:
-  - 3
-  - 3
+  cooldownAttack: []

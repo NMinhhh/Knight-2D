@@ -35,6 +35,7 @@ public class EnemyMoveState : State
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        entity.CheckIfFlip();
         entity.SetMovement(data.movementSpeed);
     }
 

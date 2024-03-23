@@ -201,9 +201,11 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: eb5e9b3b663f1c1449cfcc164f3c4786, type: 2}
   checkPlayerPos: {fileID: 8723549348542143332}
   touchDamagePos: {fileID: 7758763130830480515}
+  haveAttackStates: 1
   moveData: {fileID: 11400000, guid: f036d630d6b86a8479e70522249e781f, type: 2}
   spawnData: {fileID: 11400000, guid: 6677742ced24a3c43ac9e700299ec898, type: 2}
   dashAttackData: {fileID: 11400000, guid: dec33b5d74468484ba747032921d1eab, type: 2}
+  deathData: {fileID: 11400000, guid: 37648798245908649ae413221f82f424, type: 2}
   spawnPoint: {fileID: 4637206967874775007}
   attackPoint: {fileID: 4382288863156206943}
 --- !u!50 &8657019091072247821
@@ -355,7 +357,7 @@ Transform:
   m_GameObject: {fileID: 7571746015776901520}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.99, y: 1.09, z: 0}
+  m_LocalPosition: {x: 3.98, y: 0.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

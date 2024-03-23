@@ -2,23 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyIdleState : State
+public class Enemy1_MoveState : EnemyMoveState
 {
-    protected bool isPlayerDetected;
-    public EnemyIdleState(Entity entity, StateMachine stateMachine, string isBoolName) : base(entity, stateMachine, isBoolName)
+    private Enemy1 enemy;
+    public Enemy1_MoveState(Entity entity, StateMachine stateMachine, string isBoolName, EnemyMoveData data, Enemy1 enemy) : base(entity, stateMachine, isBoolName, data)
     {
+        this.enemy = enemy;
     }
 
     public override void DoCheck()
     {
         base.DoCheck();
-        isPlayerDetected = entity.CheckPlayer();
     }
 
     public override void Enter()
     {
         base.Enter();
-        entity.SetVelocityZero();
     }
 
     public override void Exit()
@@ -34,7 +33,10 @@ public class EnemyIdleState : State
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        entity.CheckIfFlip();
+        if (isPlayerDetected)
+        {
+            stateMachine.ChangeState(enemy.IdleState);
+        }
     }
 
     public override void PhysicUpdate()

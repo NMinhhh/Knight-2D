@@ -22,6 +22,7 @@ public class Meteor : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * speed;
+        attackDetail.attackDir = transform;
     }
 
     // Update is called once per frame

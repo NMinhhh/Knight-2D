@@ -4,32 +4,44 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    protected StateMachine stateMachine;
+    #region State Machine
 
+    protected StateMachine stateMachine;
     [SerializeField] private EntityData data;
 
-    public AttackDetail attackDetail;
+    #endregion
 
-    //Component
+
+    #region Component
+
     public Animator anim {  get; private set; }
     public Rigidbody2D rb {  get; private set; }
+
     private SpriteRenderer sprite;
-    //Other Variable
+
+    #endregion
+
+    #region Transform
+
     [SerializeField] private Transform checkPlayerPos;
     [SerializeField] private Transform touchDamagePos;
 
-    //Hurt
+    #endregion
+
+    #region Other Variable
+
+    //Hurt and dead
     private float currentHealth;
     private bool isKnockback;
     private float currentDamageTimeCon;
+    protected bool isDead;
 
     //Touch Damage Player
     private float timeTouch;
 
 
-    //skill
-
     //Get cooldown attack
+    [SerializeField] private bool haveAttackStates;
     private List<float> currentCooldownAttack;
     //attack selected
     public int stateAttackSelected { get; private set; }
@@ -42,11 +54,15 @@ public class Entity : MonoBehaviour
     public Vector2 currentTarget {  get; private set; }
 
 
-    //Death
-    protected bool isDead;
 
     public Transform target { get; private set; }
     public int facingRight {  get; private set; }
+
+    public AttackDetail attackDetail;
+
+    #endregion
+
+    #region Unity Function Callback
 
     private void Awake()
     {
@@ -64,27 +80,34 @@ public class Entity : MonoBehaviour
         currentHealth = data.maxHealth;
         timeTouch = data.cooldownTouchDamage;
         isDash = true;
-        //Init
-        currentCooldownAttack = new List<float>();
-        //add cooldown data
-        currentCooldownAttack.AddRange(data.cooldownAttack);
-        //Init 
-        isReady = new bool[data.cooldownAttack.Count];
-        //Set State Attack 
-        SelectedStateAttack(0);
-
+        if(haveAttackStates)
+        {
+            //Init
+            currentCooldownAttack = new List<float>();
+            //add cooldown data
+            currentCooldownAttack.AddRange(data.cooldownAttack);
+            //Init 
+            isReady = new bool[data.cooldownAttack.Count];
+            //Set State Attack 
+            SelectedAttackState(0);
+        }
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
         stateMachine.currentState.LogicUpdate();
+
         currentDamageTimeCon -= Time.deltaTime;
-        
-        SetCooldownSkill(stateAttackSelected);
+
+        TouchDamagePlayer();
+
+        if (haveAttackStates)
+        {
+            CheckCooldownAttack(stateAttackSelected);
+        }
 
        
-        TouchDamagePlayer();
     }
 
     protected virtual void FixedUpdate()
@@ -92,13 +115,9 @@ public class Entity : MonoBehaviour
          stateMachine.currentState.PhysicUpdate();
     }
 
-    //Set function
-    //Reset cooldown attack
-    public void SetCooldownAttack(int idx)
-    {
-        currentCooldownAttack[idx] = data.cooldownAttack[idx];
-        isReady[idx] = false;
-    }
+    #endregion
+
+    #region Set Function
     public void SetMovement(float speed)
     {
         rb.velocity = GetDir() * speed;
@@ -108,32 +127,9 @@ public class Entity : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
     }
+    #endregion
 
-    //Set State Attack 
-    public void SelectedStateAttack(int idx)
-    {
-        stateAttackSelected = idx;
-    }
-    //Check State attack ready start
-    void SetCooldownSkill(int id)
-    {
-        currentCooldownAttack[id] -= Time.deltaTime;
-        if (currentCooldownAttack[id] <= 0)
-        {
-            isReady[id] = true;
-        }
-    }
-    //Check fuction
-
-    public void CheckDistanceToStopDash(Vector3 a, Vector3 b, float distance)
-    {
-        if (Vector2.Distance(a, b) <= distance)
-        {
-            isDash = false;
-            SetVelocityZero();
-        }
-    }
-
+    #region Chek Function
     public bool CheckPlayer()
     {
         return Physics2D.OverlapBox(checkPlayerPos.position, data.sizeCheck, 0, data.whatIsPlayer);
@@ -151,18 +147,57 @@ public class Entity : MonoBehaviour
             Flip();
         }
     }
-    //Other Funtion
+
+    #endregion
+
+    #region Attck States
 
     public int GetRandomAttackState()
     {
         return Random.Range(0, currentCooldownAttack.Count);
     }
 
+    //Reset cooldown attack
+    public void ResetCooldownAttack(int idx)
+    {
+        currentCooldownAttack[idx] = data.cooldownAttack[idx];
+        isReady[idx] = false;
+    }
+
+    //Selected Attack State
+    public void SelectedAttackState(int idx)
+    {
+        stateAttackSelected = idx;
+    }
+
+    //Check State attack ready start
+    void CheckCooldownAttack(int id)
+    {
+        currentCooldownAttack[id] -= Time.deltaTime;
+        if (currentCooldownAttack[id] <= 0)
+        {
+            isReady[id] = true;
+        }
+    }
+
+    #endregion
+
+    #region Dash
+    //Dashing is true
     public void IsDashing()
     {
         isDash = true;
     }
-
+   
+    public void CheckDistanceToStopDash(Vector3 a, Vector3 b, float distance)
+    {
+        if (Vector2.Distance(a, b) <= distance)
+        {
+            isDash = false;
+            SetVelocityZero();
+        }
+    }
+   
     public void GetCurrentTargetToDashing()
     {
         currentTarget = target.position;
@@ -170,9 +205,10 @@ public class Entity : MonoBehaviour
 
     public void Dash(float dashSpeed, Vector2 dir)
     {
-        if(isDash)
+        if (isDash)
         {
             rb.velocity = dir * dashSpeed;
+            //Create image After 
             GameObject obj = new GameObject();
             SpriteRenderer sr = obj.AddComponent<SpriteRenderer>();
             sr.sprite = sprite.sprite;
@@ -182,8 +218,12 @@ public class Entity : MonoBehaviour
             obj.transform.localScale = transform.localScale;
             Destroy(obj, .1f);
         }
-           
+
     }
+
+    #endregion
+
+    #region Other Fuction
 
     void TouchDamagePlayer()
     {
@@ -280,4 +320,5 @@ public class Entity : MonoBehaviour
         Gizmos.DrawWireCube(touchDamagePos.position, data.sizeTouch);
     }
 
+    #endregion
 }

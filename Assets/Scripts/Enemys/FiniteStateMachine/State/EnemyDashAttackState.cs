@@ -31,8 +31,8 @@ public class EnemyDashAttackState : State
     {
         base.Exit();
         entity.IsDashing();
-        entity.SetCooldownAttack(entity.stateAttackSelected);
-        entity.SelectedStateAttack(entity.GetRandomAttackState());
+        entity.ResetCooldownAttack(entity.stateAttackSelected);
+        entity.SelectedAttackState(entity.GetRandomAttackState());
     }
 
     public override void FinishAnimation()

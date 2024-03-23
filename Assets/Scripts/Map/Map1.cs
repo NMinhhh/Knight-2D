@@ -47,43 +47,35 @@ public class Map1 : MonoBehaviour
         timeCur -= Time.deltaTime;
         if(timeCur < 0)
         {
+            int i = Random.Range(0,enemyNor.Length);
             if(minute < 1)
             {
-                Spawn(enemyNor[0], 1);
+                Spawn(enemyNor[i], 1);
             }
             else if(minute < 3)
             {
-                Spawn(enemyNor[Random.Range(0,enemyNor.Length)], 2);
+                Spawn(enemyNor[i], 2);
             }else if(minute < 5)
             {
-                amountOfENor++;
-                Spawn(enemyNor[Random.Range(0,enemyNor.Length)], 3);
-                if(amountOfENor == 3)
-                {
-                    Spawn(enemyMed[0], 1);
-                    amountOfENor = 0;
-                }
+                Spawn(enemyNor[i], 3);
+                Spawn(enemyMed[0], 1);
             }else if(minute < 7)
             {
-                Spawn(enemyNor[Random.Range(0, enemyNor.Length)], 4);
-                if (amountOfENor == 2)
-                {
-                    Spawn(enemyMed[0], 1);
-                    amountOfENor = 0;
-                }
+                Spawn(enemyNor[i], 4);
+                Spawn(enemyMed[0], 1);
             }else if(minute < 8)
             {
-                Spawn(enemyNor[Random.Range(0, enemyNor.Length)], 5);
+                Spawn(enemyNor[i], 5);
                 Spawn(enemyMed[0], 2);
             }
             else if(minute < 13)
             {
-                Spawn(enemyNor[Random.Range(0, enemyNor.Length)], 6);
+                Spawn(enemyNor[i], 6);
                 Spawn(enemyMed[0], 3);
             }
             else
             {
-                Spawn(enemyNor[Random.Range(0, enemyNor.Length)], 7);
+                Spawn(enemyNor[i], 7);
                 Spawn(enemyMed[0], 5);
             }
             timeCur = cooldown;
