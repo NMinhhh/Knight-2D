@@ -27,7 +27,7 @@ public class SaveManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        SaveGame();
+        //SaveGame();
     }
 
     private string GetSaveName(string nameData)

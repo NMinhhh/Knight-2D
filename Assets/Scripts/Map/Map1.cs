@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class Map1 : MonoBehaviour
 {
@@ -9,81 +8,120 @@ public class Map1 : MonoBehaviour
     [Header("Position spawn enemy")]
     [SerializeField] private Transform[] spawnPoint;
     [SerializeField] private List<Vector2> sizeSpawnPoint;
-
     Vector2[] pos;
     [Space]
+    [Space]
+    [Header("Warning UI")]
+    [SerializeField] private GameObject roomBoss;
+    [SerializeField] private GameObject warning;
+    [SerializeField] private float warningTime;
+    [SerializeField] private Transform bossPoint;
+    private float warningTimeCur;
     [Space]
 
     [Header("Enemy")]
     [SerializeField] private GameObject[] enemyNor;
     [SerializeField] private GameObject[] enemyMed;
+    [SerializeField] private GameObject boss;
+    private int amountOfEnemyNor;
+    private GameObject go;
     [Space]
 
     //cooldown spawn enemy
     [SerializeField] private float cooldown;
     private float maxCooldown;
     private float timeCur;
-    [SerializeField] private float timeChecktoDecreaseCooldown;
-    private float timeCheckCur;
-    //amount rate enemy
-    private int amountOfENor;
 
+    //Boss
+    [SerializeField] private GameObject[] enemySpawn;
+    private bool isAttackBoss;
+    private bool isBossAppear;
 
     //Time in game
     private int minute;
+    private int levelUp;
+    private int levelCur;
+    AttackDetail attackDetail;
 
     void Start()
     {
         pos = new Vector2[4];
-        timeCur = cooldown;
         maxCooldown = cooldown;
-        timeCheckCur = timeChecktoDecreaseCooldown * 60;
+        timeCur = 0;
+        levelCur = GameManager.Instance.level;
+        levelUp = GameManager.Instance.level;
     }
 
     // Update is called once per frame
     void Update()
     {
         minute = GameManager.Instance.minutes;
+        levelUp = GameManager.Instance.level;
         timeCur -= Time.deltaTime;
-        if(timeCur < 0)
+
+        if (minute == 1 && !isAttackBoss)
         {
-            int i = Random.Range(0,enemyNor.Length);
-            if(minute < 1)
+            roomBoss.SetActive(true);
+            isBossAppear = true;
+            isAttackBoss = true;
+        }
+
+        if (isBossAppear)
+        {
+            //EnemyAllDeath();
+            warningTimeCur += Time.deltaTime;
+            warning.SetActive(true);
+            if (warningTimeCur >= warningTime)
             {
-                Spawn(enemyNor[i], 1);
+                isBossAppear = false;
+                warning.SetActive(false);
+                go = Instantiate(boss, bossPoint.position, Quaternion.identity);
             }
-            else if(minute < 3)
-            {
-                Spawn(enemyNor[i], 2);
-            }else if(minute < 5)
-            {
-                Spawn(enemyNor[i], 3);
-                Spawn(enemyMed[0], 1);
-            }else if(minute < 7)
-            {
-                Spawn(enemyNor[i], 4);
-                Spawn(enemyMed[0], 1);
-            }else if(minute < 8)
-            {
-                Spawn(enemyNor[i], 5);
-                Spawn(enemyMed[0], 2);
-            }
-            else if(minute < 13)
-            {
-                Spawn(enemyNor[i], 6);
-                Spawn(enemyMed[0], 3);
-            }
-            else
-            {
-                Spawn(enemyNor[i], 7);
-                Spawn(enemyMed[0], 5);
-            }
+        }
+
+        if (timeCur < 0 && !isAttackBoss)
+        {
+            ControlSpawnEnemy();
             timeCur = cooldown;
         }
-       
-        
 
     }
+
+
+
+    void ControlSpawnEnemy()
+    {
+       
+        if(levelCur < levelUp && cooldown > 0.2f)
+        {
+            cooldown = Mathf.Clamp(cooldown -  0.1f, 0.2f, maxCooldown);
+            levelCur = levelUp;
+        }
+        int i = Random.Range(0, enemyNor.Length);
+        go = Instantiate(enemyNor[i], GetPos(), Quaternion.identity);
+        //Spawn(enemyNor[i], 1);
+        amountOfEnemyNor++;
+        if(levelUp > 5 && amountOfEnemyNor > 3)
+        {
+            //Spawn(enemyMed[0], 1);
+            go = Instantiate(enemyNor[i], GetPos(), Quaternion.identity);
+            amountOfEnemyNor = 0;
+        }
+
+    }
+
+    void EnemyAllDeath()
+    {
+        enemySpawn = GameObject.FindGameObjectsWithTag("Enemy");
+        attackDetail.damage = 100;
+        attackDetail.attackDir = transform;
+        for(int i = 0; i < enemyNor.Length; i++)
+        {
+            enemySpawn[i].transform.SendMessage("Damage", attackDetail);
+        }
+    }
+
+    
 
     void Spawn(GameObject gameObject, int amount)
     {

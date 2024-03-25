@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnGO: {fileID: 8120458309972390933, guid: 933430637ed5882428d611f536b5917d, type: 3}
   cooldown: 0.3
-  amountOfSpawnGO: 5
-  speed: 28
+  amountOfSpawnGO: 6
+  speed: 30
   timeLife: 3
-  damage: 10
+  damage: 20

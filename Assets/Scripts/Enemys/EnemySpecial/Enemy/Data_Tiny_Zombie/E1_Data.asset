@@ -17,7 +17,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   maxHealth: 30
-  knockbackSpeed: 0
+  knockbackSpeed: 3
   hurtTime: 0.1
   damageTimeCon: 0.1
   touchDamage: 10

@@ -225,6 +225,8 @@ public class Entity : MonoBehaviour
 
     #region Other Fuction
 
+
+
     void TouchDamagePlayer()
     {
         timeTouch -= Time.deltaTime;
@@ -253,7 +255,7 @@ public class Entity : MonoBehaviour
     {
         isKnockback = true;
         sprite.color = new Color(.95f, .6f, .6f, 1);
-        rb.velocity = GetDir() * -data.knockbackSpeed;
+        //rb.velocity = GetDir() * -data.knockbackSpeed;
         yield return new WaitForSeconds(data.hurtTime);
         sprite.color = new Color(1, 1, 1, 1);
         isKnockback = false;

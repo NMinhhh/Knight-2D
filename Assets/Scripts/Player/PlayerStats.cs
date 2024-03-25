@@ -27,10 +27,15 @@ public class PlayerStats : MonoBehaviour
         StartCoroutine(UpdateBar(healthBar.image, target));
     }
 
+    public void SetValueEx()
+    {
+        exBar.image.fillAmount = 0;
+    }
+
     public void UpdateEx(float currentEx)
     {
         target = currentEx / GameManager.Instance.maxEx;
-        StartCoroutine(UpdateBar(exBar.image, target));
+        exBar.image.fillAmount = target;
         
     }
 

@@ -57,9 +57,10 @@ public class GameManager : MonoBehaviour
         level = 1;
         isLevelUp = false;
         maxEx = CalculateExperience();
+        exStats = GameObject.FindWithTag("Player").GetComponent<PlayerStats>();
         //Load();
         //amountGun.AddRange(gunUnlock);
-        
+
     }
 
     private void Update()
@@ -107,6 +108,7 @@ public class GameManager : MonoBehaviour
     {
         level++;
         currentEx = 0;
+        exStats.SetValueEx();
         maxEx = CalculateExperience();
         if (!SelectionSkill.Instance.isAllSkillFullLevel)
         {
@@ -119,7 +121,6 @@ public class GameManager : MonoBehaviour
     public void UpdateEx(float ex)
     {
         currentEx += ex;
-        exStats = GameObject.FindWithTag("Player").GetComponent<PlayerStats>();
         exStats.UpdateEx(currentEx);
     }
 
