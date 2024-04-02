@@ -7,10 +7,20 @@ public class CoinManager : MonoBehaviour
     public static CoinManager Instance {  get; private set; }
 
     public int coin;
+    
     public List<int> weaponsPurchasedIndex = new List<int>();
+    
     public int selectedWeaponIndex;
-
+    
     Weapon weaponSelected;
+
+    public List<int> mapUnlock = new List<int>();
+
+    public List<int> mapWin = new List<int>();
+
+    int selectedMap;
+
+    bool mapState;
 
     void Awake()
     {
@@ -80,6 +90,57 @@ public class CoinManager : MonoBehaviour
         weaponsPurchasedIndex.Add(idx);
     }
 
+    //Map
+    public List<int> GetAllMapUnlock()
+    {
+        return mapUnlock;
+    }
+
+    public void AddMapUnlock(int level)
+    {
+        mapUnlock.Add(level);
+    }
+
+    public int GetMapUnlock(int level)
+    {
+        return mapUnlock[level];
+    }
+
+    public List<int> GetAllMapWin()
+    {
+        return mapWin;
+    }
+
+    public void AddMapWin(int level)
+    {
+        mapWin.Add(level);
+    }
+
+    public int GetMapWin(int level)
+    {
+        return mapWin[level];
+    }
+
+    public void SetMapState(bool state)
+    {
+        mapState = state;
+    }
+
+    public bool GetMapState()
+    {
+        return mapState;
+    }
+
+    public void SetSelectedMap(int selectedMap)
+    {
+        this.selectedMap = selectedMap;
+    }
+
+    public int GetSelectedMap()
+    {
+        return selectedMap;
+    }
+
     //Json
     public void FromJson(string stringSave)
     {
@@ -87,5 +148,7 @@ public class CoinManager : MonoBehaviour
         this.coin = saveObj.coin;
         this.weaponsPurchasedIndex = saveObj.weaponsPurchasedIndex;
         this.selectedWeaponIndex = saveObj.selectedWeaponIndex;
+        this.mapUnlock = saveObj.mapUnlock;
+        this.mapWin = saveObj.mapWin;
     }
 }

@@ -1,10 +1,11 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Map1 : MonoBehaviour
 {
-
+    [SerializeField] private int level;
     [Header("Position spawn enemy")]
     [SerializeField] private Transform[] spawnPoint;
     [SerializeField] private List<Vector2> sizeSpawnPoint;
@@ -16,6 +17,9 @@ public class Map1 : MonoBehaviour
     [SerializeField] private GameObject warning;
     [SerializeField] private float warningTime;
     [SerializeField] private Transform bossPoint;
+    [SerializeField] private CinemachineConfiner confiner;
+    [SerializeField] private PolygonCollider2D polygonCollider;
+    [SerializeField] private PolygonCollider2D polygonColliderCur;
     private float warningTimeCur;
     [Space]
 
@@ -33,15 +37,19 @@ public class Map1 : MonoBehaviour
     private float timeCur;
 
     //Boss
+    [SerializeField] private List<GameObject> enemies;
     [SerializeField] private GameObject[] enemySpawn;
-    private bool isAttackBoss;
     private bool isBossAppear;
+    private bool isAttackBoss;
+    private bool isWin;
+    private bool isBoss;
 
     //Time in game
     private int minute;
     private int levelUp;
     private int levelCur;
     AttackDetail attackDetail;
+
 
     void Start()
     {
@@ -50,6 +58,7 @@ public class Map1 : MonoBehaviour
         timeCur = 0;
         levelCur = GameManager.Instance.level;
         levelUp = GameManager.Instance.level;
+        enemies = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -58,53 +67,83 @@ public class Map1 : MonoBehaviour
         minute = GameManager.Instance.minutes;
         levelUp = GameManager.Instance.level;
         timeCur -= Time.deltaTime;
-
-        if (minute == 1 && !isAttackBoss)
+        if (isWin)
         {
-            roomBoss.SetActive(true);
-            isBossAppear = true;
-            isAttackBoss = true;
-        }
-
-        if (isBossAppear)
-        {
-            //EnemyAllDeath();
-            warningTimeCur += Time.deltaTime;
-            warning.SetActive(true);
-            if (warningTimeCur >= warningTime)
+            roomBoss.SetActive(false);
+            confiner.m_BoundingShape2D = polygonColliderCur;
+            Debug.Log("You win!!!");
+            isWin = false;
+            isBossAppear = false;
+            isAttackBoss = false;
+            if (!CoinManager.Instance.GetMapState())
             {
-                isBossAppear = false;
-                warning.SetActive(false);
-                go = Instantiate(boss, bossPoint.position, Quaternion.identity);
+                Debug.Log("New Map unlock");
+                CoinManager.Instance.AddMapWin(level);
+                CoinManager.Instance.AddMapUnlock(level + 1);
+                CoinManager.Instance.SetMapState(true);
             }
         }
-
-        if (timeCur < 0 && !isAttackBoss)
+        else
         {
-            ControlSpawnEnemy();
-            timeCur = cooldown;
-        }
+            CheckBossAppear();
+            //Spawn enemy
+            if (timeCur < 0 && !isBossAppear)
+            {
+                ControlSpawnEnemy();
+                timeCur = cooldown;
+            }
+            else if (isBossAppear && !isAttackBoss)
+            {
+                //All enemies die
+                EnemyAllDeath();
 
+                //Warning UI
+                warningTimeCur += Time.deltaTime;
+                warning.SetActive(true);
+                //Boss appear
+                if (warningTimeCur >= warningTime)
+                {
+                    isAttackBoss = true;
+                    warning.SetActive(false);
+                    go = Instantiate(boss, bossPoint.position, Quaternion.identity);
+                }
+            }else if (isAttackBoss)
+            {
+                if (go == null)
+                {
+                    isWin = true;
+                }
+            }
+
+        }
     }
 
 
+    void CheckBossAppear()
+    {
+        if (GameManager.Instance.kill == 3000 && !isBoss)
+        {
+            roomBoss.SetActive(true);
+            confiner.m_BoundingShape2D = polygonCollider;
+            isBossAppear = true;
+            isBoss = true;
+        }
+    }
 
     void ControlSpawnEnemy()
     {
-       
-        if(levelCur < levelUp && cooldown > 0.2f)
+        if(levelCur < levelUp)
         {
-            cooldown = Mathf.Clamp(cooldown -  0.1f, 0.2f, maxCooldown);
             levelCur = levelUp;
+            if(cooldown > 0.2f)
+                cooldown = Mathf.Clamp(cooldown -  0.1f, 0.2f, maxCooldown);
         }
         int i = Random.Range(0, enemyNor.Length);
-        go = Instantiate(enemyNor[i], GetPos(), Quaternion.identity);
-        //Spawn(enemyNor[i], 1);
+        Spawn(enemyNor[i], 1);
         amountOfEnemyNor++;
         if(levelUp > 5 && amountOfEnemyNor > 3)
         {
-            //Spawn(enemyMed[0], 1);
-            go = Instantiate(enemyNor[i], GetPos(), Quaternion.identity);
+            Spawn(enemyMed[0], 1);
             amountOfEnemyNor = 0;
         }
 
@@ -112,16 +151,23 @@ public class Map1 : MonoBehaviour
 
     void EnemyAllDeath()
     {
-        enemySpawn = GameObject.FindGameObjectsWithTag("Enemy");
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
         attackDetail.damage = 100;
         attackDetail.attackDir = transform;
-        for(int i = 0; i < enemyNor.Length; i++)
+        for(int i = 0; i < enemies.Count; i++)
         {
-            enemySpawn[i].transform.SendMessage("Damage", attackDetail);
+            enemies[i].transform.SendMessage("Damage", attackDetail);
+            if (enemies[i] == null)
+            {
+                enemies.Remove(enemies[i]);
+            }
         }
+        isBossAppear = true;
+        enemies.Clear();
+
     }
 
-    
+
 
     void Spawn(GameObject gameObject, int amount)
     {

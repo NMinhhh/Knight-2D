@@ -285,19 +285,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 240031069}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 506418860}
-        m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
-        m_MethodName: Load
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: GamePlay
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &240031069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,7 +489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &361250904
 RectTransform:
   m_ObjectHideFlags: 0
@@ -753,6 +741,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 927673464}
+  - component: {fileID: 927673465}
   m_Layer: 5
   m_Name: Level
   m_TagString: Untagged
@@ -779,8 +768,24 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 236, y: 435.9}
+  m_SizeDelta: {x: 236, y: 421.7}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &927673465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927673463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3de1cc6ebc1231b4baefc1b143a872e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btn: {fileID: 1374634259}
+  levelText: {fileID: 1332487702}
+  unlockObj: {fileID: 361250903}
+  loadScene: {fileID: 506418860}
 --- !u!1 &965714568
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,6 +797,7 @@ GameObject:
   - component: {fileID: 965714569}
   - component: {fileID: 965714571}
   - component: {fileID: 965714570}
+  - component: {fileID: 965714572}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -838,14 +844,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 0a87a73eeebbcbd4aa58e65e56ad8b42, type: 3}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &965714571
@@ -856,6 +862,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 965714568}
   m_CullTransparentMesh: 1
+--- !u!95 &965714572
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965714568}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &975827637
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,6 +1134,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1169633369}
+  - component: {fileID: 1169633370}
   m_Layer: 5
   m_Name: Level (1)
   m_TagString: Untagged
@@ -1133,8 +1161,24 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 236, y: 435.9}
+  m_SizeDelta: {x: 236, y: 421.7}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1169633370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169633368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3de1cc6ebc1231b4baefc1b143a872e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btn: {fileID: 1779201003}
+  levelText: {fileID: 63277612}
+  unlockObj: {fileID: 1133581478}
+  loadScene: {fileID: 506418860}
 --- !u!1 &1307934559
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,13 +1237,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 8076f02983e85224089db2517bfb3ae4, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1307934562
@@ -1607,19 +1651,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1374634260}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 506418860}
-        m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
-        m_MethodName: Load
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: GamePlay
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1374634260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1743,6 +1775,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1449731070}
   - component: {fileID: 1449731071}
+  - component: {fileID: 1449731072}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -1798,6 +1831,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1449731072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449731069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13f22382346c8764195237a8ab67c8b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 97cbb659236ac434796ff7fccbfd0e03, type: 2}
+  mapContent: {fileID: 1449731069}
+  mapUI: []
 --- !u!1 &1542110434
 GameObject:
   m_ObjectHideFlags: 0
@@ -1833,7 +1881,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -30.7, y: -28.89}
+  m_AnchoredPosition: {x: -30.700012, y: -28.89}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1542110436
@@ -2163,19 +2211,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1779201004}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 506418860}
-        m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
-        m_MethodName: Load
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: GamePlay
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1779201004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2320,8 +2356,8 @@ Canvas:
   m_GameObject: {fileID: 1825363486}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1310934917}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2377,6 +2413,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2064081533}
+  - component: {fileID: 2064081534}
   m_Layer: 5
   m_Name: Level (2)
   m_TagString: Untagged
@@ -2403,8 +2440,24 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 236, y: 435.9}
+  m_SizeDelta: {x: 236, y: 421.7}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2064081534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064081532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3de1cc6ebc1231b4baefc1b143a872e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btn: {fileID: 240031068}
+  levelText: {fileID: 975827639}
+  unlockObj: {fileID: 1806297865}
+  loadScene: {fileID: 506418860}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

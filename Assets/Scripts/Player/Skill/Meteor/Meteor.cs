@@ -20,21 +20,21 @@ public class Meteor : MonoBehaviour
     AttackDetail attackDetail;
     void Start()
     {
+        attackDetail.attackDir = transform;
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * speed;
-        attackDetail.attackDir = transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        attackDetail.attackDir = transform;
+        Attack();
+
         timeLife -= Time.deltaTime;
         if(timeLife <= 0)
         {
             Destroy(gameObject);
         }
-        Attack();
     }
 
     public void CreateMeteor(float damage, float speed, float timeLife)
@@ -49,6 +49,7 @@ public class Meteor : MonoBehaviour
     {
         Collider2D hit = Physics2D.OverlapCircle(checkPoint.position, radius, whatIsEnemy);
         attackDetail.damage = damage;
+        attackDetail.attackDir = transform;
         attackDetail.continousDamage = true;
         if (hit)
         {

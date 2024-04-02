@@ -43,9 +43,8 @@ public class GameManager : MonoBehaviour
 
     private float timer = 1;
 
-    //Loss
-    public bool isLoss {  get; private set; }
 
+    public int kill {  get; private set; }
 
     #endregion
 
@@ -137,11 +136,12 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    #region Loss
-    public void GameStats()
-    {
-        isLoss = !isLoss;
-    }
-    #endregion
+    #region Kill
 
+    public void AddKill()
+    {
+        kill += 1;
+    }
+
+    #endregion
 }

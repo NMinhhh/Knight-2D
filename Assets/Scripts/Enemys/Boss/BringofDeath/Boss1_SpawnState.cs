@@ -25,6 +25,7 @@ public class Boss1_SpawnState : EnemySpawnState
     public override void Exit()
     {
         base.Exit();
+        entity.anim.SetBool("startSkill", false);
     }
 
     public override void FinishAnimation()

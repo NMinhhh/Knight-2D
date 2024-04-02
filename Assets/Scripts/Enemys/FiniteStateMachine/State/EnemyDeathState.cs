@@ -19,6 +19,7 @@ public class EnemyDeathState : State
     {
         base.Enter();
         entity.SetVelocityZero();
+        GameManager.Instance.AddKill();
     }
 
     public override void Exit()

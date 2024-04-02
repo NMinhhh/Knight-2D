@@ -26,8 +26,6 @@ public class Shop : MonoBehaviour
     void Start()
     {
         GenerateShopUI();
-
-        
     }
 
     void GenerateShopUI()

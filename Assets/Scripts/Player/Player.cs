@@ -94,7 +94,6 @@ public class Player : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.GameStats();
             isDie = true;
         }
     }
@@ -125,7 +124,6 @@ public class Player : MonoBehaviour
         StartCoroutine(Imortal());
         currentHelth = maxHealth;
         stats.UpdateHealth(maxHealth, maxHealth);
-        GameManager.Instance.GameStats();
 
     }
 

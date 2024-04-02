@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Map : MonoBehaviour
+[System.Serializable]
+public class Map 
 {
     public int level;
     public bool isUnlock;
+    public bool isWin;
 }

@@ -21,7 +21,7 @@ public class SaveManager : MonoBehaviour
     }
     private void Start()
     {
-       SaveSystem.Init();
+        SaveSystem.Init();
         LoadSaveGame();
     }
 
@@ -45,12 +45,12 @@ public class SaveManager : MonoBehaviour
         else
         {
             CoinManager.Instance.AddWeaponPurchasedIndex(0);
+            CoinManager.Instance.AddMapUnlock(0);
         }
     }
 
     public void SaveGame()
     {
-        
         string saveString = JsonUtility.ToJson(CoinManager.Instance);
         SaveSystem.Save(GetSaveName("CoinManager"), saveString);
     }
