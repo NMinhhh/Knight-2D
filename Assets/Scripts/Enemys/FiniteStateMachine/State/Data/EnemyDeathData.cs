@@ -6,4 +6,6 @@ using UnityEngine;
 public class EnemyDeathData : ScriptableObject
 {
     public GameObject particle;
+    public int amountOfEx = 1;
+    public float radius = 1;
 }

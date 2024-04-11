@@ -5,47 +5,62 @@ using UnityEngine;
 
 public class Map1 : MonoBehaviour
 {
-    [SerializeField] private int level;
+    //Level player
+    [SerializeField] private int mapLevel;
+
+    //Number of enemy dead to spawn Boss
+    [SerializeField] private int amountOfKill;
+
+    //Number of enemy dead to spawn enemy big
+    [SerializeField] private int amountOfKillEnemy;
+    private int amountOfKillEnemyCur;
+  
+
     [Header("Position spawn enemy")]
     [SerializeField] private Transform[] spawnPoint;
     [SerializeField] private List<Vector2> sizeSpawnPoint;
     Vector2[] pos;
     [Space]
     [Space]
+
     [Header("Warning UI")]
     [SerializeField] private GameObject roomBoss;
     [SerializeField] private GameObject warning;
-    [SerializeField] private float warningTime;
     [SerializeField] private Transform bossPoint;
     [SerializeField] private CinemachineConfiner confiner;
     [SerializeField] private PolygonCollider2D polygonCollider;
     [SerializeField] private PolygonCollider2D polygonColliderCur;
+    [SerializeField] private float warningTime;
     private float warningTimeCur;
     [Space]
 
     [Header("Enemy")]
     [SerializeField] private GameObject[] enemyNor;
     [SerializeField] private GameObject[] enemyMed;
-    [SerializeField] private GameObject boss;
     private int amountOfEnemyNor;
+
+    //Enemy Big
+    [SerializeField] private GameObject enemyBig;
+    private bool isEnemyBig;
+    private GameObject enemyBigGo;
+
+    //Boss
+    [SerializeField] private GameObject boss;
     private GameObject go;
-    [Space]
+    private List<GameObject> enemies;
+    private bool isBossAppear;
+    private bool isAttackBoss;
+    private bool isBoss;
 
     //cooldown spawn enemy
     [SerializeField] private float cooldown;
     private float maxCooldown;
     private float timeCur;
 
-    //Boss
-    [SerializeField] private List<GameObject> enemies;
-    [SerializeField] private GameObject[] enemySpawn;
-    private bool isBossAppear;
-    private bool isAttackBoss;
     private bool isWin;
-    private bool isBoss;
+
 
     //Time in game
-    private int minute;
     private int levelUp;
     private int levelCur;
     AttackDetail attackDetail;
@@ -59,12 +74,12 @@ public class Map1 : MonoBehaviour
         levelCur = GameManager.Instance.level;
         levelUp = GameManager.Instance.level;
         enemies = new List<GameObject>();
+        amountOfKillEnemyCur = amountOfKillEnemy;
     }
 
     // Update is called once per frame
     void Update()
     {
-        minute = GameManager.Instance.minutes;
         levelUp = GameManager.Instance.level;
         timeCur -= Time.deltaTime;
         if (isWin)
@@ -77,9 +92,8 @@ public class Map1 : MonoBehaviour
             isAttackBoss = false;
             if (!CoinManager.Instance.GetMapState())
             {
-                Debug.Log("New Map unlock");
-                CoinManager.Instance.AddMapWin(level);
-                CoinManager.Instance.AddMapUnlock(level + 1);
+                CoinManager.Instance.AddMapWin(mapLevel);
+                CoinManager.Instance.AddMapUnlock(mapLevel + 1);
                 CoinManager.Instance.SetMapState(true);
             }
         }
@@ -121,7 +135,7 @@ public class Map1 : MonoBehaviour
 
     void CheckBossAppear()
     {
-        if (GameManager.Instance.kill == 3000 && !isBoss)
+        if (GameManager.Instance.kill == amountOfKill && !isBoss)
         {
             roomBoss.SetActive(true);
             confiner.m_BoundingShape2D = polygonCollider;
@@ -145,6 +159,14 @@ public class Map1 : MonoBehaviour
         {
             Spawn(enemyMed[0], 1);
             amountOfEnemyNor = 0;
+            amountOfKillEnemy++;
+        }
+        amountOfKillEnemyCur--;
+        if (amountOfKillEnemyCur <= 0 && levelCur >= 10)
+        {
+            enemyBigGo = Instantiate(enemyBig, GetPos(), Quaternion.identity);
+            isEnemyBig = true;
+            amountOfKillEnemyCur = amountOfKillEnemy;
         }
 
     }
@@ -162,7 +184,6 @@ public class Map1 : MonoBehaviour
                 enemies.Remove(enemies[i]);
             }
         }
-        isBossAppear = true;
         enemies.Clear();
 
     }
@@ -173,7 +194,7 @@ public class Map1 : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            SpawnerManager.Instance.SpawnItem(gameObject, GetPos());
+            SpawnerManager.Instance.SpawnEnemy(gameObject, GetPos());
         }
     }
 

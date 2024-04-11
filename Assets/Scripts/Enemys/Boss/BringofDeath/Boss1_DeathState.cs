@@ -35,7 +35,11 @@ public class Boss1_DeathState : EnemyDeathState
         base.LogicUpdate();
         if(isFinishAnimation)
         {
-            entity.DropItem();
+            for(int i = 0; i < data.amountOfEx; i++)
+            {
+                dropItemPoint = Random.insideUnitCircle * data.radius;
+                entity.DropItem(entity.transform.position + dropItemPoint);
+            }
             GameObject.Destroy(entity.gameObject);
         }
     }

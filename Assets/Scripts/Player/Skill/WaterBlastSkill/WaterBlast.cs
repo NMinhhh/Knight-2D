@@ -42,7 +42,7 @@ public class WaterBlast : MonoBehaviour
         Collider2D[] hit = Physics2D.OverlapBoxAll(collider2d.bounds.center, collider2d.bounds.size, 0, whatISEnemy);
         attackDetail.attackDir = transform;
         attackDetail.damage = damage;
-        attackDetail.continousDamage = false;
+        attackDetail.continousDamage = true;
         foreach (Collider2D col in hit)
         {
             if(col)

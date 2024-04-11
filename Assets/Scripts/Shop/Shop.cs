@@ -42,7 +42,7 @@ public class Shop : MonoBehaviour
             Weapon weapon = weaponData.GetWeapon(idx);
             WeaponItemUI weaponItemUI = Instantiate(ItemTemplate, shopScrollView).GetComponent<WeaponItemUI>();
             weaponItemUI.SetWeaponName(weapon.name);
-            weaponItemUI.SetWeaponImage(weapon.image);
+            weaponItemUI.SetWeaponImage(weapon.image, weapon.widthImage);
             weaponItemUI.SetWeaponDamage(weapon.damage.ToString());
             weaponItemUI.SetWeaponBullets(weapon.bullet.ToString());
             weaponItemUI.SetWeaponReload(weapon.reload.ToString());

@@ -16,8 +16,8 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  maxHealth: 1000
-  knockbackSpeed: 0
+  maxHealth: 50000
+  knockbackSpeed: 0.04
   hurtTime: 0.1
   damageTimeCon: 0.1
   touchDamage: 10

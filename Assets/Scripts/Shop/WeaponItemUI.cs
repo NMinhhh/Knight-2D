@@ -19,9 +19,11 @@ public class WeaponItemUI : MonoBehaviour
         nameWeapon.text = name;
     }
 
-    public void SetWeaponImage(Sprite image)
+    public void SetWeaponImage(Sprite image, float widthImage)
     {
         this.image.sprite = image;
+        RectTransform rect = this.image.GetComponent<RectTransform>();
+        rect.sizeDelta = new Vector2(widthImage, 230);
     }
 
     public void SetWeaponDamage(string damageText)

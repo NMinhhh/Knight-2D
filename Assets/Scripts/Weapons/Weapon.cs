@@ -18,4 +18,5 @@ public class Weapon
     public GameObject bulletIcon;
     public bool isPurchased;
     public bool isEquiped;
+    public float widthImage;
 }

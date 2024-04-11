@@ -124,7 +124,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9032327130115403712
 Transform:
   m_ObjectHideFlags: 0
@@ -206,13 +206,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17f9ac61d6e60f044bb589c9121477a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: bbe422292ca891340a4f1184f218c962, type: 2}
   attackPoint:
   - {fileID: 7820853274464003489}
   clip: {fileID: 8300000, guid: 080817365aa2c2742bcd09436f2f506f, type: 3}
   gun: 1
   shotGun: 0
   grenadeLauncher: 0
+  isMuzzleFlash: 1
 --- !u!114 &7107251428971621632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,7 +225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c47f0ba38b925a846aeed1b23418f341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: bbe422292ca891340a4f1184f218c962, type: 2}
   statsBullet: {fileID: 0}
 --- !u!1 &4138577480596712178
 GameObject:

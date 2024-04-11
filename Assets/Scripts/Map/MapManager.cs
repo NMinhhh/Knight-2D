@@ -7,7 +7,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] private MapData data;
     [SerializeField] private GameObject mapContent;
 
-    [SerializeField] private GameObject[] mapUI;
+    private GameObject[] mapUI;
     // Start is called before the first frame update
     void Start()
     {

@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: BoD_DeathData
   m_EditorClassIdentifier: 
   particle: {fileID: 2578279218646126725, guid: 15cd884113aec644592bc35df7dffa34, type: 3}
+  amountOfEx: 100
+  radius: 7

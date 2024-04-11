@@ -7,8 +7,8 @@ public class PlayerDie : MonoBehaviour
 {
     [SerializeField] private GameObject dieGo;
     [SerializeField] private Button btnBorn;
-    [SerializeField] private int coinToBorn;
-    [SerializeField] private Text textCoin;
+    [SerializeField] private int diamondPay;
+    [SerializeField] private Text diamondText;
     private bool isLoss;
     private int mutiply;
     private Player player;
@@ -28,13 +28,13 @@ public class PlayerDie : MonoBehaviour
             CanvasManager.Instance.OpenUI(dieGo);
             Time.timeScale = 0;
         }
-        textCoin.text = (coinToBorn * mutiply).ToString();
+        diamondText.text = (diamondPay * mutiply).ToString();
     }
 
     public void Born()
     {
         Time.timeScale = 1;
-        CoinManager.Instance.UseCoins(coinToBorn * mutiply);
+        CoinManager.Instance.UseDiamond(diamondPay * mutiply);
         mutiply += 2;
         CanvasManager.Instance.CloseUI(dieGo);
         player.Born();

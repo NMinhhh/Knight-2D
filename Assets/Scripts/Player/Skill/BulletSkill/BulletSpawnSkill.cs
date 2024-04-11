@@ -15,13 +15,15 @@ public class BulletSpawnSkill : MonoBehaviour
     [SerializeField] private Vector2 speed;
     [SerializeField] private float timeLife;
 
-    [Header("Cooldown")]
+    [Header("Cooldown skill")]
     [SerializeField] private float cooldown;
-    [SerializeField] private int amountBullet;
     private float timer;
+    [SerializeField] private int amountBullet;
+    private int amountOfBulletCur;
 
+
+    float cooldownShoting;
     //AmountOf point spawn Bullet
-    private int currentPos;
 
 
     void Start()
@@ -31,21 +33,29 @@ public class BulletSpawnSkill : MonoBehaviour
     void Update()
     {
         timer -= Time.deltaTime;
-        if(timer <= 0 && currentPos > 0)
+        if(timer <= 0 && amountBullet > 0)
         {
-            timer = cooldown;
-            for(int i = 0; i < currentPos; i++) 
+            cooldownShoting += Time.deltaTime;
+            if(cooldownShoting >= 0.1f && amountOfBulletCur > 0)
             {
-                SetSkill(spawnPos[i]);
+                SetSkill(spawnPos[0]);
+                cooldownShoting = 0;
+                amountOfBulletCur -= 1;
+            }else if(amountOfBulletCur == 0)
+            {
+                timer = cooldown;
+                amountOfBulletCur = amountBullet;
             }
         }
     }
 
 
-    public void AddAmountPosSkill(int i)
+    public void AddAmountOfBullet()
     {
-        currentPos = i;
-        spawnPos[i - 1].gameObject.SetActive(true);
+        if (!spawnPos[0].gameObject.activeInHierarchy)
+            spawnPos[0].gameObject.SetActive(true);
+        amountBullet += 3;
+        amountOfBulletCur = amountBullet;
     }
 
     void SetSkill(Transform pos)
@@ -54,22 +64,19 @@ public class BulletSpawnSkill : MonoBehaviour
         Vector3 direction;
         GameObject enemyRam;
         Collider2D[] enemy = EnemysPosition.Instance.GetEnemysPosition();
-        for (int i = 0; i < amountBullet; i++)
+        if(enemy.Length > 0)
         {
-            if(enemy.Length > 0)
-            {
-                enemyRam = enemy[Random.Range(0,enemy.Length)].gameObject;
-                direction = (enemyRam.transform.position - pos.position).normalized;
-                rotationZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            }
-            else
-            {
-                rotationZ = Random.Range(0, 360);
-            }
-            go = Instantiate(bullet, pos.position, Quaternion.Euler(0, 0, rotationZ));
-            script = go.GetComponent<Projectile>();
-            script.CreateBullet(damge, Random.Range(speed.x, speed.y), timeLife); 
+            enemyRam = enemy[Random.Range(0,enemy.Length)].gameObject;
+            direction = (enemyRam.transform.position - pos.position).normalized;
+            rotationZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         }
+        else
+        {
+            rotationZ = Random.Range(0, 360);
+        }
+        go = Instantiate(bullet, pos.position, Quaternion.Euler(0, 0, rotationZ));
+        script = go.GetComponent<Projectile>();
+        script.CreateBullet(damge, Random.Range(speed.x, speed.y), timeLife); 
     }
 
     

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
+    public RectTransform diamondRect;
+
     public static CanvasManager Instance {  get; private set; }
 
     public bool isOpenUI {  get; private set; }
@@ -21,6 +23,15 @@ public class CanvasManager : MonoBehaviour
             Destroy(gameObject);
         }
        
+    }
+
+    public Vector3 GetDestinationDiamondPoint()
+    {
+        if(!diamondRect) return Vector3.zero;
+
+        Vector3[] v = new Vector3[4];
+        diamondRect.GetWorldCorners(v);
+        return v[0];//bottom  left
     }
 
     public void LoadScene(string sceneName)

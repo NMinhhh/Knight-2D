@@ -17,6 +17,9 @@ public class SpawnerManager : MonoBehaviour
     [Header("Spawn Item")]
     [SerializeField] private GameObject[] item;
 
+    [Header("Ex Item")]
+    [SerializeField] private GameObject[] exItem;
+
     private void Awake()
     {
         if(Instance == null)
@@ -31,7 +34,11 @@ public class SpawnerManager : MonoBehaviour
 
     public void SpawnEnemy(GameObject enemy, Vector2 pos)
     {
-        StartCoroutine(Spawn(enemy, pos));
+        //StartCoroutine(Spawn(enemy, pos));
+        GO = Instantiate(enemy, pos, Quaternion.identity);
+        spriteRenderer = GO.GetComponent<SpriteRenderer>();
+        sortingOrder++;
+        spriteRenderer.sortingOrder = sortingOrder;
     }
 
     IEnumerator Spawn(GameObject enemy, Vector2 pos)
@@ -45,6 +52,8 @@ public class SpawnerManager : MonoBehaviour
         Destroy(go);
     }
 
+    
+
     public void SpawnItem(GameObject item, Vector2 pos)
     {
         GameObject go = Instantiate(item, pos, Quaternion.identity);
@@ -53,5 +62,10 @@ public class SpawnerManager : MonoBehaviour
     public GameObject GetItem(int i) 
     {
         return item[i];
+    }
+
+    public GameObject GetExItem(int i)
+    {
+        return exItem[i];
     }
 }

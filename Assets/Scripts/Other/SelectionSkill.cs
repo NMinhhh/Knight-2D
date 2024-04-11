@@ -109,7 +109,7 @@ public class SelectionSkill : MonoBehaviour
                 break;
             case 4:
                 BulletSpawnSkill bulletSpawnSkill = skill[i].GetComponent<BulletSpawnSkill>();
-                bulletSpawnSkill.AddAmountPosSkill(listSkill[i].level);
+                bulletSpawnSkill.AddAmountOfBullet();
                 listSkill[i].level++;
                 break;
             case 5:
@@ -130,6 +130,11 @@ public class SelectionSkill : MonoBehaviour
             case 8:
                 MeteorSpawnSkill meteor = skill[i].GetComponent<MeteorSpawnSkill>();
                 meteor.AddDir(listSkill[i].level);
+                listSkill[i].level++;
+                break;
+            case 9:
+                GunShootingSkill gunShootingSkill = skill[i].GetComponent<GunShootingSkill>();
+                gunShootingSkill.AddGun(listSkill[i].level);
                 listSkill[i].level++;
                 break;
 

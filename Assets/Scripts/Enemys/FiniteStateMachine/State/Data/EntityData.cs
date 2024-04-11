@@ -23,4 +23,5 @@ public class EntityData : ScriptableObject
     [Header("Cooldown Attack")]
     public List<float> cooldownAttack;
 
+
 }

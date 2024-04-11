@@ -6,7 +6,7 @@ public class HandleRotation : MonoBehaviour
 {
     private Vector3 direction;
     public float angle {  get; private set; }
-    private Player player;
+    public Player player {  get; private set; }
     public bool auto {  get; private set; }
 
     public GameObject nearestObj {  get; private set; }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyDeathState : State
 {
     protected EnemyDeathData data;
+    protected Vector3 dropItemPoint;
     public EnemyDeathState(Entity entity, StateMachine stateMachine, string isBoolName, EnemyDeathData data) : base(entity, stateMachine, isBoolName)
     {
         this.data = data;

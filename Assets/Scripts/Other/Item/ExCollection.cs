@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ExCollection : MonoBehaviour
 {
+    [SerializeField] private float ex;
     [SerializeField] private Vector2 speed;
     [SerializeField] private CircleCollider2D collider2d;
     [SerializeField] private LayerMask whatIsPlayer;
@@ -31,7 +32,7 @@ public class ExCollection : MonoBehaviour
         Collider2D hit = Physics2D.OverlapCircle(collider2d.bounds.center, collider2d.radius, whatIsPlayer);
         if(hit)
         {
-            GameManager.Instance.UpdateEx(15);
+            GameManager.Instance.UpdateEx(ex);
             Destroy(gameObject);
         }
     }

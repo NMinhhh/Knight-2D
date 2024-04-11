@@ -7,6 +7,8 @@ public class CoinManager : MonoBehaviour
     public static CoinManager Instance {  get; private set; }
 
     public int coin;
+
+    public int diamond;
     
     public List<int> weaponsPurchasedIndex = new List<int>();
     
@@ -50,6 +52,23 @@ public class CoinManager : MonoBehaviour
     {
         coin += amount;
     }
+
+    //Diamond
+    public void UseDiamond(int amount)
+    {
+        diamond -= amount;
+    }
+
+    public bool HasEnenoughDiamond(int amount)
+    {
+        return coin >= amount;
+    }
+
+    public void PickUpDiamond(int amount)
+    {
+        diamond += amount;
+    }
+
 
     //Weapons
 
@@ -146,6 +165,7 @@ public class CoinManager : MonoBehaviour
     {
         CoinData saveObj = JsonUtility.FromJson<CoinData>(stringSave);
         this.coin = saveObj.coin;
+        this.diamond = saveObj.diamond;
         this.weaponsPurchasedIndex = saveObj.weaponsPurchasedIndex;
         this.selectedWeaponIndex = saveObj.selectedWeaponIndex;
         this.mapUnlock = saveObj.mapUnlock;

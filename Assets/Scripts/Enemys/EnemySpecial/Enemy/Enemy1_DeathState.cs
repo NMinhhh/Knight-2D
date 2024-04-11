@@ -18,8 +18,12 @@ public class Enemy1_DeathState : EnemyDeathState
     public override void Enter()
     {
         base.Enter();
-        entity.DropItem();
         GameObject.Instantiate(data.particle, entity.transform.position, Quaternion.identity);
+        for (int i = 0; i < data.amountOfEx; i++)
+        {
+            dropItemPoint = Random.insideUnitCircle * data.radius;
+            entity.DropItem(entity.transform.position + dropItemPoint);
+        }
         GameObject.Destroy(entity.gameObject);
     }
 

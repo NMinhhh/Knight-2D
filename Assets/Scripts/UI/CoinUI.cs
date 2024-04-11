@@ -6,6 +6,10 @@ using UnityEngine.UI;
 public class CoinUI : MonoBehaviour
 {
     [SerializeField] private Text coinText;
-
-    void Update() => coinText.text = CoinManager.Instance.coin.ToString();
+    [SerializeField] private Text diamondText;
+    void Update()
+    {
+        coinText.text = CoinManager.Instance.coin.ToString();
+        diamondText.text = CoinManager.Instance.diamond.ToString();
+    }   
 }

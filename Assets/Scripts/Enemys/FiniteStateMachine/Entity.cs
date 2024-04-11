@@ -261,20 +261,25 @@ public class Entity : MonoBehaviour
         isKnockback = false;
     }
 
-    public void DropItem()
+    public void DropItem(Vector3 point)
     {
-        //int ran = Random.Range(0, 100);
-        //int ran2 = Random.Range(0, 100);
-        //if (ran == ran2)
-        //{
-        //    SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetItem(0), transform.position);
-        //}
-        SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetItem(1), transform.position);
+        int ran = Random.Range(0, 50);
+        int ran2 = Random.Range(0, 50);
+        if (ran == ran2)
+        {
+            SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetExItem(1), point);
+        }
+        else
+        {
+            SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetExItem(0), point);
+        }
+        int ran3 = Random.Range(0, 100);
+        if(ran3 == 20)
+            SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetItem(1), point);
     }
 
     void RecieveDamage(AttackDetail attackDetail)
     {
-        if(isDead) return;
         currentHealth = Mathf.Clamp(currentHealth - attackDetail.damage, 0, data.maxHealth);
         if (currentHealth > 0)
         {
@@ -289,6 +294,7 @@ public class Entity : MonoBehaviour
 
     public virtual void Damage(AttackDetail attackDetail)
     {
+        if (isDead) return;
         if (attackDetail.continousDamage)
         {
             if (currentDamageTimeCon > 0) return;

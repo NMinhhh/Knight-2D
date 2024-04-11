@@ -10,9 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1796844333693748427}
   - component: {fileID: 3271215047097260019}
-  - component: {fileID: 1678744580666645619}
-  - component: {fileID: 4601562698463582819}
-  - component: {fileID: 1327983462526024470}
+  - component: {fileID: -4166037804594161888}
   - component: {fileID: 590044344664858195}
   - component: {fileID: 8099016400539588048}
   - component: {fileID: 725719463689148822}
@@ -33,13 +31,11 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.1994802, y: -8.115676, z: 0}
-  m_LocalScale: {x: 1.8, y: 1.8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6412089623507020010}
-  - {fileID: 2270134189392958950}
   - {fileID: 5867632944921061757}
-  - {fileID: 4363234299136948567}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3271215047097260019
@@ -94,7 +90,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1678744580666645619
+--- !u!114 &-4166037804594161888
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,61 +99,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 66959567966317986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87180fdb7da8bd0479c084e4ab822040, type: 3}
+  m_Script: {fileID: 11500000, guid: a63261061dce9c24a9edc0c21b6a8bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
-  ex: 14
-  speed: 3
-  isSkill: 0
-  hurtTime: 0.1
-  knockbackSpeed: 0
-  timerH: 0.1
-  checkPlayer: {fileID: 6412089623507020010}
-  sizeCheckPlayer: {x: 1.37, y: 1.63}
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 64
-  floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
-  blood: {fileID: 4106987093756705936, guid: 12d9bf5c1629fb646b58ec6b3cb57839, type: 3}
-  bloodPoint: {fileID: 2270134189392958950}
---- !u!114 &4601562698463582819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 66959567966317986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc6e52b01b1ab7a4aafb134c2171e477, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillPoint: {fileID: 4363234299136948567}
-  bullet: {fileID: 1884940605765032870, guid: 4bf72dec41584e64aa23faa033d4a983, type: 3}
-  speed: 10
-  damage: 10
-  timeLife: 5
-  cooldown: 2
-  amountBullet: 10
-  amountSkill: 4
-  skillTime: 0.5
---- !u!114 &1327983462526024470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 66959567966317986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff30f3a65a70fe345af87b4032ec5677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  touchPoint: {fileID: 5867632944921061757}
-  damage: 5
-  size: {x: 1.95, y: 2.9}
-  cooldown: 1
+  data: {fileID: 11400000, guid: 740f4ce287d76224fbe11aed821b955f, type: 2}
+  checkPlayerPos: {fileID: 6412089623507020010}
+  touchDamagePos: {fileID: 5867632944921061757}
+  haveAttackStates: 0
+  moveData: {fileID: 11400000, guid: 49552187ae84cf643a9ade08b6b9d2f4, type: 2}
+  deathData: {fileID: 11400000, guid: e7d519c309dd6674fa8956b894d0da25, type: 2}
 --- !u!50 &590044344664858195
 Rigidbody2D:
   serializedVersion: 4
@@ -284,7 +234,7 @@ Transform:
   m_GameObject: {fileID: 873054682850141661}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.04, y: -0.4, z: 0}
+  m_LocalPosition: {x: 0.01, y: -0.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -316,68 +266,6 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.31, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1796844333693748427}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6112063903251514934
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2270134189392958950}
-  m_Layer: 0
-  m_Name: DeadPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2270134189392958950
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6112063903251514934}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.027, y: -0.118, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1796844333693748427}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6268739280662338137
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4363234299136948567}
-  m_Layer: 7
-  m_Name: SkillPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4363234299136948567
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6268739280662338137}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01, y: -0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

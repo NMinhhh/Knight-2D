@@ -12,6 +12,7 @@ public class Meteor : MonoBehaviour
     private float timeLife;
 
     [SerializeField] private LayerMask whatIsEnemy;
+    [SerializeField] private LayerMask whatIsWall;
 
     private bool isDamage;
 
@@ -31,10 +32,15 @@ public class Meteor : MonoBehaviour
         Attack();
 
         timeLife -= Time.deltaTime;
-        if(timeLife <= 0)
+        if(timeLife <= 0 || CheckWall())
         {
             Destroy(gameObject);
         }
+    }
+
+    bool CheckWall()
+    {
+        return Physics2D.OverlapCircle(checkPoint.position, radius, whatIsWall);
     }
 
     public void CreateMeteor(float damage, float speed, float timeLife)

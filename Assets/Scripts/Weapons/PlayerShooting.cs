@@ -11,7 +11,7 @@ public class PlayerShooting : MonoBehaviour
 
     [Header("Shoting")]
     [SerializeField] private Transform[] attackPoint;
-    private HandleRotation handleRotation;
+    [SerializeField] private HandleRotation handleRotation;
 
 
     [Header("Cooldown")]
@@ -29,14 +29,19 @@ public class PlayerShooting : MonoBehaviour
     [Header("Type Of Weapon")]
     [SerializeField] private bool gun;
     [SerializeField] private bool shotGun;
+    [SerializeField] private bool armorpiercingGun;
     [SerializeField] private bool grenadeLauncher;
+
+    [Header("Muzzle Flash")]
+    [SerializeField] private bool isMuzzleFlash;
 
     private void Start()
     {
         weapon = CoinManager.Instance.GetWeaponSelected();
         reloadBullets = GetComponent<ReloadBullets>();
-        anim = transform.Find("MuzzleFlash").GetComponent<Animator>();
-        handleRotation = GameObject.FindObjectOfType<HandleRotation>();
+        if(isMuzzleFlash)
+            anim = transform.Find("MuzzleFlash").GetComponent<Animator>();
+        //handleRotation = GameObject.FindObjectOfType<HandleRotation>();
         
     }
 
@@ -50,14 +55,18 @@ public class PlayerShooting : MonoBehaviour
         {
             Shooting();
         }
+
     }
+
+
 
     void Shooting()
     {
         if (timer >= weapon.cooldown && reloadBullets.amountOfBullet > 0)
         {
             timer = 0;
-            anim.SetTrigger("shoot");
+            if(anim)
+                anim.SetTrigger("shoot");
             SoundFXManager.Instance.CreateAudioClip(clip, attackPoint[0], .5f);
             if (gun)
             {
@@ -66,6 +75,10 @@ public class PlayerShooting : MonoBehaviour
             else if (shotGun)
             {
                 ShootingShotGun();
+            }
+            else if (armorpiercingGun)
+            {
+                ShootingArmorpiercingGun();
             }
             else
             {
@@ -93,8 +106,18 @@ public class PlayerShooting : MonoBehaviour
     void ShootingBomb()
     {
         SpawnRocket(attackPoint[0], attackPoint[0].rotation);
-          
+    }
 
+    void ShootingArmorpiercingGun()
+    {
+        SpawnArmorpiercingBullet(attackPoint[0], attackPoint[0].rotation);
+    }
+
+    void SpawnArmorpiercingBullet(Transform spawnPos, Quaternion ro)
+    {
+        GameObject projectile = Instantiate(weapon.bulletIcon, spawnPos.position, ro);
+        Meteor script = projectile.GetComponent<Meteor>();
+        script.CreateMeteor(weapon.damage, weapon.speed, weapon.timeLife);
     }
 
     void SpawnBullet(Transform spawnPos, Quaternion ro)
