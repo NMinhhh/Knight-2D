@@ -32,12 +32,12 @@ public class EnemyRangeAttack : MonoBehaviour
         timeAttack += Time.deltaTime;
         if (isFininshAnimation)
         {
-            enemy.anim.SetBool("attack", false);
+            //enemy.anim.SetBool("attack", false);
             isFininshAnimation = false;
         }
         else if(enemy.PlayerDetected() && !isFininshAnimation && timeAttack >= cooldownAttack)
         {
-            enemy.anim.SetBool("attack", true);
+            //enemy.anim.SetBool("attack", true);
         }
     }
 

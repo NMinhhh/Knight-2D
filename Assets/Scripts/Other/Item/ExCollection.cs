@@ -8,7 +8,7 @@ public class ExCollection : MonoBehaviour
     [SerializeField] private Vector2 speed;
     [SerializeField] private CircleCollider2D collider2d;
     [SerializeField] private LayerMask whatIsPlayer;
-    private float distance = 10;
+    private float distance = 5;
     private Transform player;
     private Rigidbody2D rb;
     void Start()
@@ -23,6 +23,7 @@ public class ExCollection : MonoBehaviour
         if(Vector2.Distance(player.position, transform.position) < distance)
         {
             rb.velocity = GetDir() * speed;
+            speed += speed * Time.deltaTime;
         }
         CheckPlayer();
     }

@@ -32,12 +32,12 @@ public class EnemyMeleeAttack : MonoBehaviour
         timeAttack += Time.deltaTime;
         if (isFinishAnimation)
         {
-            enemy.anim.SetBool("attack", false);
+            //enemy.anim.SetBool("attack", false);
             isFinishAnimation = false;
         }
         else if (enemy.PlayerDetected() && !isFinishAnimation && timeAttack >= cooldownAttack)
         {
-            enemy.anim.SetBool("attack", true);
+            //enemy.anim.SetBool("attack", true);
         }
 
     }

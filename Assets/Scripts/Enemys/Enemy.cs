@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     [Header("Move")]
     [SerializeField] private float speed;
     public Transform target {  get; private set; }
-    private bool isMove;
+    //private bool isMove;
     public bool isSkill;
     [Space]
     [Space]
@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
     private float facingRight;
 
     //Components
-    public Animator anim {  get; private set; }
+    //public Animator anim {  get; private set; }
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
 
@@ -47,7 +47,7 @@ public class Enemy : MonoBehaviour
     {
         player = whatIsPlayer;
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         target = GameObject.FindWithTag("Player").transform;
         currentHealth = maxHealth;
@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckIfFlip();
+        //CheckIfFlip();
         Movement();
         tim += Time.deltaTime;
     }
@@ -69,15 +69,14 @@ public class Enemy : MonoBehaviour
     {
         if (PlayerDetected() || isSkill)
         {
-            isMove = false;
+            //isMove = false;
             rb.velocity = Vector2.zero;
         }
         else if(!PlayerDetected() && !isKnockback && !isSkill)
         {
-            isMove = true;
             rb.velocity = GetDir() * speed;
         }
-        anim.SetBool("move", isMove);
+        //anim.SetBool("move", isMove);
     }
 
     public bool PlayerDetected()
@@ -94,14 +93,9 @@ public class Enemy : MonoBehaviour
         }
         if (currentHealth <= 0)
         {
+
             CoinManager.Instance.PickupCoins(10);
-            int ran = Random.Range(0, 100);
-            int ran2 = Random.Range(0, 100);
-            if (ran == ran2)
-            {
-                SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetItem(0), transform.position);
-            }
-            SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetItem(1), transform.position);
+            SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetExItem(0), transform.position);
             Instantiate(blood, bloodPoint.position, Quaternion.identity);
             Destroy(gameObject);
         }

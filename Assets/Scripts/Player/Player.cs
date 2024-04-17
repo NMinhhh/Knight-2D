@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float movementSpeed;
     private Vector2 movement;
+    private int horizontal;
+    private int vertical;
 
     [Header("Health")]
     //Health
@@ -23,6 +25,7 @@ public class Player : MonoBehaviour
     [Space]
     [Space]
     [SerializeField] private GameObject floatingText;
+    [SerializeField] private Color floatingTextColor;
 
     //Other Variable
     public bool isFacingRight {  get; private set; }
@@ -44,7 +47,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         stats = GetComponent<PlayerStats>();
         isFacingRight = true;
@@ -55,7 +58,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Movement();
-        CheckFlip();
+        //CheckFlip();
     }
 
     public void ProtectionSkillOn()
@@ -87,7 +90,7 @@ public class Player : MonoBehaviour
         {
             damageDir = 1;
         }
-        FloatingTextManager.Instance.CreateFloatingText(floatingText, transform.position, attackDetail.damage.ToString(), damageDir);
+        FloatingTextManager.Instance.CreateFloatingText(floatingText, transform.position, attackDetail.damage.ToString(), floatingTextColor, damageDir);
         if (currentHelth > 0)
         {
             StartCoroutine(Hurt());
@@ -129,9 +132,16 @@ public class Player : MonoBehaviour
 
     void Movement()
     {
-        movement.Set(InputManager.Instance.xInput, InputManager.Instance.yInput);
+        if(InputManager.Instance.yInput != 0 )
+        {
+            movement.Set(InputManager.Instance.xInput, InputManager.Instance.yInput);
+        }
+        else
+        {
+            movement.Set(0, 0);
+        }
         rb.velocity = movement * movementSpeed;
-        anim.SetBool("move", movement.x != 0 || movement.y != 0);
+        //anim.SetBool("move", movement.x != 0 || movement.y != 0);
     }
 
     void CheckFlip()

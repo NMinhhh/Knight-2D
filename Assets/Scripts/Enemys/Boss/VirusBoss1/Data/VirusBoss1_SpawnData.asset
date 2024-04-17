@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb22617c246c45044b660656c1db3ddf, type: 3}
+  m_Name: VirusBoss1_SpawnData
+  m_EditorClassIdentifier: 
+  spawnGO: {fileID: 4323602004240218919, guid: 5395585c9a19c9c4bba0c293c035f0f2, type: 3}
+  cooldown: 0.3
+  amountOfSpawnGO: 6
+  speed: 30
+  timeLife: 3
+  damage: 20

@@ -27,9 +27,6 @@ public class Map1 : MonoBehaviour
     [SerializeField] private GameObject roomBoss;
     [SerializeField] private GameObject warning;
     [SerializeField] private Transform bossPoint;
-    [SerializeField] private CinemachineConfiner confiner;
-    [SerializeField] private PolygonCollider2D polygonCollider;
-    [SerializeField] private PolygonCollider2D polygonColliderCur;
     [SerializeField] private float warningTime;
     private float warningTimeCur;
     [Space]
@@ -85,7 +82,7 @@ public class Map1 : MonoBehaviour
         if (isWin)
         {
             roomBoss.SetActive(false);
-            confiner.m_BoundingShape2D = polygonColliderCur;
+
             Debug.Log("You win!!!");
             isWin = false;
             isBossAppear = false;
@@ -138,7 +135,6 @@ public class Map1 : MonoBehaviour
         if (GameManager.Instance.kill == amountOfKill && !isBoss)
         {
             roomBoss.SetActive(true);
-            confiner.m_BoundingShape2D = polygonCollider;
             isBossAppear = true;
             isBoss = true;
         }

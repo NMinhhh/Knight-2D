@@ -137,6 +137,11 @@ public class SelectionSkill : MonoBehaviour
                 gunShootingSkill.AddGun(listSkill[i].level);
                 listSkill[i].level++;
                 break;
+            case 10:
+                IceSkill iceSkill = skill[i].GetComponent<IceSkill>();
+                iceSkill.LevelUpSkill();
+                listSkill[i].level++;
+                break;
 
         }
         if (listSkill[i].level > listSkill[i].maxLevel)

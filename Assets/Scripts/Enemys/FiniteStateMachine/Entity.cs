@@ -32,6 +32,7 @@ public class Entity : MonoBehaviour
 
     //Hurt and dead
     private float currentHealth;
+    private float health;
     private bool isKnockback;
     private float currentDamageTimeCon;
     protected bool isDead;
@@ -53,12 +54,20 @@ public class Entity : MonoBehaviour
     public bool isDash {  get; private set; }
     public Vector2 currentTarget {  get; private set; }
 
-
+    private int damageDir;
 
     public Transform target { get; private set; }
     public int facingRight {  get; private set; }
 
     public AttackDetail attackDetail;
+
+
+    #endregion
+
+    #region EffectVariable
+
+    private bool isSlowingEffect;
+    private float slowingTimerCur;
 
     #endregion
 
@@ -77,7 +86,13 @@ public class Entity : MonoBehaviour
         target = GameObject.Find("Player").transform;
         facingRight = 1;
         currentDamageTimeCon = data.damageTimeCon;
-        currentHealth = data.maxHealth;
+        health = data.maxHealth;
+        for(int i = 0; i < GameManager.Instance.level; i++)
+        {
+            health += data.maxHealth * 0.3f;
+        }
+        currentHealth = health;
+        //currentHealth = data.maxHealth;
         timeTouch = data.cooldownTouchDamage;
         isDash = true;
         if(haveAttackStates)
@@ -107,6 +122,12 @@ public class Entity : MonoBehaviour
             CheckCooldownAttack(stateAttackSelected);
         }
 
+        //Efect
+
+        if (isSlowingEffect)
+        {
+            SlowingEffect();
+        }
        
     }
 
@@ -120,7 +141,10 @@ public class Entity : MonoBehaviour
     #region Set Function
     public void SetMovement(float speed)
     {
-        rb.velocity = GetDir() * speed;
+        if (isSlowingEffect)
+            rb.velocity = GetDir() * speed/2;
+        else
+            rb.velocity = GetDir() * speed;
     }
 
     public void SetVelocityZero()
@@ -223,6 +247,28 @@ public class Entity : MonoBehaviour
 
     #endregion
 
+    #region Effect
+
+    void IsSlowingEffect()
+    {
+        isSlowingEffect = true;
+        slowingTimerCur = data.slowingTimer;
+    }
+
+    void SlowingEffect()
+    {
+        slowingTimerCur -= Time.deltaTime;
+        sprite.color = data.slowingColor;
+        if(slowingTimerCur <= 0)
+        {
+            sprite.color = new Color(1, 1, 1, 1);
+            isSlowingEffect = false;
+        }
+
+    }
+
+    #endregion
+
     #region Other Fuction
 
 
@@ -280,7 +326,16 @@ public class Entity : MonoBehaviour
 
     void RecieveDamage(AttackDetail attackDetail)
     {
-        currentHealth = Mathf.Clamp(currentHealth - attackDetail.damage, 0, data.maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth - attackDetail.damage, 0, health);
+        if (attackDetail.attackDir.position.x > transform.position.x)
+        {
+            damageDir = -1;
+        }
+        else
+        {
+            damageDir = 1;
+        }
+        FloatingTextManager.Instance.CreateFloatingText(data.floatingText, transform.position, attackDetail.damage.ToString(), data.floatingTextColor, damageDir);
         if (currentHealth > 0)
         {
             StartCoroutine(Hurt());

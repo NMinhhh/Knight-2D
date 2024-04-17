@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapons:
   - name: Pistol
-    image: {fileID: 21300000, guid: d7d58fc54f58ac14f9f153dedccaedaa, type: 3}
+    image: {fileID: 1863616520, guid: ae0051663d97cb345863eaa3c922cd2b, type: 3}
     damage: 5
     bullet: 15
     reload: 1
@@ -25,9 +25,9 @@ MonoBehaviour:
     bulletIcon: {fileID: 2458557462247786642, guid: b19e23dee31767949848fcd742b6f26b, type: 3}
     isPurchased: 1
     isEquiped: 0
-    widthImage: 271
+    widthImage: 283.5
   - name: AK
-    image: {fileID: 21300000, guid: 9ba82c2e6f8b609418210cae51c409b4, type: 3}
+    image: {fileID: 1208916092, guid: ae0051663d97cb345863eaa3c922cd2b, type: 3}
     damage: 8
     bullet: 35
     reload: 1.5
@@ -38,9 +38,9 @@ MonoBehaviour:
     bulletIcon: {fileID: 2458557462247786642, guid: b19e23dee31767949848fcd742b6f26b, type: 3}
     isPurchased: 1
     isEquiped: 0
-    widthImage: 400
+    widthImage: 283.5
   - name: Shotgun
-    image: {fileID: 21300000, guid: ceee8c0c7df166a48afbbd0a13c06686, type: 3}
+    image: {fileID: -1715440986, guid: ae0051663d97cb345863eaa3c922cd2b, type: 3}
     damage: 8
     bullet: 15
     reload: 1.5
@@ -51,22 +51,9 @@ MonoBehaviour:
     bulletIcon: {fileID: 2458557462247786642, guid: b19e23dee31767949848fcd742b6f26b, type: 3}
     isPurchased: 0
     isEquiped: 0
-    widthImage: 400
-  - name: Sniper
-    image: {fileID: 21300000, guid: c49f8ecb97a740542b77a707fc10db02, type: 3}
-    damage: 14
-    bullet: 18
-    reload: 1.5
-    price: 375
-    speed: 18
-    timeLife: 1.5
-    cooldown: 0.3
-    bulletIcon: {fileID: 3900384636418615858, guid: 0ee7b252b13be324e9a2f341a069d5ee, type: 3}
-    isPurchased: 0
-    isEquiped: 0
-    widthImage: 400
+    widthImage: 283.5
   - name: Bazoka
-    image: {fileID: 21300000, guid: 4502ee811c1b066458259d590c0576ed, type: 3}
+    image: {fileID: -1285962514, guid: ae0051663d97cb345863eaa3c922cd2b, type: 3}
     damage: 25
     bullet: 10
     reload: 2
@@ -77,17 +64,4 @@ MonoBehaviour:
     bulletIcon: {fileID: 3875696009280236879, guid: 203023f5d3eccc94cac4bcb809344ea1, type: 3}
     isPurchased: 0
     isEquiped: 0
-    widthImage: 400
-  - name: Spear
-    image: {fileID: 21300000, guid: 539d71642542fa344a5c9c6ae71502d5, type: 3}
-    damage: 30
-    bullet: 15
-    reload: 2
-    price: 1000
-    speed: 18
-    timeLife: 3
-    cooldown: 0.5
-    bulletIcon: {fileID: 7292136839618322504, guid: 866c166c420f2dd499fbad52eff4c3a7, type: 3}
-    isPurchased: 1
-    isEquiped: 0
-    widthImage: 62.7
+    widthImage: 283.5

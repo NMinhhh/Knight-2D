@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class GunShooting : MonoBehaviour
 {
     [SerializeField] private Transform shootingPoint;
-    [SerializeField] private GameObject bullet;
+    private GameObject bullet;
     private float damage;
     private float speed;
     private float timeLife;
@@ -101,12 +101,13 @@ public class GunShooting : MonoBehaviour
         script.CreateBullet(damage, speed, timeLife);
     }
 
-    public void CreateGun(float damage, float speed, float timeLife, float amountOfBullet)
+    public void CreateGun(float damage, float speed, float timeLife, float amountOfBullet, GameObject bullet)
     {
         this.damage = damage;
         this.speed = speed;
         this.timeLife = timeLife;
         this.amountOfBullet = amountOfBullet;
+        this.bullet = bullet;
     }
 
     public void Reload()

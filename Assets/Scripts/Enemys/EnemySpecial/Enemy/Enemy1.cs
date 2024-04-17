@@ -29,8 +29,8 @@ public class Enemy1 : Entity
     {
         base.Start();
         IdleState = new Enemy1_IdleState(this, stateMachine, "idle", this);
-        MoveState = new Enemy1_MoveState(this, stateMachine, "move", moveData, this);
-        DeathState = new Enemy1_DeathState(this, stateMachine, "dead", deathData);
+        MoveState = new Enemy1_MoveState(this, stateMachine, "idle", moveData, this);
+        DeathState = new Enemy1_DeathState(this, stateMachine, "idle", deathData);
         stateMachine.Initiate(IdleState);
     }
 

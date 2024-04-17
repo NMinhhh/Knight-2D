@@ -183,7 +183,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: -2104547341
   m_SortingLayer: 5
-  m_SortingOrder: 2
+  m_SortingOrder: 5
   m_SortAtRoot: 0
 --- !u!114 &1402862754281319096
 MonoBehaviour:
@@ -197,5 +197,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0808efafd1abc443b97a30923d4442a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  appearTimeMax: 1
-  disappearTime: 3
+  appearTimeMax: 0.5
+  disappearTime: 5

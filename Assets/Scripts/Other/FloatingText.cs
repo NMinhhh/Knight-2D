@@ -17,11 +17,12 @@ public class FloatingText : MonoBehaviour
     {
         textMesh = GetComponent<TextMeshPro>();
     }
-    public void SetText(string text, int direction)
+    public void SetText(string text, Color newColor, int dir)
     {
         textMesh.SetText(text);
+        textMesh.color = newColor;
         textColor = textMesh.color;
-        moveDir = new Vector2(Random.Range(.5f , .7f) * direction, Random.Range(.7f, 1f)) * 20f;
+        moveDir = new Vector2(.3f * dir, .3f) * 20f;
         sortingOrder++;
         textMesh.sortingOrder = sortingOrder;
     }

@@ -6,27 +6,14 @@ public class SettingUI : MonoBehaviour
 {
     [SerializeField] private GameObject settingUI;
 
-    private bool isSeting;
     void Start()
     {
         Time.timeScale = 1;
     }
 
-    private void Update()
-    {
-        if (InputManager.Instance.keyESC)
-        {
-            if(!isSeting)
-                OpenSetting();
-            else
-                CloseSetting();
-        }
-    }
-
     public void OpenSetting()
     {
         CanvasManager.Instance.OpenUI(settingUI);
-        isSeting = true;
         Time.timeScale = 0;
     }
 
@@ -39,7 +26,6 @@ public class SettingUI : MonoBehaviour
             else
             {
                 Time.timeScale = 1;
-                InputManager.Instance.MouseShoting();
             }
         }
         else
@@ -47,6 +33,5 @@ public class SettingUI : MonoBehaviour
             Time.timeScale = 1;
         }
         CanvasManager.Instance.CloseUI(settingUI);
-        isSeting = false;
     }
 }

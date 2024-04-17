@@ -21,13 +21,15 @@ public class HandleRotation : MonoBehaviour
 
     void Update()
     {
-        if (auto) 
+        if (EnemysPosition.Instance.GetEnemysPosition().Length > 0) 
         {
             HandleGunRotationEnemy();
         }
         else
         {
-            HandleGunRotation(InputManager.Instance.mousePos);
+            if (InputManager.Instance.xInput == 0 || InputManager.Instance.yInput == 0)
+                return;
+            HandleGunRotationToJoyStick();
 
         }
     }
@@ -53,6 +55,33 @@ public class HandleRotation : MonoBehaviour
         {
             nearestDistance = 15;
         }
+    }
+
+    void HandleGunRotationToJoyStick()
+    {
+        direction = (new Vector2(InputManager.Instance.xInput, InputManager.Instance.yInput)).normalized;
+        transform.right = direction;
+        angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Vector3 localScale = Vector3.one;
+
+        if (angle > 90 || angle < -90)
+        {
+            localScale.y = -1f;
+        }
+        else
+        {
+            localScale.y = 1f;
+        }
+
+        if (player.isFacingRight)
+        {
+            localScale.x = 1f;
+        }
+        else
+        {
+            localScale.x = -1f;
+        }
+        transform.localScale = localScale;
     }
 
     void HandleGunRotation(Vector2 taget)
@@ -82,8 +111,14 @@ public class HandleRotation : MonoBehaviour
         transform.localScale = localScale;
     }
 
-    public void TurnAuto()
+    public void TurnOnAuto()
     {
-        auto = !auto;
+        auto = true;
+    }
+
+    public void TurnOffAuto()
+    {
+        auto = false;
+
     }
 }

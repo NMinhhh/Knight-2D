@@ -57,7 +57,7 @@ public class EnemyBoss1 : MonoBehaviour
         if (timer > cooldown)
         {
             enemy.isSkill = true;
-            enemy.anim.SetBool("skill1", true);
+            //enemy.anim.SetBool("skill1", true);
             if (amountBulletCurrent > 0 && isSkillStart)
             {
                 if (Time.time >= startTime + skillTime)
@@ -70,7 +70,7 @@ public class EnemyBoss1 : MonoBehaviour
             else if(amountBulletCurrent <= 0)
             {
                 amountBulletCurrent = amountBullet;
-                enemy.anim.SetBool("endSkill", true);
+                //enemy.anim.SetBool("endSkill", true);
                 isSkillStart = false;
             }
         }
@@ -80,7 +80,7 @@ public class EnemyBoss1 : MonoBehaviour
 
     public void StartSkill()
     {
-        enemy.anim.SetBool("startSkill", true);
+        //enemy.anim.SetBool("startSkill", true);
         isSkillStart = true;
     }
 
@@ -88,9 +88,9 @@ public class EnemyBoss1 : MonoBehaviour
     {
         enemy.isSkill = false;
         timer = 0;
-        enemy.anim.SetBool("skill1", false);
-        enemy.anim.SetBool("startSkill", false);
-        enemy.anim.SetBool("endSkill", false);
+        //enemy.anim.SetBool("skill1", false);
+        //enemy.anim.SetBool("startSkill", false);
+        //enemy.anim.SetBool("endSkill", false);
     }
 
     void SpawnBullet()

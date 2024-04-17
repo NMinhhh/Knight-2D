@@ -23,7 +23,7 @@ public class WeaponItemUI : MonoBehaviour
     {
         this.image.sprite = image;
         RectTransform rect = this.image.GetComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(widthImage, 230);
+        rect.sizeDelta = new Vector2(widthImage, 314.8f);
     }
 
     public void SetWeaponDamage(string damageText)

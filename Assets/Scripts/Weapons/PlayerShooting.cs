@@ -41,17 +41,13 @@ public class PlayerShooting : MonoBehaviour
         reloadBullets = GetComponent<ReloadBullets>();
         if(isMuzzleFlash)
             anim = transform.Find("MuzzleFlash").GetComponent<Animator>();
-        //handleRotation = GameObject.FindObjectOfType<HandleRotation>();
         
     }
 
     void Update()
     {
         timer += Time.deltaTime;
-        if (!handleRotation.auto && InputManager.Instance.shoting)
-        {
-            Shooting();
-        }else if (handleRotation.auto && handleRotation.nearestObj != null)
+        if (handleRotation.nearestObj != null)
         {
             Shooting();
         }

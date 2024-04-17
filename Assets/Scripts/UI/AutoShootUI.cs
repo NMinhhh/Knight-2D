@@ -32,7 +32,7 @@ public class AutoShootUI : MonoBehaviour
 
     public void ClickAuto()
     {
-        handleRotation.TurnAuto();
+        handleRotation.TurnOnAuto();
         isTurnAuto = handleRotation.auto;
         isSetValue = true;
     }

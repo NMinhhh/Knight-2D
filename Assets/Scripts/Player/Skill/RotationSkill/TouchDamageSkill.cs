@@ -15,6 +15,7 @@ public class TouchDamageSkill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        attackDetail.attackDir = transform;
         TakeDamage();
     }
 
@@ -25,7 +26,6 @@ public class TouchDamageSkill : MonoBehaviour
 
     void TakeDamage()
     {
-        attackDetail.attackDir = transform;
         attackDetail.damage = this.damage;
         attackDetail.continousDamage = true;
         Collider2D[] hit = Physics2D.OverlapCircleAll(point.position, radius, whatIsEnemy);

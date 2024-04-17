@@ -11,6 +11,8 @@ public class EntityData : ScriptableObject
 
     public float knockbackSpeed = 0;
     public float hurtTime = 0.1f;
+    public GameObject floatingText;
+    public Color floatingTextColor;
 
     public float damageTimeCon = 0.1f;
 
@@ -22,6 +24,14 @@ public class EntityData : ScriptableObject
 
     [Header("Cooldown Attack")]
     public List<float> cooldownAttack;
+
+
+    [Header("Effect")]
+    public float slowingTimer;
+    public Color slowingColor;
+
+    [Header("LevelUp")]
+    public float healthUp;
 
 
 }

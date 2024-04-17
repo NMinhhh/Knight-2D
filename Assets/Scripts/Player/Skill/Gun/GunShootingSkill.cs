@@ -6,6 +6,7 @@ public class GunShootingSkill : MonoBehaviour
 {
     [Header("Info gun")]
     [SerializeField] private GameObject[] guns;
+    [SerializeField] private GameObject bullet;
     [SerializeField] private float damage;
     [SerializeField] private float speed;
     [SerializeField] private float timeLife;
@@ -21,7 +22,7 @@ public class GunShootingSkill : MonoBehaviour
         amountOfGun = level;
         guns[level - 1].SetActive(true);
         GunShooting script = guns[level - 1].GetComponent<GunShooting>();
-        script.CreateGun(damage, speed, timeLife, amountOfBullet);
+        script.CreateGun(damage, speed, timeLife, amountOfBullet, bullet);
         Reload();
     }
 
