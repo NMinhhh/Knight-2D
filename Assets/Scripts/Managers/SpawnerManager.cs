@@ -34,11 +34,7 @@ public class SpawnerManager : MonoBehaviour
 
     public void SpawnEnemy(GameObject enemy, Vector2 pos)
     {
-        //StartCoroutine(Spawn(enemy, pos));
-        GO = Instantiate(enemy, pos, Quaternion.identity);
-        spriteRenderer = GO.GetComponent<SpriteRenderer>();
-        sortingOrder++;
-        spriteRenderer.sortingOrder = sortingOrder;
+        StartCoroutine(Spawn(enemy, pos));
     }
 
     IEnumerator Spawn(GameObject enemy, Vector2 pos)
@@ -49,6 +45,7 @@ public class SpawnerManager : MonoBehaviour
         spriteRenderer = GO.GetComponent<SpriteRenderer>();
         sortingOrder++;
         spriteRenderer.sortingOrder = sortingOrder;
+        yield return GO;
         Destroy(go);
     }
 

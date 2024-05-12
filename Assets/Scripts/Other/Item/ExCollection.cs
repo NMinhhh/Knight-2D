@@ -11,6 +11,9 @@ public class ExCollection : MonoBehaviour
     private float distance = 5;
     private Transform player;
     private Rigidbody2D rb;
+
+    private bool canMove;
+
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
@@ -22,10 +25,10 @@ public class ExCollection : MonoBehaviour
     {
         if(Vector2.Distance(player.position, transform.position) < distance)
         {
-            rb.velocity = GetDir() * speed;
-            speed += speed * Time.deltaTime;
+            canMove = true;
         }
         CheckPlayer();
+        Move();
     }
 
     void CheckPlayer()
@@ -36,6 +39,20 @@ public class ExCollection : MonoBehaviour
             GameManager.Instance.UpdateEx(ex);
             Destroy(gameObject);
         }
+    }
+
+    void Move()
+    {
+        if (canMove)
+        {
+            rb.velocity = GetDir() * speed;
+            speed += speed * Time.deltaTime;
+        }
+    }
+
+    public void CanMove()
+    {
+        canMove = true;
     }
 
     Vector2 GetDir()

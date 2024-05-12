@@ -15,19 +15,7 @@ public class MapControl : MonoBehaviour
 
     void MapActive(int level)
     {
-        switch (level)
-        {
-            case 0:
-                maps[0].SetActive(true);
-                break;
-            case 1:
-                maps[1].SetActive(false);
-                break;
-            case 2:
-                maps[2].SetActive(true);
-                break;
-
-        }
+        maps[level].SetActive(true);
     }
 
 }

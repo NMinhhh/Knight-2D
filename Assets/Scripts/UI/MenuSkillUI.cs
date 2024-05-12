@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuSkillUI : MonoBehaviour
 {
     public static MenuSkillUI Instance {  get; private set; }
 
     [SerializeField] private GameObject menuSkillUI;
+    [Header("Energy to change")]
+    [SerializeField] private Text energyPriceChange;
+    [Header("Info Item")]
+    [SerializeField] private Text infoItemText;
 
     public bool isMenuOp {  get; private set; }
 
@@ -24,15 +29,24 @@ public class MenuSkillUI : MonoBehaviour
 
     public void OpenMenuSkill()
     {
-        menuSkillUI.SetActive(true);
-        isMenuOp = true;
+        this.menuSkillUI.SetActive(true);
+        this.isMenuOp = true;
         Time.timeScale = 0;
     }
 
     public void CloseMenuSkill()
     {
-        menuSkillUI.SetActive(false);
-        isMenuOp = false;
+        this.menuSkillUI.SetActive(false);
+        this.isMenuOp = false;
         Time.timeScale = 1;
+    }
+
+    public void SetEnergyPriceChange(int energy)
+    {
+        this.energyPriceChange.text = energy.ToString();
+    }
+    public void SetInfoItem(string text)
+    {
+        this.infoItemText.text = text;
     }
 }

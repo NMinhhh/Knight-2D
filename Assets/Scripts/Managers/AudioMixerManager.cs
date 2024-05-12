@@ -3,47 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class AudioMixerManager : MonoBehaviour
 {
     [SerializeField] private AudioMixer audioMixer;
-    [SerializeField] private Slider musicSlider;
-    [SerializeField] private Slider soundSlider;
+    private string sound = "Sound";
+    private string music = "Music";
     void Start()
     {
-        if (PlayerPrefs.HasKey("Music"))
+        if (PlayerPrefs.HasKey(sound))
         {
-            LoadMusicVolume();
+            SetSound(PlayerPrefs.GetFloat(sound));
         }
-        if (PlayerPrefs.HasKey("Sound"))
+        if(PlayerPrefs.HasKey(music))
         {
-            LoadSoundVolume();
+            SetMusic(PlayerPrefs.GetFloat(music));
         }
     }
 
-    public void SetMusicVolume(float value)
+    public void SetActive(GameObject go)
     {
-        audioMixer.SetFloat("Music",Mathf.Log10(value) * 20);
-        PlayerPrefs.SetFloat("Music", value);
+        go.gameObject.SetActive(true);
     }
 
-    void LoadMusicVolume()
+    public void SetInActive(GameObject go)
     {
-        float value = PlayerPrefs.GetFloat("Music");
-        audioMixer.SetFloat("Music", Mathf.Log10(value) * 20);
-        musicSlider.value = value;
+        go.gameObject.SetActive(false);
     }
 
-    public void SetSoundVolume(float value)
+    public void SetSound(float value)
     {
-        audioMixer.SetFloat("Sound", Mathf.Log10(value) * 20);
-        PlayerPrefs.SetFloat("Sound", value);
+        audioMixer.SetFloat(sound, value);
+        PlayerPrefs.SetFloat(sound, value);
     }
 
-    void LoadSoundVolume()
+    public void SetMusic(float value)
     {
-        float value = PlayerPrefs.GetFloat("Sound");
-        audioMixer.SetFloat("Sound", Mathf.Log10(value) * 20);
-        soundSlider.value = value;
+        audioMixer.SetFloat(music, value);
+        PlayerPrefs.SetFloat(music, value);
+
+
     }
 }

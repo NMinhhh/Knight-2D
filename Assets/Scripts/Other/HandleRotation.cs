@@ -11,7 +11,7 @@ public class HandleRotation : MonoBehaviour
 
     public GameObject nearestObj {  get; private set; }
     private float distance;
-    private float nearestDistance = 15;
+    private float nearestDistance = 100;
 
 
     private void Start()
@@ -22,6 +22,10 @@ public class HandleRotation : MonoBehaviour
     void Update()
     {
         if (EnemysPosition.Instance.GetEnemysPosition().Length > 0) 
+        {
+            HandleGunRotationEnemy();
+        }
+        else if(nearestObj != null)
         {
             HandleGunRotationEnemy();
         }

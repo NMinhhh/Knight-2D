@@ -8,6 +8,7 @@ public class Blood : MonoBehaviour
     private SpriteRenderer sprite;
     private Color color;
     float time;
+    [SerializeField] private bool isDestrongImmedi;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,7 @@ public class Blood : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDestrongImmedi) return;
         if(time < timeAppear)
         {
             time += Time.deltaTime;
@@ -31,5 +33,10 @@ public class Blood : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    void Destroy()
+    {
+        Destroy(gameObject);
     }
 }

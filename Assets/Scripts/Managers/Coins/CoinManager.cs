@@ -10,12 +10,14 @@ public class CoinManager : MonoBehaviour
 
     public int diamond;
     
+    //Weapon
     public List<int> weaponsPurchasedIndex = new List<int>();
     
     public int selectedWeaponIndex;
     
     Weapon weaponSelected;
 
+    //Map
     public List<int> mapUnlock = new List<int>();
 
     public List<int> mapWin = new List<int>();
@@ -23,6 +25,11 @@ public class CoinManager : MonoBehaviour
     int selectedMap;
 
     bool mapState;
+
+    //Avatar
+    public List<int> avatarPurchaseIndex = new List<int>();
+
+    public int selectedAvatarIndex;
 
     void Awake()
     {
@@ -61,7 +68,7 @@ public class CoinManager : MonoBehaviour
 
     public bool HasEnenoughDiamond(int amount)
     {
-        return coin >= amount;
+        return diamond >= amount;
     }
 
     public void PickUpDiamond(int amount)
@@ -104,9 +111,9 @@ public class CoinManager : MonoBehaviour
         return weaponsPurchasedIndex;
     }
 
-    public void AddWeaponPurchasedIndex(int idx)
+    public void AddWeaponPurchasedIndex(int id)
     {
-        weaponsPurchasedIndex.Add(idx);
+        weaponsPurchasedIndex.Add(id);
     }
 
     //Map
@@ -120,9 +127,9 @@ public class CoinManager : MonoBehaviour
         mapUnlock.Add(level);
     }
 
-    public int GetMapUnlock(int level)
+    public int GetMapUnlock(int idx)
     {
-        return mapUnlock[level];
+        return mapUnlock[idx];
     }
 
     public List<int> GetAllMapWin()
@@ -135,9 +142,9 @@ public class CoinManager : MonoBehaviour
         mapWin.Add(level);
     }
 
-    public int GetMapWin(int level)
+    public int GetMapWin(int idx)
     {
-        return mapWin[level];
+        return mapWin[idx];
     }
 
     public void SetMapState(bool state)
@@ -160,6 +167,33 @@ public class CoinManager : MonoBehaviour
         return selectedMap;
     }
 
+    //Avatar
+
+    public int GetSelectedAvatarIndex()
+    {
+        return selectedAvatarIndex;
+    }
+
+    public void ChangeAvatarIndex(int id)
+    {
+        selectedAvatarIndex = id;
+    }
+
+    public List<int> GetAllAvatarPurchasedIndex()
+    {
+        return avatarPurchaseIndex;
+    }
+
+    public void AddAvatarPurchased(int id)
+    {
+        avatarPurchaseIndex.Add(id);
+    }
+
+    public int GetAvatarPurchased(int idx)
+    {
+        return avatarPurchaseIndex[idx]; 
+    }
+
     //Json
     public void FromJson(string stringSave)
     {
@@ -170,5 +204,7 @@ public class CoinManager : MonoBehaviour
         this.selectedWeaponIndex = saveObj.selectedWeaponIndex;
         this.mapUnlock = saveObj.mapUnlock;
         this.mapWin = saveObj.mapWin;
+        this.avatarPurchaseIndex = saveObj.avatarPurchaseIndex;
+        this.selectedAvatarIndex = saveObj.selectedAvatarIndex;
     }
 }

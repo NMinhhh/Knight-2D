@@ -2,177 +2,263 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Map1 : MonoBehaviour
 {
-    //Level player
+    [Header("Map Level")]
     [SerializeField] private int mapLevel;
-
-    //Number of enemy dead to spawn Boss
-    [SerializeField] private int amountOfKill;
-
-    //Number of enemy dead to spawn enemy big
-    [SerializeField] private int amountOfKillEnemy;
-    private int amountOfKillEnemyCur;
-  
+    [Space]
+    [Space]
 
     [Header("Position spawn enemy")]
     [SerializeField] private Transform[] spawnPoint;
-    [SerializeField] private List<Vector2> sizeSpawnPoint;
-    Vector2[] pos;
+    Vector2 pos;
     [Space]
     [Space]
 
-    [Header("Warning UI")]
-    [SerializeField] private GameObject roomBoss;
-    [SerializeField] private GameObject warning;
-    [SerializeField] private Transform bossPoint;
-    [SerializeField] private float warningTime;
-    private float warningTimeCur;
+    [Header("Stage")]
+    [SerializeField] private GameObject stageUI;
+    [SerializeField] private Text stageTextUI;
+    [SerializeField] private Text stageText;
+    [SerializeField] private int maxStage;
+    private int currentStage;
+    [SerializeField] private float cooldownstartStageTimer;
+    private float startStageTimer;
+    [SerializeField] private float cooldownEndStageTimer;
+    private float endStageTimer;
+    private bool isChangeStage;
+    [Space]
     [Space]
 
-    [Header("Enemy")]
-    [SerializeField] private GameObject[] enemyNor;
-    [SerializeField] private GameObject[] enemyMed;
-    private int amountOfEnemyNor;
+    [Header("SpawnEnemy")]
+    [SerializeField] private GameObject iconSpawner;
+    SpriteRenderer spriteRenderer;
+    private GameObject GO;
+    [Space]
 
-    //Enemy Big
-    [SerializeField] private GameObject enemyBig;
-    private bool isEnemyBig;
-    private GameObject enemyBigGo;
+    private static int sortingOrder = 0;
 
-    //Boss
-    [SerializeField] private GameObject boss;
+    [Header("Enemy1")]
+    [SerializeField] private GameObject[] enemy1;
+    [SerializeField] private int amountOfEnemy1;
+    private int currentAmoutOfEnemy1;
+    [SerializeField] private float cooldownEnemy1;
+    private float startTime1;
+    [Space]
+    [Space]
+
+    [Header("Enemy2")]
+    [SerializeField] private GameObject[] enemy2;
+    [SerializeField] private int amountOfEnemy2;
+    [SerializeField] private int stageAppearEnemy2;
+    private int currentAmoutOfEnemy2;
+    [SerializeField] private float cooldownEnemy2;
+    private float startTime2;
+    [Space]
+    [Space]
+
+    [Header("Enemy3")]
+    [SerializeField] private GameObject[] enemy3;
+    [SerializeField] private int amountOfEnemy3;
+    [SerializeField] private int stageAppearEnemy3;
+    private int currentAmoutOfEnemy3;
+    [SerializeField] private float cooldownEnemy3;
+    private float startTime3;
+    [Space]
+    [Space]
+
+    [Header("Boss")]
+    [SerializeField] private GameObject[] boss;
+    [SerializeField] private Transform pointBossSpawn;
     private GameObject go;
-    private List<GameObject> enemies;
-    private bool isBossAppear;
-    private bool isAttackBoss;
+    [SerializeField] private int[] stageBossApears;
+    [SerializeField] private GameObject warning;
+    [SerializeField] private float warningTime;
+    private float timer;
+    private bool bossStage;
     private bool isBoss;
+    private int bossId;
 
-    //cooldown spawn enemy
-    [SerializeField] private float cooldown;
-    private float maxCooldown;
-    private float timeCur;
+    private List<GameObject> enemies;
 
-    private bool isWin;
+    private List<GameObject> items;
 
+    [SerializeField] private int amountAllEnemySpawn;
 
-    //Time in game
-    private int levelUp;
-    private int levelCur;
     AttackDetail attackDetail;
-
 
     void Start()
     {
-        pos = new Vector2[4];
-        maxCooldown = cooldown;
-        timeCur = 0;
-        levelCur = GameManager.Instance.level;
-        levelUp = GameManager.Instance.level;
+        startTime1 = Time.deltaTime;
         enemies = new List<GameObject>();
-        amountOfKillEnemyCur = amountOfKillEnemy;
+        items = new List<GameObject>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        levelUp = GameManager.Instance.level;
-        timeCur -= Time.deltaTime;
-        if (isWin)
+        if (!bossStage)
         {
-            roomBoss.SetActive(false);
-
-            Debug.Log("You win!!!");
-            isWin = false;
-            isBossAppear = false;
-            isAttackBoss = false;
-            if (!CoinManager.Instance.GetMapState())
+            if(amountAllEnemySpawn > 0)
             {
-                CoinManager.Instance.AddMapWin(mapLevel);
-                CoinManager.Instance.AddMapUnlock(mapLevel + 1);
-                CoinManager.Instance.SetMapState(true);
+                ControlSpawn();
+            }else
+            {
+                if (CheckEnemyToChangeStage() && !isChangeStage)
+                {
+                    RecieveItem();
+                    endStageTimer -= Time.deltaTime;
+                    if(endStageTimer <= 0)
+                    {
+                        startStageTimer = Time.time;
+                        isChangeStage = true;
+                        SendMessageStage();
+                        endStageTimer = cooldownEndStageTimer;
+                    }
+
+                }
+            }
+            if(Time.time >= startStageTimer + cooldownstartStageTimer && isChangeStage)
+            {
+                ChangeState();
             }
         }
         else
         {
-            CheckBossAppear();
-            //Spawn enemy
-            if (timeCur < 0 && !isBossAppear)
+            timer += Time.deltaTime;
+            if(timer >= warningTime && !isBoss)
             {
-                ControlSpawnEnemy();
-                timeCur = cooldown;
+                warning.SetActive(false);
+                go = Instantiate(boss[bossId], pointBossSpawn.position, Quaternion.identity);
+                isBoss = true;
             }
-            else if (isBossAppear && !isAttackBoss)
+            if (isBoss)
             {
-                //All enemies die
-                EnemyAllDeath();
-
-                //Warning UI
-                warningTimeCur += Time.deltaTime;
-                warning.SetActive(true);
-                //Boss appear
-                if (warningTimeCur >= warningTime)
-                {
-                    isAttackBoss = true;
-                    warning.SetActive(false);
-                    go = Instantiate(boss, bossPoint.position, Quaternion.identity);
-                }
-            }else if (isAttackBoss)
-            {
-                if (go == null)
-                {
-                    isWin = true;
+                if(go == null){
+                    isBoss = false;
+                    timer = 0;
+                    bossStage = false;
                 }
             }
-
         }
+       
     }
 
 
-    void CheckBossAppear()
+    void ControlSpawn()
     {
-        if (GameManager.Instance.kill == amountOfKill && !isBoss)
+        if (Time.time >= startTime1 + cooldownEnemy1 && currentAmoutOfEnemy1 > 0)
         {
-            roomBoss.SetActive(true);
-            isBossAppear = true;
-            isBoss = true;
+            currentAmoutOfEnemy1--;
+            amountAllEnemySpawn--;
+            startTime1 = Time.time;
+            StartCoroutine(SpawnEnemy(enemy1[Random.Range(0, enemy1.Length)], GetPos()));
         }
+        if (currentStage < stageAppearEnemy2)
+            return;
+        if (Time.time >= startTime2 + cooldownEnemy2 && currentAmoutOfEnemy2 > 0)
+        {
+            currentAmoutOfEnemy2--;
+            amountAllEnemySpawn--;
+            startTime2 = Time.time;
+            StartCoroutine(SpawnEnemy(enemy2[Random.Range(0, enemy2.Length)], GetPos()));
+        }
+        if(currentStage < stageAppearEnemy3)
+            return;
+        if (Time.time >= startTime3 + cooldownEnemy3 && currentAmoutOfEnemy3 > 0)
+        {
+            currentAmoutOfEnemy3--;
+            amountAllEnemySpawn--;
+            startTime3 = Time.time;
+            StartCoroutine(SpawnEnemy(enemy3[Random.Range(0, enemy3.Length)], GetPos()));
+        }
+        
     }
 
-    void ControlSpawnEnemy()
+    bool CheckEnemyToChangeStage()
     {
-        if(levelCur < levelUp)
+        for (int i = 0; i < enemies.Count; i++)
         {
-            levelCur = levelUp;
-            if(cooldown > 0.2f)
-                cooldown = Mathf.Clamp(cooldown -  0.1f, 0.2f, maxCooldown);
+            if (enemies[i] == null)
+            {
+                enemies.RemoveAt(i);
+            }
         }
-        int i = Random.Range(0, enemyNor.Length);
-        Spawn(enemyNor[i], 1);
-        amountOfEnemyNor++;
-        if(levelUp > 5 && amountOfEnemyNor > 3)
+        return enemies.Count == 0;
+    }
+
+    void SendMessageStage()
+    {
+        GameManager.Instance.StageLevelUp();
+        currentStage = GameManager.Instance.stage;
+        stageTextUI.text = "Stage " + currentStage;
+        stageText.text = currentStage.ToString();
+        stageUI.SetActive(true);
+    }
+
+    void ChangeState()
+    {
+        if (stageBossApears[0] == currentStage)
         {
-            Spawn(enemyMed[0], 1);
-            amountOfEnemyNor = 0;
-            amountOfKillEnemy++;
+            bossStage = true;
+            warning.SetActive(true);
+            bossId = 0;
+        }else if (stageBossApears[1] == currentStage)
+        {
+            bossStage = true;
+            warning.SetActive(true);
+            bossId = 1;
         }
-        amountOfKillEnemyCur--;
-        if (amountOfKillEnemyCur <= 0 && levelCur >= 10)
+        else
         {
-            enemyBigGo = Instantiate(enemyBig, GetPos(), Quaternion.identity);
-            isEnemyBig = true;
-            amountOfKillEnemyCur = amountOfKillEnemy;
+            currentAmoutOfEnemy1 = amountOfEnemy1 * currentStage;
+
+            if (currentStage >= stageAppearEnemy2)
+                currentAmoutOfEnemy2 = amountOfEnemy2 * (currentStage - stageAppearEnemy2 + 1);
+
+            if (currentStage >= stageAppearEnemy3)
+                currentAmoutOfEnemy3 = amountOfEnemy3 * (currentStage - stageAppearEnemy3 + 1);
+
+            amountAllEnemySpawn = currentAmoutOfEnemy1 + currentAmoutOfEnemy2 + currentAmoutOfEnemy3;
         }
 
+        isChangeStage = false;
+        stageUI.SetActive(false);
+
+    }
+
+    IEnumerator SpawnEnemy(GameObject enemy, Vector2 pos)
+    {
+        GameObject go = Instantiate(iconSpawner, pos, Quaternion.identity);
+        GameObject spawnObj = Instantiate(enemy, go.transform.position, Quaternion.identity);
+        spawnObj.SetActive(false);
+        spriteRenderer = spawnObj.GetComponent<SpriteRenderer>();
+        sortingOrder++;
+        spriteRenderer.sortingOrder = sortingOrder;
+        enemies.Add(spawnObj);
+        yield return new WaitForSeconds(1.5f);
+        spawnObj.SetActive(true);
+        Destroy(go);
+    }
+
+
+    void RecieveItem()
+    {
+        items.AddRange(GameObject.FindGameObjectsWithTag("Item"));
+        for (int i = 0;i < items.Count;i++)
+        {
+            items[i].transform.SendMessage("CanMove");
+        }
+        items.Clear();
     }
 
     void EnemyAllDeath()
     {
         enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
-        attackDetail.damage = 100;
+        attackDetail.damage = 10000;
         attackDetail.attackDir = transform;
-        for(int i = 0; i < enemies.Count; i++)
+        for (int i = 0; i < enemies.Count; i++)
         {
             enemies[i].transform.SendMessage("Damage", attackDetail);
             if (enemies[i] == null)
@@ -185,7 +271,6 @@ public class Map1 : MonoBehaviour
     }
 
 
-
     void Spawn(GameObject gameObject, int amount)
     {
         for (int i = 0; i < amount; i++)
@@ -196,11 +281,8 @@ public class Map1 : MonoBehaviour
 
     Vector2 GetPos()
     {
-
-        pos[0] = new Vector2(Random.Range(spawnPoint[0].position.x + sizeSpawnPoint[0].x, spawnPoint[0].position.x + sizeSpawnPoint[0].y), spawnPoint[0].position.y);
-        pos[1] = new Vector2(spawnPoint[1].position.x, Random.Range(spawnPoint[1].position.y + sizeSpawnPoint[1].x, spawnPoint[1].position.y + sizeSpawnPoint[1].y));
-        pos[2] = new Vector2(Random.Range(spawnPoint[2].position.x + sizeSpawnPoint[0].x, spawnPoint[2].position.x + sizeSpawnPoint[0].y), spawnPoint[2].position.y);
-        pos[3] = new Vector2(spawnPoint[3].position.x, Random.Range(spawnPoint[3].position.y + sizeSpawnPoint[1].x, spawnPoint[3].position.y + sizeSpawnPoint[1].y));
-        return pos[Random.Range(0, pos.Length)];
+        pos = new Vector2(Random.Range(spawnPoint[0].position.x, spawnPoint[2].position.x), Random.Range(spawnPoint[1].position.y, spawnPoint[3].position.y));
+        return pos;
     }
+
 }

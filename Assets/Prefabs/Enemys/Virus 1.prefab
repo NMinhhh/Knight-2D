@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1968389385778576552}
   - component: {fileID: 7125021704515716079}
-  - component: {fileID: 1271308861185587276}
+  - component: {fileID: 2409318361930280979}
   - component: {fileID: 361587766273696156}
   - component: {fileID: 7965306104396439990}
   - component: {fileID: 1015790112172547559}
@@ -121,7 +121,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1271308861185587276
+--- !u!114 &2409318361930280979
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,15 +130,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 5143242531403574514}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a63261061dce9c24a9edc0c21b6a8bab, type: 3}
+  m_Script: {fileID: 11500000, guid: 87180fdb7da8bd0479c084e4ab822040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: e40b1a24be8d668478ca8a0fb7b39f45, type: 2}
+  speed: 6
   checkPlayerPos: {fileID: 446250079480323688}
+  sizeCheck: {x: 0.9, y: 0.69}
   touchDamagePos: {fileID: 5374615368543479383}
-  haveAttackStates: 0
-  moveData: {fileID: 11400000, guid: dcc41426936ba1746b33521d6c33ef70, type: 2}
-  deathData: {fileID: 11400000, guid: 9e6230c862c125744bc47106b93ce671, type: 2}
+  sizeTouch: {x: 1.45, y: 1.45}
+  touchDamage: 5
+  touchCooldown: 1
+  maxHealth: 1
+  damageTimerCon: 0.1
+  hurtEffectTimer: 0.1
+  healthLevelUp: 0
+  floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
+  floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
+  particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
+  amountOfEx: 1
+  radiusPointEx: 0
+  slowingTimer: 2
+  slowingColor: {r: 0, g: 0.46881914, b: 1, a: 1}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 64
+  whatIsShield:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!50 &361587766273696156
 Rigidbody2D:
   serializedVersion: 4
@@ -154,7 +172,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -198,9 +216,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.11432147}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.65018713
 --- !u!95 &1015790112172547559
 Animator:
   serializedVersion: 5
@@ -247,7 +265,7 @@ Transform:
   m_GameObject: {fileID: 8145275878787219580}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: -0.08, z: 0}
+  m_LocalPosition: {x: 0.02, y: -0.104, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

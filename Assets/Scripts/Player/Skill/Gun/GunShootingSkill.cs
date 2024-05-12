@@ -17,7 +17,7 @@ public class GunShootingSkill : MonoBehaviour
     private float timer;
     private int amountOfGun;
 
-    public void AddGun(int level)
+    public void LevelUp(int level)
     {
         amountOfGun = level;
         guns[level - 1].SetActive(true);

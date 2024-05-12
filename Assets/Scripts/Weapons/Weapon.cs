@@ -17,6 +17,5 @@ public class Weapon
     public float cooldown = 0.1f;
     public GameObject bulletIcon;
     public bool isPurchased;
-    public bool isEquiped;
     public float widthImage;
 }

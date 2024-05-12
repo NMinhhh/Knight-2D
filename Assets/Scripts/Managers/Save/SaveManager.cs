@@ -18,11 +18,12 @@ public class SaveManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+        LoadSaveGame();
+
     }
     private void Start()
     {
         SaveSystem.Init();
-        LoadSaveGame();
     }
 
     private void OnApplicationQuit()
@@ -46,6 +47,7 @@ public class SaveManager : MonoBehaviour
         {
             CoinManager.Instance.AddWeaponPurchasedIndex(0);
             CoinManager.Instance.AddMapUnlock(0);
+            CoinManager.Instance.AddAvatarPurchased(0);
         }
     }
 

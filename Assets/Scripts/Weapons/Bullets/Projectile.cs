@@ -5,12 +5,12 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private LayerMask whatIsEnemy;
-    [SerializeField] private LayerMask whatIsWall;
+    [SerializeField] private LayerMask whatIsShield;
     private float speed;
     private float timeLife;
     private Rigidbody2D rb;
 
-    [SerializeField] private BoxCollider2D boxCollider;
+    [SerializeField] private Vector2 sizecheck;
     private AttackDetail attackDetail;
 
     private bool isWall;
@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
     }
     private void Update()
     {
-        if(isDamage || isWall)
+        if(isDamage)
         {
             Destroy(gameObject);
         }
@@ -42,17 +42,19 @@ public class Projectile : MonoBehaviour
 
     void Attack()
     {
-        Collider2D wall = Physics2D.OverlapBox(transform.position, boxCollider.bounds.size, 0, whatIsWall);
-        Collider2D enemy = Physics2D.OverlapBox(transform.position, boxCollider.bounds.size, 0, whatIsEnemy);
-        if (enemy && !isDamage)
+        Collider2D hitShield = Physics2D.OverlapBox(transform.position, sizecheck, 0, whatIsShield);
+        Collider2D enemy = Physics2D.OverlapBox(transform.position, sizecheck, 0, whatIsEnemy);
+        if (hitShield)
+        {
+            isDamage = true;
+            hitShield.transform.parent.SendMessage("DamageShield");
+            return;
+        }else if(enemy)
         {
             isDamage = true;
             enemy.transform.SendMessage("Damage", attackDetail);
         }
-        if (wall)
-        {
-            isWall = true;
-        }
+       
     }
 
     public void CreateBullet(float damage, float speed, float timeLife)
@@ -60,5 +62,10 @@ public class Projectile : MonoBehaviour
         attackDetail.damage = damage;
         this.speed = speed;
         this.timeLife = timeLife;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(transform.position, sizecheck);
     }
 }

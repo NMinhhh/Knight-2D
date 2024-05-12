@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: WeaponDatabase
   m_EditorClassIdentifier: 
   weapons:
-  - name: Pistol
+  - name: No 1
     image: {fileID: 1863616520, guid: ae0051663d97cb345863eaa3c922cd2b, type: 3}
-    damage: 5
+    damage: 1
     bullet: 15
     reload: 1
     price: 0
@@ -24,9 +24,8 @@ MonoBehaviour:
     cooldown: 0.3
     bulletIcon: {fileID: 2458557462247786642, guid: b19e23dee31767949848fcd742b6f26b, type: 3}
     isPurchased: 1
-    isEquiped: 0
     widthImage: 283.5
-  - name: AK
+  - name: No 2
     image: {fileID: 1208916092, guid: ae0051663d97cb345863eaa3c922cd2b, type: 3}
     damage: 8
     bullet: 35
@@ -36,10 +35,9 @@ MonoBehaviour:
     timeLife: 3
     cooldown: 0.1
     bulletIcon: {fileID: 2458557462247786642, guid: b19e23dee31767949848fcd742b6f26b, type: 3}
-    isPurchased: 1
-    isEquiped: 0
+    isPurchased: 0
     widthImage: 283.5
-  - name: Shotgun
+  - name: No 3
     image: {fileID: -1715440986, guid: ae0051663d97cb345863eaa3c922cd2b, type: 3}
     damage: 8
     bullet: 15
@@ -50,9 +48,8 @@ MonoBehaviour:
     cooldown: 0.3
     bulletIcon: {fileID: 2458557462247786642, guid: b19e23dee31767949848fcd742b6f26b, type: 3}
     isPurchased: 0
-    isEquiped: 0
     widthImage: 283.5
-  - name: Bazoka
+  - name: No 4
     image: {fileID: -1285962514, guid: ae0051663d97cb345863eaa3c922cd2b, type: 3}
     damage: 25
     bullet: 10
@@ -61,7 +58,6 @@ MonoBehaviour:
     speed: 18
     timeLife: 3
     cooldown: 0.5
-    bulletIcon: {fileID: 3875696009280236879, guid: 203023f5d3eccc94cac4bcb809344ea1, type: 3}
+    bulletIcon: {fileID: 1968114089096506296, guid: f554e5a7fe08e134292e44c63347a841, type: 3}
     isPurchased: 0
-    isEquiped: 0
     widthImage: 283.5

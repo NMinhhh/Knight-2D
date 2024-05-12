@@ -14,27 +14,28 @@ public class LightningSpawnSkill : MonoBehaviour
     [SerializeField] private float cooldown;
     private float timer;
 
-    private int amountLightning;
+    private int level;
     
 
     void Start()
     {
         timer = cooldown;
+
     }
 
     void Update()
     {
         timer -= Time.deltaTime;
-        if(timer <= 0 && amountLightning > 0)
+        if(timer <= 0 && level > 0)
         {
             timer = cooldown;
-            SetSkill(amountLightning);
+            SetSkill(level);
         }
     }
 
-    public void SetAmount(int amount)
+    public void LevelUp(int level)
     {
-        amountLightning = amount;
+        this.level = level;
     }
 
     void SetSkill(int amount)
@@ -51,11 +52,11 @@ public class LightningSpawnSkill : MonoBehaviour
             }
             else
             {
-                pos = new Vector3(Random.Range(transform.position.x + 10, transform.position.x - 10), Random.Range(transform.position.y + 8, transform.position.y - 8), 0);
+                pos = new Vector3(Random.Range(transform.position.x + 5, transform.position.x - 5), Random.Range(transform.position.y + 5, transform.position.y - 5), 0);
             }
-            go = Instantiate(lightning, pos, Quaternion.identity);
+            go = Instantiate(lightning, new Vector3(pos.x, pos.y + 20, 0), Quaternion.identity);
             script = go.GetComponent<Lightning>();
-            script.Set(damage);
+            script.Set(pos,damage);
         }
     }
 }

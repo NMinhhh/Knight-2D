@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class WeaponRotationSkill : MonoBehaviour
 {
@@ -20,9 +21,21 @@ public class WeaponRotationSkill : MonoBehaviour
 
     public void SetSkill(int level)
     {
+        if(level > 1)
+        {
+            skillObject[level - 2].SetActive(false);
+        }
         skillObject[level - 1].SetActive(true);
-        TouchDamageSkill script = skillObject[level - 1].GetComponent<TouchDamageSkill>();
-        script.SetSkill(damage);
+        CreateObj(skillObject[level - 1]);
+    }
+
+    void CreateObj(GameObject content)
+    {
+        for(int  i= 0; i < content.transform.childCount; i++)
+        {
+            TouchDamageSkill script = content.transform.GetChild(i).gameObject.GetComponent<TouchDamageSkill>();
+            script.SetSkill(damage);
+        }
     }
 
     void FixedUpdate()

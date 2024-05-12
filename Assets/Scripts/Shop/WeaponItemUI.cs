@@ -13,6 +13,7 @@ public class WeaponItemUI : MonoBehaviour
     [SerializeField] private Text reloadText;
     [SerializeField] private Button button;
     [SerializeField] private Text price;
+    [SerializeField] private Sprite btnEquipSprite;
 
     public void SetWeaponName(string name)
     {
@@ -28,17 +29,17 @@ public class WeaponItemUI : MonoBehaviour
 
     public void SetWeaponDamage(string damageText)
     {
-        this.damageText.text = damageText;
+        this.damageText.text = "Damage: " + damageText;
     }
 
     public void SetWeaponBullets(string bulletsText)
     {
-        this.bullets.text = bulletsText;
+        this.bullets.text ="Bullet: " + bulletsText;
     }
 
     public void SetWeaponReload(string reloadText)
     {
-        this.reloadText.text = reloadText;
+        this.reloadText.text ="Reload: " + reloadText+"s";
     }
 
     public void SetWeaponPrice(string priceText)
@@ -55,6 +56,7 @@ public class WeaponItemUI : MonoBehaviour
     public void OnWeaponUnEquipButton(int idx, Action<int> action)
     {
         button.interactable = true;
+        button.image.sprite = btnEquipSprite;
         price.text = "Equip";
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() => action(idx));
@@ -62,6 +64,7 @@ public class WeaponItemUI : MonoBehaviour
 
     public void OnWeaponEquipButton()
     {
+        button.image.sprite = btnEquipSprite;
         button.interactable = false;
         price.text = "UnEquip";
     }

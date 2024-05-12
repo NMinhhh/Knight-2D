@@ -4,90 +4,67 @@ using UnityEngine;
 
 public class LaserSkill : MonoBehaviour
 {
-    [SerializeField] private GameObject[] lasers;
-    private Laser script;
-
-    //amout laser
-    private int amoutLaser;
-
-    //cooldown
-    [SerializeField] private float cooldown;
-    private float time;
-
-    //Info 
     [SerializeField] private float damage;
-    [SerializeField] private float damageTime;
+    [SerializeField] private GameObject[] laser;
+    [SerializeField] private float cooldown;
+    private float timer;
+    Laser script;
 
-    //Turn Skill
-    [SerializeField] private float timeLife;
-    private float timeLifeCur;
-    private bool isSkillOn;
-
+    private int level;
     // Start is called before the first frame update
     void Start()
     {
-        time = cooldown;
-        timeLifeCur = timeLife;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (amoutLaser < 0) return;
-
-        time -= Time.deltaTime;
-        if(time <= 0 && !isSkillOn)
+        timer += Time.deltaTime;
+        if(timer > cooldown && level > 0)
         {
-            isSkillOn = true;
+            SetSkill();
+            timer = 0;
         }
+    }
 
-        if(isSkillOn)
+    public void LevelUp(int level)
+    {
+        this.level = level;
+        script = laser[level - 1].GetComponent<Laser>();
+        script.CreateLaser(damage);
+    }
+
+    void SetSkill()
+    {
+        float rotationz;
+        Vector3 direction;
+        int amountOfEnemy = 0;
+        GameObject enemyRam = null;
+        Collider2D[] enemys = EnemysPosition.Instance.GetEnemysPosition();
+        for (int i = 0; i < level; i++)
         {
-            StartSkill();
-            timeLifeCur -= Time.deltaTime;
-            if (timeLifeCur <= 0)
+            if (enemys.Length > 0 && amountOfEnemy < enemys.Length)
             {
-                time = cooldown;
-                timeLifeCur = timeLife;
-                isSkillOn = false;
+                amountOfEnemy++;
+                enemyRam = enemys[i].gameObject;
+                direction = (enemyRam.transform.position - laser[i].transform.position).normalized;
+                rotationz = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            }
+            else
+            {
+                enemyRam = null;
+                rotationz = Random.Range(0, 360);
+            }
+            script = laser[i].GetComponent<Laser>();
+            laser[i].transform.eulerAngles = new Vector3(0, 0, rotationz);
+            if(enemyRam == null)
+            {
+                script.OnLaser();
+            }
+            else
+            {
+               script.OnLaser(enemyRam);
             }
         }
-        else
-        {
-            EndSkill();
-        }
     }
-
-    public void AddLaser(int i)
-    {
-        amoutLaser = i;
-
-    }
-
-    void StartSkill()
-    {
-        for(int i = 0; i < amoutLaser; i++)
-        {
-            lasers[i].SetActive(true);
-            script = lasers[i].GetComponent<Laser>();
-            script.SetLaser(damage, damageTime);
-        }
-    }
-
-    void EndSkill()
-    {
-        for (int i = 0; i < amoutLaser; i++)
-        {
-            lasers[i].SetActive(false);
-        }
-    }
-
-
-    
-
-
-
-   
-
-   
 }

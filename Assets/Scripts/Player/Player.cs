@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private float currentHelth;
     //Hurt timer
     [SerializeField] private float hurtTime;
+    private bool isHurt;
     //Imortal Timer
     [SerializeField] private float imortalTime;
     [SerializeField] private float numberOfFlash;
@@ -58,7 +59,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         Movement();
-        //CheckFlip();
     }
 
     public void ProtectionSkillOn()
@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
 
     void Damage(AttackDetail attackDetail)
     {
-        if (isImortal || isDie || isProtection) return;
+        if (isImortal || isDie || isProtection || isHurt) return;
         currentHelth = Mathf.Clamp(currentHelth - attackDetail.damage, 0, maxHealth);
         stats.UpdateHealth(currentHelth, maxHealth);
         if (attackDetail.attackDir.position.x > transform.position.x)
@@ -103,9 +103,11 @@ public class Player : MonoBehaviour
 
     IEnumerator Hurt()
     {
+        isHurt = true;
         sprite.color = new Color(.95f, .55f, .55f , 1);
         yield return new WaitForSeconds(hurtTime);
         sprite.color = Color.white;
+        isHurt = false;
     }
 
     IEnumerator Imortal()

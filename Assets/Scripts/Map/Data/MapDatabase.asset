@@ -17,7 +17,7 @@ MonoBehaviour:
     isUnlock: 1
     isWin: 0
   - level: 2
-    isUnlock: 1
+    isUnlock: 0
     isWin: 0
   - level: 3
     isUnlock: 0

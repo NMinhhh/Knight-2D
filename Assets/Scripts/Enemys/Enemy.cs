@@ -4,110 +4,211 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [Header("Health")]
-    [SerializeField] private float maxHealth;
-    private float currentHealth;
+    [Header("Movement")]
+    [SerializeField] private float speed;
+    protected bool isMove = true;
     [Space]
     [Space]
 
-    [Header("Move")]
-    [SerializeField] private float speed;
-    public Transform target {  get; private set; }
-    //private bool isMove;
-    public bool isSkill;
+    [Header("Check player")]
+    [SerializeField] private Transform checkPlayerPos;
+    [SerializeField] private Vector2 sizeCheck;
+    [Space]
+    [Space]
+
+    [Header("Damage Take Player")]
+    [SerializeField] private Transform touchDamagePos;
+    [SerializeField] private Vector2 sizeTouch;
+    [SerializeField] protected float touchDamage;
+    [SerializeField] protected float touchCooldown;
+    protected float touchTimer;
     [Space]
     [Space]
 
     [Header("Hurt")]
-    [SerializeField] private float hurtTime;
-    [SerializeField] private float knockbackSpeed;
-    [SerializeField] private float timerH;
-    private float tim;
-    private bool isKnockback;
+    [SerializeField] protected float maxHealth;
+    [SerializeField] protected float damageTimerCon;
+    [SerializeField] protected float hurtEffectTimer;
+    [SerializeField] protected float healthLevelUp;
+    protected float currentHealth;
+    protected float currentDamageTimeCon;
+    protected bool isDead;
+    protected bool isImortal = true;
+    [Header("Floating Text")]
+    [SerializeField] protected GameObject floatingText;
+    [SerializeField] protected Color floatingTextColor;
+    [Space]
+    [Space]
 
+    [Header("Dead")]
+    [SerializeField] private GameObject particleBlood;
+    [SerializeField] protected int amountOfEx;
+    [SerializeField] protected float radiusPointEx;
+    protected Vector3 dropItemPoint;
+    [Space]
+    [Space]
 
-    [Header("Attack")]
-    [SerializeField] private Transform checkPlayer;
-    [SerializeField] private Vector2 sizeCheckPlayer;
+    [Header("Slowing")]
+    [SerializeField] private float slowingTimer;
+    [SerializeField] private Color slowingColor;
+    private bool isSlowingEffect;
+    private float slowingTimerCur;
+    [Space]
+    [Space]
+
+    [Header("Layer Mask")]
     [SerializeField] private LayerMask whatIsPlayer;
-    public LayerMask player { get; private set; }
+    [SerializeField] private LayerMask whatIsShield;
 
-    //Other Variable
-    [SerializeField] private GameObject blood;
-    [SerializeField] private Transform bloodPoint;
-    private float facingRight;
 
-    //Components
-    //public Animator anim {  get; private set; }
-    private Rigidbody2D rb;
-    private SpriteRenderer sprite;
 
-    // Start is called before the first frame update
-    void Start()
+    protected int damageDir;
+    protected int facingRight;
+    protected AttackDetail attackDetail;
+
+    protected Transform target;
+
+    protected Animator anim;
+
+    protected Rigidbody2D rb;
+
+    protected SpriteRenderer spriteRenderer;
+
+    protected virtual void Start()
     {
-        player = whatIsPlayer;
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        //anim = GetComponent<Animator>();
-        sprite = GetComponent<SpriteRenderer>();
-        target = GameObject.FindWithTag("Player").transform;
-        currentHealth = maxHealth;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        target = GameObject.Find("Player").transform;
         facingRight = 1;
+        healthLevelUp = maxHealth;
+        for (int i = 1;i < GameManager.Instance.stage; i++)
+        {
+            healthLevelUp += 1;
+        }
+        currentHealth = healthLevelUp;
+        isImortal = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetMaxHealth()
     {
-        //CheckIfFlip();
-        Movement();
-        tim += Time.deltaTime;
-    }
-    public Vector2 GetDir()
-    {
-        return (target.position - transform.position).normalized;
-    }
-    void Movement()
-    {
-        if (PlayerDetected() || isSkill)
-        {
-            //isMove = false;
-            rb.velocity = Vector2.zero;
-        }
-        else if(!PlayerDetected() && !isKnockback && !isSkill)
-        {
-            rb.velocity = GetDir() * speed;
-        }
-        //anim.SetBool("move", isMove);
+        
     }
 
-    public bool PlayerDetected()
+    protected virtual void Update()
     {
-        return Physics2D.OverlapBox(checkPlayer.position, sizeCheckPlayer, 0, whatIsPlayer);
+        if (!CheckPlayer() && isMove)
+        {
+            if(isSlowingEffect)
+                SetMovement(speed/2);
+            else
+                SetMovement(speed);
+        }
+        else if(CheckPlayer() || !isMove)
+        {
+            SetVelocityZero();
+        }
+
+        CheckIfFlip();
+
+        TouchDamagePlayer();
+        currentDamageTimeCon -= Time.deltaTime;
+
+        if (isSlowingEffect)
+            SlowingEffect();
+    }
+
+    void IsSlowingEffect()
+    {
+        isSlowingEffect = true;
+        slowingTimerCur = slowingTimer;
+    }
+
+    void SlowingEffect()
+    {
+        slowingTimerCur -= Time.deltaTime;
+        spriteRenderer.color = slowingColor;
+        if (slowingTimerCur <= 0)
+        {
+            spriteRenderer.color = new Color(1, 1, 1, 1);
+            isSlowingEffect = false;
+        }
+
+    }
+
+    protected virtual void Dead()
+    {
+        Instantiate(particleBlood, transform.position, Quaternion.identity);
+        for (int i = 0; i < amountOfEx; i++)
+        {
+            dropItemPoint = Random.insideUnitCircle * radiusPointEx;
+            DropItem(transform.position + dropItemPoint);
+        }
+        Destroy(gameObject);
+        GameManager.Instance.AddKill();
+        SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetItem(0), transform.position);
+    }
+
+    protected virtual void DropItem(Vector3 point)
+    {
+        int ran = Random.Range(0, 50);
+        int ran2 = Random.Range(0, 50);
+        if (ran == ran2)
+        {
+            SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetExItem(1), point);
+        }
+        else
+        {
+            SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetExItem(0), point);
+        }
+        int ran3 = Random.Range(0, 100);
+        if (ran3 == 20)
+            SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetItem(1), point);
+
+    }
+
+    IEnumerator Hurt()
+    {
+        spriteRenderer.color = new Color(.95f, .6f, .6f, 1);
+        yield return new WaitForSeconds(hurtEffectTimer);
+        spriteRenderer.color = new Color(1, 1, 1, 1);
     }
 
     void RecieveDamage(AttackDetail attackDetail)
     {
-        currentHealth = Mathf.Clamp(currentHealth - attackDetail.damage, 0, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth - attackDetail.damage, 0, healthLevelUp);
+        if (attackDetail.attackDir.position.x > transform.position.x)
+        {
+            damageDir = -1;
+        }
+        else
+        {
+            damageDir = 1;
+        }
+        FloatingTextManager.Instance.CreateFloatingText(floatingText, transform.position, attackDetail.damage.ToString(), floatingTextColor, damageDir);
         if (currentHealth > 0)
         {
             StartCoroutine(Hurt());
         }
-        if (currentHealth <= 0)
+        else
         {
+            isDead = true;
+        }
 
-            CoinManager.Instance.PickupCoins(10);
-            SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetExItem(0), transform.position);
-            Instantiate(blood, bloodPoint.position, Quaternion.identity);
-            Destroy(gameObject);
+        if (isDead)
+        {
+            Dead();
         }
     }
 
-    void Damage(AttackDetail attackDetail)
+    public virtual void Damage(AttackDetail attackDetail)
     {
+        if (isDead || isImortal) return;
         if (attackDetail.continousDamage)
         {
-            if (tim < timerH) return;
+            if (currentDamageTimeCon > 0) return;
             RecieveDamage(attackDetail);
-            tim = 0;
+            currentDamageTimeCon = damageTimerCon;
         }
         else
         {
@@ -115,17 +216,49 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    IEnumerator Hurt()
+
+    void TouchDamagePlayer()
     {
-        isKnockback = true;
-        sprite.color = new Color(.95f,.6f , .6f, 1);
-        rb.velocity = GetDir() * -knockbackSpeed;
-        yield return new WaitForSeconds(hurtTime);
-        sprite.color = new Color(1, 1, 1, 1);
-        isKnockback = false;
+        touchTimer -= Time.deltaTime;
+        attackDetail.attackDir = transform;
+        attackDetail.damage = touchDamage;
+        Collider2D[] hit = Physics2D.OverlapBoxAll(touchDamagePos.position, sizeTouch, 0, whatIsPlayer);
+        Collider2D hitShield = Physics2D.OverlapBox(touchDamagePos.position, sizeTouch, 0, whatIsShield);
+
+        if (hitShield)
+        {
+            hitShield.transform.parent.SendMessage("DamageShield");
+            return;
+        }
+
+        foreach (Collider2D col in hit)
+        {
+            if (col && touchTimer <= 0)
+            {
+                col.transform.SendMessage("Damage", attackDetail);
+                touchTimer = touchCooldown;
+            }
+        }
+    }
+    public void SetMovement(float speed)
+    {
+        //if (isSlowingEffect)
+        //    rb.velocity = GetDir() * speed / 2;
+        //else
+            rb.velocity = GetDir() * speed;
     }
 
-    void CheckIfFlip()
+    public void SetVelocityZero()
+    {
+        rb.velocity = Vector2.zero;
+    }
+
+    public bool CheckPlayer()
+    {
+        return Physics2D.OverlapBox(checkPlayerPos.position, sizeCheck, 0, whatIsPlayer);
+
+    }
+    public void CheckIfFlip()
     {
         if (target.position.x < transform.position.x && facingRight == 1)
         {
@@ -137,14 +270,22 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Flip()
+    public Vector2 GetDir()
+    {
+        return (target.position - transform.position).normalized;
+    }
+
+    public void Flip()
     {
         transform.Rotate(0, 180, 0);
         facingRight *= -1;
     }
 
-    private void OnDrawGizmos()
+
+    protected virtual void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(checkPlayer.position, sizeCheckPlayer);
+        Gizmos.DrawWireCube(checkPlayerPos.position, sizeCheck);
+        Gizmos.DrawWireCube(touchDamagePos.position, sizeTouch);
+        Gizmos.DrawWireSphere(transform.position, radiusPointEx);
     }
 }

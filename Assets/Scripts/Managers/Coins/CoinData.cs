@@ -10,4 +10,6 @@ public class CoinData
     public int selectedWeaponIndex;
     public List<int> mapUnlock = new List<int>();
     public List<int> mapWin = new List<int>();
+    public List<int> avatarPurchaseIndex = new List<int>();
+    public int selectedAvatarIndex;
 }

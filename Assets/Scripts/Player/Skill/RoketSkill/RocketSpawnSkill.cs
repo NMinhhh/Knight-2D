@@ -17,7 +17,7 @@ public class RocketSpawnSkill : MonoBehaviour
 
     //Info Rocket
     [SerializeField] private float damage;
-    [SerializeField] private Vector2 speed;
+    [SerializeField] private float speed;
     [SerializeField] private float timeLife;
 
     void Start()
@@ -66,7 +66,7 @@ public class RocketSpawnSkill : MonoBehaviour
             }
             go = Instantiate(spawnGo,transform.position,Quaternion.Euler(0,0,rotationZ));
             script = go.GetComponent<ProjectileBomb>();
-            script.CreateBomb(damage, Random.Range(speed.x,speed.y), timeLife);
+            script.CreateBomb(damage, speed, timeLife);
         }
     }
 }

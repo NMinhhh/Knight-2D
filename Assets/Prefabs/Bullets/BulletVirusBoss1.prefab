@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6810571035877553201}
   - component: {fileID: 6874095024572371705}
   - component: {fileID: 7278430438733559622}
-  - component: {fileID: 2703841058193132046}
   m_Layer: 9
   m_Name: BulletVirusBoss1
   m_TagString: Untagged
@@ -50,10 +49,10 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 64
-  whatIsWall:
+  whatIsShield:
     serializedVersion: 2
-    m_Bits: 256
-  boxCollider: {fileID: 2703841058193132046}
+    m_Bits: 2048
+  sizecheck: {x: 0.7, y: 0.7}
 --- !u!212 &6874095024572371705
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -133,48 +132,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &2703841058193132046
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4323602004240218919}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0026854873, y: 0.007994294}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.6875, y: 0.6875}
-    newSize: {x: 0.3125, y: 0.1875}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.56098425, y: 0.5547949}
-  m_EdgeRadius: 0

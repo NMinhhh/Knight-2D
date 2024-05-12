@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class StoreUI : MonoBehaviour
 {
-    [SerializeField] private GameObject goUI;
+    [SerializeField] private Shop shop;
     
-    public void OpenUI()
+    public void ReStart()
     {
-        CanvasManager.Instance.OpenUI(goUI);
-    }
-
-    public void CloseUI()
-    {
-        CanvasManager.Instance.CloseUI(goUI);
     }
 }

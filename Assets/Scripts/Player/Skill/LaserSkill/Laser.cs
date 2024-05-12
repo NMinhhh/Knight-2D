@@ -1,99 +1,100 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    //Animation
-    [SerializeField] private Texture[] textures;
-    private int animationStep;
-    private float timeChange;
-
-    [SerializeField] private GameObject particle;
-
-    //Info Skill
-    private float damage;
-    private float damageTime;
-    private float damageTimeCur;
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private Vector2 size;
     [SerializeField] private LayerMask whatIsEnemy;
+    private float damage;
+    private GameObject go;
 
-    //draw line
-    private LineRenderer lineRenderer;
+    [SerializeField] private float cooldown;
+    private float timer;
 
-    //Look pos enemy
-    private GameObject enemyRamdom;
-
+    private Animator anim;
 
     AttackDetail attackDetail;
 
+
+    public bool isLaser {  get; private set; }
+
+    // Start is called before the first frame update
     void Start()
     {
-        lineRenderer = GetComponent<LineRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        ShootLaser();
-        Animation();
+        if (!isLaser) return;
+        timer += Time.deltaTime;
+        if(go != null)
+        {
+            transform.right = GetDir();
+        }
+        if(timer >= cooldown)
+        {
+            timer = 0;
+            anim.SetBool("flash", true);
+        }
+        
     }
 
-    void Animation()
+    void Attack()
     {
-        timeChange += Time.deltaTime;
-        if(timeChange > .1f)
+        Collider2D[] hits = Physics2D.OverlapBoxAll(attackPoint.position, size, transform.localEulerAngles.z, whatIsEnemy);
+        attackDetail.damage = damage;
+        attackDetail.attackDir = transform;
+        attackDetail.continousDamage = false;
+        foreach (Collider2D col in hits)
         {
-            animationStep++;
-            if(animationStep == textures.Length) 
-            { 
-                animationStep = 0;
-            }
-            lineRenderer.material.SetTexture("_MainTex", textures[animationStep]);
-            timeChange = 0;
-        }
-    }
-
-    void ShootLaser()
-    {
-        //Get position enemy detected
-        Collider2D[] hits = EnemysPosition.Instance.GetEnemysPosition();
-        if(hits.Length > 0 && enemyRamdom == null)
-        {
-            enemyRamdom = hits[Random.Range(0, hits.Length)].gameObject;
-        }
-
-        if(enemyRamdom != null)
-        {
-            Draw2dRay(transform.position, enemyRamdom.transform.position);
-            Instantiate(particle, enemyRamdom.transform.position, Quaternion.identity);
-            attackDetail.damage = damage;
-            attackDetail.attackDir = transform;
-            attackDetail.continousDamage = false;
-            damageTimeCur += Time.deltaTime;
-            if(damageTimeCur >= damageTime)
+            if (col)
             {
-                enemyRamdom.transform.SendMessage("Damage", attackDetail);
-                damageTimeCur = 0;
+                col.transform.SendMessage("Damage", attackDetail);
             }
         }
-        else
-        {
-            Draw2dRay(transform.position, transform.position);
-        }
     }
 
-    void Draw2dRay(Vector2 startPos, Vector2 endPos)
+    private Vector2 GetDir()
     {
-        lineRenderer.SetPosition(0, startPos);
-        lineRenderer.SetPosition(1, endPos);
+        return (go.transform.position - transform.position).normalized;
     }
 
-    public void SetLaser(float damage, float damageTime)
+    void FinishAnimation()
+    {
+        timer = 0;
+        OffLaser();
+        anim.SetBool("flash", false);
+    }
+
+    public void CreateLaser(float damage)
     {
         this.damage = damage;
-        this.damageTime = damageTime;
     }
 
-   
+    public void OnLaser(GameObject go)
+    {
+        this.go = go;
+        isLaser = true;
+        anim.SetBool("ready", isLaser);
+    }
+
+    public void OnLaser()
+    {
+        isLaser = true;
+        anim.SetBool("ready", isLaser);
+    }
+
+    private void OffLaser()
+    {
+        isLaser = false;
+        anim.SetBool("ready", isLaser);
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(attackPoint.position, size);
+    }
 }

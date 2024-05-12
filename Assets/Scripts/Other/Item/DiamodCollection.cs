@@ -9,6 +9,8 @@ public class DiamodCollection : MonoBehaviour
     [SerializeField] private CircleCollider2D circleCollider;
     [SerializeField] private LayerMask whatIsPlayer;
 
+    private Transform player;
+
     private bool canMove;
 
     private Animator anim;
@@ -18,6 +20,7 @@ public class DiamodCollection : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        player = GameObject.Find("Player").transform;
     }
 
     // Update is called once per frame
@@ -32,7 +35,7 @@ public class DiamodCollection : MonoBehaviour
     {
         if (canMove)
         {
-            transform.position = Vector3.MoveTowards(transform.position, destinationPoint, speed);
+            transform.position = Vector3.MoveTowards(transform.position, destinationPoint, speed * Time.deltaTime);
             if(Vector3.Distance(transform.position, destinationPoint) <= 0.1f)
             {
                 transform.position = destinationPoint;
@@ -53,6 +56,11 @@ public class DiamodCollection : MonoBehaviour
     }
 
     void Trigger()
+    {
+        canMove = true;
+    }
+
+    public void CanMove()
     {
         canMove = true;
     }
