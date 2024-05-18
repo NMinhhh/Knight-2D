@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private float movementSpeed;
+    private float currenSpeed;
     private Vector2 movement;
     private int horizontal;
     private int vertical;
@@ -54,11 +55,30 @@ public class Player : MonoBehaviour
         isFacingRight = true;
         facingRight = 1;
         currentHelth = maxHealth;
+        currenSpeed = movementSpeed;
     }
 
     void Update()
     {
         Movement();
+    }
+
+    public void IncreaseSpeed(float amount)
+    {
+        currenSpeed += movementSpeed * amount / 100;
+    }
+
+    public void AddHealth(float amout)
+    {
+        currentHelth = maxHealth + amout;
+    }
+
+    public void ResetPlayer()
+    {
+        currentHelth = maxHealth;
+        currenSpeed = movementSpeed;
+        stats.UpdateHealth(currentHelth, maxHealth);
+
     }
 
     public void ProtectionSkillOn()
@@ -69,12 +89,6 @@ public class Player : MonoBehaviour
     public void ProtectionSkillOff()
     {
         isProtection = false;
-    }
-
-    public void Healing(float amout)
-    {
-        currentHelth = Mathf.Clamp(currentHelth + amout, 0, maxHealth);
-        stats.UpdateHealth(currentHelth, maxHealth);
     }
 
     void Damage(AttackDetail attackDetail)
@@ -128,7 +142,7 @@ public class Player : MonoBehaviour
         isDie = false;
         StartCoroutine(Imortal());
         currentHelth = maxHealth;
-        stats.UpdateHealth(maxHealth, maxHealth);
+        stats.UpdateHealth(0, maxHealth);
 
     }
 
@@ -142,7 +156,7 @@ public class Player : MonoBehaviour
         {
             movement.Set(0, 0);
         }
-        rb.velocity = movement * movementSpeed;
+        rb.velocity = movement * currenSpeed;
         //anim.SetBool("move", movement.x != 0 || movement.y != 0);
     }
 

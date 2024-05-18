@@ -8,7 +8,7 @@ public class Enemy1 : Enemy
     [SerializeField] private float bulletDamage;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private float bulletTimeLife;
-    private Projectile script;
+    private NormalBullet script;
     private GameObject go;
     protected override void Dead()
     {
@@ -19,7 +19,7 @@ public class Enemy1 : Enemy
     {
         float angle = Mathf.Atan2(GetDir().y, GetDir().x)*Mathf.Rad2Deg;
         go = Instantiate(bulletObj, transform.position, Quaternion.Euler(0,0,angle));
-        script = go.GetComponent<Projectile>();
+        script = go.GetComponent<NormalBullet>();
         script.CreateBullet(bulletDamage, bulletSpeed, bulletTimeLife);
     }
 }

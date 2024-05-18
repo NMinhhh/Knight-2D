@@ -12,6 +12,7 @@ public class SwawpBoss2 : MonoBehaviour
     [SerializeField] private float damage;
     [SerializeField] private float timeLife;
     [SerializeField] private LayerMask whatIsPlayer;
+    [SerializeField] private LayerMask whatIsShield;
     private Animator anim;
     AttackDetail attackDetail;
 
@@ -42,8 +43,14 @@ public class SwawpBoss2 : MonoBehaviour
     void Attack()
     {
         Collider2D hit = Physics2D.OverlapCircle(transform.position, radiusDamage, whatIsPlayer);
+        Collider2D hitShield = Physics2D.OverlapCircle(transform.position, radiusDamage, whatIsShield);
         attackDetail.attackDir = transform;
         attackDetail.damage = damage;
+        if (hitShield)
+        {
+            hitShield.transform.parent.SendMessage("DamageShield");
+            return;
+        }
         if (hit)
         {
             hit.transform.SendMessage("Damage", attackDetail);

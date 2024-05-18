@@ -4,29 +4,36 @@ using UnityEngine;
 
 public class ElectricSkill : MonoBehaviour
 {
+    [Header("Electric Obj")]
     [SerializeField] private GameObject[] electricsObj;
     private Electric script;
 
-    //amout laser
-    private int level;
-
-    //cooldown
+    [Header("Cooldown")]
     [SerializeField] private float cooldown;
-    private float time;
+    private float timer;
 
-    //Info 
-    [SerializeField] private float damage;
+    [Header("Info")]
+    [SerializeField] private float basicDamage;
+    [SerializeField] private float damageLevelUp;
+    [Range(10,100)]
+    [SerializeField] private float damageLevelUpPercent;
+    private float damage;
     [SerializeField] private float damageTime;
 
-    //Turn Skill
+    [Header("Time electric attack")]
     [SerializeField] private float timeLife;
     private float timeLifeCur;
     private bool isSkillOn;
+    private bool isSkillOff;
+    private bool isSkillStay;
+
+    private int level;
 
     // Start is called before the first frame update
     void Start()
     {
         timeLifeCur = timeLife;
+        timer = cooldown;
     }
 
     // Update is called once per frame
@@ -34,33 +41,41 @@ public class ElectricSkill : MonoBehaviour
     {
         if (level < 0) return;
 
-        time -= Time.deltaTime;
-        if(time <= 0 && !isSkillOn)
+        timer -= Time.deltaTime;
+
+        if (timer <= 0 && !isSkillOff && !isSkillOn && !isSkillStay)
         {
             isSkillOn = true;
         }
 
-        if(isSkillOn)
+        if (isSkillOn)
         {
             StartSkill();
+            isSkillOn = false;
+            isSkillStay = true;
+        }
+        else if (isSkillStay)
+        {
             timeLifeCur -= Time.deltaTime;
             if (timeLifeCur <= 0)
             {
-                time = cooldown;
                 timeLifeCur = timeLife;
-                isSkillOn = false;
+                isSkillStay = false;
+                isSkillOff = true;
             }
         }
-        else
+        else if(isSkillOff)
         {
             EndSkill();
+            timer = cooldown;
+            isSkillOff = false;
         }
     }
 
-    public void LevelUp(int i)
+    public void LevelUp(int level)
     {
-        level = i;
-
+        this.level = level;
+        damage = GameManager.Instance.Calculate(basicDamage, damageLevelUp, damageLevelUpPercent, this.level);
     }
 
     void StartSkill()

@@ -13,7 +13,7 @@ public class BossEnemy2 : BossEnemy
     [SerializeField] private float timeLife;
     [SerializeField] private float shootingCooldown;
     private float shootingTime;
-    private Projectile script;
+    private NormalBullet script;
     private GameObject Go;
     private bool isShootingBulletSkill;
 
@@ -95,7 +95,7 @@ public class BossEnemy2 : BossEnemy
     {
         float angle = Mathf.Atan2(GetDir().y, GetDir().x) * Mathf.Rad2Deg;
         Go = GameObject.Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, angle));
-        script = Go.GetComponent<Projectile>();
+        script = Go.GetComponent<NormalBullet>();
         script.CreateBullet(bulletDamage, bulletSpeed, timeLife);
     }
 

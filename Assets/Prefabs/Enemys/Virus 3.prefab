@@ -107,12 +107,13 @@ MonoBehaviour:
   sizeCheck: {x: 0.93, y: 1.04}
   touchDamagePos: {fileID: 1761752171744622175}
   sizeTouch: {x: 1.73, y: 1.64}
-  touchDamage: 5
+  touchDamage: 1
   touchCooldown: 1
-  maxHealth: 10
+  basicHealth: 20
+  healthLevelUp: 8
+  healthLevelUpPercent: 3
   damageTimerCon: 0.1
   hurtEffectTimer: 0.1
-  healthLevelUp: 0
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 4106987093756705936, guid: 12d9bf5c1629fb646b58ec6b3cb57839, type: 3}
@@ -127,7 +128,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   bulletObj: {fileID: 1884940605765032870, guid: 4bf72dec41584e64aa23faa033d4a983, type: 3}
-  bulletDamage: 5
+  bulletDamage: 1
   bulletSpeed: 10
   bulletTimeLife: 5
 --- !u!50 &7525573173401716121

@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class BomerangSpawnSkill : MonoBehaviour
 {
-    //WaterBlast Obj
+    [Header("Bomerang Pref")]
     [SerializeField] private GameObject spawnGo;
     private GameObject go;
     private Bomerang script;
-    //Cooldown
+
+    [Header("Cooldown")]
     [SerializeField] private float cooldown;
     private float timer;
 
-    //Info Water
-    [SerializeField] private float damage;
+    [Header("Info")]
+    [SerializeField] private float basicDamage;
+    [SerializeField] private float damageLevelUp;
+    [Range(10, 100)]
+    [SerializeField] private float damageLevelUpPercent;
+    private float damage;
     [SerializeField] private float speed;
     [SerializeField] private float timeLife;
 
@@ -39,6 +44,7 @@ public class BomerangSpawnSkill : MonoBehaviour
     public void LevelUp(int level)
     {
         this.level = level;
+        damage = GameManager.Instance.Calculate(basicDamage, damageLevelUp, damageLevelUpPercent, this.level);
     }
 
     void SetSkill(int level)

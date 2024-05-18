@@ -4,21 +4,29 @@ using UnityEngine;
 
 public class Lightning : MonoBehaviour
 {
+    [Header("Image lightning")]
     [SerializeField] private Sprite[] sprites;
+    private int animationStep;
+    private float timeChange;
+
+    [Header("Particle and effect")]
     [SerializeField] private GameObject particle;
     [SerializeField] private GameObject effect;
 
-    private Vector3 attackPoint;
-
+    [Header("Damage radius")]
     [SerializeField] private float radius;
     [SerializeField] private LayerMask whatIsEnemy;
+
+    [Header("size lightning")]
     [Range(0f, 3f)]
     [SerializeField] private float value;
     private float height;
     private float damage;
+
     AttackDetail attackDetail;
-    Vector2 localScale;
+    Vector2 size;
     float distance;
+    private Vector3 attackPoint;
 
     private SpriteRenderer spriteRenderer;
 
@@ -26,15 +34,15 @@ public class Lightning : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         distance = Vector2.Distance(transform.position, attackPoint);
-        spriteRenderer.sprite = sprites[Random.Range(0, sprites.Length)];
     }
 
     private void Update()
     {
+        Animation();
         height += value;
         if (height < distance)
         {
-            localScale = new Vector2(spriteRenderer.size.x, height);
+            size = new Vector2(spriteRenderer.size.x, height);
         }
         else
         {
@@ -43,7 +51,22 @@ public class Lightning : MonoBehaviour
             Instantiate(effect, attackPoint, Quaternion.identity);
             Destroy(gameObject);
         }
-        spriteRenderer.size = localScale;
+        spriteRenderer.size = size;
+    }
+
+    public void Animation()
+    {
+        timeChange += Time.deltaTime;
+        if(timeChange > .1f)
+        {
+            animationStep++;
+            if(animationStep >= sprites.Length)
+            {
+                animationStep = 0;
+            }
+            spriteRenderer.sprite = sprites[animationStep];
+            timeChange = 0;
+        }
     }
 
     public void Set(Vector3 attackPoint,float damage)
@@ -75,6 +98,6 @@ public class Lightning : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, radius);
+        Gizmos.DrawWireSphere(transform.position,radius);
     }
 }

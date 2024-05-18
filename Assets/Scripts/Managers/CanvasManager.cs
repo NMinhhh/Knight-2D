@@ -58,7 +58,6 @@ public class CanvasManager : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
         EnergyUIInActive();
-        //InputManager.Instance.MouseShoting();
     }
 
     public void OpenUI(GameObject go)

@@ -4,25 +4,28 @@ using UnityEngine;
 
 public class LavaSkill : MonoBehaviour
 {
+    [Header("LavaPref")]
     [SerializeField] private GameObject lavaObj;
-    [SerializeField] private float damage;
-    [SerializeField] private float timeLife;
-    [SerializeField] private float cooldown;
-    [SerializeField] private Vector3[] localScaleLavaObjs;
-    [SerializeField] private float[] sizeTakeDamage;
-
-
-    [SerializeField] private float cooldownSpawn;
-    private float timer;
-
     private GameObject go;
     private Lava script;
 
-    private int level;
+    [Header("Info")]
+    [SerializeField] private float basicDamage;
+    [SerializeField] private float damageLevelUp;
+    [Range(10, 100)]
+    [SerializeField] private float damageLevelUpPercent;
+    private float damage;
+    [SerializeField] private float timeLife;
+    [SerializeField] private float damageCooldown;
 
-    void Start()
-    {
-    }
+    [Header("Size lava")]
+    [SerializeField] private Vector3[] localScaleLavaObjs;
+    [SerializeField] private float[] sizeTakeDamage;
+
+    [Header("Cooldown")]
+    [SerializeField] private float cooldownSpawn;
+    private float timer;
+    private int level;
 
     void Update()
     {
@@ -37,6 +40,7 @@ public class LavaSkill : MonoBehaviour
     public void LevelUp(int level)
     {
         this.level = level;
+        damage = GameManager.Instance.Calculate(basicDamage, damageLevelUp, damageLevelUpPercent, this.level);
     }
 
     void SpawnLava()
@@ -44,6 +48,6 @@ public class LavaSkill : MonoBehaviour
         go = Instantiate(lavaObj, transform.position, Quaternion.identity);
         go.transform.localScale = localScaleLavaObjs[level - 1];
         script = go.GetComponent<Lava>();
-        script.CreateLava(damage, cooldown, timeLife, sizeTakeDamage[level - 1]);
+        script.CreateLava(damage, damageCooldown, timeLife, sizeTakeDamage[level - 1]);
     }
 }

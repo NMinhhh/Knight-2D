@@ -39,7 +39,7 @@ public class DiamodCollection : MonoBehaviour
             if(Vector3.Distance(transform.position, destinationPoint) <= 0.1f)
             {
                 transform.position = destinationPoint;
-                CoinManager.Instance.PickUpDiamond(1);
+                GameManager.Instance.PickUpDiamond(1);
                 Destroy(gameObject);
             }
         }

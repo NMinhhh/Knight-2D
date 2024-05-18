@@ -270,15 +270,6 @@ public class Map1 : MonoBehaviour
 
     }
 
-
-    void Spawn(GameObject gameObject, int amount)
-    {
-        for (int i = 0; i < amount; i++)
-        {
-            SpawnerManager.Instance.SpawnEnemy(gameObject, GetPos());
-        }
-    }
-
     Vector2 GetPos()
     {
         pos = new Vector2(Random.Range(spawnPoint[0].position.x, spawnPoint[2].position.x), Random.Range(spawnPoint[1].position.y, spawnPoint[3].position.y));

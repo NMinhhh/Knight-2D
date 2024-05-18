@@ -49,7 +49,7 @@ public class ItemUI : MonoBehaviour
 
     public void ChooseItem()
     {
-        outlineBtn.effectColor = new Color(outlineBtn.effectColor.r, outlineBtn.effectColor.g, outlineBtn.effectColor.b, 1);
+        outlineBtn.effectColor = new Color(outlineBtn.effectColor.r, outlineBtn.effectColor.g, outlineBtn.effectColor.b, .8f);
     }
 
     public void UnChooseItem()

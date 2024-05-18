@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class Electric : MonoBehaviour
 {
-    //Animation
+    [Header("Animation")]
     [SerializeField] private Texture[] textures;
     private int animationStep;
     private float timeChange;
 
+    [Header("Particle")]
     [SerializeField] private GameObject particle;
     private float timer;
 
@@ -101,5 +102,4 @@ public class Electric : MonoBehaviour
         this.damageTime = damageTime;
     }
 
-   
 }

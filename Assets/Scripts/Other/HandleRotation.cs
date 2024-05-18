@@ -7,7 +7,7 @@ public class HandleRotation : MonoBehaviour
     private Vector3 direction;
     public float angle {  get; private set; }
     public Player player {  get; private set; }
-    public bool auto {  get; private set; }
+    public bool isShooting {  get; private set; }
 
     public GameObject nearestObj {  get; private set; }
     private float distance;
@@ -21,17 +21,28 @@ public class HandleRotation : MonoBehaviour
 
     void Update()
     {
-        if (EnemysPosition.Instance.GetEnemysPosition().Length > 0) 
+        if (AutoShoot.isLockHandle)
+        {
+            if(AutoShoot.nearestObj != null)
+            {
+                HandleGunRotation(AutoShoot.nearestObj.transform.position);
+                AutoShoot.SetAutoShoot(true);
+            }
+        }
+        else if (nearestObj != null)
+        {
+            HandleGunRotationEnemy();
+            AutoShoot.SetNearestObj(nearestObj);
+            AutoShoot.SetAutoShoot(true);
+        }
+        else if (EnemysPosition.Instance.GetEnemysPosition().Length > 0) 
         {
             HandleGunRotationEnemy();
         }
-        else if(nearestObj != null)
+        else if(nearestObj == null)
         {
-            HandleGunRotationEnemy();
-        }
-        else
-        {
-            if (InputManager.Instance.xInput == 0 || InputManager.Instance.yInput == 0)
+            AutoShoot.SetAutoShoot(false);
+            if (InputManager.Instance.xInput == 0 || InputManager.Instance.yInput == 0 || AutoShoot.isLockHandle)
                 return;
             HandleGunRotationToJoyStick();
 
@@ -57,7 +68,7 @@ public class HandleRotation : MonoBehaviour
         }
         else
         {
-            nearestDistance = 15;
+            nearestDistance = 100;
         }
     }
 
@@ -113,16 +124,5 @@ public class HandleRotation : MonoBehaviour
             localScale.x = -1f;
         }
         transform.localScale = localScale;
-    }
-
-    public void TurnOnAuto()
-    {
-        auto = true;
-    }
-
-    public void TurnOffAuto()
-    {
-        auto = false;
-
     }
 }

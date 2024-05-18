@@ -16,7 +16,6 @@ public class PlayerDie : MonoBehaviour
     {
         mutiply = 1;
         player = GetComponent<Player>();
-        btnBorn.onClick.AddListener(() => { Born(); });
     }
 
     // Update is called once per frame
@@ -25,18 +24,28 @@ public class PlayerDie : MonoBehaviour
         if(player.isDie && !isLoss)
         {
             isLoss = true;
-            CanvasManager.Instance.OpenUI(dieGo);
+            GameStateUI.Instance.SetDiamondToBorn(diamondPay * mutiply);
+            GameStateUI.Instance.ClickToBorn(Born);
+            GameStateUI.Instance.OpenLossUI();
             Time.timeScale = 0;
         }
-        diamondText.text = (diamondPay * mutiply).ToString();
     }
 
     public void Born()
     {
+        if(CoinManager.Instance.HasEnenoughDiamond(diamondPay * mutiply)) 
+        {
+            CoinManager.Instance.UseDiamond(diamondPay * mutiply);
+            GameStateUI.Instance.CloseLossUI();
+            GameStateUI.Instance.ResetBornUI();
+        }
+        else
+        {
+            Debug.Log("Ko du kim cuong");
+            return;
+        }
         Time.timeScale = 1;
-        CoinManager.Instance.UseDiamond(diamondPay * mutiply);
         mutiply += 2;
-        CanvasManager.Instance.CloseUI(dieGo);
         player.Born();
         isLoss = false;
     }

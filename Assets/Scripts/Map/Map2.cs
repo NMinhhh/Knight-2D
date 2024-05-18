@@ -26,15 +26,6 @@ public class Map2 : MonoBehaviour
 
     void SpawnEnemy()
     {
-        if(Time.time >= startTime + cooldown)
-        {
-            currentAmountOfEnemyNor += 1;
-            Instantiate(enemyNor[Random.Range(0, enemyNor.Length)], spawnPoint[Random.Range(0,spawnPoint.Length)].position, Quaternion.identity);
-        }
-        if(currentAmountOfEnemyNor == amountOfEnemyNor && GameManager.Instance.level >= 15)
-        {
-            currentAmountOfEnemyNor = 0;
-            Instantiate(enemyBig[Random.Range(0, enemyBig.Length)], spawnPoint[Random.Range(0, spawnPoint.Length)].position, Quaternion.identity);
-        }
+        
     }
 }

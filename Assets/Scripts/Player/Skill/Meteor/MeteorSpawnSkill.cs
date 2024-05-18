@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class MeteorSpawnSkill : MonoBehaviour
 {
-    //Info
+    [Header("Meteor Pref")]
     [SerializeField] private GameObject meteorGo;
     private Meteor script;
     private GameObject go;
-    //Cool down
+
+    [Header("Cooldown")]
     [SerializeField] private float cooldown;
     private float timer;
 
-    //Dir spawn Obj
-    [SerializeField] private int currentDir;
-
-    //Info Rocket
-    [SerializeField] private float damage;
+    [Header("Info")]
+    [SerializeField] private float basicDamage;
+    [SerializeField] private float damageLevelUp;
+    [Range(10, 100)]
+    [SerializeField] private float damageLevelUpPercent;
+    private float damage;
     [SerializeField] private Vector2 speed;
     [SerializeField] private float timeLife;
+
+    private int level;
+
     void Start()
     {
         timer = cooldown;
@@ -28,16 +33,17 @@ public class MeteorSpawnSkill : MonoBehaviour
     void Update()
     {
         timer -= Time.deltaTime;
-        if (timer < 0 && currentDir > 0)
+        if (timer < 0 && level > 0)
         {
-            SetSkill(currentDir);
+            SetSkill(level);
             timer = cooldown;
         }
     }
 
-    public void AddDir(int level)
+    public void LevelUp(int level)
     {
-        currentDir = level;
+        this.level = level;
+        damage = GameManager.Instance.Calculate(basicDamage, damageLevelUp, damageLevelUpPercent, this.level);
     }
 
     void SetSkill(int dir)

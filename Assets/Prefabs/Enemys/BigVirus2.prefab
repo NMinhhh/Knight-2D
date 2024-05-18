@@ -107,12 +107,13 @@ MonoBehaviour:
   sizeCheck: {x: 2.01, y: 1.44}
   touchDamagePos: {fileID: 3160734864530627595}
   sizeTouch: {x: 3.41, y: 3.02}
-  touchDamage: 5
+  touchDamage: 2
   touchCooldown: 1
-  maxHealth: 30
+  basicHealth: 100
+  healthLevelUp: 55
+  healthLevelUpPercent: 5
   damageTimerCon: 0.1
   hurtEffectTimer: 0.1
-  healthLevelUp: 0
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}

@@ -28,5 +28,5 @@ public class Skill
     public Sprite image;
     public Vector2 sizeImage;
     public string info;
-    public string index;
+    public string[] index;
 }

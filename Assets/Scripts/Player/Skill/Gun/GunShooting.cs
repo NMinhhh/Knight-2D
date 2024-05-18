@@ -6,16 +6,18 @@ using UnityEngine.UIElements;
 
 public class GunShooting : MonoBehaviour
 {
+    [Header("Info")]
     [SerializeField] private Transform shootingPoint;
     private GameObject bullet;
     private float damage;
     private float speed;
     private float timeLife;
-    private float amountOfBullet;
-    private float amountOfBulletCur;
+    private int amountOfBullet;
+    private int amountOfBulletCur;
 
     public bool isReload { get; private set; }
 
+    [Header("Cooldown")]
     [SerializeField] private float cooldownShooting;
     private float timer;
 
@@ -97,11 +99,11 @@ public class GunShooting : MonoBehaviour
     void SpawnBullet(Transform spawnPos, Quaternion ro)
     {
         GameObject projectile = Instantiate(bullet, spawnPos.position, ro);
-        Projectile script = projectile.GetComponent<Projectile>();
+        NormalBullet script = projectile.GetComponent<NormalBullet>();
         script.CreateBullet(damage, speed, timeLife);
     }
 
-    public void CreateGun(float damage, float speed, float timeLife, float amountOfBullet, GameObject bullet)
+    public void CreateGun(float damage, float speed, float timeLife, int amountOfBullet, GameObject bullet)
     {
         this.damage = damage;
         this.speed = speed;

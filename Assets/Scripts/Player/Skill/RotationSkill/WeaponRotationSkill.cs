@@ -5,28 +5,41 @@ using static Cinemachine.DocumentationSortingAttribute;
 
 public class WeaponRotationSkill : MonoBehaviour
 {
+    [Header("Rotation")]
     [SerializeField] private float valueRotationZ;
 
-    [SerializeField] private float damage;
+    [Header("Damage")]
+    [SerializeField] private float basicDamage;
+    [SerializeField] private float damageLevelUp;
+    [Range(10, 100)]
+    [SerializeField] private float damageLevelUpPercent;
+    private float damage;
+
+    [Header("Skill Obj")]
     [SerializeField] private GameObject[] skillObject;
     
     private float rotationZ;
 
     AttackDetail attackDetail;
 
+    private int level;
+
     void Start()
     {
         attackDetail.attackDir = transform;
     }
 
-    public void SetSkill(int level)
+    public void LevelUp(int level)
     {
+        this.level = level;
+        int objPos = level - 1;
         if(level > 1)
         {
-            skillObject[level - 2].SetActive(false);
+            skillObject[objPos - 1].SetActive(false);
         }
-        skillObject[level - 1].SetActive(true);
-        CreateObj(skillObject[level - 1]);
+        damage = GameManager.Instance.Calculate(basicDamage, damageLevelUp, damageLevelUpPercent, this.level);
+        skillObject[objPos].SetActive(true);
+        CreateObj(skillObject[objPos]);
     }
 
     void CreateObj(GameObject content)

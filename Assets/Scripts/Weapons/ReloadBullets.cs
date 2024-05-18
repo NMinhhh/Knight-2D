@@ -8,6 +8,7 @@ public class ReloadBullets : MonoBehaviour
     Weapon weapon;
 
     public int amountOfBullet {  get; private set; }
+    private int currentAmountOfBullet;
 
     private float currentReloadTimer;
 
@@ -17,26 +18,33 @@ public class ReloadBullets : MonoBehaviour
     {
         weapon = CoinManager.Instance.GetWeaponSelected();
         statsBullet.weaponIcon.sprite = weapon.image;
-        amountOfBullet = weapon.bullet;
+        ResetBullet();
         currentReloadTimer = weapon.reload;
         statsBullet.amountOfBulletText.text = weapon.bullet.ToString();
         statsBullet.reloadImage.fillAmount = 0;
     }
     private void Update()
     {
-        Reload();
-        //if(amountOfBullet > 0)
-        //{
-        //    statsBullet.reloadImage.fillAmount = 0;
-        //}       
+        Reload();     
         statsBullet.amountOfBulletText.text = amountOfBullet.ToString();
+    }
+
+    public void IncreseaBullets(int amount)
+    {
+        amountOfBullet = weapon.bullet + amount;
+        currentAmountOfBullet = amountOfBullet;
+    }
+
+    public void ResetBullet()
+    {
+        amountOfBullet = weapon.bullet;
+        currentAmountOfBullet = amountOfBullet;
     }
 
     public void UpdateBullets()
     {
         amountOfBullet--;
     }
-
 
 
     void Reload()
@@ -47,7 +55,7 @@ public class ReloadBullets : MonoBehaviour
             statsBullet.reloadImage.fillAmount = currentReloadTimer / weapon.reload;
             if (currentReloadTimer <= 0)
             {
-                amountOfBullet = weapon.bullet;
+                amountOfBullet = currentAmountOfBullet;
                 statsBullet.amountOfBulletText.text = amountOfBullet.ToString();
                 currentReloadTimer = weapon.reload;
                 statsBullet.reloadImage.fillAmount = 0;

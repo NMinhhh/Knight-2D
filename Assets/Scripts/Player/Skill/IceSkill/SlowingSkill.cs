@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SlowingSkill : MonoBehaviour
 {
-    [SerializeField] private float maxCooldown;
-    private float cooldown;
-    private float timer;
-
-    [SerializeField] private float damage;
+    [Header("Percent decresea speed")]
+    [Range(0,100)]
+    [SerializeField] private float[] slowingSpeedPercent;
+    private float currentSlowingSpeedPercent;
+    [Header("Radius check enemy")]
     [SerializeField] private float radius;
 
 
@@ -18,46 +18,44 @@ public class SlowingSkill : MonoBehaviour
 
     private Animator anim;
 
-    AttackDetail attackDetail;
-    // Start is called before the first frame update
+    private int level;
+
     void Start()
     {
         anim = GetComponent<Animator>();
-        cooldown = maxCooldown;
-        timer = cooldown;
     }
 
-    public void LevelUp()
+    void Update()
     {
+        if (!isSkill) return;
+        Slowing();
+    }
+
+    public void LevelUp(int level)
+    {
+        this.level = level;
         if (!isSkill)
         {
             isSkill = true;
             anim.SetBool("isSkill", isSkill);
         }
-        else
-        {
-            UpdateCooldown();
-        }
+        UpdateCooldown();
 
     }
 
     void UpdateCooldown()
     {
-        cooldown -= maxCooldown * .2f;
+        currentSlowingSpeedPercent = slowingSpeedPercent[level - 1];
     }
 
-    public void Attack()
+    public void Slowing()
     {
-        attackDetail.attackDir = transform;
-        attackDetail.damage = damage;
-        attackDetail.continousDamage = false;
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius, whatIsEnemy);
         foreach (Collider2D hit in hits)
         {
             if (hit)
             {
-                hit.transform.SendMessage("Damage", attackDetail);
-                hit.transform.SendMessage("IsSlowingEffect");
+                hit.transform.SendMessage("IsSlowingEffect", currentSlowingSpeedPercent);
             }
         }
     }
@@ -66,14 +64,5 @@ public class SlowingSkill : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, radius);
     }
     // Update is called once per frame
-    void Update()
-    {
-        if (!isSkill) return;
-        timer += Time.deltaTime;
-        if(timer >= cooldown)
-        {
-            Attack();
-            timer = 0;
-        }
-    }
+
 }

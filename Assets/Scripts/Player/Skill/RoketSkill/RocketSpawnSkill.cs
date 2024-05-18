@@ -4,21 +4,25 @@ using UnityEngine;
 
 public class RocketSpawnSkill : MonoBehaviour
 {
-    //Rocket Ogj
+    [Header("Rocket Pref")]
     [SerializeField] private GameObject spawnGo;
     private GameObject go;
-    private ProjectileBomb script;
-    //Cool down
+    private Rocket script;
+
+    [Header("Cooldown")]
     [SerializeField] private float cooldown;
     private float timer;
 
-    //Dir spawn Obj
-    private int currentDir;
-
-    //Info Rocket
-    [SerializeField] private float damage;
+    [Header("Info")]
+    [SerializeField] private float basicDamage;
+    [SerializeField] private float damageLevelUp;
+    [Range(10, 100)]
+    [SerializeField] private float damageLevelUpPercent;
+    private float damage;
     [SerializeField] private float speed;
     [SerializeField] private float timeLife;
+
+    private int level;
 
     void Start()
     {
@@ -31,26 +35,27 @@ public class RocketSpawnSkill : MonoBehaviour
     {
        
         timer -= Time.deltaTime;
-        if (timer <= 0 && currentDir > 0)
+        if (timer <= 0 && level > 0)
         {
             timer = cooldown;
-            SetSkill(currentDir);
+            SetSkill(level);
         }
     }
 
-    public void AddDirSkill(int i)
+    public void LevelUp(int level)
     {
-        currentDir = i;
+        this.level = level;
+        damage = GameManager.Instance.Calculate(basicDamage, damageLevelUp, damageLevelUpPercent, this.level);
     }
 
-    void SetSkill(int dir)
+    void SetSkill(int level)
     {
         float rotationZ;
         Vector3 direction;
         GameObject enemyRam;
         int amountOfEnemy = 0;
         Collider2D[] enemys = EnemysPosition.Instance.GetEnemysPosition();
-        for (int i = 0; i < dir; i++) 
+        for (int i = 0; i < level; i++) 
         {
             if(enemys.Length > 0 && amountOfEnemy < enemys.Length)
             {
@@ -65,7 +70,7 @@ public class RocketSpawnSkill : MonoBehaviour
 
             }
             go = Instantiate(spawnGo,transform.position,Quaternion.Euler(0,0,rotationZ));
-            script = go.GetComponent<ProjectileBomb>();
+            script = go.GetComponent<Rocket>();
             script.CreateBomb(damage, speed, timeLife);
         }
     }

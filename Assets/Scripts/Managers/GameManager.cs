@@ -25,24 +25,20 @@ public class GameManager : MonoBehaviour
 
     #region Variable
 
-    //Level
-    public float maxEx {  get; private set; }
-
-    private float currentEx;
-    public int level {  get; private set; }
     public int stage {  get; private set; }
 
-    public bool isLevelUp {  get; private set; }
-
-    public int energy {  get; private set; }
-
-    PlayerStats exStats;
 
     //Time in game
     public int minutes { get; private set; }
     public int seconds { get; private set; }
 
     private float timer = 1;
+
+    public int energy {  get; private set; }
+
+    public int coin {  get; private set; }
+
+    public int diamond;
 
     public int kill {  get; private set; }
 
@@ -53,25 +49,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         CanvasManager.Instance.EnergyUIActive();
-        level = 1;
-        isLevelUp = false;
-        maxEx = CalculateExperience();
-        exStats = GameObject.FindWithTag("Player").GetComponent<PlayerStats>();
 
     }
 
     private void Update()
     {
-        //if(currentEx >= maxEx && !isLevelUp)
-        //{
-        //    isLevelUp = true;
-        //}
-
-        //if(isLevelUp)
-        //{
-        //    isLevelUp = false;
-        //    LevelUp();
-        //}
         Timer();
      
     }
@@ -81,14 +63,19 @@ public class GameManager : MonoBehaviour
     {
         if (!SelectionSkill.Instance.isAllSkillFullLevel)
         {
-            SelectionSkill.Instance.ResetEnergy();
-            SelectionSkill.Instance.OpenMenuSkill();
+            SelectionSkill.Instance.AppearSkill();
             MenuSkillUI.Instance.OpenMenuSkill();
+            SelectionSkill.Instance.ResetItemUI();
         }
         stage++;
     }
 
     #endregion
+
+    public int Calculate(float basicIndex, float levelupIndex, float levelupIndexPercent, int level)
+    {
+        return Mathf.FloorToInt((basicIndex + (levelupIndex * (level - 1))) * Mathf.Pow((1 + levelupIndexPercent / 100), (level - 1))); 
+    }
 
     #region Time in Game
 
@@ -111,37 +98,16 @@ public class GameManager : MonoBehaviour
 
 
 
-    #region Level Up
+    #region Coin 
 
-    public void LevelUp()
+    public void PickUpCoin(int amount)
     {
-        level++;
-        currentEx = 0;
-        exStats.SetValueEx();
-        maxEx = CalculateExperience();
-        if (!SelectionSkill.Instance.isAllSkillFullLevel)
-        {
-            SelectionSkill.Instance.OpenMenuSkill();
-            MenuSkillUI.Instance.OpenMenuSkill();
-        }
-
+        coin += amount;
     }
 
-    public void UpdateEx(float ex)
+    public void PickUpDiamond(int amount)
     {
-        currentEx += ex;
-        exStats.UpdateEx(currentEx);
-    }
-
-    int CalculateExperience()
-    {
-        int amountOfExperience = 0;
-        for (int level = 1; level <= this.level; level++)
-        {
-            amountOfExperience += Mathf.FloorToInt(level + 300 * Mathf.Pow(2, (float)level / 7));
-        }
-        return amountOfExperience / 4;
-        
+        diamond += amount;
     }
 
     #endregion
@@ -159,7 +125,7 @@ public class GameManager : MonoBehaviour
 
     public bool HasEnoughEnergy(int amount)
     {
-        return this.energy >= amount;
+        return energy >= amount;
     }
 
     public void AddEnergy()
@@ -169,7 +135,7 @@ public class GameManager : MonoBehaviour
 
     public void UseEnergy(int amount)
     {
-        this.energy -= amount;
+        energy -= amount;
     }
 
     #endregion

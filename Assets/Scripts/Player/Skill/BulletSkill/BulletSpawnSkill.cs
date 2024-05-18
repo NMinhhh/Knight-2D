@@ -10,21 +10,33 @@ public class BulletSpawnSkill : MonoBehaviour
     private BulletMoveArc script;
 
     [Header("Info Bullet")]
-    [SerializeField] private float damge;
+    [SerializeField] private float basicDamage;
+    [SerializeField] private float damageLevelUp;
+    [Range(10,100)]
+    [SerializeField] private float damageLevelUpPercent;
+    private float damage;
     [SerializeField] private float speed;
+    [Range (10,100)]
+    [SerializeField] private float speedLevelUpPercent;
+    private float currentSpeed;
 
     [Header("Cooldown skill")]
     [SerializeField] private float cooldown;
     private float timer;
+
+    [Header("Amount of bullet")]
     [SerializeField] private int amountBullet;
     private int amountOfBulletSpawn;
     private int amountOfBulletSpawnCur;
 
+    [Header("Random point radius")]
     [SerializeField] private float radius;
 
     float cooldownShoting;
 
     private Transform cam;
+
+    private int level;
 
     void Start()
     {
@@ -51,8 +63,10 @@ public class BulletSpawnSkill : MonoBehaviour
     }
 
 
-    public void LevelUp()
+    public void LevelUp(int level)
     {
+        this.level = level;
+        damage = GameManager.Instance.Calculate(basicDamage, damageLevelUp, damageLevelUpPercent, this.level);
         amountOfBulletSpawn += amountBullet;
         amountOfBulletSpawnCur = amountOfBulletSpawn;
     }
@@ -80,11 +94,11 @@ public class BulletSpawnSkill : MonoBehaviour
         Vector3 p = Random.insideUnitCircle * radius;
         point1 = transform.position + p;
 
-        this.transform.eulerAngles = new Vector3(0,0,rotationZ);
+        transform.eulerAngles = new Vector3(0, 0, rotationZ);
         go = Instantiate(bullet, transform.position, Quaternion.identity);
         script = go.GetComponent<BulletMoveArc>();
 
-        script.CreateBlletObj(enemyRam,transform.position, point1, point2, damge, speed); 
+        script.CreateBlletObj(enemyRam, transform.position, point1, point2, damage, speed);
     }
 
     private void OnDrawGizmos()

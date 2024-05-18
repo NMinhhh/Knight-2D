@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class BulletMoveArc : MonoBehaviour
 {
+    [Header("Animation")]
     [SerializeField] private Texture[] textures;
     private int animationStep;
     private float timeChange;
 
+    [Header("Particle Explode")]
     [SerializeField] private GameObject effect;
 
+    [Header("Fly line")]
     private Vector3[] points = new Vector3[3];
     [SerializeField] private float radius;
 

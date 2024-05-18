@@ -200,7 +200,7 @@ public class Shop : MonoBehaviour
         if (CoinManager.Instance.HasEnenoughDiamond(coin.price))
         {
             CoinManager.Instance.UseDiamond(coin.price);
-            CoinManager.Instance.PickupCoins(coin.value);
+            CoinManager.Instance.AddCoin(coin.value);
         }
     }
 

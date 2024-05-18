@@ -12,6 +12,7 @@ public class MenuSkillUI : MonoBehaviour
     [SerializeField] private Text energyPriceChange;
     [Header("Info Item")]
     [SerializeField] private Text infoItemText;
+    [SerializeField] private ScrollRect scrollRectItem;
 
     public bool isMenuOp {  get; private set; }
 
@@ -48,5 +49,10 @@ public class MenuSkillUI : MonoBehaviour
     public void SetInfoItem(string text)
     {
         this.infoItemText.text = text;
+    }
+
+    public void ResetVerticelItem()
+    {
+        scrollRectItem.verticalNormalizedPosition = 1;
     }
 }

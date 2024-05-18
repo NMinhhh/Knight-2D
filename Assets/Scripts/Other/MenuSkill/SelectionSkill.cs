@@ -18,16 +18,16 @@ public class SelectionSkill : MonoBehaviour
         }
     }
 
-    private MenuSkillUI menuSkillUI;
 
-    [Header(" Button Change")]
+    #region Skill
+
+    [Header("Energy")]
     [SerializeField] private int energy;
     [Space]
     [Space]
 
-    [Header("List Skills")]
+    [Header("Skill Data")]
     [SerializeField] private SkillData skillData;
-    private List<Skill> listSkill;
     [Space]
 
     [Header("List Info Skill")]
@@ -61,10 +61,14 @@ public class SelectionSkill : MonoBehaviour
 
     private Animator anim;
 
+    #endregion
+
+    #region Item
+
     [Space]
     [Space]
     [Header("List Item")]
-    [SerializeField] private List<Item> listItems;
+    [SerializeField] private ItemData itemData;
     [Space]
     [Space]
 
@@ -75,72 +79,81 @@ public class SelectionSkill : MonoBehaviour
     [Space]
 
     [Header("Info Item")]
+    [SerializeField] private Player player;
+    [SerializeField] private Transform contentGun;
+    private ReloadBullets reloadBullets;
+    private PlayerShooting playerShooting;
+    private bool isGetScript;
+
+
     private int itemPoint;
     private int selectedIdItem;
     private bool isChooseItem;
     private Item itemUse;
 
+    #endregion
+
     void Start()
     {
-        menuSkillUI = GetComponent<MenuSkillUI>();
-        menuSkillUI.SetInfoItem("");
-        this.listSkill = new List<Skill>();
-        this.listSkill.AddRange(skillData.skills);
-        this.anim = GetComponent<Animator>();
+        MenuSkillUI.Instance.SetInfoItem("");
+        skillData.ResetLevelSkill();
+        anim = GetComponent<Animator>();
         GetId();
         GenerateItemUI();
-        this.randomIdSkill = new List<int>();
-        this.isAllSkillFullLevel = false;
+        randomIdSkill = new List<int>();
+        isAllSkillFullLevel = false;
     }
 
     private void Update()
     {
-        menuSkillUI.SetEnergyPriceChange(this.energy);
+        MenuSkillUI.Instance.SetEnergyPriceChange(energy);
     }
+
+    #region Skill Function
 
     public void DecreasePrice()
     {
-        this.energy += 5;
+        energy += 5;
     }
 
     public void ResetEnergy()
     {
-        this.energy = 5;
+        energy = 5;
     }
 
-    public void OpenMenuSkill()
+    public void AppearSkill()
     {
-        this.anim.SetTrigger("appear");
+        anim.SetTrigger("appear");
     }
 
     public void DisappearSkills()
     {
-        this.anim.SetTrigger("reset");
+        anim.SetTrigger("reset");
     }
 
     void GetId()
     {
-        this.idSkill = new List<int>();
-        int count = this.listSkill.Count;
+        idSkill = new List<int>();
+        int count = skillData.GetSkillLength();
         for (int i = 0; i < count; i++)
         {
-            this.idSkill.Add(i);
+            idSkill.Add(i);
         }
     }
 
     public void ChangeSkill()
     {
-        if (GameManager.Instance.HasEnoughEnergy(this.energy))
+        if (GameManager.Instance.HasEnoughEnergy(energy))
         {
-            GameManager.Instance.UseEnergy(this.energy);
+            GameManager.Instance.UseEnergy(energy);
             DecreasePrice();
-            int count = this.contentSkill.childCount;
+            int count = contentSkill.childCount;
             for (int j = count - 1; j >= 0; j--)
             {
-                Destroy(this.contentSkill.GetChild(j).transform.gameObject);
+                Destroy(contentSkill.GetChild(j).transform.gameObject);
             }
-            this.anim.SetTrigger("disappear");
-            OpenMenuSkill();
+            anim.SetTrigger("disappear");
+            AppearSkill();
         }
         else
         {
@@ -150,30 +163,29 @@ public class SelectionSkill : MonoBehaviour
 
     public void AppearMenuSkills()
     {
-        this.choosePointCur = 0;
-        this.isChooseSkill = false;
-        this.randomIdSkill.Clear();
-        this.randomIdSkill.AddRange(this.idSkill);
+        choosePointCur = 0;
+        isChooseSkill = false;
+        randomIdSkill.Clear();
+        randomIdSkill.AddRange(idSkill);
         for (int i = 0; i < 3; i++)
         {
             int id;
             int choosePoint = i;
-            if (this.idSkill.Count < 3)
+            if (idSkill.Count < 3)
             {
-                id = randomIdSkill[Random.Range(0, this.randomIdSkill.Count)];
+                id = randomIdSkill[Random.Range(0, randomIdSkill.Count)];
             }
             else
             {
-                id = randomIdSkill[Random.Range(0, this.randomIdSkill.Count)];
-                this.randomIdSkill.RemoveAt(this.randomIdSkill.IndexOf(id));
+                id = randomIdSkill[Random.Range(0, randomIdSkill.Count)];
+                randomIdSkill.RemoveAt(randomIdSkill.IndexOf(id));
             }
-            Skill skill = this.listSkill[id];
+            Skill skill = skillData.GetSkill(id);
             SkillItemUI weaponItemUI = Instantiate(itemSkillTemplate, contentSkill).GetComponent<SkillItemUI>();
             weaponItemUI.SetNameText(skill.skillName.ToString());
             weaponItemUI.SetLevelImage(skill.level);
             weaponItemUI.SetImage(skill.image, skill.sizeImage);
-            weaponItemUI.SetInfoText(skill.info);
-            weaponItemUI.SetIndexText(skill.index);
+            weaponItemUI.SetInfoSkill(skill.info, skill.index);
             weaponItemUI.SetIdSkill(id);
             weaponItemUI.OnClickSelectionSkill(choosePoint, ChooseSkill);
         }
@@ -182,165 +194,173 @@ public class SelectionSkill : MonoBehaviour
     void ChooseSkill(int i)
     {
         //Change skill UI
-        SkillItemUI oldSkillItemUI = GetSkillItemUI(this.choosePointCur);
+        SkillItemUI oldSkillItemUI = GetSkillItemUI(choosePointCur);
         SkillItemUI newSkillItemUI = GetSkillItemUI(i);
         oldSkillItemUI.UnChooseSkill();
         newSkillItemUI.ChooseSkill();
-        this.selectedIdSkill = newSkillItemUI.GetIdSkill();
-        this.selectedSkill = this.listSkill[this.selectedIdSkill];
-        this.choosePointCur = i;
-        this.isChooseSkill = true;
+        selectedIdSkill = newSkillItemUI.GetIdSkill();
+        selectedSkill = skillData.GetSkill(selectedIdSkill);
+        choosePointCur = i;
+        isChooseSkill = true;
     }
 
     SkillItemUI GetSkillItemUI(int i)
     {
-        return this.contentSkill.GetChild(i).GetComponent<SkillItemUI>();
+        return contentSkill.GetChild(i).GetComponent<SkillItemUI>();
     }
 
     public void Selection()
     {
-        if (!this.isChooseSkill)
+        if (!isChooseSkill)
         {
             Debug.Log("Chon ky nang di ban oi!!!");   
             return;
         }
-        this.isChooseSkill = false;
-        switch (this.selectedSkill.skillName)
+        isChooseSkill = false;
+        switch (selectedSkill.skillName)
         {
             case Skill.Name.Shuriken:
-                this.weaponRotationSkill.SetSkill(this.listSkill[this.selectedIdItem].level);
-                this.listSkill[this.selectedIdSkill].level++;
+                weaponRotationSkill.LevelUp(skillData.GetSkill(selectedIdItem).level);
+                skillData.LevelUp(selectedIdSkill);
                 break; 
             case Skill.Name.Bomerang:
-                this.bomerangSpawnSkill.LevelUp(this.listSkill[this.selectedIdSkill].level);
-                this.listSkill[this.selectedIdSkill].level++;
+                bomerangSpawnSkill.LevelUp(skillData.GetSkill(selectedIdSkill).level);
+                skillData.LevelUp(selectedIdSkill);
                 break;
             case Skill.Name.Roket:
-                this.rocketSpawnSkill.AddDirSkill(this.listSkill[this.selectedIdSkill].level);
-                this.listSkill[this.selectedIdSkill].level++;
+                rocketSpawnSkill.LevelUp(skillData.GetSkill(selectedIdSkill).level);
+                skillData.LevelUp(selectedIdSkill);
                 break;
             case Skill.Name.Lighting:
-                this.lightningSpawnSkill.LevelUp(this.listSkill[this.selectedIdSkill].level);
-                this.listSkill[this.selectedIdSkill].level++;
+                lightningSpawnSkill.LevelUp(skillData.GetSkill(selectedIdSkill).level);
+                skillData.LevelUp(selectedIdSkill);
                 break;
             case Skill.Name.Shooting:
-                this.bulletSpawnSkill.LevelUp();
-                this.listSkill[this.selectedIdSkill].level++;
+                bulletSpawnSkill.LevelUp(skillData.GetSkill(selectedIdSkill).level);
+                skillData.LevelUp(selectedIdSkill);
                 break;
             case Skill.Name.Electric:
-                this.laserSkill.LevelUp(this.listSkill[this.selectedIdSkill].level);
-                this.listSkill[this.selectedIdSkill].level++;
+                electricSkill.LevelUp(skillData.GetSkill(selectedIdSkill).level);
+                skillData.LevelUp(selectedIdSkill);
                 break;
             case Skill.Name.Shield:
-                this.protectionSkill.AddLevelShield(this.listSkill[this.selectedIdSkill].level);
-                this.listSkill[this.selectedIdSkill].level++;
+                protectionSkill.LevelUp(skillData.GetSkill(selectedIdSkill).level);
+                skillData.LevelUp(selectedIdSkill);
                 break;
             case Skill.Name.Meteor:
-                this.meteorSpawnSkill.AddDir(this.listSkill[this.selectedIdSkill].level);
-                this.listSkill[this.selectedIdSkill].level++;
+                meteorSpawnSkill.LevelUp(skillData.GetSkill(selectedIdSkill).level);
+                skillData.LevelUp(selectedIdSkill);
                 break;
             case Skill.Name.Gun:
-                this.gunShootingSkill.LevelUp(this.listSkill[this.selectedIdSkill].level);
-                this.listSkill[this.selectedIdSkill].level++;
+                gunShootingSkill.LevelUp(skillData.GetSkill(selectedIdSkill).level);
+                skillData.LevelUp(selectedIdSkill);
                 break;
             case Skill.Name.Slow:
-                this.slowingSkill.LevelUp();
-                this.listSkill[this.selectedIdSkill].level++;
+                slowingSkill.LevelUp(skillData.GetSkill(selectedIdSkill).level);
+                skillData.LevelUp(selectedIdSkill);
                 break;
             case Skill.Name.Lava:
-                this.lavaSkill.LevelUp(this.listSkill[this.selectedIdSkill].level);
-                this.listSkill[this.selectedIdSkill].level++;
+                lavaSkill.LevelUp(skillData.GetSkill(selectedIdSkill).level);
+                skillData.LevelUp(selectedIdSkill);
                 break;
             case Skill.Name.Laser:
-                this.laserSkill.LevelUp(this.listSkill[this.selectedIdSkill].level);
-                this.listSkill[this.selectedIdSkill].level++;
+                laserSkill.LevelUp(skillData.GetSkill(selectedIdSkill).level);
+                skillData.LevelUp(selectedIdSkill);
                 break;
 
         }
         //Check skill is full level
-        CheckSkillFullLevel(this.selectedIdSkill);
+        CheckSkillFullLevel(selectedIdSkill);
         //Delete card ckill
         int count = contentSkill.childCount;
         for (int j = count - 1; j >= 0; j--)
         {
-            Destroy(this.contentSkill.GetChild(j).transform.gameObject);
+            Destroy(contentSkill.GetChild(j).transform.gameObject);
         }
         //Close menu skill
         MenuSkillUI.Instance.CloseMenuSkill();
-        this.anim.SetTrigger("disappear");
-        //Reset price energy change
-        ResetEnergy();
-        //Reset item state
-        ResetItemUI();
+        anim.SetTrigger("disappear");
     }
 
     void CheckSkillFullLevel(int idSkill)
     {
-        if (this.listSkill[idSkill].level > this.listSkill[idSkill].maxLevel)
+        if (skillData.GetSkill(idSkill).level > skillData.GetSkill(idSkill).maxLevel)
         {
             this.idSkill.Remove(idSkill);
             if (this.idSkill.Count == 0)
             {
-                this.isAllSkillFullLevel = true;
+                isAllSkillFullLevel = true;
             }
         }
     }
 
-    #region Item
+    #endregion
 
-    void ResetItemUI()
+    #region Item Function
+
+    public void ResetItemUI()
     {
-        for (int i = 0; i < this.listItems.Count; i++)
+        GetComponent();
+        for (int i = 0; i < itemData.GetItemsLength(); i++)
         {
             int id = i;
             ItemUI itemUI = GetItemUI(id);
             itemUI.ResetItem();
         }
-        menuSkillUI.SetInfoItem("");
-        this.selectedIdItem = 0;
-        this.itemPoint = 0;
-        this.isChooseItem = false;
+        MenuSkillUI.Instance.SetInfoItem("");
+        MenuSkillUI.Instance.ResetVerticelItem();
+        selectedIdItem = 0;
+        itemPoint = 0;
+        isChooseItem = false;
+        if (isGetScript)
+        {
+            playerShooting.ResetWeapon();
+            reloadBullets.ResetBullet();
+        }
+        player.ResetPlayer();
+        ResetEnergy();
     }
 
     void GenerateItemUI()
     {
-        for (int i = 0; i < this.listItems.Count; i++)
+        for (int i = 0; i < itemData.GetItemsLength(); i++)
         {
             int id = i;
-            ItemUI itemUI = Instantiate(this.itemTemplate, this.contentItem).GetComponent<ItemUI>();
-            itemUI.SetImage(this.listItems[id].image);
-            itemUI.SetPrice(this.listItems[id].price.ToString());
-            itemUI.SetInfoItem(this.listItems[id].info);
+            Item item = itemData.GetItem(id);
+            ItemUI itemUI = Instantiate(itemTemplate, contentItem).GetComponent<ItemUI>();
+            itemUI.SetImage(item.image);
+            itemUI.SetPrice(item.price.ToString());
+            itemUI.SetInfoItem(item.info);
             itemUI.OnClickSelectedItem(id, ChooseItem);
         }
     }
 
     void ChooseItem(int id)
     {
-        this.isChooseItem = true;
+        isChooseItem = true;
         ItemUI oldItemUI = GetItemUI(itemPoint);
         ItemUI newItemUI = GetItemUI(id);
         oldItemUI.UnChooseItem();
         newItemUI.ChooseItem();
-        menuSkillUI.SetInfoItem(newItemUI.GetInfoText());
-        this.selectedIdItem = id;
-        this.itemPoint = id;
-        this.itemUse = this.listItems[id];
+        MenuSkillUI.Instance.SetInfoItem(newItemUI.GetInfoText());
+        selectedIdItem = id;
+        itemPoint = id;
+        itemUse = itemData.GetItem(id);
     }
 
     public void BuyItem()
     {
-        if (!this.isChooseItem)
+        if (!isChooseItem)
         {
             Debug.Log("Chon item de mua ban oi");
             return;
         }
-        ItemUI itemUI = GetItemUI(this.selectedIdItem);
-        if (GameManager.Instance.HasEnoughEnergy(this.listItems[selectedIdItem].price))
+        ItemUI itemUI = GetItemUI(selectedIdItem);
+        if (GameManager.Instance.HasEnoughEnergy(itemData.GetItem(selectedIdItem).price))
         {
             itemUI.ItemPurchased();
-            GameManager.Instance.UseEnergy(this.listItems[selectedIdItem].price);
-            this.isChooseItem = false;
+            GameManager.Instance.UseEnergy(itemData.GetItem(selectedIdItem).price);
+            isChooseItem = false;
             UseItem(itemUse);
         }
         else
@@ -349,18 +369,38 @@ public class SelectionSkill : MonoBehaviour
         }
     }
 
+    void GetComponent()
+    {
+        int count = contentGun.childCount;
+        for (int i = 0; i < count; i++) 
+        {
+            GameObject go = contentGun.GetChild(i).gameObject;
+            if (go.activeInHierarchy)
+            {
+                playerShooting = go.GetComponent<PlayerShooting>();
+                reloadBullets = go.GetComponent<ReloadBullets>();
+            }
+            else
+                return;
+        }
+        isGetScript = true;
+    }
+
     public void UseItem(Item item)
     {
         switch (item.Type)
         {
             case Item.ItemType.Health:
-                Debug.Log("You use health");
+                player.AddHealth(item.amount);
                 break;
             case Item.ItemType.Damage:
-                Debug.Log("You use damage");
+                playerShooting.IncreaseDamage(item.amount);
                 break;
             case Item.ItemType.Speed:
-                Debug.Log("You use speed");
+                player.IncreaseSpeed(item.amount);
+                break;
+            case Item.ItemType.Bullet:
+                reloadBullets.IncreseaBullets((int)item.amount);
                 break;
         }
     }

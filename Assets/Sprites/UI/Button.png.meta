@@ -614,7 +614,7 @@ TextureImporter:
         width: 90
         height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -622,6 +622,27 @@ TextureImporter:
       bones: []
       spriteID: a541209c51587ee41a5caea86b118bae
       internalID: 986591236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button_24
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 346
+        width: 26
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdc28e66fa2e3a04891b71f39cf2e4bf
+      internalID: 585747969
       vertices: []
       indices: 
       edges: []
@@ -654,6 +675,7 @@ TextureImporter:
       Button_21: 1123671328
       Button_22: 1013558614
       Button_23: 986591236
+      Button_24: 585747969
       Button_3: -1739106565
       Button_4: -206704081
       Button_5: 2083160787

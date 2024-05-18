@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class Meteor : MonoBehaviour
 {
+    [Header("Point Damage")]
     [SerializeField] private Transform checkPoint;
     [SerializeField] private float radius;
     [SerializeField] private GameObject particle;
     private float damage;
     private float speed;
     private float timeLife;
+    [Space]
+    [Space]
 
     [SerializeField] private LayerMask whatIsEnemy;
     [SerializeField] private LayerMask whatIsWall;
-
-    private bool isDamage;
 
     private Rigidbody2D rb;
 

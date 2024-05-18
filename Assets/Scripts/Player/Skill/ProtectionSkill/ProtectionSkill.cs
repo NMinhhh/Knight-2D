@@ -6,27 +6,31 @@ using static Cinemachine.DocumentationSortingAttribute;
 
 public class ProtectionSkill : MonoBehaviour
 {
-
+    [Header("Shield Obj")]
     [SerializeField] private GameObject[] shields;
+
+    [Header("Rotation value and Color")]
     [SerializeField] private float valueRotationZ;
     [SerializeField] private Color[] colors;
-
     private float rotationZ;
+
+    [Header("Flash after touch enemy")]
+    [SerializeField] private float numberOfFlash;
+    [SerializeField] private float timeFlash;
+    [Space]
+    [Space]
+
+    [Header("Cooldown")]
+    [SerializeField] private float cooldown;
+    private float timer;
+
+    private bool isDamage;
 
     private GameObject shieldCur;
     private int levelShieldMax;
     private int levelShield;
 
     private SpriteRenderer spriteR;
-
-    [SerializeField] private float numberOfFlash;
-    [SerializeField] private float timeFlash;
-
-    [SerializeField] private float cooldown;
-    private float timer;
-
-    private bool isDamage;
-
     private Player player;
 
     void Start()
@@ -47,7 +51,7 @@ public class ProtectionSkill : MonoBehaviour
         RotationZ();
     }
 
-    public void AddLevelShield(int level)
+    public void LevelUp(int level)
     {
         if (level > 1)
         {
@@ -71,7 +75,6 @@ public class ProtectionSkill : MonoBehaviour
     }
     
  
-
     void ChangeColor(GameObject go, Color color)
     {
         for (int i = 0; i < go.transform.childCount; i++)

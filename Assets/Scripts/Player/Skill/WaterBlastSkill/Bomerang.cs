@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bomerang : MonoBehaviour
 {
+    [Header("Rotation value")]
     [SerializeField] private float valueRotationZ;
     private float rotationZ;
     [Space]

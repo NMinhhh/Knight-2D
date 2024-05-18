@@ -8,40 +8,33 @@ public class CoinUI : MonoBehaviour
     [SerializeField] private Text coinText;
     [SerializeField] private Text diamondText;
 
-    [Range(0f, 1f)]
-    [SerializeField] private float speed;
-
-    private int coin;
-    private int coinCurrent;
+    [SerializeField] private bool isGamePlay;
 
     private void Start()
     {
-        coin = CoinManager.Instance.coin;
-        coinCurrent = coin;
-        coinText.text = coinCurrent.ToString();
     }
 
     void Update()
     {
-        coin = CoinManager.Instance.coin;
-        if (coinCurrent != coin)
+        if (isGamePlay)
         {
-            StartCoroutine(Effect());
+            GamePlay();
         }
-        diamondText.text = CoinManager.Instance.diamond.ToString();
+        else
+        {
+            Home();
+        }
     }
     
-    IEnumerator Effect()
+    void Home()
     {
-        yield return new WaitForSeconds(speed);
-        if(coinCurrent != coin)
-        {
-            if (coinCurrent < coin)
-                coinCurrent++;
-            if (coinCurrent > coin)
-                coinCurrent--;
-            coinText.text = coinCurrent.ToString();
-            StartCoroutine(Effect());
-        }
+        coinText.text = CoinManager.Instance.coin.ToString();
+        diamondText.text = CoinManager.Instance.diamond.ToString();
+    }
+
+    void GamePlay()
+    {
+        coinText.text = GameManager.Instance.coin.ToString();
+        diamondText.text = GameManager.Instance.diamond.ToString();
     }
 }

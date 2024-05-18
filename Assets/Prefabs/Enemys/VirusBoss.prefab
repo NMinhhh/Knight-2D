@@ -172,12 +172,13 @@ MonoBehaviour:
   sizeCheck: {x: 2.03, y: 1.95}
   touchDamagePos: {fileID: 6865070388013978446}
   sizeTouch: {x: 3.34, y: 3.25}
-  touchDamage: 10
+  touchDamage: 5
   touchCooldown: 1
-  maxHealth: 100
+  basicHealth: 1200
+  healthLevelUp: 550
+  healthLevelUpPercent: 5
   damageTimerCon: 0.1
   hurtEffectTimer: 0.1
-  healthLevelUp: 0
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
@@ -194,7 +195,6 @@ MonoBehaviour:
   cooldownSkills:
   - 3
   - 3
-  currentCooldownSkills: []
   dashSpeed: 35
   distanceToStop: 0.5
   bullet: {fileID: 4323602004240218919, guid: 5395585c9a19c9c4bba0c293c035f0f2, type: 3}

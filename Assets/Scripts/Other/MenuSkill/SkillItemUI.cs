@@ -16,8 +16,9 @@ public class SkillItemUI : MonoBehaviour
     [SerializeField] private Outline outlineBtn;
     private int idSkill;
     private Animator anim;
+    private int level;
 
-    void Start()
+    private void Update()
     {
         
     }
@@ -29,14 +30,15 @@ public class SkillItemUI : MonoBehaviour
 
     public void SetLevelImage(int level)
     {
+        this.level = level;
         anim = levelImageObj.GetComponent<Animator>();
         string isBoolName = "isL";
-        for(int i = 0; i < level; i++)
+        for(int i = 0; i < this.level; i++)
         {
             levelImages[i].SetActive(true);
             anim.SetBool(isBoolName + $"{i+1}", false);
         }
-        anim.SetBool(isBoolName + level.ToString(), true);
+        anim.SetBool(isBoolName + this.level.ToString(), true);
     }
 
     public void SetImage(Sprite image, Vector2 size)
@@ -44,6 +46,20 @@ public class SkillItemUI : MonoBehaviour
         this.image.sprite = image;
         RectTransform rect = this.image.GetComponent<RectTransform>();
         rect.sizeDelta = new Vector2(size.x, size.y);
+    }
+
+    public void SetInfoSkill(string infoText, string[] indexText)
+    {
+        if(this.level > 1)
+        {
+            SetInfoText("");
+            SetIndexText(indexText[this.level - 2]);
+        }
+        else
+        {
+            SetInfoText(infoText);
+            SetIndexText("");
+        }
     }
     public void SetInfoText(string infoText)
     {

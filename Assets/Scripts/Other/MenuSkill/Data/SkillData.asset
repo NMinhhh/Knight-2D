@@ -18,82 +18,154 @@ MonoBehaviour:
     maxLevel: 4
     image: {fileID: 21300000, guid: 4fc5372eb143d74459356d3217a33609, type: 3}
     sizeImage: {x: 160, y: 160}
-    info: Shuriken quay quanh nguoi choi
-    index: + 1 shuriken,+ 10% damage
+    info: "T\u1EA1o 1 shuriken quay xung quanh ng\u01B0\u1EDDi ch\u01A1i"
+    index:
+    - "+ 1 shuriken,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+ 10% s\xE1t
+      th\u01B0\u01A1ng th\xEAm"
+    - "+ 1 shuriken,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+ 10% s\xE1t
+      th\u01B0\u01A1ng th\xEAm"
+    - "+ 1 shuriken,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+ 10% s\xE1t
+      th\u01B0\u01A1ng th\xEAm"
   - skillName: 1
     level: 1
     maxLevel: 4
     image: {fileID: 21300000, guid: 4875493f74e862f46bcdafaa88e5d213, type: 3}
     sizeImage: {x: 160, y: 160}
-    info: Nem ra bomerang
-    index: + 1 bomerang,+ 10% damage
+    info: "N\xE9m ra 1 bomerang v\u1EC1 ph\xEDa k\u1EBB \u0111\u1ECBch. Bomerang
+      s\u1EBD bay \u0111i v\xE0 bay v\u1EC1 ng\u01B0\u1EDDi ch\u01A1i"
+    index:
+    - "+ 1 bomerang,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+ 15% s\xE1t
+      th\u01B0\u01A1ng th\xEAm"
+    - "+ 1 bomerang,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+ 15% s\xE1t
+      th\u01B0\u01A1ng th\xEAm"
+    - "+ 1 bomerang,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+ 15% s\xE1t
+      th\u01B0\u01A1ng th\xEAm"
   - skillName: 2
     level: 1
     maxLevel: 4
     image: {fileID: -777054742, guid: fdb96f8a53671fa49a3637de6b3af0a8, type: 3}
     sizeImage: {x: 230, y: 230}
-    info: Ban ra ten lua phat no
-    index: + 1 Rocket,+ 20% damage
+    info: "B\u1EAFn ra 1 t\xEAn l\u1EEDa v\u1EC1 ph\xEDa k\u1EBB \u0111\u1ECBch"
+    index:
+    - "+ 1 t\xEAn l\u1EEDa,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+ 35%
+      s\xE1t th\u01B0\u01A1ng th\xEAm"
+    - "+ 1 t\xEAn l\u1EEDa,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+ 35%
+      s\xE1t th\u01B0\u01A1ng th\xEAm"
+    - "+ 1 t\xEAn l\u1EEDa,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+ 35%
+      s\xE1t th\u01B0\u01A1ng th\xEAm"
   - skillName: 3
     level: 1
     maxLevel: 4
     image: {fileID: 69081836, guid: c0ff9631ce378e749afbb7346f445ad6, type: 3}
     sizeImage: {x: 160, y: 160}
-    info: Tia set tan cong ke thu
-    index: + 1 Lightning,+ 20% damage
+    info: "T\u1EA1o 1 tia s\xE9t \u0111\xE1nh v\xE0o k\u1EBB th\xF9"
+    index:
+    - "+ 1 tia s\xE9t,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+ 25% s\xE1t
+      th\u01B0\u01A1ng th\xEAm"
+    - "+ 1 tia s\xE9t,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+ 25% s\xE1t
+      th\u01B0\u01A1ng th\xEAm"
+    - "+ 1 tia s\xE9t,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+ 25% s\xE1t
+      th\u01B0\u01A1ng th\xEAm"
   - skillName: 4
     level: 1
     maxLevel: 4
     image: {fileID: 1842416947, guid: 02730ddcb87e5eb45b3e6c5c14c4f75a, type: 3}
     sizeImage: {x: 264, y: 60}
-    info: 'Ban ra dan '
-    index: + 5 dan, + 10% damage
+    info: "B\u1EAFn ra 5 vi\xEAn \u0111\u1EA1n ph\xE9p thu\u1EADt v\xE0o k\u1EBB
+      th\xF9"
+    index:
+    - "+ 5 vi\xEAn \u0111\u1EA1n,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+
+      12% s\xE1t th\u01B0\u01A1ng th\xEAm"
+    - "+ 5 vi\xEAn \u0111\u1EA1n,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+
+      12% s\xE1t th\u01B0\u01A1ng th\xEAm"
+    - "+ 5 vi\xEAn \u0111\u1EA1n,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+
+      12% s\xE1t th\u01B0\u01A1ng th\xEAm"
   - skillName: 5
     level: 1
     maxLevel: 4
     image: {fileID: 21300000, guid: ec25d255b092fde4d8e0640ae7e6e84e, type: 3}
     sizeImage: {x: 230, y: 230}
-    info: Dong dien tan cong ke thu
-    index: + 1 Electric, + 10% damge
+    info: "T\u1EA1o 1 d\xF2ng \u0111i\u1EC7n t\u1EA5n c\xF4ng k\u1EBB th\xF9"
+    index:
+    - "+ 1 d\xF2ng \u0111i\u1EC7n,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+
+      10% s\xE1t th\u01B0\u01A1ng th\xEAm"
+    - "+ 1 d\xF2ng \u0111i\u1EC7n,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+
+      10% s\xE1t th\u01B0\u01A1ng th\xEAm"
+    - "+ 1 d\xF2ng \u0111i\u1EC7n,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+
+      10% s\xE1t th\u01B0\u01A1ng th\xEAm"
   - skillName: 6
     level: 1
     maxLevel: 4
     image: {fileID: 1904745501, guid: ad71b33164e0ef34a9b50420b037e246, type: 3}
     sizeImage: {x: 54, y: 140}
-    info: Tao khien do don tan cong ke thu
-    index: + 1 shield, + Chan doan trong 1s
+    info: "T\u1EA1o 1 khi\xEAn b\u1EA3o v\u1EC7 ng\u01B0\u1EDDi ch\u01A1i trong 1,5s.
+      8s h\u1ED3i khi\xEAn"
+    index:
+    - "+ 1 khi\xEAn"
+    - "+ 1 khi\xEAn"
+    - "+ 1 khi\xEAn"
   - skillName: 7
     level: 1
     maxLevel: 4
     image: {fileID: 124001520, guid: 827d968e1445d774d876b89decf92b96, type: 3}
     sizeImage: {x: 200, y: 200}
-    info: Ban thien thach vao ke thu
-    index: + 1 meteor,+ 30% damage
+    info: "B\u1EAFn ra thi\xEAn th\u1EA1ch t\u1EA5n c\xF4ng xuy\xEAn c\xE1c k\u1EBB
+      th\xF9"
+    index:
+    - "+ 1 thi\xEAn th\u1EA1ch,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+
+      25% s\xE1t th\u01B0\u01A1ng th\xEAm"
+    - "+ 1 thi\xEAn th\u1EA1ch,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+
+      25% s\xE1t th\u01B0\u01A1ng th\xEAm"
+    - "+ 1 thi\xEAn th\u1EA1ch,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+
+      25% s\xE1t th\u01B0\u01A1ng th\xEAm"
   - skillName: 8
     level: 1
     maxLevel: 4
     image: {fileID: -1060506470, guid: 84fa216efffe5d2469e5b4ba61605fbe, type: 3}
     sizeImage: {x: 190, y: 102}
-    info: Gun machine
-    index: + 1 gun Machine,+ 10% damage
+    info: "Th\xEAm 1 kh\u1EA9u s\xFAng b\u1EAFn ra 10 vi\xEAn \u0111\u1EA1n v\xE0o
+      k\u1EBB th\xF9"
+    index:
+    - "+ 1 kh\u1EA9u s\xFAng,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+
+      10% s\xE1t th\u01B0\u01A1ng th\xEAm"
+    - "+ 1 kh\u1EA9u s\xFAng,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+
+      10% s\xE1t th\u01B0\u01A1ng th\xEAm"
+    - "+ 1 kh\u1EA9u s\xFAng,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+
+      10% s\xE1t th\u01B0\u01A1ng th\xEAm"
   - skillName: 9
     level: 1
     maxLevel: 4
     image: {fileID: -1369152237, guid: 35eda4cb25fe3734885d8fa1cbd9d80f, type: 3}
     sizeImage: {x: 160, y: 160}
-    info: 'Lam cham ke thu '
-    index: 2s cooldown, + 10% damage
+    info: "T\u1EA1o v\xF9ng l\xE0m ch\u1EADm 10% t\u1ED1c \u0111\u1ED9 c\u1EE7a k\u1EBB
+      th\xF9"
+    index:
+    - "+ L\xE0m ch\u1EADm 18% t\u1ED1c \u0111\u1ED9 k\u1EBB th\xF9"
+    - "+ L\xE0m ch\u1EADm 30% t\u1ED1c \u0111\u1ED9 k\u1EBB th\xF9"
+    - "+ L\xE0m ch\u1EADm 45% t\u1ED1c \u0111\u1ED9 k\u1EBB th\xF9"
   - skillName: 10
     level: 1
     maxLevel: 4
     image: {fileID: 2057521664, guid: c5b66477d37fc2349b9f1fb34f37a1c1, type: 3}
     sizeImage: {x: 160, y: 160}
-    info: Tao ho lava dot ke thu
-    index: + 10% size,+ 30% damage
+    info: "T\u1EA1o 1 v\xF9ng dung nham \u0111\u1ED1t k\u1EBB th\xF9 \u0111i v\xE0o"
+    index:
+    - "+ T\u0103ng k\xEDch th\u01B0\u1EDBc dung nham,+ T\u0103ng s\xE1t th\u01B0\u01A1ng
+      theo c\u1EA5p,+ 12% s\xE1t th\u01B0\u01A1ng th\xEAm "
+    - "+ T\u0103ng k\xEDch th\u01B0\u1EDBc dung nham,+ T\u0103ng s\xE1t th\u01B0\u01A1ng
+      theo c\u1EA5p,+ 12% s\xE1t th\u01B0\u01A1ng th\xEAm "
+    - "+ T\u0103ng k\xEDch th\u01B0\u1EDBc dung nham,+ T\u0103ng s\xE1t th\u01B0\u01A1ng
+      theo c\u1EA5p,+ 12% s\xE1t th\u01B0\u01A1ng th\xEAm "
   - skillName: 11
     level: 1
     maxLevel: 4
     image: {fileID: -363205868, guid: c149da5e85ab6774c83f045482c8110a, type: 3}
     sizeImage: {x: 230, y: 230}
-    info: Ban ra tia laser
-    index: + 1 laser,+ 50% damage
+    info: "B\u1EAFn ra 1 tia laser g\xE2y s\xE1t th\u01B0\u01A1ng"
+    index:
+    - "+ 1 laser,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p, + 30% s\xE1t
+      th\u01B0\u01A1ng th\xEAm"
+    - "+ 1 laser,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p, + 30% s\xE1t
+      th\u01B0\u01A1ng th\xEAm"
+    - "+ 1 laser,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p, + 30% s\xE1t
+      th\u01B0\u01A1ng th\xEAm"

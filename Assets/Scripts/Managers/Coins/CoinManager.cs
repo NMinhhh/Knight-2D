@@ -55,7 +55,7 @@ public class CoinManager : MonoBehaviour
         return coin >= amount;
     }
 
-    public void PickupCoins(int amount)
+    public void AddCoin(int amount)
     {
         coin += amount;
     }
@@ -71,7 +71,7 @@ public class CoinManager : MonoBehaviour
         return diamond >= amount;
     }
 
-    public void PickUpDiamond(int amount)
+    public void AddDiamond(int amount)
     {
         diamond += amount;
     }

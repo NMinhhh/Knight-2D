@@ -36,7 +36,6 @@ public class ExCollection : MonoBehaviour
         Collider2D hit = Physics2D.OverlapCircle(collider2d.bounds.center, collider2d.radius, whatIsPlayer);
         if(hit)
         {
-            GameManager.Instance.UpdateEx(ex);
             Destroy(gameObject);
         }
     }

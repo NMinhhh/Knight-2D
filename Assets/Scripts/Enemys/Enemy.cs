@@ -26,10 +26,12 @@ public class Enemy : MonoBehaviour
     [Space]
 
     [Header("Hurt")]
-    [SerializeField] protected float maxHealth;
+    [SerializeField] protected float basicHealth;
+    [SerializeField] protected float healthLevelUp;
+    [SerializeField] protected float healthLevelUpPercent;
     [SerializeField] protected float damageTimerCon;
     [SerializeField] protected float hurtEffectTimer;
-    [SerializeField] protected float healthLevelUp;
+    protected float maxHealth;
     protected float currentHealth;
     protected float currentDamageTimeCon;
     protected bool isDead;
@@ -53,6 +55,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Color slowingColor;
     private bool isSlowingEffect;
     private float slowingTimerCur;
+    private float decreseaSpeedPercent;
     [Space]
     [Space]
 
@@ -81,28 +84,21 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         target = GameObject.Find("Player").transform;
         facingRight = 1;
-        healthLevelUp = maxHealth;
-        for (int i = 1;i < GameManager.Instance.stage; i++)
-        {
-            healthLevelUp += 1;
-        }
-        currentHealth = healthLevelUp;
-        isImortal = false;
+        SetHealth();
     }
 
-    public void SetMaxHealth()
+    public void SetHealth()
     {
-        
+        maxHealth = GameManager.Instance.Calculate(basicHealth, healthLevelUp, healthLevelUpPercent, GameManager.Instance.stage);
+        currentHealth = maxHealth;
+        isImortal = false;
     }
 
     protected virtual void Update()
     {
         if (!CheckPlayer() && isMove)
         {
-            if(isSlowingEffect)
-                SetMovement(speed/2);
-            else
-                SetMovement(speed);
+            SetMovement(speed);
         }
         else if(CheckPlayer() || !isMove)
         {
@@ -118,10 +114,11 @@ public class Enemy : MonoBehaviour
             SlowingEffect();
     }
 
-    void IsSlowingEffect()
+    void IsSlowingEffect(int percent)
     {
         isSlowingEffect = true;
         slowingTimerCur = slowingTimer;
+        this.decreseaSpeedPercent = percent;
     }
 
     void SlowingEffect()
@@ -176,7 +173,7 @@ public class Enemy : MonoBehaviour
 
     void RecieveDamage(AttackDetail attackDetail)
     {
-        currentHealth = Mathf.Clamp(currentHealth - attackDetail.damage, 0, healthLevelUp);
+        currentHealth = Mathf.Clamp(currentHealth - attackDetail.damage, 0, maxHealth);
         if (attackDetail.attackDir.position.x > transform.position.x)
         {
             damageDir = -1;
@@ -242,9 +239,9 @@ public class Enemy : MonoBehaviour
     }
     public void SetMovement(float speed)
     {
-        //if (isSlowingEffect)
-        //    rb.velocity = GetDir() * speed / 2;
-        //else
+        if (isSlowingEffect)
+            rb.velocity = GetDir() * (speed - speed * decreseaSpeedPercent/100);
+        else
             rb.velocity = GetDir() * speed;
     }
 

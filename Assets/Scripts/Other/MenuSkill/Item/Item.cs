@@ -9,7 +9,8 @@ public class Item
     {
         Health,
         Damage,
-        Speed
+        Speed,
+        Bullet
     }
 
     public ItemType Type;
@@ -17,4 +18,6 @@ public class Item
     public Sprite image;
     public int price;
     public string info;
+
+    public float amount;
 }

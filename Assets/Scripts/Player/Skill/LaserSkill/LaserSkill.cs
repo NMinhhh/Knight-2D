@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class LaserSkill : MonoBehaviour
 {
-    [SerializeField] private float damage;
+    [Header("Laser Obj")]
     [SerializeField] private GameObject[] laser;
-    [SerializeField] private float cooldown;
-    private float timer;
     Laser script;
 
+    [Header("Damage")]
+    [SerializeField] private float basicDamage;
+    [SerializeField] private float damageLevelUp;
+    [Range(10, 100)]
+    [SerializeField] private float damageLevelUpPercent;
+    private float damage;
+
+    [Header("Cooldown")]
+    [SerializeField] private float cooldown;
+    private float timer;
+
     private int level;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
+       timer += Time.deltaTime;
         if(timer > cooldown && level > 0)
         {
             SetSkill();
@@ -30,8 +35,17 @@ public class LaserSkill : MonoBehaviour
     public void LevelUp(int level)
     {
         this.level = level;
-        script = laser[level - 1].GetComponent<Laser>();
-        script.CreateLaser(damage);
+        damage = GameManager.Instance.Calculate(basicDamage, damageLevelUp, damageLevelUpPercent, this.level);
+        UpdateLaser();
+    }
+
+    void UpdateLaser()
+    {
+        for (int i = 0; i < level; i++)
+        {
+            script = laser[i].GetComponent<Laser>();
+            script.CreateLaser(damage);
+        }
     }
 
     void SetSkill()
@@ -39,7 +53,7 @@ public class LaserSkill : MonoBehaviour
         float rotationz;
         Vector3 direction;
         int amountOfEnemy = 0;
-        GameObject enemyRam = null;
+        GameObject enemyRam;
         Collider2D[] enemys = EnemysPosition.Instance.GetEnemysPosition();
         for (int i = 0; i < level; i++)
         {
@@ -55,8 +69,10 @@ public class LaserSkill : MonoBehaviour
                 enemyRam = null;
                 rotationz = Random.Range(0, 360);
             }
+
             script = laser[i].GetComponent<Laser>();
             laser[i].transform.eulerAngles = new Vector3(0, 0, rotationz);
+
             if(enemyRam == null)
             {
                 script.OnLaser();
