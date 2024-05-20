@@ -6,13 +6,11 @@ using UnityEngine.UI;
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private StatsBar healthBar;
-    [SerializeField] private StatsBar exBar;
     private float target;
     // Start is called before the first frame update
     void Start()
     {
         healthBar.image.fillAmount = 1;
-        exBar.image.fillAmount = 0;
     }
 
     // Update is called once per frame
@@ -25,6 +23,7 @@ public class PlayerStats : MonoBehaviour
     {
         target = currentHealth / maxHealth;
         StartCoroutine(UpdateBar(healthBar.image, target));
+        healthBar.text.text = $"{target * 100}%";
     }
 
     IEnumerator UpdateBar(Image image, float target)

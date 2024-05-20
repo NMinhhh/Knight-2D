@@ -11,6 +11,7 @@ public class PlayerShooting : MonoBehaviour
         ShotingGun,
         PenetratingGun,
         RocketGun,
+        BulletExplodeGun,
         LaserGun
 
 
@@ -104,6 +105,9 @@ public class PlayerShooting : MonoBehaviour
             case GunType.RocketGun:
                 RoketGunShoot();
                 break; 
+            case GunType.BulletExplodeGun:
+                BulletExplodeGunShoot();
+                break; 
             case GunType.LaserGun:
                 LaserGunShoot();
                 break;
@@ -145,6 +149,21 @@ public class PlayerShooting : MonoBehaviour
     {
         GameObject rocket = Instantiate(weapon.bulletIcon, spawnPos.position, ro);
         Rocket script = rocket.GetComponent<Rocket>();
+        script.CreateBomb(this.currentDamage, weapon.speed, weapon.timeLife);
+    }
+    
+
+    //===============================BulletExplodeGun================================
+
+    void BulletExplodeGunShoot()
+    {
+        SpawnExplosiveBbullet(attackPoint[0], attackPoint[0].rotation);
+    }
+
+    void SpawnExplosiveBbullet(Transform spawnPos, Quaternion ro)
+    {
+        GameObject explosiveBullet = Instantiate(weapon.bulletIcon, spawnPos.position, ro);
+        ExplosiveBullet script = explosiveBullet.GetComponent<ExplosiveBullet>();
         script.CreateBomb(this.currentDamage, weapon.speed, weapon.timeLife);
     }
 

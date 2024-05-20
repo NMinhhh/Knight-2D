@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class BossEnemy2 : BossEnemy
 {
@@ -19,10 +20,13 @@ public class BossEnemy2 : BossEnemy
 
     [Header("Make swawp")]
     [SerializeField] private GameObject swawp;
-    [SerializeField] private int amoutOfSwawp;
+    [SerializeField] private int amountOfSwawp;
     [SerializeField] private float swawpDamage;
+    [SerializeField] private float swawpSpeedFly;
     [SerializeField] private float timeLifeSwawp;
-    private SwawpBoss2 swawpBossScript;
+    [SerializeField] private GameObject signObj;
+    [SerializeField] private float timerSign;
+    private SwawpBoss swawpBossScript;
     private GameObject swawpGo;
     private bool isSwawpSkill;
 
@@ -51,6 +55,7 @@ public class BossEnemy2 : BossEnemy
         {
             isMove = false;
             isSwawpSkill = true;
+            GetDestination();
             ResetCooldownSkill(selectedSkill);
         }
 
@@ -59,7 +64,7 @@ public class BossEnemy2 : BossEnemy
             Shooting();
         }else if (isSwawpSkill)
         {
-            SpawnSwawpObj();
+            StartCoroutine(SpawnSwawpObj());
         }
     }
 
@@ -101,29 +106,43 @@ public class BossEnemy2 : BossEnemy
 
     //=================================SwawpSkill=========================
 
-    void SpawnSwawpObj()
+    Vector3[] GetDestination()
     {
-        Vector3 destination;
-        float angle;
-        int rd = Random.Range(0, amoutOfSwawp);
-        for (int i = 0; i < amoutOfSwawp; i++)
-        { 
-            angle = Mathf.Atan2(GetDir().y, GetDir().x) * Mathf.Rad2Deg;
-            swawpGo = GameObject.Instantiate(swawp, transform.position, Quaternion.Euler(0, 0, angle));
-            swawpBossScript = swawpGo.GetComponent<SwawpBoss2>();
-            if(i == rd)
+        Vector3[] destination = new Vector3[amountOfSwawp];
+        int rd = Random.Range(0, amountOfSwawp);
+        for (int i = 0; i < amountOfSwawp; i++)
+        {
+
+            if (i == rd)
             {
-                destination = target.position;
+                destination[i] = target.position;
             }
             else
             {
-                destination = new Vector2(Random.Range(cam.position.x - 18, cam.position.y + 18), 
+                destination[i] = new Vector2(Random.Range(cam.position.x - 18, cam.position.y + 18),
                             Random.Range(cam.position.y - 7, cam.position.y + 7));
             }
-            swawpBossScript.CreateSwawp(destination, swawpDamage, timeLifeSwawp);
+        }
+        return destination;
+    }
+
+    IEnumerator SpawnSwawpObj()
+    {
+        isSwawpSkill = false;
+        Vector3[] destination = GetDestination();
+        for (int i = 0; i < destination.Length; i++)
+        {
+            GameObject go = Instantiate(signObj, destination[i], Quaternion.identity);
+            Destroy(go, timerSign + 2);
+        }
+        yield return new WaitForSeconds(timerSign);
+        for (int i = 0; i < amountOfSwawp; i++)
+        {
+            swawpGo = Instantiate(swawp, transform.position, Quaternion.Euler(0, 0, Random.Range(0,360)));
+            swawpBossScript = swawpGo.GetComponent<SwawpBoss>();
+            swawpBossScript.CreateSwawp(destination[i], swawpDamage, swawpSpeedFly, timeLifeSwawp);
         }
         ChangeSkill(0);
         isMove = true;
-        isSwawpSkill = false;
     }
 }

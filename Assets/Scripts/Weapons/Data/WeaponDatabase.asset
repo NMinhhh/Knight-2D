@@ -85,3 +85,15 @@ MonoBehaviour:
     bulletIcon: {fileID: 0}
     isPurchased: 0
     widthImage: 283.5
+  - name: No7
+    image: {fileID: 2004866160, guid: f9c65ccaa7c089243bfd9f70a26b2d8d, type: 3}
+    damage: 60
+    bullet: 10
+    reload: 2
+    price: 1000
+    speed: 20
+    timeLife: 3
+    cooldown: 0.6
+    bulletIcon: {fileID: 2150939405496648208, guid: 79cd477e922511240b6829801495a16f, type: 3}
+    isPurchased: 0
+    widthImage: 283.5

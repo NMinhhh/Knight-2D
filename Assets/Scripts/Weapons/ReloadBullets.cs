@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ReloadBullets : MonoBehaviour
 {
-    //[SerializeField] private WeaponObject weaponsData;
     Weapon weapon;
 
     public int amountOfBullet {  get; private set; }
+
     private int currentAmountOfBullet;
 
     private float currentReloadTimer;

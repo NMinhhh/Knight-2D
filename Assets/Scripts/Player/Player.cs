@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
 
     void Damage(AttackDetail attackDetail)
     {
-        if (isImortal || isDie || isProtection || isHurt) return;
+        if (isImortal || isDie || isProtection) return;
         currentHelth = Mathf.Clamp(currentHelth - attackDetail.damage, 0, maxHealth);
         stats.UpdateHealth(currentHelth, maxHealth);
         if (attackDetail.attackDir.position.x > transform.position.x)
@@ -107,21 +107,16 @@ public class Player : MonoBehaviour
         FloatingTextManager.Instance.CreateFloatingText(floatingText, transform.position, attackDetail.damage.ToString(), floatingTextColor, damageDir);
         if (currentHelth > 0)
         {
-            StartCoroutine(Hurt());
+            isHurt = true;
         }
         else
         {
             isDie = true;
         }
-    }
-
-    IEnumerator Hurt()
-    {
-        isHurt = true;
-        sprite.color = new Color(.95f, .55f, .55f , 1);
-        yield return new WaitForSeconds(hurtTime);
-        sprite.color = Color.white;
-        isHurt = false;
+        if (isHurt)
+        {
+            StartCoroutine(Imortal());
+        }
     }
 
     IEnumerator Imortal()

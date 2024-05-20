@@ -10,13 +10,14 @@ public class Rocket : MonoBehaviour
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float radius;
     [SerializeField] private float radiusDamage;
-    private float speed;
-    private float timeLife;
-    private AttackDetail attackDetail;
+    protected float speed;
+    protected float timeLife;
+    protected AttackDetail attackDetail;
 
     private Animator anim;
     private Rigidbody2D rb;
     private bool isDamage;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -55,7 +56,7 @@ public class Rocket : MonoBehaviour
      
     }
 
-    void Attack()
+    protected virtual void Attack()
     {
         Collider2D[] enemy = Physics2D.OverlapCircleAll(attackPoint.position, radiusDamage, whatIsEnemy);
         Collider2D hitShield = Physics2D.OverlapCircle(checkPoint.position, radius, whatIsShield);

@@ -30,7 +30,7 @@ public class SelectionSkill : MonoBehaviour
     [SerializeField] private SkillData skillData;
     [Space]
 
-    [Header("List Info Skill")]
+    [Header("Skill Info")]
     [SerializeField] private WeaponRotationSkill weaponRotationSkill;
     [SerializeField] private BomerangSpawnSkill bomerangSpawnSkill;
     [SerializeField] private RocketSpawnSkill rocketSpawnSkill;
@@ -67,7 +67,7 @@ public class SelectionSkill : MonoBehaviour
 
     [Space]
     [Space]
-    [Header("List Item")]
+    [Header("Item Data")]
     [SerializeField] private ItemData itemData;
     [Space]
     [Space]
@@ -78,7 +78,7 @@ public class SelectionSkill : MonoBehaviour
     [Space]
     [Space]
 
-    [Header("Info Item")]
+    [Header("Item Info")]
     [SerializeField] private Player player;
     [SerializeField] private Transform contentGun;
     private ReloadBullets reloadBullets;
@@ -380,8 +380,6 @@ public class SelectionSkill : MonoBehaviour
                 playerShooting = go.GetComponent<PlayerShooting>();
                 reloadBullets = go.GetComponent<ReloadBullets>();
             }
-            else
-                return;
         }
         isGetScript = true;
     }

@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: SlimeBullet
+    m_Hash: 803052288
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Slime5_Bullet_0
+      m_Hash: 567282338
+      m_Sprite: {fileID: -1434495842, guid: 8c026e2e01771dc4da4fa8c003090c7b, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 1252984774, guid: 6b54634185a85cc44a6998d8f9ebc33c, type: 3}
+    - m_Name: Slime5_Bullet_1
+      m_Hash: 383203892
+      m_Sprite: {fileID: -311258696, guid: 8c026e2e01771dc4da4fa8c003090c7b, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 1372481339, guid: 6b54634185a85cc44a6998d8f9ebc33c, type: 3}
+    - m_Name: Slime5_Bullet_2
+      m_Hash: 266234766
+      m_Sprite: {fileID: -1384356504, guid: 8c026e2e01771dc4da4fa8c003090c7b, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -1893425622, guid: 6b54634185a85cc44a6998d8f9ebc33c, type: 3}
+    m_FromMain: 1
+    m_EntryOverrideCount: 3
+  m_PrimaryLibraryGUID: 12e05511e9f0a53468636feb0ede170a
+  m_ModificationHash: 638518139606940935
+  m_Version: 1

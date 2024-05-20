@@ -12,13 +12,13 @@ public class Enemy : MonoBehaviour
 
     [Header("Check player")]
     [SerializeField] private Transform checkPlayerPos;
-    [SerializeField] private Vector2 sizeCheck;
+    [SerializeField] private float checkRadius;
     [Space]
     [Space]
 
-    [Header("Damage Take Player")]
+    [Header("Damage On Touch")]
     [SerializeField] private Transform touchDamagePos;
-    [SerializeField] private Vector2 sizeTouch;
+    [SerializeField] private float touchRadius;
     [SerializeField] protected float touchDamage;
     [SerializeField] protected float touchCooldown;
     protected float touchTimer;
@@ -60,8 +60,8 @@ public class Enemy : MonoBehaviour
     [Space]
 
     [Header("Layer Mask")]
-    [SerializeField] private LayerMask whatIsPlayer;
-    [SerializeField] private LayerMask whatIsShield;
+    [SerializeField] protected LayerMask whatIsPlayer;
+    [SerializeField] protected LayerMask whatIsShield;
 
 
 
@@ -136,11 +136,11 @@ public class Enemy : MonoBehaviour
     protected virtual void Dead()
     {
         Instantiate(particleBlood, transform.position, Quaternion.identity);
-        for (int i = 0; i < amountOfEx; i++)
-        {
-            dropItemPoint = Random.insideUnitCircle * radiusPointEx;
-            DropItem(transform.position + dropItemPoint);
-        }
+        //for (int i = 0; i < amountOfEx; i++)
+        //{
+        //    dropItemPoint = Random.insideUnitCircle * radiusPointEx;
+        //    DropItem(transform.position + dropItemPoint);
+        //}
         Destroy(gameObject);
         GameManager.Instance.AddKill();
         SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetItem(0), transform.position);
@@ -150,14 +150,7 @@ public class Enemy : MonoBehaviour
     {
         int ran = Random.Range(0, 50);
         int ran2 = Random.Range(0, 50);
-        if (ran == ran2)
-        {
-            SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetExItem(1), point);
-        }
-        else
-        {
-            SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetExItem(0), point);
-        }
+        
         int ran3 = Random.Range(0, 100);
         if (ran3 == 20)
             SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetItem(1), point);
@@ -219,8 +212,8 @@ public class Enemy : MonoBehaviour
         touchTimer -= Time.deltaTime;
         attackDetail.attackDir = transform;
         attackDetail.damage = touchDamage;
-        Collider2D[] hit = Physics2D.OverlapBoxAll(touchDamagePos.position, sizeTouch, 0, whatIsPlayer);
-        Collider2D hitShield = Physics2D.OverlapBox(touchDamagePos.position, sizeTouch, 0, whatIsShield);
+        Collider2D hit = Physics2D.OverlapCircle(touchDamagePos.position, touchRadius, whatIsPlayer);
+        Collider2D hitShield = Physics2D.OverlapCircle(touchDamagePos.position, touchRadius, whatIsShield);
 
         if (hitShield)
         {
@@ -228,13 +221,10 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        foreach (Collider2D col in hit)
+        if (hit && touchTimer <= 0)
         {
-            if (col && touchTimer <= 0)
-            {
-                col.transform.SendMessage("Damage", attackDetail);
-                touchTimer = touchCooldown;
-            }
+            hit.transform.SendMessage("Damage", attackDetail);
+            touchTimer = touchCooldown;
         }
     }
     public void SetMovement(float speed)
@@ -252,7 +242,7 @@ public class Enemy : MonoBehaviour
 
     public bool CheckPlayer()
     {
-        return Physics2D.OverlapBox(checkPlayerPos.position, sizeCheck, 0, whatIsPlayer);
+        return Physics2D.OverlapCircle(checkPlayerPos.position, checkRadius, whatIsPlayer);
 
     }
     public void CheckIfFlip()
@@ -281,8 +271,8 @@ public class Enemy : MonoBehaviour
 
     protected virtual void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(checkPlayerPos.position, sizeCheck);
-        Gizmos.DrawWireCube(touchDamagePos.position, sizeTouch);
+        Gizmos.DrawWireSphere(checkPlayerPos.position, checkRadius);
+        Gizmos.DrawWireSphere(touchDamagePos.position, touchRadius);
         Gizmos.DrawWireSphere(transform.position, radiusPointEx);
     }
 }
