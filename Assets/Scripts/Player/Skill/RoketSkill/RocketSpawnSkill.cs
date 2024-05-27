@@ -54,7 +54,7 @@ public class RocketSpawnSkill : MonoBehaviour
         Vector3 direction;
         GameObject enemyRam;
         int amountOfEnemy = 0;
-        Collider2D[] enemys = EnemysPosition.Instance.GetEnemysPosition();
+        Collider2D[] enemys = GetPositionInCam.Instance.GetEnemysPosition();
         for (int i = 0; i < level; i++) 
         {
             if(enemys.Length > 0 && amountOfEnemy < enemys.Length)

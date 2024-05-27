@@ -22,12 +22,9 @@ public class LightningSpawnSkill : MonoBehaviour
 
     private int level;
 
-    private Transform cam;
-
     void Start()
     {
         timer = cooldown;
-        cam = GameObject.Find("Main Camera").transform;
     }
 
     void Update()
@@ -49,7 +46,7 @@ public class LightningSpawnSkill : MonoBehaviour
     void SetSkill(int amount)
     {
         Vector3 pos;
-        Collider2D[] enemy = EnemysPosition.Instance.GetEnemysPosition();
+        Collider2D[] enemy = GetPositionInCam.Instance.GetEnemysPosition();
         int amountOfEnemy = 0;
         for (int i = 0; i < amount; i++)
         {
@@ -60,7 +57,7 @@ public class LightningSpawnSkill : MonoBehaviour
             }
             else
             {
-                pos = new Vector3(Random.Range(cam.position.x - 15, cam.position.x + 15), Random.Range(cam.position.y - 8, cam.position.y + 8), 0);
+                pos = GetPositionInCam.Instance.GetPositionInArea();
             }
             go = Instantiate(lightning, new Vector3(pos.x, pos.y + 20, 0), Quaternion.identity);
             script = go.GetComponent<Lightning>();

@@ -6,19 +6,19 @@ public class SpawnerManager : MonoBehaviour
 {
     public static SpawnerManager Instance {  get; private set; }
 
+    [SerializeField] private BoxCollider2D boxCollider;
+
     [Header("SpawnEnemy")]
     [SerializeField] private GameObject iconSpawner;
     SpriteRenderer spriteRenderer;
-    private GameObject GO;
     [Space]
 
     private static int sortingOrder = 0;
 
-    [Header("Spawn Item")]
-    [SerializeField] private GameObject[] item;
+    private List<GameObject> enemies = new List<GameObject>();
 
-    [Header("Ex Item")]
-    [SerializeField] private GameObject[] exItem;
+    [Header("Energy pref")]
+    [SerializeField] private GameObject energy;
 
     private void Awake()
     {
@@ -32,37 +32,51 @@ public class SpawnerManager : MonoBehaviour
         }
     }
 
-    public void SpawnEnemy(GameObject enemy, Vector2 pos)
+    public void SpawnEnemy(GameObject enemy, float delayTimer)
     {
-        StartCoroutine(Spawn(enemy, pos));
+        StartCoroutine(Spawn(enemy, delayTimer));
     }
 
-    IEnumerator Spawn(GameObject enemy, Vector2 pos)
+    IEnumerator Spawn(GameObject enemy, float delayTimer)
     {
-        GameObject go = Instantiate(iconSpawner, pos, Quaternion.identity);
-        yield return new WaitForSeconds(1.5f);
-        GO = Instantiate(enemy, go.transform.position, Quaternion.identity);
-        spriteRenderer = GO.GetComponent<SpriteRenderer>();
+        GameObject go = Instantiate(iconSpawner, GetRandomSpawnPosition(), Quaternion.identity);
+        GameObject spawnGo = Instantiate(enemy, go.transform.position, Quaternion.identity);
+        spawnGo.SetActive(false);
+        spriteRenderer = spawnGo.GetComponent<SpriteRenderer>();
         sortingOrder++;
         spriteRenderer.sortingOrder = sortingOrder;
-        yield return GO;
+        enemies.Add(spawnGo);    
+        yield return new WaitForSeconds(delayTimer);
+        spawnGo.SetActive(true);
         Destroy(go);
     }
 
-    
-
-    public void SpawnItem(GameObject item, Vector2 pos)
+    public bool CheckListEnemy()
     {
-        GameObject go = Instantiate(item, pos, Quaternion.identity);
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            if (enemies[i] == null)
+            {
+                enemies.RemoveAt(i);
+            }
+        }
+        return enemies.Count == 0;
     }
 
-    public GameObject GetItem(int i) 
+    public void SpawnEnergy(Vector2 pos)
     {
-        return item[i];
+        Instantiate(energy, pos, Quaternion.identity);
     }
 
-    public GameObject GetExItem(int i)
+
+    public Vector2 GetRandomSpawnPosition()
     {
-        return exItem[i];
+        Vector2 minBound = new Vector2(boxCollider.bounds.min.x, boxCollider.bounds.min.y);
+        Vector2 maxBound = new Vector2(boxCollider.bounds.max.x, boxCollider.bounds.max.y);
+
+        float ranX = Random.Range(minBound.x, maxBound.x);
+        float ranY = Random.Range(minBound.y, maxBound.y);
+
+        return new Vector2(ranX, ranY);
     }
 }

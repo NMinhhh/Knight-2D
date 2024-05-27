@@ -168,6 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3968cb721b7d7a458b1654bf46af5a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFacingPlayer: 0
+  isFlip: 1
   speed: 4
   checkPlayerPos: {fileID: 8402914981032501996}
   checkRadius: 1.11

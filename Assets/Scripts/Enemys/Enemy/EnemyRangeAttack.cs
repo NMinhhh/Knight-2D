@@ -4,22 +4,32 @@ using UnityEngine;
 
 public class EnemyRangeAttack : Enemy
 {
+    [Header("Bullet Pref")]
     [SerializeField] private GameObject bulletPref;
+    private NormalBullet script;
+    private GameObject go;
+    [Space]
+
+    [Header("Shooting Point and Check Player")]
     [SerializeField] private Transform shootigPoint;
     [SerializeField] private Transform checkPlayerDetected;
     [SerializeField] private Vector2 checkPlayerDetectedSize;
+    [Space]
 
+    [Header("Bullet Info")]
     [SerializeField] private float bulletSpeed;
     [SerializeField] private float bulletDamage;
     [SerializeField] private float bulletTimeLife;
-    [SerializeField] private float shootCooldown;
+    [Space]
 
+    [Header("Shooting cooldown")]
+    [SerializeField] private float shootCooldown;
+    private float shootTimer;
+    [Space]
+
+    [Header("Idle timer")]
     [SerializeField] private float idleCooldown;
     private float idleTimer;
-
-    private float shootTimer;
-    private NormalBullet script;
-    private GameObject go;
 
     protected override void Start()
     {
@@ -60,7 +70,7 @@ public class EnemyRangeAttack : Enemy
 
     bool CheckPlayerDetected()
     {
-        return Physics2D.OverlapBox(checkPlayerDetected.position, checkPlayerDetectedSize, whatIsPlayer);
+        return Physics2D.OverlapBox(checkPlayerDetected.position, checkPlayerDetectedSize,0 , whatIsPlayer);
     }
 
     protected override void OnDrawGizmos()

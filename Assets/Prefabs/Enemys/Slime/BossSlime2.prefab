@@ -135,6 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 042943509491f3c4ebc8e1beb0dfa9a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFacingPlayer: 0
+  isFlip: 0
   speed: 3
   checkPlayerPos: {fileID: 8594857407546996178}
   checkRadius: 1.16
@@ -167,9 +169,9 @@ MonoBehaviour:
   damageSkill: 3
   objTimeLife: 1
   amountOfObj: 5
-  signObj: {fileID: 2804138993721818002, guid: b18fadb123f1ef54c86c84e37626f8d9, type: 3}
-  timerSign: 0.5
-  cooldownIntrintic: 4
+  signalObj: {fileID: 2804138993721818002, guid: b18fadb123f1ef54c86c84e37626f8d9, type: 3}
+  signalTimer: 0.5
+  intrinticCooldown: 4
   bullet: {fileID: 6303410531814515919, guid: d8f9aa0b61671ac42ae1af22d6f57e06, type: 3}
   amountOfBullet: 120
   bulletDamage: 4

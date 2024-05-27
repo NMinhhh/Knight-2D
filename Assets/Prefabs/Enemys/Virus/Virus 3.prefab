@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2901305841768882357}
   - component: {fileID: 4705296668238300892}
-  - component: {fileID: 7545860696109985530}
+  - component: {fileID: 1815252818337541265}
   - component: {fileID: 7525573173401716121}
   - component: {fileID: 8126872334060090040}
   - component: {fileID: 551537962652128506}
@@ -92,7 +92,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7545860696109985530
+--- !u!114 &1815252818337541265
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,16 +101,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 2177921578000032802}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fab75ccef3b1894e8469b1bac69049e, type: 3}
+  m_Script: {fileID: 11500000, guid: cd3299da28ae21b46a57bd9c0a3b617c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  isFacingPlayer: 0
+  speed: 5
   checkPlayerPos: {fileID: 8571689006148905372}
-  checkRadius: 0.47
+  checkRadius: 0.53
   touchDamagePos: {fileID: 1761752171744622175}
-  touchRadius: 0.26
+  touchRadius: 0.91
   touchDamage: 1
-  touchCooldown: 1
+  touchCooldown: 0.5
   basicHealth: 20
   healthLevelUp: 8
   healthLevelUpPercent: 3
@@ -118,11 +119,11 @@ MonoBehaviour:
   hurtEffectTimer: 0.1
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
-  particleBlood: {fileID: 4106987093756705936, guid: 12d9bf5c1629fb646b58ec6b3cb57839, type: 3}
-  amountOfEx: 1
+  particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
+  amountOfEx: 0
   radiusPointEx: 0
   slowingTimer: 2
-  slowingColor: {r: 0, g: 0.56935525, b: 1, a: 1}
+  slowingColor: {r: 0, g: 0.39345384, b: 1, a: 1}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
@@ -130,9 +131,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   bulletObj: {fileID: 1884940605765032870, guid: 4bf72dec41584e64aa23faa033d4a983, type: 3}
+  amountOfBullet: 1
   bulletDamage: 1
-  bulletSpeed: 10
-  bulletTimeLife: 5
+  bulletSpeed: 13
+  bulletTimeLife: 3
 --- !u!50 &7525573173401716121
 Rigidbody2D:
   serializedVersion: 4

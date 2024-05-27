@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Facing the player and flip")]
+    [SerializeField] private bool isFacingPlayer;
+    [SerializeField] private bool isFlip;
+    protected bool isLock;
+    [Space]
+
     [Header("Movement")]
     [SerializeField] private float speed;
     protected bool isMove = true;
@@ -36,6 +42,8 @@ public class Enemy : MonoBehaviour
     protected float currentDamageTimeCon;
     protected bool isDead;
     protected bool isImortal = true;
+    [Space]
+
     [Header("Floating Text")]
     [SerializeField] protected GameObject floatingText;
     [SerializeField] protected Color floatingTextColor;
@@ -63,10 +71,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected LayerMask whatIsPlayer;
     [SerializeField] protected LayerMask whatIsShield;
 
-
-
     protected int damageDir;
     protected int facingRight;
+
+
     protected AttackDetail attackDetail;
 
     protected Transform target;
@@ -96,6 +104,14 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (isFacingPlayer && !isLock)
+        {
+            transform.right = GetDir();
+        }
+        if (isFlip)
+        {
+            CheckIfFlip();
+        }
         if (!CheckPlayer() && isMove)
         {
             SetMovement(speed);
@@ -105,7 +121,6 @@ public class Enemy : MonoBehaviour
             SetVelocityZero();
         }
 
-        CheckIfFlip();
 
         TouchDamagePlayer();
         currentDamageTimeCon -= Time.deltaTime;
@@ -136,35 +151,29 @@ public class Enemy : MonoBehaviour
     protected virtual void Dead()
     {
         Instantiate(particleBlood, transform.position, Quaternion.identity);
-        //for (int i = 0; i < amountOfEx; i++)
-        //{
-        //    dropItemPoint = Random.insideUnitCircle * radiusPointEx;
-        //    DropItem(transform.position + dropItemPoint);
-        //}
+        
         Destroy(gameObject);
         GameManager.Instance.AddKill();
-        SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetItem(0), transform.position);
+        SpawnerManager.Instance.SpawnEnergy(transform.position);
     }
 
-    protected virtual void DropItem(Vector3 point)
+
+    public virtual void Damage(AttackDetail attackDetail)
     {
-        int ran = Random.Range(0, 50);
-        int ran2 = Random.Range(0, 50);
-        
-        int ran3 = Random.Range(0, 100);
-        if (ran3 == 20)
-            SpawnerManager.Instance.SpawnItem(SpawnerManager.Instance.GetItem(1), point);
-
+        if (isDead || isImortal) return;
+        if (attackDetail.continousDamage)
+        {
+            if (currentDamageTimeCon > 0) return;
+            RecieveDamage(attackDetail);
+            currentDamageTimeCon = damageTimerCon;
+        }
+        else
+        {
+            RecieveDamage(attackDetail);
+        }
     }
 
-    IEnumerator Hurt()
-    {
-        spriteRenderer.color = new Color(.95f, .6f, .6f, 1);
-        yield return new WaitForSeconds(hurtEffectTimer);
-        spriteRenderer.color = new Color(1, 1, 1, 1);
-    }
-
-    void RecieveDamage(AttackDetail attackDetail)
+    protected virtual void RecieveDamage(AttackDetail attackDetail)
     {
         currentHealth = Mathf.Clamp(currentHealth - attackDetail.damage, 0, maxHealth);
         if (attackDetail.attackDir.position.x > transform.position.x)
@@ -191,22 +200,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public virtual void Damage(AttackDetail attackDetail)
+    IEnumerator Hurt()
     {
-        if (isDead || isImortal) return;
-        if (attackDetail.continousDamage)
-        {
-            if (currentDamageTimeCon > 0) return;
-            RecieveDamage(attackDetail);
-            currentDamageTimeCon = damageTimerCon;
-        }
-        else
-        {
-            RecieveDamage(attackDetail);
-        }
+        spriteRenderer.color = new Color(.95f, .6f, .6f, 1);
+        yield return new WaitForSeconds(hurtEffectTimer);
+        spriteRenderer.color = new Color(1, 1, 1, 1);
     }
 
-
+   
     void TouchDamagePlayer()
     {
         touchTimer -= Time.deltaTime;
@@ -227,6 +228,7 @@ public class Enemy : MonoBehaviour
             touchTimer = touchCooldown;
         }
     }
+
     public void SetMovement(float speed)
     {
         if (isSlowingEffect)
@@ -267,7 +269,6 @@ public class Enemy : MonoBehaviour
         transform.Rotate(0, 180, 0);
         facingRight *= -1;
     }
-
 
     protected virtual void OnDrawGizmos()
     {

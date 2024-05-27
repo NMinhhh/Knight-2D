@@ -59,7 +59,7 @@ public class Electric : MonoBehaviour
     void Attack()
     {
         //Get position enemy detected
-        Collider2D[] hits = EnemysPosition.Instance.GetEnemysPosition();
+        Collider2D[] hits = GetPositionInCam.Instance.GetEnemysPosition();
         if(hits.Length > 0 && enemyRamdom == null)
         {
             enemyRamdom = hits[Random.Range(0, hits.Length)].gameObject;

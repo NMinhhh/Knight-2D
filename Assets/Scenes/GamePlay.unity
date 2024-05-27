@@ -1083,7 +1083,7 @@ Transform:
   m_GameObject: {fileID: 165536523}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.4, y: -0.06, z: 0}
+  m_LocalPosition: {x: -9.97, y: 5.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1528,7 +1528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkPoint: {fileID: 519420032}
-  sizeBox: {x: 41.2, y: 19}
+  sizeBox: {x: 48.9, y: 21.7}
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 128
@@ -1877,7 +1877,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &316771336
 Transform:
   m_ObjectHideFlags: 0
@@ -1959,6 +1959,7 @@ GameObject:
   m_Component:
   - component: {fileID: 334086752}
   - component: {fileID: 334086751}
+  - component: {fileID: 334086753}
   m_Layer: 0
   m_Name: SpawnerManager
   m_TagString: Untagged
@@ -1978,13 +1979,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58fa8bd5156a20a44882f1284315f4b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxCollider: {fileID: 334086753}
   iconSpawner: {fileID: 2804138993721818002, guid: b18fadb123f1ef54c86c84e37626f8d9, type: 3}
-  item:
-  - {fileID: 1929216110777424778, guid: de52d8807e96baa4aae5fd6645f73dba, type: 3}
-  - {fileID: 7222628584535621924, guid: 85964c9fd29c9e1489466c4c2ff2b545, type: 3}
-  exItem:
-  - {fileID: 6636172245612806722, guid: 5f43e4177dc1c1d469ec558b2771dab1, type: 3}
-  - {fileID: 5885688412705331573, guid: 3390e37c2c288354ab073ec040087879, type: 3}
+  energy: {fileID: 1929216110777424778, guid: de52d8807e96baa4aae5fd6645f73dba, type: 3}
 --- !u!4 &334086752
 Transform:
   m_ObjectHideFlags: 0
@@ -2000,6 +1997,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &334086753
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334086750}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.41927147, y: 0.72110367}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 62.343822, y: 42.077583}
+  m_EdgeRadius: 0
 --- !u!1 &335842042
 GameObject:
   m_ObjectHideFlags: 0
@@ -45663,78 +45705,6 @@ CompositeCollider2D:
       - X: 331875008
         Y: 240000000
       - X: 331875008
-        Y: 220000000
-      - X: 340000000
-        Y: 220000000
-      - X: 340000000
-        Y: 218750000
-      - X: 331875008
-        Y: 220000000
-      - X: 331875008
-        Y: 170000000
-      - X: 340000000
-        Y: 170000000
-      - X: 340000000
-        Y: 168750000
-      - X: 331875008
-        Y: 170000000
-      - X: 331875008
-        Y: 120000000
-      - X: 340000000
-        Y: 120000000
-      - X: 340000000
-        Y: 118750000
-      - X: 331875008
-        Y: 120000000
-      - X: 331875008
-        Y: 70000000
-      - X: 340000000
-        Y: 70000000
-      - X: 340000000
-        Y: 68750000
-      - X: 331875008
-        Y: 70000000
-      - X: 331875008
-        Y: 10000000
-      - X: 340000000
-        Y: 10000000
-      - X: 340000000
-        Y: 8750000
-      - X: 331875008
-        Y: 10000000
-      - X: 331875008
-        Y: -40000000
-      - X: 340000000
-        Y: -40000000
-      - X: 340000000
-        Y: -41250000
-      - X: 331875008
-        Y: -40000000
-      - X: 331875008
-        Y: -90000000
-      - X: 340000000
-        Y: -90000000
-      - X: 340000000
-        Y: -91250000
-      - X: 331875008
-        Y: -90000000
-      - X: 331875008
-        Y: -140000000
-      - X: 340000000
-        Y: -140000000
-      - X: 340000000
-        Y: -141250000
-      - X: 331875008
-        Y: -140000000
-      - X: 331875008
-        Y: -190000000
-      - X: 340000000
-        Y: -190000000
-      - X: 340000000
-        Y: -191250000
-      - X: 331875008
-        Y: -190000000
-      - X: 331875008
         Y: -230000000
       - X: 330000000
         Y: -231875008
@@ -45755,33 +45725,6 @@ CompositeCollider2D:
       - {x: 33.00003, y: 24}
       - {x: 33.1875, y: 23.999971}
       - {x: 33.187496, y: -23.000008}
-    - - {x: 34, y: 21.875036}
-      - {x: 33.18811, y: 22}
-      - {x: 34, y: 21.999971}
-    - - {x: 34, y: 16.875036}
-      - {x: 33.18811, y: 17}
-      - {x: 34, y: 16.999971}
-    - - {x: 34, y: 11.875035}
-      - {x: 33.18811, y: 12}
-      - {x: 34, y: 11.99997}
-    - - {x: 34, y: 6.8750353}
-      - {x: 33.18811, y: 7}
-      - {x: 34, y: 6.9999704}
-    - - {x: 34, y: 0.8750353}
-      - {x: 33.18811, y: 1}
-      - {x: 34, y: 0.9999706}
-    - - {x: 34, y: -4.1249647}
-      - {x: 33.18811, y: -4}
-      - {x: 34, y: -4.0000296}
-    - - {x: 34, y: -9.124965}
-      - {x: 33.18811, y: -9}
-      - {x: 34, y: -9.00003}
-    - - {x: 34, y: -14.124965}
-      - {x: 33.18811, y: -14}
-      - {x: 34, y: -14.000029}
-    - - {x: 34, y: -19.124966}
-      - {x: 33.18811, y: -19}
-      - {x: 34, y: -19.000029}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -45826,6 +45769,8 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
+  - component: {fileID: 519420035}
+  - component: {fileID: 519420036}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -45876,7 +45821,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -45901,7 +45846,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.6, y: 0.19, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45985,6 +45930,67 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!61 &519420035
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 49.3, y: 20.23}
+  m_EdgeRadius: 0
+--- !u!114 &519420036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e929d7227d9e274fbff8b1ff520b092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCollider: {fileID: 519420035}
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &535316232
 GameObject:
   m_ObjectHideFlags: 0
@@ -49275,7 +49281,7 @@ Transform:
   m_GameObject: {fileID: 846032678}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.6, y: 0.19, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -49304,7 +49310,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1420980234}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 10
+    OrthographicSize: 12
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -50157,35 +50163,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapLevel: 0
-  spawnPoint:
-  - {fileID: 335842043}
-  - {fileID: 957680669}
-  - {fileID: 349967655}
-  - {fileID: 819913479}
   stageUI: {fileID: 0}
-  stageTextUI: {fileID: 0}
-  stageText: {fileID: 0}
-  maxStage: 0
   cooldownstartStageTimer: 0
   cooldownEndStageTimer: 0
-  iconSpawner: {fileID: 0}
-  enemy1: []
-  amountOfEnemy1: 0
   cooldownEnemy1: 0
-  enemy2: []
-  amountOfEnemy2: 0
-  stageAppearEnemy2: 0
-  cooldownEnemy2: 0
-  enemy3: []
-  amountOfEnemy3: 0
-  stageAppearEnemy3: 0
-  cooldownEnemy3: 0
-  boss: []
-  pointBossSpawn: {fileID: 0}
-  stageBossApears: 
-  warning: {fileID: 0}
   warningTime: 0
   amountAllEnemySpawn: 0
+  stageData: {fileID: 0}
+  enemys: []
 --- !u!4 &915629547
 Transform:
   m_ObjectHideFlags: 0
@@ -50832,7 +50817,7 @@ GameObject:
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &986944992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50846,43 +50831,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapLevel: 1
-  spawnPoint:
-  - {fileID: 12708105}
-  - {fileID: 639298938}
-  - {fileID: 1629587723}
-  - {fileID: 1811782722}
-  stageUI: {fileID: 2791077}
-  stageTextUI: {fileID: 1585276021}
-  stageText: {fileID: 1128961825}
-  maxStage: 30
+  stageUI: {fileID: 1212580738}
   cooldownstartStageTimer: 2
   cooldownEndStageTimer: 2
-  iconSpawner: {fileID: 2804138993721818002, guid: b18fadb123f1ef54c86c84e37626f8d9, type: 3}
-  enemy1:
-  - {fileID: 5143242531403574514, guid: 5c1f6cf68c1dbcf43a957eb1ee88318f, type: 3}
-  - {fileID: 2263075011448512916, guid: 4dd107e19ebcf8d4ea47b1c38a38a60e, type: 3}
-  amountOfEnemy1: 6
-  cooldownEnemy1: 0.5
-  enemy2:
-  - {fileID: 2177921578000032802, guid: f1bd64d0a66782743ad0863eb84c5c84, type: 3}
-  amountOfEnemy2: 2
-  stageAppearEnemy2: 10
-  cooldownEnemy2: 3
-  enemy3:
-  - {fileID: 5650367629014025385, guid: 3b4d73542fa3b5941a3062f04b22739f, type: 3}
-  - {fileID: 1229072718696118574, guid: 533e829cc973ce24999e9da5fce109e5, type: 3}
-  - {fileID: 5828234913509172804, guid: 3924b85ed8dafcc40a1e49945dde47cc, type: 3}
-  amountOfEnemy3: 1
-  stageAppearEnemy3: 15
-  cooldownEnemy3: 5
-  boss:
-  - {fileID: 2610492306374833059, guid: b9fc380db3b97c74f9ccc3e43d747ffe, type: 3}
-  - {fileID: 384325078965818111, guid: 7a47f855461bf734fafd471b976f6ea7, type: 3}
-  pointBossSpawn: {fileID: 1689461042}
-  stageBossApears: 140000001e000000
-  warning: {fileID: 1877796793}
+  cooldownEnemy1: 0.2
   warningTime: 3
   amountAllEnemySpawn: 0
+  stageData: {fileID: 11400000, guid: d81fd1777e060f54d9540546ed6f12b6, type: 2}
+  enemys: []
 --- !u!4 &986944993
 Transform:
   m_ObjectHideFlags: 0
@@ -51880,7 +51836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17f9ac61d6e60f044bb589c9121477a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunType: 4
+  gunType: 5
   attackPoint:
   - {fileID: 933828795}
   clip: {fileID: 8300000, guid: 805a9d7c905342e4a99905265245a340, type: 3}
@@ -52489,6 +52445,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1212580737}
+  - component: {fileID: 1212580738}
   m_Layer: 5
   m_Name: StateMap
   m_TagString: Untagged
@@ -52517,6 +52474,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1212580738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212580736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf83322e3eb5af4a9503c345344635a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageMes: {fileID: 2791077}
+  stageMesText: {fileID: 1585276021}
+  stageText: {fileID: 1128961825}
+  warningBossUI: {fileID: 1877796793}
 --- !u!1 &1213550979
 GameObject:
   m_ObjectHideFlags: 0
@@ -55780,7 +55753,7 @@ Transform:
   m_GameObject: {fileID: 1392876975}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.027622, y: 7.8488755, z: -0.04729989}
+  m_LocalPosition: {x: -21.7, y: 5.7, z: -0.04729989}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -55888,7 +55861,7 @@ Transform:
   m_GameObject: {fileID: 1420980231}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.6, y: 0.19, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -55982,10 +55955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08d0969677aa4c34f9a5edfdc8b9dce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dieGo: {fileID: 266700590}
-  btnBorn: {fileID: 0}
   diamondPay: 1
-  diamondText: {fileID: 0}
 --- !u!1 &1421948444
 GameObject:
   m_ObjectHideFlags: 0
@@ -56612,42 +56582,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapLevel: 1
-  spawnPoint:
-  - {fileID: 2017443799}
-  - {fileID: 632953981}
-  - {fileID: 1017084340}
-  - {fileID: 1566075048}
   stageUI: {fileID: 2791077}
-  stageTextUI: {fileID: 1585276021}
-  stageText: {fileID: 1128961825}
-  maxStage: 30
   cooldownstartStageTimer: 2
   cooldownEndStageTimer: 2
-  iconSpawner: {fileID: 2804138993721818002, guid: b18fadb123f1ef54c86c84e37626f8d9, type: 3}
-  enemy1:
-  - {fileID: 5200534203598843381, guid: b4c92f13ecb2e8e4d88b2e81abd405ab, type: 3}
-  - {fileID: 5113861302245079923, guid: 21834745ad128c1439d87fd8d8f85ff3, type: 3}
-  amountOfEnemy1: 10
   cooldownEnemy1: 0.5
-  enemy2:
-  - {fileID: 2465061123090160100, guid: 81c104b56405b0341a6c632c179f7f91, type: 3}
-  - {fileID: 1606928569046898189, guid: 3cf6efb852d54c3459ee24519cfb005a, type: 3}
-  amountOfEnemy2: 3
-  stageAppearEnemy2: 10
-  cooldownEnemy2: 3
-  enemy3:
-  - {fileID: 2507449915888841542, guid: eedcbd9f72731b44bb4f6c82cf537967, type: 3}
-  amountOfEnemy3: 2
-  stageAppearEnemy3: 15
-  cooldownEnemy3: 5
-  boss:
-  - {fileID: 2913786344893900318, guid: 208801e602c7425428e293dc012a7332, type: 3}
-  - {fileID: 2478384230254300143, guid: 526ca960ba98de040b844dbcbcb76aec, type: 3}
-  pointBossSpawn: {fileID: 1646784483}
-  stageBossApears: 140000001e000000
-  warning: {fileID: 1877796793}
   warningTime: 3
   amountAllEnemySpawn: 0
+  stageData: {fileID: 0}
+  enemys: []
 --- !u!4 &1531469460
 Transform:
   m_ObjectHideFlags: 0
@@ -61132,7 +61074,7 @@ Transform:
   m_GameObject: {fileID: 2133148048}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -4.8, y: -6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -65832,6 +65774,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87180fdb7da8bd0479c084e4ab822040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFacingPlayer: 0
+  isFlip: 0
   speed: 2
   checkPlayerPos: {fileID: 6264322377659802035}
   checkRadius: 0

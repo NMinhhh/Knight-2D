@@ -51,7 +51,7 @@ MonoBehaviour:
     m_Bits: 64
   whatIsShield:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   sizecheck: {x: 0.7, y: 0.7}
 --- !u!212 &6874095024572371705
 SpriteRenderer:

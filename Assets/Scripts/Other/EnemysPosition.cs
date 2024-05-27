@@ -22,7 +22,7 @@ public class EnemysPosition : MonoBehaviour
         }
     }
 
-    public Collider2D[] GetEnemysPosition()
+    public Collider2D[] GetEnemysPositio()
     {
         Collider2D[] hits = Physics2D.OverlapBoxAll(checkPoint.position, sizeBox, 0, whatIsEnemy);
         return hits;

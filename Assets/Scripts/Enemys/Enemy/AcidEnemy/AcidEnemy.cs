@@ -8,20 +8,20 @@ public class AcidEnemy : Enemy
     [SerializeField] private float acidDamage;
     [SerializeField] private float acidTimelife;
 
-    private Acid script;
-    private GameObject go;
+    private Acid acidScript;
+    private GameObject acidGo;
 
 
     protected override void Dead()
     {
         base.Dead();
-        SpawnAcidGo();
+        CreateAcidGo();
     }
 
-    void SpawnAcidGo()
+    void CreateAcidGo()
     {
-        go = Instantiate(acidPref, transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
-        script = go.GetComponent<Acid>();
-        script.CreateAcidSwawp(acidDamage, acidTimelife);
+        acidGo = Instantiate(acidPref, transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
+        acidScript = acidGo.GetComponent<Acid>();
+        acidScript.CreateAcidSwawp(acidDamage, acidTimelife);
     }
 }

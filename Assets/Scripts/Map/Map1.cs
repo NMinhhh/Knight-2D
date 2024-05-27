@@ -2,7 +2,6 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Map1 : MonoBehaviour
 {
@@ -11,18 +10,8 @@ public class Map1 : MonoBehaviour
     [Space]
     [Space]
 
-    [Header("Position spawn enemy")]
-    [SerializeField] private Transform[] spawnPoint;
-    Vector2 pos;
-    [Space]
-    [Space]
-
     [Header("Stage")]
-    [SerializeField] private GameObject stageUI;
-    [SerializeField] private Text stageTextUI;
-    [SerializeField] private Text stageText;
-    [SerializeField] private int maxStage;
-    private int currentStage;
+    [SerializeField] private StageUI stageUI;
     [SerializeField] private float cooldownstartStageTimer;
     private float startStageTimer;
     [SerializeField] private float cooldownEndStageTimer;
@@ -31,54 +20,17 @@ public class Map1 : MonoBehaviour
     [Space]
     [Space]
 
-    [Header("SpawnEnemy")]
-    [SerializeField] private GameObject iconSpawner;
-    SpriteRenderer spriteRenderer;
-    private GameObject GO;
-    [Space]
-
-    private static int sortingOrder = 0;
-
-    [Header("Enemy1")]
-    [SerializeField] private GameObject[] enemy1;
-    [SerializeField] private int amountOfEnemy1;
-    private int currentAmoutOfEnemy1;
+    [Header("Cooldown")]
     [SerializeField] private float cooldownEnemy1;
     private float startTime1;
     [Space]
     [Space]
 
-    [Header("Enemy2")]
-    [SerializeField] private GameObject[] enemy2;
-    [SerializeField] private int amountOfEnemy2;
-    [SerializeField] private int stageAppearEnemy2;
-    private int currentAmoutOfEnemy2;
-    [SerializeField] private float cooldownEnemy2;
-    private float startTime2;
-    [Space]
-    [Space]
-
-    [Header("Enemy3")]
-    [SerializeField] private GameObject[] enemy3;
-    [SerializeField] private int amountOfEnemy3;
-    [SerializeField] private int stageAppearEnemy3;
-    private int currentAmoutOfEnemy3;
-    [SerializeField] private float cooldownEnemy3;
-    private float startTime3;
-    [Space]
-    [Space]
 
     [Header("Boss")]
-    [SerializeField] private GameObject[] boss;
-    [SerializeField] private Transform pointBossSpawn;
-    private GameObject go;
-    [SerializeField] private int[] stageBossApears;
-    [SerializeField] private GameObject warning;
     [SerializeField] private float warningTime;
     private float timer;
-    private bool bossStage;
     private bool isBoss;
-    private int bossId;
 
     private List<GameObject> enemies;
 
@@ -88,38 +40,49 @@ public class Map1 : MonoBehaviour
 
     AttackDetail attackDetail;
 
+    [Header("Text")]
+    [SerializeField] private StageData stageData;
+    private Stage currentStage;
+    private int currentAmountOfEnemy;
+    private bool isFinishStage;
+    private float currentTimer;
+    public List<GameObject> enemys;
+
     void Start()
     {
+        enemys = new List<GameObject>();
         startTime1 = Time.deltaTime;
         enemies = new List<GameObject>();
         items = new List<GameObject>();
+        isFinishStage = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!bossStage)
+        if (!isBoss)
         {
-            if(amountAllEnemySpawn > 0)
+            if (!isFinishStage)
             {
                 ControlSpawn();
-            }else
+            }
+            else
             {
-                if (CheckEnemyToChangeStage() && !isChangeStage)
+                if (SpawnerManager.Instance.CheckListEnemy() && !isChangeStage)
                 {
                     RecieveItem();
                     endStageTimer -= Time.deltaTime;
-                    if(endStageTimer <= 0)
+                    if (endStageTimer <= 0)
                     {
                         startStageTimer = Time.time;
                         isChangeStage = true;
-                        SendMessageStage();
+                        stageUI.OpenStageUI();
                         endStageTimer = cooldownEndStageTimer;
                     }
 
                 }
             }
-            if(Time.time >= startStageTimer + cooldownstartStageTimer && isChangeStage)
+            if (Time.time >= startStageTimer + cooldownstartStageTimer && isChangeStage)
             {
                 ChangeState();
             }
@@ -127,121 +90,70 @@ public class Map1 : MonoBehaviour
         else
         {
             timer += Time.deltaTime;
-            if(timer >= warningTime && !isBoss)
+            if(timer >= warningTime)
             {
-                warning.SetActive(false);
-                go = Instantiate(boss[bossId], pointBossSpawn.position, Quaternion.identity);
-                isBoss = true;
+                stageUI.CloseWarningBossUI();
+                isBoss = false;
+                timer = 0;
             }
-            if (isBoss)
+            else
             {
-                if(go == null){
-                    isBoss = false;
-                    timer = 0;
-                    bossStage = false;
-                }
+                stageUI.OpenWarningBossUI();
             }
+
         }
-       
+
     }
 
 
     void ControlSpawn()
     {
-        if (Time.time >= startTime1 + cooldownEnemy1 && currentAmoutOfEnemy1 > 0)
+       
+        currentTimer -= Time.deltaTime;
+        if (currentTimer <= 0)
         {
-            currentAmoutOfEnemy1--;
-            amountAllEnemySpawn--;
-            startTime1 = Time.time;
-            StartCoroutine(SpawnEnemy(enemy1[Random.Range(0, enemy1.Length)], GetPos()));
-        }
-        if (currentStage < stageAppearEnemy2)
-            return;
-        if (Time.time >= startTime2 + cooldownEnemy2 && currentAmoutOfEnemy2 > 0)
-        {
-            currentAmoutOfEnemy2--;
-            amountAllEnemySpawn--;
-            startTime2 = Time.time;
-            StartCoroutine(SpawnEnemy(enemy2[Random.Range(0, enemy2.Length)], GetPos()));
-        }
-        if(currentStage < stageAppearEnemy3)
-            return;
-        if (Time.time >= startTime3 + cooldownEnemy3 && currentAmoutOfEnemy3 > 0)
-        {
-            currentAmoutOfEnemy3--;
-            amountAllEnemySpawn--;
-            startTime3 = Time.time;
-            StartCoroutine(SpawnEnemy(enemy3[Random.Range(0, enemy3.Length)], GetPos()));
-        }
-        
-    }
-
-    bool CheckEnemyToChangeStage()
-    {
-        for (int i = 0; i < enemies.Count; i++)
-        {
-            if (enemies[i] == null)
+            SpawnerManager.Instance.SpawnEnemy(enemys[currentAmountOfEnemy], 1.5f);
+            currentTimer = currentStage.cooldown;
+            currentAmountOfEnemy++;
+            if (currentAmountOfEnemy == currentStage.enemyPref.Length)
             {
-                enemies.RemoveAt(i);
+                isFinishStage = true;
             }
         }
-        return enemies.Count == 0;
-    }
 
-    void SendMessageStage()
-    {
-        GameManager.Instance.StageLevelUp();
-        currentStage = GameManager.Instance.stage;
-        stageTextUI.text = "Stage " + currentStage;
-        stageText.text = currentStage.ToString();
-        stageUI.SetActive(true);
+
     }
 
     void ChangeState()
     {
-        if (stageBossApears[0] == currentStage)
+        int i = GameManager.Instance.stage - 1;
+        currentStage = stageData.GetStage(i);
+        ShuffleEnemy();
+        if(currentStage.isBoss)
         {
-            bossStage = true;
-            warning.SetActive(true);
-            bossId = 0;
-        }else if (stageBossApears[1] == currentStage)
-        {
-            bossStage = true;
-            warning.SetActive(true);
-            bossId = 1;
+            isBoss = true;
         }
-        else
-        {
-            currentAmoutOfEnemy1 = amountOfEnemy1 * currentStage;
-
-            if (currentStage >= stageAppearEnemy2)
-                currentAmoutOfEnemy2 = amountOfEnemy2 * (currentStage - stageAppearEnemy2 + 1);
-
-            if (currentStage >= stageAppearEnemy3)
-                currentAmoutOfEnemy3 = amountOfEnemy3 * (currentStage - stageAppearEnemy3 + 1);
-
-            amountAllEnemySpawn = currentAmoutOfEnemy1 + currentAmoutOfEnemy2 + currentAmoutOfEnemy3;
-        }
-
         isChangeStage = false;
-        stageUI.SetActive(false);
+        isFinishStage = false;
+        currentAmountOfEnemy = 0;
+        currentTimer = 0;
+        stageUI.CloseStageUI();
 
     }
 
-    IEnumerator SpawnEnemy(GameObject enemy, Vector2 pos)
+    void ShuffleEnemy()
     {
-        GameObject go = Instantiate(iconSpawner, pos, Quaternion.identity);
-        GameObject spawnObj = Instantiate(enemy, go.transform.position, Quaternion.identity);
-        spawnObj.SetActive(false);
-        spriteRenderer = spawnObj.GetComponent<SpriteRenderer>();
-        sortingOrder++;
-        spriteRenderer.sortingOrder = sortingOrder;
-        enemies.Add(spawnObj);
-        yield return new WaitForSeconds(1.5f);
-        spawnObj.SetActive(true);
-        Destroy(go);
+        enemys.Clear();
+        enemys.AddRange(currentStage.GetEnemy());
+        int n = enemys.Count;
+        for (int i = n - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            GameObject temp = enemys[i];
+            enemys[i] = enemys[j];
+            enemys[j] = temp;
+        }
     }
-
 
     void RecieveItem()
     {
@@ -268,12 +180,6 @@ public class Map1 : MonoBehaviour
         }
         enemies.Clear();
 
-    }
-
-    Vector2 GetPos()
-    {
-        pos = new Vector2(Random.Range(spawnPoint[0].position.x, spawnPoint[2].position.x), Random.Range(spawnPoint[1].position.y, spawnPoint[3].position.y));
-        return pos;
     }
 
 }

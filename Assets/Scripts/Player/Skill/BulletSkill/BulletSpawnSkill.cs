@@ -34,15 +34,14 @@ public class BulletSpawnSkill : MonoBehaviour
 
     float cooldownShoting;
 
-    private Transform cam;
 
     private int level;
 
     void Start()
     {
-        cam = GameObject.Find("Main Camera").transform;
         timer = cooldown;
     }
+
     void Update()
     {
         timer -= Time.deltaTime;
@@ -77,7 +76,7 @@ public class BulletSpawnSkill : MonoBehaviour
         float rotationZ;
         Vector3 direction;
         GameObject enemyRam = null;
-        Collider2D[] enemy = EnemysPosition.Instance.GetEnemysPosition();
+        Collider2D[] enemy = GetPositionInCam.Instance.GetEnemysPosition();
         if(enemy.Length > 0)
         {
             enemyRam = enemy[Random.Range(0,enemy.Length)].gameObject;
@@ -88,7 +87,7 @@ public class BulletSpawnSkill : MonoBehaviour
         else
         {
             rotationZ = Random.Range(0, 360);
-            point2 = new Vector3(Random.Range(cam.position.x - 15, cam.position.x + 15), Random.Range(cam.position.y - 8, cam.position.y + 8), 0);
+            point2 = GetPositionInCam.Instance.GetPositionInArea();
         }
 
         Vector3 p = Random.insideUnitCircle * radius;

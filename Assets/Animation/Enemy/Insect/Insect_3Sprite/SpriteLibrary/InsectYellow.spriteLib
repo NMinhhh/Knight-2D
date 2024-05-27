@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: InsectAnim
+    m_Hash: 171623577
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Insect_0
+      m_Hash: 898391827
+      m_Sprite: {fileID: -1517994227, guid: ac8a8ab7c2c06e141baf5ab1545f588a, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -924626059, guid: 071fbcc1314dc97498c4672812c37228, type: 3}
+    - m_Name: Insect_1
+      m_Hash: 42692485
+      m_Sprite: {fileID: -219240042, guid: ac8a8ab7c2c06e141baf5ab1545f588a, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 1807438355, guid: 071fbcc1314dc97498c4672812c37228, type: 3}
+    - m_Name: Insect_2
+      m_Hash: 461520447
+      m_Sprite: {fileID: 2057559107, guid: ac8a8ab7c2c06e141baf5ab1545f588a, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 2018178323, guid: 071fbcc1314dc97498c4672812c37228, type: 3}
+    m_FromMain: 1
+    m_EntryOverrideCount: 3
+  m_PrimaryLibraryGUID: 018a7137a5dceee4280d6a4afaead0e9
+  m_ModificationHash: 638518872986038325
+  m_Version: 1

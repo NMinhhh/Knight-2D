@@ -52,7 +52,7 @@ public class BomerangSpawnSkill : MonoBehaviour
         float roationZ;
         Vector3 direction;
         int amountOfEnemy = 0;
-        Collider2D[] enemy = EnemysPosition.Instance.GetEnemysPosition();
+        Collider2D[] enemy = GetPositionInCam.Instance.GetEnemysPosition();
         for (int i = 0; i < level; i++)
         {
             if (enemy.Length > 0 && amountOfEnemy < enemy.Length)

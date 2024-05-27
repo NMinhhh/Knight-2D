@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         CanvasManager.Instance.EnergyUIActive();
-
+        energy = 999;
     }
 
     private void Update()

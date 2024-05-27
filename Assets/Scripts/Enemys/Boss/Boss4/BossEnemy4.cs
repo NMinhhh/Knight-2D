@@ -9,10 +9,10 @@ public class BossEnemy4 : BossEnemy
     [SerializeField] private float damageSkill;
     [SerializeField] private float objTimeLife;
     [SerializeField] private int amountOfObj;
-    [SerializeField] private GameObject signObj;  
-    [SerializeField] private float timerSign;
-    [SerializeField] private float cooldownIntrintic;
-    private float timerIntrintic;
+    [SerializeField] private GameObject signalObj;  
+    [SerializeField] private float signalTimer;
+    [SerializeField] private float intrinticCooldown;
+    private float intrinticTimer;
     private DamageAnimation damageAnimScript;
     private GameObject go;
     [Space]
@@ -39,15 +39,10 @@ public class BossEnemy4 : BossEnemy
     private Vector3 currentTarget;
     protected bool isDash;
     [SerializeField] protected float distanceToStop;
-    [Space]
-    [Space]
-
-    private Transform cam;
 
     protected override void Start()
     {
         base.Start();
-        cam = GameObject.Find("Main Camera").transform;
         SelectedSkill(0);
     }
 
@@ -80,10 +75,10 @@ public class BossEnemy4 : BossEnemy
         }
 
         //Intrintic
-        timerIntrintic += Time.deltaTime;
-        if(timerIntrintic >= cooldownIntrintic)
+        intrinticTimer += Time.deltaTime;
+        if(intrinticTimer >= intrinticCooldown)
         {
-            timerIntrintic = 0;
+            intrinticTimer = 0;
             StartCoroutine(SpawnObj());
         }
     }
@@ -103,8 +98,7 @@ public class BossEnemy4 : BossEnemy
             }
             else
             {
-                destination[i] = new Vector2(Random.Range(cam.position.x - 18, cam.position.y + 18),
-                            Random.Range(cam.position.y - 7, cam.position.y + 7));
+                destination[i] = GetPositionInCam.Instance.GetPositionInArea();
             }
         }
         return destination;
@@ -115,10 +109,10 @@ public class BossEnemy4 : BossEnemy
         Vector3[] destination = GetDestination();
         for (int i = 0; i < destination.Length; i++)
         {
-            GameObject go = Instantiate(signObj, destination[i], Quaternion.identity);
-            Destroy(go, timerSign + objTimeLife);
+            GameObject go = Instantiate(signalObj, destination[i], Quaternion.identity);
+            Destroy(go, signalTimer + objTimeLife);
         }
-        yield return new WaitForSeconds(timerSign);
+        yield return new WaitForSeconds(signalTimer);
         for (int i = 0; i < amountOfObj; i++)
         {
             go = Instantiate(objPref, destination[i], Quaternion.identity);

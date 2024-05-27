@@ -30,12 +30,10 @@ public class BossEnemy2 : BossEnemy
     private GameObject swawpGo;
     private bool isSwawpSkill;
 
-    private Transform cam;
 
     protected override void Start()
     {
         base.Start();
-        cam = GameObject.Find("Main Camera").transform;
         SelectedSkill(1);
     }
 
@@ -119,8 +117,7 @@ public class BossEnemy2 : BossEnemy
             }
             else
             {
-                destination[i] = new Vector2(Random.Range(cam.position.x - 18, cam.position.y + 18),
-                            Random.Range(cam.position.y - 7, cam.position.y + 7));
+                destination[i] = GetPositionInCam.Instance.GetPositionInArea();
             }
         }
         return destination;

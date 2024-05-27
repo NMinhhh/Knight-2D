@@ -9,6 +9,7 @@ public class BossEnemy1 : BossEnemy
     private Vector3 currentTarget;
     protected bool isDash;
     [SerializeField] protected float distanceToStop;
+    private static int orderLayout;
     [Space]
     [Space]
 
@@ -28,7 +29,7 @@ public class BossEnemy1 : BossEnemy
     protected override void Start()
     {
         base.Start();
-        selectedSkill = 1;
+        SelectedSkill(1);
     }
 
     protected override void Update()
@@ -71,14 +72,16 @@ public class BossEnemy1 : BossEnemy
     void DashEffect()
     {
         GameObject obj = new GameObject();
-        SpriteRenderer sr = obj.AddComponent<SpriteRenderer>();
-        sr.sprite = spriteRenderer.sprite;
-        sr.color = new Color(1, 1, 1, 1);
-        sr.flipX = true;
-        sr.sortingLayerName = "Enemy";
+        SpriteRenderer spriteEffect = obj.AddComponent<SpriteRenderer>();
+        spriteEffect.sprite = spriteRenderer.sprite;
+        spriteEffect.color = new Color(1, 1, 1, .8f);
+        spriteEffect.sortingLayerName = "Enemy";
+        spriteEffect.sortingOrder = orderLayout;
+        orderLayout++;
         obj.transform.position = transform.position;
         obj.transform.localScale = transform.localScale;
-        Destroy(obj, .1f);
+        obj.transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
+        Destroy(obj, .05f);
     }
 
     public void CheckDistanceToStopDash(Vector3 a, Vector3 b, float distance)

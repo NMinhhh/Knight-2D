@@ -12,18 +12,19 @@ public class Player : MonoBehaviour
     private int vertical;
 
     [Header("Health")]
-    //Health
     [SerializeField] private float maxHealth;
     private float currentHelth;
-    //Hurt timer
+
+    [Header("Hurt Timer")]
     [SerializeField] private float hurtTime;
     private bool isHurt;
-    //Imortal Timer
+    public bool isDie { get; private set; }
+
+    [Header("Imortal")]
     [SerializeField] private float imortalTime;
     [SerializeField] private float numberOfFlash;
     private bool isImortal;
 
-    public bool isDie {  get; private set; }
     [Space]
     [Space]
     [SerializeField] private GameObject floatingText;
@@ -31,7 +32,6 @@ public class Player : MonoBehaviour
 
     //Other Variable
     public bool isFacingRight {  get; private set; }
-    private float facingRight;
     private int damageDir;
 
     //Skill state
@@ -41,7 +41,6 @@ public class Player : MonoBehaviour
     private PlayerStats stats;
 
     //Componet
-    private Animator anim;
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
 
@@ -49,11 +48,9 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        //anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         stats = GetComponent<PlayerStats>();
         isFacingRight = true;
-        facingRight = 1;
         currentHelth = maxHealth;
         currenSpeed = movementSpeed;
     }
@@ -63,24 +60,20 @@ public class Player : MonoBehaviour
         Movement();
     }
 
-    public void IncreaseSpeed(float amount)
+    void Movement()
     {
-        currenSpeed += movementSpeed * amount / 100;
+        if (InputManager.Instance.yInput != 0)
+        {
+            movement.Set(InputManager.Instance.xInput, InputManager.Instance.yInput);
+        }
+        else
+        {
+            movement.Set(0, 0);
+        }
+        rb.velocity = movement * currenSpeed;
     }
 
-    public void AddHealth(float amout)
-    {
-        currentHelth = maxHealth + amout;
-    }
-
-    public void ResetPlayer()
-    {
-        currentHelth = maxHealth;
-        currenSpeed = movementSpeed;
-        stats.UpdateHealth(currentHelth, maxHealth);
-
-    }
-
+   
     public void ProtectionSkillOn()
     {
         isProtection = true;
@@ -141,36 +134,22 @@ public class Player : MonoBehaviour
 
     }
 
-    void Movement()
+    public void IncreaseSpeed(float amount)
     {
-        if(InputManager.Instance.yInput != 0 )
-        {
-            movement.Set(InputManager.Instance.xInput, InputManager.Instance.yInput);
-        }
-        else
-        {
-            movement.Set(0, 0);
-        }
-        rb.velocity = movement * currenSpeed;
-        //anim.SetBool("move", movement.x != 0 || movement.y != 0);
+        currenSpeed += movementSpeed * amount / 100;
     }
 
-    void CheckFlip()
+    public void AddHealth(float amout)
     {
-        if(Input.GetAxisRaw("Horizontal") < 0 && isFacingRight)
-        { 
-            Flip();
-        }else if(Input.GetAxisRaw("Horizontal") > 0 && !isFacingRight) {
-            Flip();
-        }
+        currentHelth = maxHealth + amout;
     }
 
-    void Flip()
+    public void ResetPlayer()
     {
-        isFacingRight = !isFacingRight;
-        facingRight *= -1;
-        transform.localScale = new Vector3(facingRight, 1, 1);
+        currentHelth = maxHealth;
+        currenSpeed = movementSpeed;
+        stats.UpdateHealth(currentHelth, maxHealth);
+
     }
 
-  
 }

@@ -22,7 +22,7 @@ public class ExplosiveBullet : Rocket
         Vector3 direction;
         int amountOfEnemy = 0;
         GameObject enemyRam;
-        Collider2D[] enemys = EnemysPosition.Instance.GetEnemysPosition();
+        Collider2D[] enemys = GetPositionInCam.Instance.GetEnemysPosition();
         for (int i = 0; i < amountOfBullet; i++)
         {
             if (enemys.Length > 0 && amountOfEnemy < enemys.Length)

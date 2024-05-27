@@ -1,17 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerDie : MonoBehaviour
 {
-    [SerializeField] private GameObject dieGo;
-    [SerializeField] private Button btnBorn;
     [SerializeField] private int diamondPay;
-    [SerializeField] private Text diamondText;
     private bool isLoss;
     private int mutiply;
+
     private Player player;
+
     void Start()
     {
         mutiply = 1;

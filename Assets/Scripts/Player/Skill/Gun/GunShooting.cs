@@ -45,7 +45,7 @@ public class GunShooting : MonoBehaviour
 
     void HandleGunRotationEnemy()
     {
-        Collider2D[] enemys = EnemysPosition.Instance.GetEnemysPosition();
+        Collider2D[] enemys = GetPositionInCam.Instance.GetEnemysPosition();
         timeRam += Time.deltaTime;
         if(enemyRam == null || timeRam >= 4)
         {

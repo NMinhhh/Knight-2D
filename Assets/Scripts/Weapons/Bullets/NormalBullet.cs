@@ -42,8 +42,8 @@ public class NormalBullet : MonoBehaviour
 
     void Attack()
     {
-        Collider2D hitShield = Physics2D.OverlapBox(transform.position, sizecheck, 0, whatIsShield);
-        Collider2D enemy = Physics2D.OverlapBox(transform.position, sizecheck, 0, whatIsEnemy);
+        Collider2D hitShield = Physics2D.OverlapBox(transform.position, sizecheck, transform.eulerAngles.z, whatIsShield);
+        Collider2D enemy = Physics2D.OverlapBox(transform.position, sizecheck, transform.eulerAngles.z, whatIsEnemy);
         if (hitShield)
         {
             isDamage = true;

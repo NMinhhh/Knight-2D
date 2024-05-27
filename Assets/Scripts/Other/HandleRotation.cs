@@ -35,7 +35,7 @@ public class HandleRotation : MonoBehaviour
             AutoShoot.SetNearestObj(nearestObj);
             AutoShoot.SetAutoShoot(true);
         }
-        else if (EnemysPosition.Instance.GetEnemysPosition().Length > 0) 
+        else if (GetPositionInCam.Instance.GetEnemysPosition().Length > 0) 
         {
             HandleGunRotationEnemy();
         }
@@ -51,7 +51,7 @@ public class HandleRotation : MonoBehaviour
 
     void HandleGunRotationEnemy()
     {
-        Collider2D[] enemys = EnemysPosition.Instance.GetEnemysPosition();
+        Collider2D[] enemys = GetPositionInCam.Instance.GetEnemysPosition();
 
         for(int i = 0; i < enemys.Length; i++)
         {

@@ -104,6 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48933c3dddd4f7843ac24e9933c400bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFacingPlayer: 0
+  isFlip: 1
   speed: 5
   checkPlayerPos: {fileID: 7019784205807756223}
   checkRadius: 0.77
@@ -139,7 +141,7 @@ MonoBehaviour:
   timeLife: 3
   shootingCooldown: 0.3
   swawp: {fileID: 2863268492341516025, guid: c45da8eef95671a49a14490612f83a18, type: 3}
-  amoutOfSwawp: 5
+  amountOfSwawp: 4
   swawpDamage: 3
   swawpSpeedFly: 18
   timeLifeSwawp: 5
