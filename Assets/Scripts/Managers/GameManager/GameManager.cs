@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public static CoinManager Instance {  get; private set; }
+    public static GameManager Instance {  get; private set; }
 
     public int coin;
 
@@ -36,13 +36,12 @@ public class CoinManager : MonoBehaviour
         if(Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
-        weaponsPurchasedIndex = new List<int>();
-        DontDestroyOnLoad(gameObject);
     }
     //Coin
     public void UseCoins(int amount)
@@ -197,7 +196,7 @@ public class CoinManager : MonoBehaviour
     //Json
     public void FromJson(string stringSave)
     {
-        CoinData saveObj = JsonUtility.FromJson<CoinData>(stringSave);
+        GameSaveData saveObj = JsonUtility.FromJson<GameSaveData>(stringSave);
         this.coin = saveObj.coin;
         this.diamond = saveObj.diamond;
         this.weaponsPurchasedIndex = saveObj.weaponsPurchasedIndex;
@@ -206,5 +205,18 @@ public class CoinManager : MonoBehaviour
         this.mapWin = saveObj.mapWin;
         this.avatarPurchaseIndex = saveObj.avatarPurchaseIndex;
         this.selectedAvatarIndex = saveObj.selectedAvatarIndex;
+    }
+
+    public void ResetValue()
+    {
+        coin = 0;
+        diamond = 0;
+        weaponsPurchasedIndex.Clear();
+        selectedWeaponIndex = 0;
+        mapUnlock.Clear();
+        mapWin.Clear();
+        avatarPurchaseIndex.Clear();
+        selectedAvatarIndex = 0;
+
     }
 }

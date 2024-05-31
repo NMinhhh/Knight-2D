@@ -18,4 +18,17 @@ public class Weapon
     public GameObject bulletIcon;
     public bool isPurchased;
     public float widthImage;
+    [Header("Bonus")]
+    public float bonusMovementSpeedPercent = 0;
+    public float bonusHealthPercent = 0;
+
+    public float GetBunusMovementSpeedPercent()
+    {
+        return bonusHealthPercent / 100;
+    }
+
+    public float GetBunusHealthPercent()
+    {
+        return bonusHealthPercent / 100;
+    }
 }

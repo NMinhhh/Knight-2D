@@ -14,6 +14,6 @@ public class TimeUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeText.text = $"{GameManager.Instance.minutes:00}:{GameManager.Instance.seconds:00}";
+        timeText.text = $"{MapManager.Instance.minutes:00}:{MapManager.Instance.seconds:00}";
     }
 }

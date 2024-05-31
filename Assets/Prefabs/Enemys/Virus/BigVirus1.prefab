@@ -112,7 +112,7 @@ SpriteRenderer:
   m_SortingLayerID: -2104547341
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: -945994766, guid: 02f7d7e278810254fb8caa7d176a573e, type: 3}
+  m_Sprite: {fileID: 1427280789, guid: 02f7d7e278810254fb8caa7d176a573e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -135,6 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87180fdb7da8bd0479c084e4ab822040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFacingPlayer: 0
+  isFlip: 0
   speed: 5
   checkPlayerPos: {fileID: 2658148823692874531}
   checkRadius: 0.87
@@ -142,9 +144,9 @@ MonoBehaviour:
   touchRadius: 0.32
   touchDamage: 2
   touchCooldown: 1
-  basicHealth: 100
-  healthLevelUp: 55
-  healthLevelUpPercent: 5
+  basicHealth: 150
+  healthLevelUp: 75
+  healthLevelUpPercent: 10
   damageTimerCon: 0.1
   hurtEffectTimer: 0.1
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
@@ -272,7 +274,7 @@ MonoBehaviour:
   m_CategoryHash: 0
   m_labelHash: 0
   m_SpriteKey: 0
-  m_SpriteHash: 563876027
+  m_SpriteHash: 923998405
 --- !u!1 &6862283165922146761
 GameObject:
   m_ObjectHideFlags: 0

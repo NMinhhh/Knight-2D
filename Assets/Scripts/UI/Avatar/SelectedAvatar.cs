@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class SelectedAvatar : MonoBehaviour
 {
-    public static SelectedAvatar Instance {  get; private set; }
-    [Header("List")]
-    [SerializeField] private AvatarData avatarData;
+    [Header("Content")]
 
     [SerializeField] private GameObject ItemTemplate;
     [SerializeField] private Transform contentScrollView;
+
+    AvatarData avatarData;
+
     private GameObject go;
     private Button btn;
     [Space]
@@ -29,17 +30,10 @@ public class SelectedAvatar : MonoBehaviour
 
     void Start()
     {
-        if(Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        avatarData = GameData.Instance.GetAvatarData();
         GenerateAvatarUI();
         LayoutRebuilder.ForceRebuildLayoutImmediate(contentScrollView.GetComponent<GridLayoutGroup>().GetComponent<RectTransform>());
-        selectedID = CoinManager.Instance.GetSelectedAvatarIndex();
+        selectedID = GameManager.Instance.GetSelectedAvatarIndex();
         SetAvatar(selectedID);
     }
 
@@ -51,10 +45,10 @@ public class SelectedAvatar : MonoBehaviour
         {
             Destroy(contentScrollView.GetChild(i).gameObject);
         }
-        for(int i = 0; i < CoinManager.Instance.GetAllAvatarPurchasedIndex().Count; i++)
+        for(int i = 0; i < GameManager.Instance.GetAllAvatarPurchasedIndex().Count; i++)
         {
             int idx = i;
-            int idxAvatarPurchased = CoinManager.Instance.GetAvatarPurchased(i);
+            int idxAvatarPurchased = GameManager.Instance.GetAvatarPurchased(i);
             Avatar avatar = avatarData.GetAvatar(idxAvatarPurchased);
             go = Instantiate(ItemTemplate, contentScrollView);
             btn = go.transform.GetComponent<Button>();
@@ -77,7 +71,7 @@ public class SelectedAvatar : MonoBehaviour
     void SelectedAvatarIndex(int id)
     {
         selectedID = id;
-        CoinManager.Instance.ChangeAvatarIndex(selectedID);
+        GameManager.Instance.ChangeAvatarIndex(selectedID);
     }
 
     void SelectedPoint(int id)
@@ -117,6 +111,7 @@ public class SelectedAvatar : MonoBehaviour
 
     public void CloseTabUI()
     {
+        border.SetActive(false);
         tabAvatarObj.SetActive(false);
     }
 

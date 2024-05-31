@@ -104,6 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87180fdb7da8bd0479c084e4ab822040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFacingPlayer: 0
+  isFlip: 0
   speed: 5
   checkPlayerPos: {fileID: 4983047095249911563}
   checkRadius: 0.99
@@ -111,9 +113,9 @@ MonoBehaviour:
   touchRadius: 0.42
   touchDamage: 2
   touchCooldown: 1
-  basicHealth: 100
-  healthLevelUp: 55
-  healthLevelUpPercent: 5
+  basicHealth: 150
+  healthLevelUp: 75
+  healthLevelUpPercent: 10
   damageTimerCon: 0.1
   hurtEffectTimer: 0.1
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
@@ -241,7 +243,7 @@ MonoBehaviour:
   m_CategoryHash: 0
   m_labelHash: 0
   m_SpriteKey: 0
-  m_SpriteHash: 132197384
+  m_SpriteHash: 606653669
 --- !u!1 &4333498217824162770
 GameObject:
   m_ObjectHideFlags: 0

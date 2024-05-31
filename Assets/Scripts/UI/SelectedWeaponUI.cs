@@ -24,7 +24,7 @@ public class SelectedWeaponUI : MonoBehaviour
 
     public void SelectedWeapon()
     {
-        Weapon weapon = weaponData.GetWeapon(CoinManager.Instance.GetWeaponSelectedIndex());
+        Weapon weapon = weaponData.GetWeapon(GameManager.Instance.GetWeaponSelectedIndex());
         image.sprite = weapon.image;
         nameText.text = weapon.name;
     }

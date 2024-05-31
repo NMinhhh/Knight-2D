@@ -17,7 +17,12 @@ public static class SaveSystem
 
     public static void Save(string saveName,string saveString)
     {
-        File.WriteAllText(SAVE_FOLDER + saveName+".txt", saveString);
+        File.WriteAllText(SAVE_FOLDER + saveName + ".txt", saveString);
+    }
+
+    public static void DeleteFileSave(string saveName) 
+    {
+        File.Delete(SAVE_FOLDER + saveName + ".txt");
     }
 
     public static string Load(string saveName)

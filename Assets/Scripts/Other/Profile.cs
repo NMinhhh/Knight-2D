@@ -21,7 +21,7 @@ public class Profile : MonoBehaviour
 
     void Start()
     {
-        guns[CoinManager.Instance.selectedWeaponIndex].SetActive(true);
+        guns[GameManager.Instance.selectedWeaponIndex].SetActive(true);
     }
 
 

@@ -5,15 +5,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] private float movementSpeed;
+    [SerializeField] private int movementSpeed;
     private float currenSpeed;
     private Vector2 movement;
-    private int horizontal;
-    private int vertical;
 
     [Header("Health")]
-    [SerializeField] private float maxHealth;
+    [SerializeField] private int maxHealth;
     private float currentHelth;
+    private int health;
 
     [Header("Hurt Timer")]
     [SerializeField] private float hurtTime;
@@ -40,6 +39,9 @@ public class Player : MonoBehaviour
 
     private PlayerStats stats;
 
+    private Weapon weaponSelected;
+
+
     //Componet
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
@@ -51,13 +53,20 @@ public class Player : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         stats = GetComponent<PlayerStats>();
         isFacingRight = true;
-        currentHelth = maxHealth;
-        currenSpeed = movementSpeed;
+        //IndexSetting();
+        ResetPlayer();
     }
 
     void Update()
     {
         Movement();
+    }
+
+    public void IndexSetting()
+    {
+        weaponSelected = GameManager.Instance.GetWeaponSelected();
+        maxHealth += (int)(maxHealth * weaponSelected.GetBunusHealthPercent());
+        movementSpeed += (int)(movementSpeed * weaponSelected.GetBunusMovementSpeedPercent());
     }
 
     void Movement()
@@ -87,8 +96,8 @@ public class Player : MonoBehaviour
     void Damage(AttackDetail attackDetail)
     {
         if (isImortal || isDie || isProtection) return;
-        currentHelth = Mathf.Clamp(currentHelth - attackDetail.damage, 0, maxHealth);
-        stats.UpdateHealth(currentHelth, maxHealth);
+        currentHelth = Mathf.Clamp(currentHelth - attackDetail.damage, 0, health);
+        stats.UpdateHealth(currentHelth, health);
         if (attackDetail.attackDir.position.x > transform.position.x)
         {
             damageDir = -1;
@@ -130,7 +139,7 @@ public class Player : MonoBehaviour
         isDie = false;
         StartCoroutine(Imortal());
         currentHelth = maxHealth;
-        stats.UpdateHealth(0, maxHealth);
+        stats.UpdateHealth(0, health);
 
     }
 
@@ -141,14 +150,16 @@ public class Player : MonoBehaviour
 
     public void AddHealth(float amout)
     {
-        currentHelth = maxHealth + amout;
+        health = maxHealth + (int)amout;
+        currentHelth = health;
     }
 
     public void ResetPlayer()
     {
-        currentHelth = maxHealth;
+        health = maxHealth;
+        currentHelth = health;
         currenSpeed = movementSpeed;
-        stats.UpdateHealth(currentHelth, maxHealth);
+        stats.UpdateHealth(currentHelth, health);
 
     }
 

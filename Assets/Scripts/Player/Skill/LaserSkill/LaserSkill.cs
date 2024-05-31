@@ -9,7 +9,6 @@ public class LaserSkill : MonoBehaviour
     Laser script;
 
     [Header("Damage")]
-    [SerializeField] private float basicDamage;
     [SerializeField] private float damageLevelUp;
     [Range(10, 100)]
     [SerializeField] private float damageLevelUpPercent;
@@ -35,7 +34,7 @@ public class LaserSkill : MonoBehaviour
     public void LevelUp(int level)
     {
         this.level = level;
-        damage = GameManager.Instance.Calculate(basicDamage, damageLevelUp, damageLevelUpPercent, this.level);
+        damage = SkillManager.Instance.CalculateSkillDamage(damageLevelUp, damageLevelUpPercent, this.level);
         UpdateLaser();
     }
 

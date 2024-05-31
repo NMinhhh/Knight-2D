@@ -170,16 +170,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFacingPlayer: 0
   isFlip: 1
-  speed: 4
+  speed: 5
   checkPlayerPos: {fileID: 8402914981032501996}
   checkRadius: 1.11
   touchDamagePos: {fileID: 6865070388013978446}
   touchRadius: 1.97
-  touchDamage: 5
+  touchDamage: 2
   touchCooldown: 1
-  basicHealth: 1200
+  basicHealth: 1000
   healthLevelUp: 550
-  healthLevelUpPercent: 5
+  healthLevelUpPercent: 15
   damageTimerCon: 0.1
   hurtEffectTimer: 0.1
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
@@ -198,12 +198,12 @@ MonoBehaviour:
   cooldownSkills:
   - 3
   - 3
-  dashSpeed: 35
+  dashSpeed: 32
   distanceToStop: 0.5
   bullet: {fileID: 4323602004240218919, guid: 5395585c9a19c9c4bba0c293c035f0f2, type: 3}
   amountOfBullet: 5
-  bulletDamage: 10
-  bulletSpeed: 18
+  bulletDamage: 2
+  bulletSpeed: 25
   timeLife: 3
   shootingCooldown: 0.3
 --- !u!50 &5607816810349676187

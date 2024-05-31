@@ -14,7 +14,6 @@ public class RocketSpawnSkill : MonoBehaviour
     private float timer;
 
     [Header("Info")]
-    [SerializeField] private float basicDamage;
     [SerializeField] private float damageLevelUp;
     [Range(10, 100)]
     [SerializeField] private float damageLevelUpPercent;
@@ -45,7 +44,7 @@ public class RocketSpawnSkill : MonoBehaviour
     public void LevelUp(int level)
     {
         this.level = level;
-        damage = GameManager.Instance.Calculate(basicDamage, damageLevelUp, damageLevelUpPercent, this.level);
+        damage = SkillManager.Instance.CalculateSkillDamage(damageLevelUp, damageLevelUpPercent, this.level);
     }
 
     void SetSkill(int level)

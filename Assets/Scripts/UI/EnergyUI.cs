@@ -14,6 +14,6 @@ public class EnergyUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = GameManager.Instance.energy.ToString();
+        text.text = MapManager.Instance.energy.ToString();
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,8 +13,6 @@ public class PlayerShooting : MonoBehaviour
         RocketGun,
         BulletExplodeGun,
         LaserGun
-
-
     }
 
     [Header("Type of gun")]
@@ -44,12 +42,11 @@ public class PlayerShooting : MonoBehaviour
     private Animator anim;
 
     Weapon weapon;
+
     private float currentDamage;
 
     private void Start()
     {
-        weapon = CoinManager.Instance.GetWeaponSelected();
-        currentDamage = weapon.damage;
         reloadBullets = GetComponent<ReloadBullets>();
         if(isMuzzleFlash)
             anim = transform.Find("MuzzleFlash").GetComponent<Animator>();
@@ -68,11 +65,14 @@ public class PlayerShooting : MonoBehaviour
 
     public void IncreaseDamage(float amount)
     {
+        ResetWeaponDamage();
         currentDamage += currentDamage * amount / 100;
     }
 
-    public void ResetWeapon()
+    public void ResetWeaponDamage()
     {
+        if(weapon == null)
+            weapon = GameManager.Instance.GetWeaponSelected();
         currentDamage = weapon.damage;
     }
 

@@ -8,17 +8,16 @@ public class SaveManager : MonoBehaviour
     private const string Save = "Save";
     void Awake()
     { 
-        
         if(Instance == null)
         {
             Instance = this;
+            LoadSaveGame();
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
-        LoadSaveGame();
 
     }
     private void Start()
@@ -41,20 +40,34 @@ public class SaveManager : MonoBehaviour
         string stringSave = SaveSystem.Load(GetSaveName("CoinManager"));
         if(stringSave != null) 
         { 
-            CoinManager.Instance.FromJson(stringSave);
+            GameManager.Instance.FromJson(stringSave);
         }
         else
         {
-            CoinManager.Instance.AddWeaponPurchasedIndex(0);
-            CoinManager.Instance.AddMapUnlock(0);
-            CoinManager.Instance.AddAvatarPurchased(0);
+            GameManager.Instance.AddWeaponPurchasedIndex(0);
+            GameManager.Instance.AddMapUnlock(0);
+            GameManager.Instance.AddAvatarPurchased(0);
         }
     }
 
     public void SaveGame()
     {
-        string saveString = JsonUtility.ToJson(CoinManager.Instance);
+        string saveString = JsonUtility.ToJson(GameManager.Instance);
         SaveSystem.Save(GetSaveName("CoinManager"), saveString);
     }
 
+    public void ResetGame()
+    {
+        string stringSave = SaveSystem.Load(GetSaveName("CoinManager"));
+        if (stringSave != null)
+        {
+            SaveSystem.DeleteFileSave(GetSaveName("CoinManager"));
+        }
+        GameManager.Instance.ResetValue();
+        LoadSaveGame();
+        GameData.Instance.GetAvatarData().ResetAvatar();
+        GameData.Instance.GetMapData().ResetMap();
+        GameData.Instance.GetWeaponData().ResetWeaponData();
+        GameData.Instance.SetDataGame();
+    }
 }

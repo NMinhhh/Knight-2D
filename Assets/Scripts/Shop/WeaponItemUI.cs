@@ -14,6 +14,7 @@ public class WeaponItemUI : MonoBehaviour
     [SerializeField] private Button button;
     [SerializeField] private Text price;
     [SerializeField] private Sprite btnEquipSprite;
+    [SerializeField] private Button buttonDetail;
 
     public void SetWeaponName(string name)
     {
@@ -67,6 +68,12 @@ public class WeaponItemUI : MonoBehaviour
         button.image.sprite = btnEquipSprite;
         button.interactable = false;
         price.text = "UnEquip";
+    }
+
+    public void OnClickDetailButton(int idx, Action<int> action)
+    {
+        buttonDetail.onClick.RemoveAllListeners();
+        buttonDetail.onClick.AddListener(() => action(idx));
     }
 }
 

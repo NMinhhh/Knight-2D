@@ -143,9 +143,9 @@ public class SelectionSkill : MonoBehaviour
 
     public void ChangeSkill()
     {
-        if (GameManager.Instance.HasEnoughEnergy(energy))
+        if (MapManager.Instance.HasEnoughEnergy(energy))
         {
-            GameManager.Instance.UseEnergy(energy);
+            MapManager.Instance.UseEnergy(energy);
             DecreasePrice();
             int count = contentSkill.childCount;
             for (int j = count - 1; j >= 0; j--)
@@ -312,11 +312,8 @@ public class SelectionSkill : MonoBehaviour
         selectedIdItem = 0;
         itemPoint = 0;
         isChooseItem = false;
-        if (isGetScript)
-        {
-            playerShooting.ResetWeapon();
-            reloadBullets.ResetBullet();
-        }
+        playerShooting.ResetWeaponDamage();
+        reloadBullets.ResetBullet();
         player.ResetPlayer();
         ResetEnergy();
     }
@@ -356,10 +353,10 @@ public class SelectionSkill : MonoBehaviour
             return;
         }
         ItemUI itemUI = GetItemUI(selectedIdItem);
-        if (GameManager.Instance.HasEnoughEnergy(itemData.GetItem(selectedIdItem).price))
+        if (MapManager.Instance.HasEnoughEnergy(itemData.GetItem(selectedIdItem).price))
         {
             itemUI.ItemPurchased();
-            GameManager.Instance.UseEnergy(itemData.GetItem(selectedIdItem).price);
+            MapManager.Instance.UseEnergy(itemData.GetItem(selectedIdItem).price);
             isChooseItem = false;
             UseItem(itemUse);
         }
@@ -381,7 +378,6 @@ public class SelectionSkill : MonoBehaviour
                 reloadBullets = go.GetComponent<ReloadBullets>();
             }
         }
-        isGetScript = true;
     }
 
     public void UseItem(Item item)

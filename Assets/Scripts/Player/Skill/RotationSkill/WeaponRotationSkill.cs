@@ -9,7 +9,6 @@ public class WeaponRotationSkill : MonoBehaviour
     [SerializeField] private float valueRotationZ;
 
     [Header("Damage")]
-    [SerializeField] private float basicDamage;
     [SerializeField] private float damageLevelUp;
     [Range(10, 100)]
     [SerializeField] private float damageLevelUpPercent;
@@ -37,7 +36,7 @@ public class WeaponRotationSkill : MonoBehaviour
         {
             skillObject[objPos - 1].SetActive(false);
         }
-        damage = GameManager.Instance.Calculate(basicDamage, damageLevelUp, damageLevelUpPercent, this.level);
+        damage = SkillManager.Instance.CalculateSkillDamage(damageLevelUp, damageLevelUpPercent, this.level);
         skillObject[objPos].SetActive(true);
         CreateObj(skillObject[objPos]);
     }

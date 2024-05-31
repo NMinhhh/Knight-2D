@@ -97,13 +97,16 @@ public class Enemy : MonoBehaviour
 
     public void SetHealth()
     {
-        maxHealth = GameManager.Instance.Calculate(basicHealth, healthLevelUp, healthLevelUpPercent, GameManager.Instance.stage);
+        maxHealth = MapManager.Instance.Calculate(basicHealth, healthLevelUp, healthLevelUpPercent, MapManager.Instance.stage);
         currentHealth = maxHealth;
         isImortal = false;
     }
 
     protected virtual void Update()
     {
+        if (target.GetComponent<Player>().isDie)
+            return;
+
         if (isFacingPlayer && !isLock)
         {
             transform.right = GetDir();
@@ -153,7 +156,7 @@ public class Enemy : MonoBehaviour
         Instantiate(particleBlood, transform.position, Quaternion.identity);
         
         Destroy(gameObject);
-        GameManager.Instance.AddKill();
+        MapManager.Instance.AddKill();
         SpawnerManager.Instance.SpawnEnergy(transform.position);
     }
 

@@ -27,4 +27,12 @@ public class MapData : ScriptableObject
         maps[level].isWin = true;
     }
 
+    public void ResetMap()
+    {
+        foreach (var map in maps)
+        {
+            map.isWin = false;
+            map.isUnlock = false;
+        }
+    }
 }

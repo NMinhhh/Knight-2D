@@ -4,59 +4,138 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
-    [SerializeField] private MapData data;
-    [SerializeField] private GameObject mapContent;
+    #region Instance
 
-    private GameObject[] mapUI;
-    // Start is called before the first frame update
-    void Start()
+    public static MapManager Instance;
+
+    void Awake()
     {
-        int amount = mapContent.transform.childCount;
-        mapUI = new GameObject[amount];
-        for (int i = 0; i < amount; i++)
+        if (Instance == null)
         {
-            mapUI[i] = mapContent.transform.GetChild(i).gameObject;
+            Instance = this;
         }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+
+    }
+    #endregion
+
+    #region Variable
+
+    public int stage { get; private set; }
+
+
+    //Time in game
+    public int minutes { get; private set; }
+    public int seconds { get; private set; }
+
+    private float timer = 1;
+
+    public int energy { get; private set; }
+
+    public int coin { get; private set; }
+
+    public int diamond;
+
+    public int kill { get; private set; }
+
+    #endregion
+
+    #region Unity Function
+
+    private void Start()
+    {
+        CanvasManager.Instance.EnergyUIActive();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        for(int i = 0; i < CoinManager.Instance.GetAllMapUnlock().Count; i++)
-        {
-            int level = CoinManager.Instance.GetMapUnlock(i);
-            data.MapUnlock(level);
-        }
+        Timer();
 
-        for (int i = 0; i < CoinManager.Instance.GetAllMapWin().Count; i++)
-        {
-            int level = CoinManager.Instance.GetMapWin(i);
-            data.MapWin(level);
-        }
+    }
 
-        for (int i = 0;i < mapUI.Length; i++)
+
+    public void StageLevelUp()
+    {
+        if (!SelectionSkill.Instance.isAllSkillFullLevel)
         {
-            int idx = i;
-            MapItemUI mapItemUI = mapUI[i].GetComponent<MapItemUI>();
-            Map map = data.GetMap(idx);
-            mapItemUI.SetLevelText("Level " + map.level);
-            mapItemUI.OnMapLock();
-            if(!map.isUnlock)
+            SelectionSkill.Instance.AppearSkill();
+            MenuSkillUI.Instance.OpenMenuSkill();
+            SelectionSkill.Instance.ResetItemUI();
+        }
+        stage++;
+    }
+
+    #endregion
+
+    public int Calculate(float basicIndex, float levelupIndex, float levelupIndexPercent, int level)
+    {
+        return Mathf.CeilToInt((basicIndex + (levelupIndex * (level - 1))) * Mathf.Pow((1 + levelupIndexPercent / 100), (level - 1)));
+    }
+
+    #region Time in Game
+
+    void Timer()
+    {
+        timer -= Time.deltaTime;
+        if (timer <= 0)
+        {
+            timer = 1;
+            seconds++;
+            if (seconds == 60)
             {
-                mapItemUI.OnMapLock();
-            }
-            else
-            {
-                mapItemUI.OnMapUnlock();
-                mapItemUI.OnMapSelected(idx, MapSelected);
+                minutes++;
+                seconds = 0;
             }
         }
     }
 
-    void MapSelected(int level)
+    #endregion
+
+
+
+    #region Coin 
+
+    public void PickUpCoin(int amount)
     {
-        Map map = data.GetMap(level);
-        CoinManager.Instance.SetMapState(map.isWin);
-        CoinManager.Instance.SetSelectedMap(level);
+        coin += amount;
     }
+
+    public void PickUpDiamond(int amount)
+    {
+        diamond += amount;
+    }
+
+    #endregion
+
+    #region Kill
+
+    public void AddKill()
+    {
+        kill += 1;
+    }
+
+    #endregion
+
+    #region Energy
+
+    public bool HasEnoughEnergy(int amount)
+    {
+        return energy >= amount;
+    }
+
+    public void AddEnergy()
+    {
+        energy += 1;
+    }
+
+    public void UseEnergy(int amount)
+    {
+        energy -= amount;
+    }
+
+    #endregion
 }

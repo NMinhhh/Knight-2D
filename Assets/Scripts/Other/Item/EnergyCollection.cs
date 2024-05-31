@@ -59,7 +59,7 @@ public class EnergyCollection : MonoBehaviour
             if (Vector3.Distance(transform.position, destinationPoint) <= 0.1f)
             {
                 transform.position = destinationPoint;
-                GameManager.Instance.AddEnergy();
+                MapManager.Instance.AddEnergy();
                 Destroy(gameObject);
             }
         }

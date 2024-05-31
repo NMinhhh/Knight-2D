@@ -11,6 +11,7 @@ public class GameStateUI : MonoBehaviour
     [SerializeField] private GameObject loss;
     [SerializeField] private Text coinText;
     [SerializeField] private Text diamondText;
+    [SerializeField] private GameObject[] gameStateTitle;
     [Space]
     [Space]
     [Space]
@@ -25,7 +26,8 @@ public class GameStateUI : MonoBehaviour
     private float timer = 1;
     private float second = 8;
 
-    //[Header("Win")]
+
+
     void Start()
     {
         if(Instance == null)
@@ -37,7 +39,7 @@ public class GameStateUI : MonoBehaviour
             Destroy(gameObject);
         }
         timeText.text = second.ToString();
-
+        CloseLossUI();
     }
 
     // Update is called once per frame
@@ -49,22 +51,41 @@ public class GameStateUI : MonoBehaviour
         }
     }
 
+    public void OpenWinUI()
+    {
+        GameManager.Instance.AddDiamond(MapManager.Instance.diamond);
+        SetPickUpValue();
+        gameStateTitle[0].SetActive(true);
+        loss.SetActive(true);
+        Time.timeScale = 0;
+        
+    }
+
     public void OpenLossUI()
     {
         SetPickUpValue();
+        gameStateTitle[1].SetActive(true);
         bornUI.SetActive(true);
         loss.SetActive(true);
         isCheckTimer = true;
+        Time.timeScale = 0;
     }
 
     public void CloseLossUI()
     {
+        foreach (GameObject item in gameStateTitle)
+        {
+            item.SetActive(false);
+        }
+        ResetBornUI();
         loss.SetActive(false);
+        Time.timeScale = 1;
     }
+
     private void SetPickUpValue()
     {
-        coinText.text = GameManager.Instance.coin.ToString();
-        diamondText.text = GameManager.Instance.diamond.ToString();
+        coinText.text = MapManager.Instance.coin.ToString();
+        diamondText.text = MapManager.Instance.diamond.ToString();
     }
 
 
@@ -81,12 +102,12 @@ public class GameStateUI : MonoBehaviour
 
     public void ButtonClickBornUIClose()
     {
-        CoinManager.Instance.AddDiamond(GameManager.Instance.diamond);
+        GameManager.Instance.AddDiamond(MapManager.Instance.diamond);
         ResetBornUI();
         bornUI.SetActive(false);
     }
 
-    public void ResetBornUI()
+    void ResetBornUI()
     {
         isCheckTimer = false;
         second = 8;

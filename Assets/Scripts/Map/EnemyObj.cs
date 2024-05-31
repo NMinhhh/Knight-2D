@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Wave
+public class EnemyObj
 {
     public GameObject[] enemyPref;
+    public int amountOfEnemy;
 
-    public GameObject[] GetEnemy() => enemyPref;
+    public GameObject GetEnemyRan() => enemyPref[Random.Range(0, enemyPref.Length)];
+    
 }

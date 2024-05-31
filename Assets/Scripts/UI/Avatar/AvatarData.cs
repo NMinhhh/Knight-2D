@@ -21,4 +21,12 @@ public class AvatarData : ScriptableObject
     {
         avatars[id].isPurchased = true;
     }
+
+    public void ResetAvatar()
+    {
+        foreach (var avatar in avatars)
+        {
+            avatar.isPurchased = false;
+        }
+    }
 }

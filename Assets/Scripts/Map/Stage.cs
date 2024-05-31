@@ -5,9 +5,11 @@ using UnityEngine;
 [System.Serializable]
 public class Stage 
 {
-    public GameObject[] enemyPref;
+    public EnemyObj[] enemyObj;
     public bool isBoss;
     public float cooldown;
+    public int GetEnemyObjLength() => enemyObj.Length;
 
-    public GameObject[] GetEnemy() => enemyPref;
+    public EnemyObj GetEnemyObj(int idx) => enemyObj[idx];
+
 }

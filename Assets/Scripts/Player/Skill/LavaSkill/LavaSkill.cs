@@ -10,7 +10,6 @@ public class LavaSkill : MonoBehaviour
     private Lava script;
 
     [Header("Info")]
-    [SerializeField] private float basicDamage;
     [SerializeField] private float damageLevelUp;
     [Range(10, 100)]
     [SerializeField] private float damageLevelUpPercent;
@@ -40,7 +39,7 @@ public class LavaSkill : MonoBehaviour
     public void LevelUp(int level)
     {
         this.level = level;
-        damage = GameManager.Instance.Calculate(basicDamage, damageLevelUp, damageLevelUpPercent, this.level);
+        damage = SkillManager.Instance.CalculateSkillDamage(damageLevelUp, damageLevelUpPercent, this.level);
     }
 
     void SpawnLava()

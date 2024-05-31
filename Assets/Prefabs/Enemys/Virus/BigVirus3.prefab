@@ -114,7 +114,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 1515887441, guid: 0e90b6489dd2dac4186ac099c15c655e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2, y: 2}
@@ -135,6 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87180fdb7da8bd0479c084e4ab822040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFacingPlayer: 0
+  isFlip: 1
   speed: 5
   checkPlayerPos: {fileID: 4875636758603245710}
   checkRadius: 0.98
@@ -142,9 +144,9 @@ MonoBehaviour:
   touchRadius: 1.75
   touchDamage: 2
   touchCooldown: 1
-  basicHealth: 100
-  healthLevelUp: 55
-  healthLevelUpPercent: 5
+  basicHealth: 150
+  healthLevelUp: 75
+  healthLevelUpPercent: 10
   damageTimerCon: 0.1
   hurtEffectTimer: 0.1
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
@@ -269,8 +271,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 2.2885161e-33
+  m_labelHash: 1.3837841e-35
   m_SpriteKey: 0
   m_SpriteHash: 563876027
 --- !u!1 &7446772732878323665

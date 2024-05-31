@@ -28,13 +28,13 @@ public class CoinUI : MonoBehaviour
     
     void Home()
     {
-        coinText.text = CoinManager.Instance.coin.ToString();
-        diamondText.text = CoinManager.Instance.diamond.ToString();
+        coinText.text = GameManager.Instance.coin.ToString();
+        diamondText.text = GameManager.Instance.diamond.ToString();
     }
 
     void GamePlay()
     {
-        coinText.text = GameManager.Instance.coin.ToString();
-        diamondText.text = GameManager.Instance.diamond.ToString();
+        coinText.text = MapManager.Instance.coin.ToString();
+        diamondText.text = MapManager.Instance.diamond.ToString();
     }
 }

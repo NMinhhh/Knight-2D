@@ -25,24 +25,21 @@ public class PlayerDie : MonoBehaviour
             GameStateUI.Instance.SetDiamondToBorn(diamondPay * mutiply);
             GameStateUI.Instance.ClickToBorn(Born);
             GameStateUI.Instance.OpenLossUI();
-            Time.timeScale = 0;
         }
     }
 
     public void Born()
     {
-        if(CoinManager.Instance.HasEnenoughDiamond(diamondPay * mutiply)) 
+        if(GameManager.Instance.HasEnenoughDiamond(diamondPay * mutiply)) 
         {
-            CoinManager.Instance.UseDiamond(diamondPay * mutiply);
+            GameManager.Instance.UseDiamond(diamondPay * mutiply);
             GameStateUI.Instance.CloseLossUI();
-            GameStateUI.Instance.ResetBornUI();
         }
         else
         {
             Debug.Log("Ko du kim cuong");
             return;
         }
-        Time.timeScale = 1;
         mutiply += 2;
         player.Born();
         isLoss = false;

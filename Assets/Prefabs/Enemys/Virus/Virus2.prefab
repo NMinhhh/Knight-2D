@@ -104,16 +104,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87180fdb7da8bd0479c084e4ab822040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  isFacingPlayer: 0
+  isFlip: 0
+  speed: 6
   checkPlayerPos: {fileID: 2352556584259841572}
   checkRadius: 0.43
   touchDamagePos: {fileID: 6249995750481106872}
   touchRadius: 0.14
-  touchDamage: 1
-  touchCooldown: 1
-  basicHealth: 15
+  touchDamage: 2
+  touchCooldown: 0.5
+  basicHealth: 20
   healthLevelUp: 5
-  healthLevelUpPercent: 3
+  healthLevelUpPercent: 10
   damageTimerCon: 0.1
   hurtEffectTimer: 0.1
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}

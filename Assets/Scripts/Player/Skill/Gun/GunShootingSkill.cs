@@ -9,7 +9,6 @@ public class GunShootingSkill : MonoBehaviour
     [SerializeField] private GameObject bullet;
 
     [Header("Info")]
-    [SerializeField] private float basicDamage;
     [SerializeField] private float damageLevelUp;
     [Range(10, 100)]
     [SerializeField] private float damageLevelUpPercent;
@@ -47,7 +46,7 @@ public class GunShootingSkill : MonoBehaviour
     public void LevelUp(int level)
     {
         this.level = level;
-        damage = GameManager.Instance.Calculate(basicDamage, damageLevelUp, damageLevelUpPercent, this.level);
+        damage = SkillManager.Instance.CalculateSkillDamage(damageLevelUp, damageLevelUpPercent, this.level);
         guns[level - 1].SetActive(true);
         UpdateGun(this.level);
     }

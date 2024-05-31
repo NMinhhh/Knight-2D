@@ -9,7 +9,7 @@ public class MapControl : MonoBehaviour
     private int selectedMap;
     private void Start()
     {
-        selectedMap = CoinManager.Instance.GetSelectedMap();
+        selectedMap = GameManager.Instance.GetSelectedMap();
         MapActive(selectedMap);
     }
 

@@ -15,8 +15,7 @@ public class StageUI : MonoBehaviour
 
     public void OpenStageUI()
     {
-        GameManager.Instance.StageLevelUp();
-        currentStage = GameManager.Instance.stage;
+        currentStage = MapManager.Instance.stage;
         stageMesText.text = "Stage " + currentStage;
         stageText.text = currentStage.ToString();
         stageMes.SetActive(true);

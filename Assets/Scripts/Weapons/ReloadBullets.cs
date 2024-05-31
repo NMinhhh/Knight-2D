@@ -8,7 +8,7 @@ public class ReloadBullets : MonoBehaviour
 
     public int amountOfBullet {  get; private set; }
 
-    private int currentAmountOfBullet;
+    private int amountOfBulletMax;
 
     private float currentReloadTimer;
 
@@ -16,8 +16,6 @@ public class ReloadBullets : MonoBehaviour
 
     void Start()
     {
-        weapon = CoinManager.Instance.GetWeaponSelected();
-        statsBullet.weaponIcon.sprite = weapon.image;
         ResetBullet();
         currentReloadTimer = weapon.reload;
         statsBullet.amountOfBulletText.text = weapon.bullet.ToString();
@@ -32,13 +30,15 @@ public class ReloadBullets : MonoBehaviour
     public void IncreseaBullets(int amount)
     {
         amountOfBullet = weapon.bullet + amount;
-        currentAmountOfBullet = amountOfBullet;
+        amountOfBulletMax = amountOfBullet;
     }
 
     public void ResetBullet()
     {
+        if(weapon == null)
+            weapon = GameManager.Instance.GetWeaponSelected();
         amountOfBullet = weapon.bullet;
-        currentAmountOfBullet = amountOfBullet;
+        amountOfBulletMax = amountOfBullet;
     }
 
     public void UpdateBullets()
@@ -55,7 +55,7 @@ public class ReloadBullets : MonoBehaviour
             statsBullet.reloadImage.fillAmount = currentReloadTimer / weapon.reload;
             if (currentReloadTimer <= 0)
             {
-                amountOfBullet = currentAmountOfBullet;
+                amountOfBullet = amountOfBulletMax;
                 statsBullet.amountOfBulletText.text = amountOfBullet.ToString();
                 currentReloadTimer = weapon.reload;
                 statsBullet.reloadImage.fillAmount = 0;

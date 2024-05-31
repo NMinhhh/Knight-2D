@@ -13,12 +13,12 @@ public class SoundFXManager : MonoBehaviour
         if(Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
     }
     public void CreateAudioClip(AudioClip clip, Transform pos, float volume)
     {

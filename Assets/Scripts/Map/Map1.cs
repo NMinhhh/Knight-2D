@@ -10,19 +10,23 @@ public class Map1 : MonoBehaviour
     [Space]
     [Space]
 
-    [Header("Stage")]
+    [Header("Stage Data")]
+    [SerializeField] private StageData stageData;
+    private Stage currentStage;
+
+    private int enemyIndex;
+    private bool isFinishStage;
+    private float spawnCooldown;
+
+    private bool isWin;
+
+    [Header("Stage UI")]
     [SerializeField] private StageUI stageUI;
     [SerializeField] private float cooldownstartStageTimer;
     private float startStageTimer;
     [SerializeField] private float cooldownEndStageTimer;
     private float endStageTimer;
     private bool isChangeStage;
-    [Space]
-    [Space]
-
-    [Header("Cooldown")]
-    [SerializeField] private float cooldownEnemy1;
-    private float startTime1;
     [Space]
     [Space]
 
@@ -40,18 +44,8 @@ public class Map1 : MonoBehaviour
 
     AttackDetail attackDetail;
 
-    [Header("Text")]
-    [SerializeField] private StageData stageData;
-    private Stage currentStage;
-    private int currentAmountOfEnemy;
-    private bool isFinishStage;
-    private float currentTimer;
-    public List<GameObject> enemys;
-
     void Start()
     {
-        enemys = new List<GameObject>();
-        startTime1 = Time.deltaTime;
         enemies = new List<GameObject>();
         items = new List<GameObject>();
         isFinishStage = true;
@@ -74,14 +68,20 @@ public class Map1 : MonoBehaviour
                     endStageTimer -= Time.deltaTime;
                     if (endStageTimer <= 0)
                     {
+                        SetUpStage();
                         startStageTimer = Time.time;
                         isChangeStage = true;
-                        stageUI.OpenStageUI();
+                        if (isWin) 
+                            CheckToWin();
+                        else
+                            stageUI.OpenStageUI();
                         endStageTimer = cooldownEndStageTimer;
                     }
 
                 }
             }
+
+
             if (Time.time >= startStageTimer + cooldownstartStageTimer && isChangeStage)
             {
                 ChangeState();
@@ -106,16 +106,27 @@ public class Map1 : MonoBehaviour
     }
 
 
+    void CheckToWin()
+    {
+        Debug.Log("you win");
+        if (!GameManager.Instance.GetMapState())
+        {
+            GameManager.Instance.AddMapWin(mapLevel - 1);
+            GameManager.Instance.AddMapUnlock(mapLevel);
+        }
+        GameStateUI.Instance.OpenWinUI();
+    }
+
     void ControlSpawn()
     {
        
-        currentTimer -= Time.deltaTime;
-        if (currentTimer <= 0)
+        spawnCooldown -= Time.deltaTime;
+        if (spawnCooldown <= 0)
         {
-            SpawnerManager.Instance.SpawnEnemy(enemys[currentAmountOfEnemy], 1.5f);
-            currentTimer = currentStage.cooldown;
-            currentAmountOfEnemy++;
-            if (currentAmountOfEnemy == currentStage.enemyPref.Length)
+            SpawnerManager.Instance.AppearanceEnemy(enemyIndex, 1.5f);
+            spawnCooldown = currentStage.cooldown;
+            enemyIndex++;
+            if (enemyIndex == SpawnerManager.Instance.GetListEnemyCount())
             {
                 isFinishStage = true;
             }
@@ -124,35 +135,30 @@ public class Map1 : MonoBehaviour
 
     }
 
+    void SetUpStage()
+    {
+        MapManager.Instance.StageLevelUp();
+        int i = MapManager.Instance.stage - 1;
+        if(i == stageData.GetStageLength())
+        {
+            isWin = true;
+            return;
+        }
+        currentStage = stageData.GetStage(i);
+        SpawnerManager.Instance.GenerateEnemy(currentStage);
+    }
+
     void ChangeState()
     {
-        int i = GameManager.Instance.stage - 1;
-        currentStage = stageData.GetStage(i);
-        ShuffleEnemy();
-        if(currentStage.isBoss)
+        if (currentStage.isBoss)
         {
             isBoss = true;
         }
         isChangeStage = false;
         isFinishStage = false;
-        currentAmountOfEnemy = 0;
-        currentTimer = 0;
+        enemyIndex = 0;
+        spawnCooldown = 0;
         stageUI.CloseStageUI();
-
-    }
-
-    void ShuffleEnemy()
-    {
-        enemys.Clear();
-        enemys.AddRange(currentStage.GetEnemy());
-        int n = enemys.Count;
-        for (int i = n - 1; i > 0; i--)
-        {
-            int j = Random.Range(0, i + 1);
-            GameObject temp = enemys[i];
-            enemys[i] = enemys[j];
-            enemys[j] = temp;
-        }
     }
 
     void RecieveItem()

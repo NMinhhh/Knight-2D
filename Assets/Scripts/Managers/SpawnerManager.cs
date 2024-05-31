@@ -15,6 +15,7 @@ public class SpawnerManager : MonoBehaviour
 
     private static int sortingOrder = 0;
 
+    private List<GameObject> enemyCheck = new List<GameObject>();
     private List<GameObject> enemies = new List<GameObject>();
 
     [Header("Energy pref")]
@@ -37,6 +38,54 @@ public class SpawnerManager : MonoBehaviour
         StartCoroutine(Spawn(enemy, delayTimer));
     }
 
+    public int GetListEnemyCount()
+    {
+        return enemies.Count;
+    }
+
+    public void GenerateEnemy(Stage stage)
+    {
+        enemies.Clear();
+        for (int i = 0; i < stage.GetEnemyObjLength(); i++)
+        {
+            EnemyObj enemyObj = stage.GetEnemyObj(i);
+            for (int j = 0; j < enemyObj.amountOfEnemy; j++)
+            {
+                GameObject go = Instantiate(enemyObj.GetEnemyRan());
+                go.SetActive(false);
+                enemies.Add(go);
+            }
+        }
+        int n = enemies.Count;
+        for (int i = n - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            GameObject temp = enemies[i];
+            enemies[i] = enemies[j];
+            enemies[j] = temp;
+        }
+    }
+
+    public void AppearanceEnemy(int idx, float delayTimer)
+    {
+        StartCoroutine(CreateEnemyObj(idx, delayTimer));
+    }
+
+    IEnumerator CreateEnemyObj(int idx, float delayTimer)
+    {
+        Vector3 pos = GetRandomSpawnPosition();
+        GameObject go = Instantiate(iconSpawner, pos, Quaternion.identity);
+        GameObject enemy = enemies[idx];
+        enemy.transform.position = pos; 
+        spriteRenderer = enemy.GetComponent<SpriteRenderer>();
+        sortingOrder++;
+        spriteRenderer.sortingOrder = sortingOrder;
+        enemyCheck.Add(enemy);
+        yield return new WaitForSeconds(delayTimer);
+        Destroy(go);
+        enemy.SetActive(true);
+    }
+
     IEnumerator Spawn(GameObject enemy, float delayTimer)
     {
         GameObject go = Instantiate(iconSpawner, GetRandomSpawnPosition(), Quaternion.identity);
@@ -45,7 +94,7 @@ public class SpawnerManager : MonoBehaviour
         spriteRenderer = spawnGo.GetComponent<SpriteRenderer>();
         sortingOrder++;
         spriteRenderer.sortingOrder = sortingOrder;
-        enemies.Add(spawnGo);    
+        enemyCheck.Add(spawnGo);    
         yield return new WaitForSeconds(delayTimer);
         spawnGo.SetActive(true);
         Destroy(go);
@@ -53,14 +102,14 @@ public class SpawnerManager : MonoBehaviour
 
     public bool CheckListEnemy()
     {
-        for (int i = 0; i < enemies.Count; i++)
+        for (int i = 0; i < enemyCheck.Count; i++)
         {
-            if (enemies[i] == null)
+            if (enemyCheck[i] == null)
             {
-                enemies.RemoveAt(i);
+                enemyCheck.RemoveAt(i);
             }
         }
-        return enemies.Count == 0;
+        return enemyCheck.Count == 0;
     }
 
     public void SpawnEnergy(Vector2 pos)

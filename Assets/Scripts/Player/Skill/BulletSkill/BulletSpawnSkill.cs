@@ -10,7 +10,6 @@ public class BulletSpawnSkill : MonoBehaviour
     private BulletMoveArc script;
 
     [Header("Info Bullet")]
-    [SerializeField] private float basicDamage;
     [SerializeField] private float damageLevelUp;
     [Range(10,100)]
     [SerializeField] private float damageLevelUpPercent;
@@ -65,7 +64,7 @@ public class BulletSpawnSkill : MonoBehaviour
     public void LevelUp(int level)
     {
         this.level = level;
-        damage = GameManager.Instance.Calculate(basicDamage, damageLevelUp, damageLevelUpPercent, this.level);
+        damage = SkillManager.Instance.CalculateSkillDamage(damageLevelUp, damageLevelUpPercent, this.level);
         amountOfBulletSpawn += amountBullet;
         amountOfBulletSpawnCur = amountOfBulletSpawn;
     }

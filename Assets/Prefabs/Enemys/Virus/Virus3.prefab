@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1539099708430549371}
   - component: {fileID: 5132667666374360746}
   m_Layer: 7
-  m_Name: Virus 3
+  m_Name: Virus3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 1301214083, guid: 9952b482dad74b54bbfa0b5b81846bdb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2, y: 2}
@@ -105,16 +105,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFacingPlayer: 0
-  speed: 5
+  isFlip: 1
+  speed: 6
   checkPlayerPos: {fileID: 8571689006148905372}
   checkRadius: 0.53
   touchDamagePos: {fileID: 1761752171744622175}
   touchRadius: 0.91
-  touchDamage: 1
+  touchDamage: 2
   touchCooldown: 0.5
   basicHealth: 20
   healthLevelUp: 8
-  healthLevelUpPercent: 3
+  healthLevelUpPercent: 5
   damageTimerCon: 0.1
   hurtEffectTimer: 0.1
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}

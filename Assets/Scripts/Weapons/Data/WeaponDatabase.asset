@@ -16,19 +16,21 @@ MonoBehaviour:
   - name: No1
     image: {fileID: 1863616520, guid: ae0051663d97cb345863eaa3c922cd2b, type: 3}
     damage: 30
-    bullet: 15
+    bullet: 12
     reload: 1
     price: 0
     speed: 18
-    timeLife: 3
+    timeLife: 5
     cooldown: 0.3
     bulletIcon: {fileID: 7336088309485631612, guid: 8446df5c0f96599488e1ff6ea316368b, type: 3}
     isPurchased: 1
     widthImage: 283.5
+    bonusMovementSpeedPercent: 0
+    bonusHealthPercent: 0
   - name: No2
     image: {fileID: 1208916092, guid: ae0051663d97cb345863eaa3c922cd2b, type: 3}
-    damage: 20
-    bullet: 35
+    damage: 30
+    bullet: 30
     reload: 1.5
     price: 200
     speed: 18
@@ -37,9 +39,11 @@ MonoBehaviour:
     bulletIcon: {fileID: 3798434168241891555, guid: 414fd25a14c24d94ead0fffe772777a5, type: 3}
     isPurchased: 0
     widthImage: 283.5
+    bonusMovementSpeedPercent: 30
+    bonusHealthPercent: 0
   - name: No3
     image: {fileID: -1715440986, guid: ae0051663d97cb345863eaa3c922cd2b, type: 3}
-    damage: 25
+    damage: 36
     bullet: 15
     reload: 1.5
     price: 315
@@ -49,51 +53,61 @@ MonoBehaviour:
     bulletIcon: {fileID: 4084881715599001735, guid: 85c78ce3f22b2db46a95deed0f210fbe, type: 3}
     isPurchased: 0
     widthImage: 283.5
+    bonusMovementSpeedPercent: 30
+    bonusHealthPercent: 20
   - name: No4
     image: {fileID: -1285962514, guid: ae0051663d97cb345863eaa3c922cd2b, type: 3}
-    damage: 40
+    damage: 50
     bullet: 10
     reload: 2
     price: 500
-    speed: 18
+    speed: 20
     timeLife: 3
     cooldown: 0.5
     bulletIcon: {fileID: 1968114089096506296, guid: f554e5a7fe08e134292e44c63347a841, type: 3}
     isPurchased: 0
     widthImage: 283.5
+    bonusMovementSpeedPercent: 20
+    bonusHealthPercent: 50
   - name: No5
     image: {fileID: -1179913762, guid: f9c65ccaa7c089243bfd9f70a26b2d8d, type: 3}
-    damage: 35
-    bullet: 15
+    damage: 55
+    bullet: 20
     reload: 2
     price: 800
     speed: 25
     timeLife: 2
     cooldown: 0.4
     bulletIcon: {fileID: 2603398741598866655, guid: 0874a1c4c826eb244bb58a9affe0b58c, type: 3}
-    isPurchased: 1
+    isPurchased: 0
     widthImage: 283.5
+    bonusMovementSpeedPercent: 30
+    bonusHealthPercent: 30
   - name: No6
     image: {fileID: 987667319, guid: f9c65ccaa7c089243bfd9f70a26b2d8d, type: 3}
-    damage: 55
-    bullet: 8
-    reload: 2
+    damage: 70
+    bullet: 12
+    reload: 1
     price: 1000
     speed: 0
     timeLife: 0
-    cooldown: 1
+    cooldown: 1.1
     bulletIcon: {fileID: 0}
-    isPurchased: 1
+    isPurchased: 0
     widthImage: 283.5
+    bonusMovementSpeedPercent: 40
+    bonusHealthPercent: 20
   - name: No7
     image: {fileID: 2004866160, guid: f9c65ccaa7c089243bfd9f70a26b2d8d, type: 3}
-    damage: 60
-    bullet: 10
-    reload: 2
+    damage: 100
+    bullet: 18
+    reload: 1.5
     price: 1000
     speed: 20
     timeLife: 3
     cooldown: 0.6
     bulletIcon: {fileID: 2150939405496648208, guid: 79cd477e922511240b6829801495a16f, type: 3}
-    isPurchased: 1
+    isPurchased: 0
     widthImage: 283.5
+    bonusMovementSpeedPercent: 30
+    bonusHealthPercent: 40

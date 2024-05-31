@@ -21,4 +21,12 @@ public class WeaponObject : ScriptableObject
     {
         weapons[idx].isPurchased = true;
     }
+
+    public void ResetWeaponData()
+    {
+        foreach (var weapon in weapons)
+        {
+            weapon.isPurchased = false;
+        }
+    }
 }
