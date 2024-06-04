@@ -74,6 +74,8 @@ public class BossEnemy7 : BossEnemy
     private GameObject caveGo;
     private bool isCaveSummonEnemySkill;
 
+    private List<GameObject> enemies = new List<GameObject>();
+
     protected override void Start()
     {
         base.Start();
@@ -114,135 +116,153 @@ public class BossEnemy7 : BossEnemy
         {
             CreateBomb();
         }
+    }
 
-        //=============================shooting Skillll=====================
+    //=============================shooting Skillll=====================
 
-        void Reload()
+    void Reload()
+    {
+        amountOfBullet = (int)(Random.Range(amoutOfBulletRan.x, amoutOfBulletRan.y));
+        currentAngle = 0;
+        foreach (Transform point in shootingPoint)
         {
-            amountOfBullet = (int)(Random.Range(amoutOfBulletRan.x, amoutOfBulletRan.y));
-            currentAngle = 0;
-            foreach (Transform point in shootingPoint)
+            point.localEulerAngles = new Vector3(0, 0, 0);
+        }
+    }
+
+    void Shooting()
+    {
+        if (amountOfBullet > 0)
+        {
+            shootTimer -= Time.deltaTime;
+            if (shootTimer <= 0)
             {
-                point.localEulerAngles = new Vector3(0, 0, 0);
+                shootTimer = shootCooldown;
+                amountOfBullet--;
+                SpawnBulletObj();
             }
         }
-
-        void Shooting()
+        else
         {
-            if (amountOfBullet > 0)
-            {
-                shootTimer -= Time.deltaTime;
-                if (shootTimer <= 0)
-                {
-                    shootTimer = shootCooldown;
-                    amountOfBullet--;
-                    SpawnBulletObj();
-                }
-            }
-            else
-            {
-                isShootingBulletSkill = false;
-                isMove = true;
-                ChangeSkillRandom();
-            }
-
-
-        }
-
-        float GetAngle()
-        {
-            return Random.Range(angleRan.x, angleRan.y);
-        }
-
-        void SpawnBulletObj()
-        {
-            if (!changeDir)
-            {
-                currentAngle += GetAngle();
-                if (currentAngle >= 120)
-                {
-                    changeDir = true;
-                    currentAngle -= GetAngle();
-                }
-            }
-            else
-            {
-                currentAngle -= GetAngle();
-                if (currentAngle <= 0)
-                {
-                    changeDir = false;
-                    currentAngle += GetAngle();
-                }
-            }
-            foreach (Transform point in shootingPoint)
-            {
-                point.localEulerAngles = new Vector3(0, 0, currentAngle - 90 + transform.localEulerAngles.z);
-                bulletGo = GameObject.Instantiate(bulletPref, point.transform.position, Quaternion.Euler((point == shootingPoint[0] ? 0 : 180), 0, point.localEulerAngles.z));
-                bulletScript = bulletGo.GetComponent<NormalBullet>();
-                bulletScript.CreateBullet(bulletDamage, bulletSpeed, bulletTimeLife);
-            }
-        }
-
-        //=======================================Cave Summon Enemy Skill===============================================
-
-        Vector3[] GetDestination()
-        {
-            Vector3[] destination = new Vector3[amountOfCave];
-            for (int i = 0; i < amountOfCave; i++)
-            {
-                destination[i] = GetPositionInCam.Instance.GetPositionInArea();
-            }
-            return destination;
-        }
-
-        IEnumerator SpawnCave()
-        {
-            Vector3[] destination = GetDestination();
-            for (int i = 0; i < destination.Length; i++)
-            {
-                GameObject go = Instantiate(signalObj, destination[i], Quaternion.identity);
-                Destroy(go, signalTimer);
-            }
-            yield return new WaitForSeconds(signalTimer);
-            for (int i = 0; i < amountOfCave; i++)
-            {
-                caveGo = Instantiate(cavePref, destination[i], Quaternion.identity);
-                summonEnenmyScript = caveGo.GetComponent<CaveSummonEnenmy>();
-                summonEnenmyScript.CreateCave(enemys, amountOfEnemy, summonCooldown);
-            }
+            isShootingBulletSkill = false;
             isMove = true;
             ChangeSkillRandom();
         }
 
 
-        //=============================== Bomb ===========================
-        void CreateBomb()
-        {
-            if (currentAmountOfBomb > 0)
-            {
-                createBombTimer -= Time.deltaTime;
-                if (createBombTimer <= 0)
-                {
-                    createBombTimer = createBombCooldown;
-                    SpawnBombObj();
-                    currentAmountOfBomb--;
+    }
 
-                }
-            }
-            else
+    float GetAngle()
+    {
+        return Random.Range(angleRan.x, angleRan.y);
+    }
+
+    void SpawnBulletObj()
+    {
+        if (!changeDir)
+        {
+            currentAngle += GetAngle();
+            if (currentAngle >= 120)
             {
-                currentAmountOfBomb = amountOfBomb;
-                createBombSkillTimer = 0;
+                changeDir = true;
+                currentAngle -= GetAngle();
             }
         }
-
-        void SpawnBombObj()
+        else
         {
-            Vector3 destination;
-            destination = GetPositionInCam.Instance.GetPositionInArea();
-            bombExplodeGo = Instantiate(bombExplodePref, transform.position, Quaternion.identity);
-            bombExplodeScript = bombExplodeGo.GetComponent<BombExplode>();
-            bombExplodeScript.CreateBomb(destination, bombSpeed, Random.Range(delayExplosion.x, delayExplosion.y), bulletBombDamage, amountOfBulletInBomb);
+            currentAngle -= GetAngle();
+            if (currentAngle <= 0)
+            {
+                changeDir = false;
+                currentAngle += GetAngle();
+            }
         }
+        foreach (Transform point in shootingPoint)
+        {
+            point.localEulerAngles = new Vector3(0, 0, currentAngle - 90 + transform.localEulerAngles.z);
+            bulletGo = GameObject.Instantiate(bulletPref, point.transform.position, Quaternion.Euler((point == shootingPoint[0] ? 0 : 180), 0, point.localEulerAngles.z));
+            bulletScript = bulletGo.GetComponent<NormalBullet>();
+            bulletScript.CreateBullet(bulletDamage, bulletSpeed, bulletTimeLife);
+        }
+    }
+
+    //=======================================Cave Summon Enemy Skill===============================================
+
+    Vector3[] GetDestination()
+    {
+        Vector3[] destination = new Vector3[amountOfCave];
+        for (int i = 0; i < amountOfCave; i++)
+        {
+            destination[i] = GetPositionInCam.Instance.GetPositionInArea();
+        }
+        return destination;
+    }
+
+    IEnumerator SpawnCave()
+    {
+        Vector3[] destination = GetDestination();
+        for (int i = 0; i < destination.Length; i++)
+        {
+            GameObject go = Instantiate(signalObj, destination[i], Quaternion.identity);
+            Destroy(go, signalTimer);
+        }
+        yield return new WaitForSeconds(signalTimer);
+        for (int i = 0; i < amountOfCave; i++)
+        {
+            caveGo = Instantiate(cavePref, destination[i], Quaternion.identity);
+            summonEnenmyScript = caveGo.GetComponent<CaveSummonEnenmy>();
+            summonEnenmyScript.CreateCave(enemys, amountOfEnemy, summonCooldown);
+        }
+        isMove = true;
+        ChangeSkillRandom();
+    }
+
+    void EnemyAllDeath()
+    {
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Cave"));
+
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            Destroy(enemies[i]);
+        }
+        enemies.Clear();
+
+    }
+
+    //=============================== Bomb ===========================
+    void CreateBomb()
+    {
+        if (currentAmountOfBomb > 0)
+        {
+            createBombTimer -= Time.deltaTime;
+            if (createBombTimer <= 0)
+            {
+                createBombTimer = createBombCooldown;
+                SpawnBombObj();
+                currentAmountOfBomb--;
+
+            }
+        }
+        else
+        {
+            currentAmountOfBomb = amountOfBomb;
+            createBombSkillTimer = 0;
+        }
+    }
+
+    void SpawnBombObj()
+    {
+        Vector3 destination;
+        destination = GetPositionInCam.Instance.GetPositionInArea();
+        bombExplodeGo = Instantiate(bombExplodePref, transform.position, Quaternion.identity);
+        bombExplodeScript = bombExplodeGo.GetComponent<BombExplode>();
+        bombExplodeScript.CreateBomb(destination, bombSpeed, Random.Range(delayExplosion.x, delayExplosion.y), bulletBombDamage, amountOfBulletInBomb);
+    }
+
+    protected override void Dead()
+    {
+        base.Dead();
+        EnemyAllDeath();
     }
 }

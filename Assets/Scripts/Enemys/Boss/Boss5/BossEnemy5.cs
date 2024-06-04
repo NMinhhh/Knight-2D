@@ -30,6 +30,8 @@ public class BossEnemy5 : BossEnemy
     private GameObject caveGo;
     private bool isCaveSummonEnemySkill;
 
+    private List<GameObject> enemies = new List<GameObject>();
+
     [Header("Dash skill")]
     [SerializeField] private float dashSpeed;
     private Vector3 currentTarget;
@@ -49,7 +51,7 @@ public class BossEnemy5 : BossEnemy
     protected override void Start()
     {
         base.Start();
-        SelectedSkill(1);
+        SelectedSkill(0);
     }   
 
     protected override void Update()
@@ -126,7 +128,20 @@ public class BossEnemy5 : BossEnemy
             summonEnenmyScript.CreateCave(enemys, amountOfEnemy, summonCooldown);
         }
         isMove = true;
-        ChangeSkillRandom();
+        ChangeSkill(0);
+    }
+
+     void EnemyAllDeath()
+    {
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Cave"));
+
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            Destroy(enemies[i]);
+        }
+        enemies.Clear();
+
     }
 
     //=================================Dash Skill====================
@@ -157,6 +172,8 @@ public class BossEnemy5 : BossEnemy
 
     void DashEffect()
     {
+        if (target.GetComponent<Player>().isDie)
+            return;
         GameObject obj = new GameObject();
         SpriteRenderer spriteEffect = obj.AddComponent<SpriteRenderer>();
         spriteEffect.sprite = spriteRenderer.sprite;
@@ -168,5 +185,11 @@ public class BossEnemy5 : BossEnemy
         obj.transform.localScale = transform.localScale;
         obj.transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
         Destroy(obj, .05f);
+    }
+
+    protected override void Dead()
+    {
+        base.Dead();
+        EnemyAllDeath();
     }
 }

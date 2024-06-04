@@ -1,0 +1,357 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 565d3f607c448474a8c11eef14e7a30c, type: 3}
+  m_Name: StageData3
+  m_EditorClassIdentifier: 
+  stages:
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      amountOfEnemy: 6
+    isBoss: 0
+    cooldown: 0.5
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      amountOfEnemy: 9
+    isBoss: 0
+    cooldown: 0.5
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      amountOfEnemy: 12
+    isBoss: 0
+    cooldown: 0.5
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 16
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 19
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 23
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 24
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      amountOfEnemy: 5
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 25
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      amountOfEnemy: 8
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 28
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      amountOfEnemy: 10
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 31
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      - {fileID: 489224733829539740, guid: 6afa330fd5e9ef44493bf80711ee5c89, type: 3}
+      amountOfEnemy: 15
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 34
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      - {fileID: 489224733829539740, guid: 6afa330fd5e9ef44493bf80711ee5c89, type: 3}
+      amountOfEnemy: 15
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 38
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      - {fileID: 489224733829539740, guid: 6afa330fd5e9ef44493bf80711ee5c89, type: 3}
+      amountOfEnemy: 15
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 42
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      - {fileID: 489224733829539740, guid: 6afa330fd5e9ef44493bf80711ee5c89, type: 3}
+      amountOfEnemy: 18
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 46
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 489224733829539740, guid: 6afa330fd5e9ef44493bf80711ee5c89, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      amountOfEnemy: 18
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 5733463433459771763, guid: a58111219df564740a17861266f600be, type: 3}
+      amountOfEnemy: 1
+    isBoss: 1
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 49
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      - {fileID: 489224733829539740, guid: 6afa330fd5e9ef44493bf80711ee5c89, type: 3}
+      amountOfEnemy: 18
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 53
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 489224733829539740, guid: 6afa330fd5e9ef44493bf80711ee5c89, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      amountOfEnemy: 20
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 56
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 489224733829539740, guid: 6afa330fd5e9ef44493bf80711ee5c89, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      amountOfEnemy: 20
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 60
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 489224733829539740, guid: 6afa330fd5e9ef44493bf80711ee5c89, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      amountOfEnemy: 20
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 65
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 489224733829539740, guid: 6afa330fd5e9ef44493bf80711ee5c89, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      amountOfEnemy: 25
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 68
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 489224733829539740, guid: 6afa330fd5e9ef44493bf80711ee5c89, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      amountOfEnemy: 25
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 72
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 489224733829539740, guid: 6afa330fd5e9ef44493bf80711ee5c89, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      amountOfEnemy: 25
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 74
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 489224733829539740, guid: 6afa330fd5e9ef44493bf80711ee5c89, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      amountOfEnemy: 30
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 75
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 489224733829539740, guid: 6afa330fd5e9ef44493bf80711ee5c89, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      amountOfEnemy: 30
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 2516495173922790938, guid: f4c5c9707b827074fbfe57028952c7dd, type: 3}
+      amountOfEnemy: 1
+    isBoss: 1
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 80
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 489224733829539740, guid: 6afa330fd5e9ef44493bf80711ee5c89, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      amountOfEnemy: 35
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 85
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 489224733829539740, guid: 6afa330fd5e9ef44493bf80711ee5c89, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      amountOfEnemy: 35
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 90
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 489224733829539740, guid: 6afa330fd5e9ef44493bf80711ee5c89, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      amountOfEnemy: 35
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 90
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 489224733829539740, guid: 6afa330fd5e9ef44493bf80711ee5c89, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      amountOfEnemy: 40
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 95
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 489224733829539740, guid: 6afa330fd5e9ef44493bf80711ee5c89, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      amountOfEnemy: 42
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 100
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 489224733829539740, guid: 6afa330fd5e9ef44493bf80711ee5c89, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      amountOfEnemy: 45
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
+      - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
+      amountOfEnemy: 100
+    - enemyPref:
+      - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
+      - {fileID: 489224733829539740, guid: 6afa330fd5e9ef44493bf80711ee5c89, type: 3}
+      - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+      amountOfEnemy: 50
+    isBoss: 0
+    cooldown: 0.3
+  - enemyObj:
+    - enemyPref:
+      - {fileID: 4832876976072885887, guid: 3ce1848668849d748b3016d639cdb34e, type: 3}
+      amountOfEnemy: 1
+    isBoss: 1
+    cooldown: 0.3

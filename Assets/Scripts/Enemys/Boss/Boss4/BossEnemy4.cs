@@ -166,6 +166,8 @@ public class BossEnemy4 : BossEnemy
 
     void DashEffect()
     {
+        if (target.GetComponent<Player>().isDie)
+            return;
         GameObject obj = new GameObject();
         SpriteRenderer sr = obj.AddComponent<SpriteRenderer>();
         sr.sprite = spriteRenderer.sprite;

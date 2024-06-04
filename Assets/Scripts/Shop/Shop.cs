@@ -21,12 +21,16 @@ public class Shop : MonoBehaviour
     AvatarData avatarData;
 
     [Header("Coin")]
-    [SerializeField] private List<Coin> coinList;
-
     [SerializeField] private GameObject coinItemTemplate;
     [SerializeField] private Transform coinCotent;
 
+    CoinData coinData;
 
+    [Header("Diamond")]
+    [SerializeField] private GameObject diamondItemTemplate;
+    [SerializeField] private Transform diamondContent;
+
+    CoinData diamondData;
 
     void Start() 
     {
@@ -34,12 +38,15 @@ public class Shop : MonoBehaviour
         GenerateAvatarItemUI();
         GenerateWeaponItemUI();
         GenerateCoinItemUI();
+        GenerateDiamondItemUI();
     }
 
     void GetData()
     {
         weaponData = GameData.Instance.GetWeaponData();
         avatarData = GameData.Instance.GetAvatarData();
+        coinData = GameData.Instance.GetCoinData();
+        diamondData = GameData.Instance.GetDiamondData();
     }
 
     #region Weapon
@@ -66,7 +73,6 @@ public class Shop : MonoBehaviour
                 if (idx == GameManager.Instance.selectedWeaponIndex)
                 {
                     weaponItemUI.OnWeaponEquipButton();
-                    GameManager.Instance.SetWeaponSelected(weapon);
                 }
                 else
                 {
@@ -81,8 +87,8 @@ public class Shop : MonoBehaviour
         Weapon weapon = weaponData.GetWeapon(idx);
         detailWeaponUI.SetNameText(weapon.name);
         detailWeaponUI.SetImage(weapon.image);
-        detailWeaponUI.SetIndexText($"Damage: {weapon.damage},Bullet: {weapon.bullet},Reload: {weapon.reload},Bonus Speed: {weapon.bonusMovementSpeedPercent}%,Bonus Health: {weapon.bonusHealthPercent}%");
-        detailWeaponUI.SetInfoText("dfasafas");
+        detailWeaponUI.SetIndexText($"Damage: {weapon.damage},Bullet: {weapon.bullet},Reload: {weapon.reload},Speed: {weapon.movementSpeed},Health: {weapon.maxHealth}");
+        detailWeaponUI.SetInfoText(weapon.info);
         detailWeaponUI.gameObject.SetActive(true);
     }
 
@@ -113,13 +119,13 @@ public class Shop : MonoBehaviour
         //Get newWeaponUI
         WeaponItemUI newWeaponItemUI = GetWeaponItemUI(idx);
         //Get oldWeaponUI
-        WeaponItemUI oldWeaponItemUI = GetWeaponItemUI(GameManager.Instance.GetWeaponSelectedIndex());
+        WeaponItemUI oldWeaponItemUI = GetWeaponItemUI(GameManager.Instance.GetWeaponSelectedID());
         //New Weapon Equiped
         newWeaponItemUI.OnWeaponEquipButton();
         //Old Weapon UnEquiped
-        oldWeaponItemUI.OnWeaponUnEquipButton(GameManager.Instance.GetWeaponSelectedIndex(), EquipWeapon);
+        oldWeaponItemUI.OnWeaponUnEquipButton(GameManager.Instance.GetWeaponSelectedID(), EquipWeapon);
         //Change ID Weapon
-        GameManager.Instance.ChangeWeaponIndex(idx);
+        GameManager.Instance.ChangeWeaponID(idx);
         //Set Weapon Selected
         GameManager.Instance.SetWeaponSelected(weaponData.GetWeapon(idx));
         SelectedWeaponUI.Instance.SelectedWeapon();
@@ -198,34 +204,55 @@ public class Shop : MonoBehaviour
 
     void GenerateCoinItemUI()
     {
-        for (int i = 0; i < coinList.Count; i++)
+        for (int i = 0; i < coinData.GetLength(); i++)
         {
             int idx = i;
-            Coin coin = coinList[idx];
+            Coin coin = coinData.GetCoin(idx);
             CoinItemUI coinItemUI = Instantiate(coinItemTemplate, coinCotent).GetComponent<CoinItemUI>();
             coinItemUI.SetImage(coin.image);
             coinItemUI.SetValue(coin.value);
-            coinItemUI.SetPrice(coin.price);
+            coinItemUI.SetPrice(coin.coinPrice.ToString());
             coinItemUI.OnButtonBuy(idx, BuyCoinItem);
         }
     }
 
     void BuyCoinItem(int idx)
     {
-        Coin coin = coinList[idx];
-        if (GameManager.Instance.HasEnenoughDiamond(coin.price))
+        Coin coin = coinData.GetCoin(idx);
+        if (GameManager.Instance.HasEnenoughDiamond(coin.coinPrice))
         {
-            GameManager.Instance.UseDiamond(coin.price);
+            GameManager.Instance.UseDiamond(coin.coinPrice);
             GameManager.Instance.AddCoin(coin.value);
         }
     }
 
     #endregion
-    [System.Serializable]
-    class Coin
+
+    #region Diamond
+
+    void GenerateDiamondItemUI()
     {
-        public Sprite image;
-        public int value;
-        public int price;
+        for (int i = 0; i < diamondData.GetLength(); i++)
+        {
+            int idx = i;
+            Coin diamond = diamondData.GetCoin(idx);
+            CoinItemUI diamondItemUI = Instantiate(diamondItemTemplate, diamondContent).GetComponent<CoinItemUI>();
+            diamondItemUI.SetImage(diamond.image);
+            diamondItemUI.SetValue(diamond.value);
+            diamondItemUI.SetPrice("$ " + diamond.diamindPrice);
+            diamondItemUI.OnButtonBuy(idx, BuyDiamondItem);
+        }
     }
+
+    void BuyDiamondItem(int idx)
+    {
+        Coin diamond = diamondData.GetCoin(idx);
+        if (GameManager.Instance.HasEnenoughDiamond(diamond.coinPrice))
+        {
+            GameManager.Instance.UseDiamond(diamond.coinPrice);
+            GameManager.Instance.AddCoin(diamond.value);
+        }
+    }
+
+    #endregion
 }

@@ -23,7 +23,7 @@ public class PlayerStats : MonoBehaviour
     {
         target = currentHealth / maxHealth;
         StartCoroutine(UpdateBar(healthBar.image, target));
-        healthBar.text.text = $"{target * 100}%";
+        healthBar.text.text = $"{(int)(target * 100)}%";
     }
 
     IEnumerator UpdateBar(Image image, float target)

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Library:
-  - m_Name: BasicAnimation
-    m_Hash: 155066203
+  - m_Name: Virus2_Anim
+    m_Hash: 607641061
     m_CategoryList: []
     m_OverrideEntries:
     - m_Name: Virut1_0
@@ -35,5 +35,5 @@ MonoBehaviour:
     m_FromMain: 1
     m_EntryOverrideCount: 3
   m_PrimaryLibraryGUID: 242e9e2feaaa4ea46bb93e0d69067e38
-  m_ModificationHash: 638517314000320589
+  m_ModificationHash: 638527672228783486
   m_Version: 1

@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class PlayerDie : MonoBehaviour
 {
-    [SerializeField] private int diamondPay;
+    private int diamondPay;
     private bool isLoss;
-    private int mutiply;
 
     private Player player;
 
     void Start()
     {
-        mutiply = 1;
+        diamondPay = 1;
         player = GetComponent<Player>();
     }
 
@@ -22,7 +21,7 @@ public class PlayerDie : MonoBehaviour
         if(player.isDie && !isLoss)
         {
             isLoss = true;
-            GameStateUI.Instance.SetDiamondToBorn(diamondPay * mutiply);
+            GameStateUI.Instance.SetDiamondToBorn(diamondPay);
             GameStateUI.Instance.ClickToBorn(Born);
             GameStateUI.Instance.OpenLossUI();
         }
@@ -30,9 +29,9 @@ public class PlayerDie : MonoBehaviour
 
     public void Born()
     {
-        if(GameManager.Instance.HasEnenoughDiamond(diamondPay * mutiply)) 
+        if(GameManager.Instance.HasEnenoughDiamond(diamondPay)) 
         {
-            GameManager.Instance.UseDiamond(diamondPay * mutiply);
+            GameManager.Instance.UseDiamond(diamondPay);
             GameStateUI.Instance.CloseLossUI();
         }
         else
@@ -40,7 +39,7 @@ public class PlayerDie : MonoBehaviour
             Debug.Log("Ko du kim cuong");
             return;
         }
-        mutiply += 2;
+        diamondPay++;
         player.Born();
         isLoss = false;
     }

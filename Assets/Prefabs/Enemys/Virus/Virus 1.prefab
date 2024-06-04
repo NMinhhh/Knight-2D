@@ -137,23 +137,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFacingPlayer: 0
   isFlip: 0
-  speed: 6
+  speed: 5
   checkPlayerPos: {fileID: 446250079480323688}
   checkRadius: 0.38
   touchDamagePos: {fileID: 5374615368543479383}
-  touchRadius: 0.65
-  touchDamage: 2
+  touchRadius: 0.76
+  touchDamage: 1.5
   touchCooldown: 0.5
+  isHealthByStage: 1
   basicHealth: 20
   healthLevelUp: 5
-  healthLevelUpPercent: 10
+  healthLevelUpPercent: 5
   damageTimerCon: 0.1
   hurtEffectTimer: 0.1
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
-  amountOfEx: 1
-  radiusPointEx: 0
+  amountOfEnergy: 1
+  radiusPointDropEnergy: 0
+  coinDead: 0
+  diamondDead: 0
   slowingTimer: 2
   slowingColor: {r: 0, g: 0.46881914, b: 1, a: 1}
   whatIsPlayer:
@@ -271,10 +274,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CategoryHash: 2.2885161e-33
+  m_CategoryHash: 3.986975e-17
   m_labelHash: 1.3837841e-35
   m_SpriteKey: 0
-  m_SpriteHash: 563876027
+  m_SpriteHash: 923998405
 --- !u!1 &8145275878787219580
 GameObject:
   m_ObjectHideFlags: 0

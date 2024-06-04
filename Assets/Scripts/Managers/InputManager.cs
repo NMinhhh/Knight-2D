@@ -35,13 +35,12 @@ public class InputManager : MonoBehaviour
     {
         
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (CanvasManager.Instance.isOpenUI)
+        if (CanvasManager.Instance.isOpenUI || MenuSkillUI.Instance.isMenuOp) 
         {
             shoting = false;
             mouseRight = false;
             xInput = 0;
             yInput = 0;
-           
         }
         else
         {

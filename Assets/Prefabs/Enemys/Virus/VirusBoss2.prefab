@@ -33,11 +33,12 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 14.3, y: 4.9, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
+  m_LocalScale: {x: 3.5, y: 3.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7019784205807756223}
   - {fileID: 5072260816642114942}
+  - {fileID: 7680962994370311988}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1055657573433939513
@@ -106,23 +107,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFacingPlayer: 0
   isFlip: 1
-  speed: 5
+  speed: 4
   checkPlayerPos: {fileID: 7019784205807756223}
-  checkRadius: 1.06
+  checkRadius: 1.35
   touchDamagePos: {fileID: 5072260816642114942}
-  touchRadius: 2.12
-  touchDamage: 2
+  touchRadius: 3.23
+  touchDamage: 1.5
   touchCooldown: 1
-  basicHealth: 1000
-  healthLevelUp: 550
-  healthLevelUpPercent: 15
+  isHealthByStage: 0
+  basicHealth: 216398
+  healthLevelUp: 0
+  healthLevelUpPercent: 0
   damageTimerCon: 0.1
   hurtEffectTimer: 0.1
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
-  amountOfEx: 5
-  radiusPointEx: 7
+  amountOfEnergy: 200
+  radiusPointDropEnergy: 10
+  coinDead: 800
+  diamondDead: 10
   slowingTimer: 2
   slowingColor: {r: 0, g: 0.4927628, b: 1, a: 1}
   whatIsPlayer:
@@ -134,12 +138,14 @@ MonoBehaviour:
   cooldownSkills:
   - 3
   - 3
+  shootingPoint: {fileID: 7680962994370311988}
   bullet: {fileID: 2008042944277217167, guid: 3fc7ec2476cce24409c48fe2cab6cf70, type: 3}
-  amountOfBullet: 8
-  bulletDamage: 3
-  bulletSpeed: 28
-  timeLife: 3
-  shootingCooldown: 0.3
+  amountOfBullet: 20
+  bulletDamage: 1.5
+  bulletSpeed: 13
+  timeLife: 5
+  shootingCooldown: 0.1
+  angleRan: {x: 60, y: 120}
   swawp: {fileID: 2863268492341516025, guid: c45da8eef95671a49a14490612f83a18, type: 3}
   amountOfSwawp: 4
   swawpDamage: 2
@@ -206,9 +212,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.01116395, y: 0.017023265}
+  m_Offset: {x: -0.030188426, y: 0.006152017}
   serializedVersion: 2
-  m_Radius: 0.7961518
+  m_Radius: 0.88004166
 --- !u!95 &8001038780189423383
 Animator:
   serializedVersion: 5
@@ -286,6 +292,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.04, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 907772270908379892}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2183849335712487886
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7680962994370311988}
+  m_Layer: 7
+  m_Name: ShotingPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7680962994370311988
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2183849335712487886}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

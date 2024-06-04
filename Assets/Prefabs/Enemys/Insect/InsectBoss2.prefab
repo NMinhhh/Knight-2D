@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5765040899870756793}
   m_Layer: 7
   m_Name: InsectBoss2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,18 +111,21 @@ MonoBehaviour:
   checkRadius: 1.86
   touchDamagePos: {fileID: 421517476957834761}
   touchRadius: 3.27
-  touchDamage: 5
+  touchDamage: 3
   touchCooldown: 0.5
-  basicHealth: 100000000
-  healthLevelUp: 10
-  healthLevelUpPercent: 10
+  isHealthByStage: 0
+  basicHealth: 441897
+  healthLevelUp: 441897
+  healthLevelUpPercent: 0
   damageTimerCon: 0.1
   hurtEffectTimer: 0.1
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
-  amountOfEx: 0
-  radiusPointEx: 0
+  amountOfEnergy: 1
+  radiusPointDropEnergy: 15
+  coinDead: 2800
+  diamondDead: 20
   slowingTimer: 2
   slowingColor: {r: 0, g: 0.4933915, b: 1, a: 1}
   whatIsPlayer:
@@ -140,15 +143,15 @@ MonoBehaviour:
   - {fileID: 2534683322770734101, guid: 583d23f8bbe42e84fbd99374a50ee5ac, type: 3}
   bulletDamage: 3
   bulletSpeed: 18
-  bulletTimeLife: 3
+  bulletTimeLife: 5
   cavePref: {fileID: 2327767039087373662, guid: 47b32065e2785be4c998ce47af32e87d, type: 3}
   amountOfCave: 3
   enemys:
-  - {fileID: 1560575506662191858, guid: 961d7a7b9efca7b45867459286aa6b32, type: 3}
-  - {fileID: 8995746049146793397, guid: f17e6523e6a947c4fae3734bc25f3d07, type: 3}
-  - {fileID: 7277557635134430477, guid: 9c88df31a35a9584dad23681436a311f, type: 3}
-  - {fileID: 489224733829539740, guid: 6afa330fd5e9ef44493bf80711ee5c89, type: 3}
-  - {fileID: 2037897880958217304, guid: f49809d5c9634f342a6f196c02f20c2d, type: 3}
+  - {fileID: 1560575506662191858, guid: bcef6917471193d46b17c5a0d920c901, type: 3}
+  - {fileID: 7277557635134430477, guid: 46549b70a243a3f4e98ab4c694b2a053, type: 3}
+  - {fileID: 2037897880958217304, guid: 63b0f16f37c6191438e26a3a467428d2, type: 3}
+  - {fileID: 8995746049146793397, guid: d746ff53f8fcadc4da9c5f1878f5f31f, type: 3}
+  - {fileID: 489224733829539740, guid: e468ad0867f499a4cbaf103dcb611d49, type: 3}
   amountOfEnemy: 5
   summonCooldown: 0.5
   signalObj: {fileID: 2804138993721818002, guid: b18fadb123f1ef54c86c84e37626f8d9, type: 3}

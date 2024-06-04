@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1536165580908784233}
   m_Layer: 7
   m_Name: InsectYellow
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,18 +111,21 @@ MonoBehaviour:
   checkRadius: 0.87
   touchDamagePos: {fileID: 575594050648380627}
   touchRadius: 1.12
-  touchDamage: 1
+  touchDamage: 3
   touchCooldown: 0.5
-  basicHealth: 100
-  healthLevelUp: 10
-  healthLevelUpPercent: 10
+  isHealthByStage: 1
+  basicHealth: 45
+  healthLevelUp: 15
+  healthLevelUpPercent: 5
   damageTimerCon: 0.1
   hurtEffectTimer: 0.1
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
-  amountOfEx: 0
-  radiusPointEx: 0
+  amountOfEnergy: 1
+  radiusPointDropEnergy: 0
+  coinDead: 0
+  diamondDead: 0
   slowingTimer: 2
   slowingColor: {r: 0, g: 0.32154346, b: 1, a: 1}
   whatIsPlayer:
@@ -133,9 +136,9 @@ MonoBehaviour:
     m_Bits: 2048
   bulletObj: {fileID: 3347069229703098126, guid: 422b1695fbd7cd54c9d6ce63b13de08b, type: 3}
   amountOfBullet: 4
-  bulletDamage: 2
+  bulletDamage: 3
   bulletSpeed: 13
-  bulletTimeLife: 3
+  bulletTimeLife: 5
 --- !u!50 &5144577761407667855
 Rigidbody2D:
   serializedVersion: 4

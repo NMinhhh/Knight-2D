@@ -53,7 +53,6 @@ public class GameStateUI : MonoBehaviour
 
     public void OpenWinUI()
     {
-        GameManager.Instance.AddDiamond(MapManager.Instance.diamond);
         SetPickUpValue();
         gameStateTitle[0].SetActive(true);
         loss.SetActive(true);
@@ -63,7 +62,6 @@ public class GameStateUI : MonoBehaviour
 
     public void OpenLossUI()
     {
-        SetPickUpValue();
         gameStateTitle[1].SetActive(true);
         bornUI.SetActive(true);
         loss.SetActive(true);
@@ -86,6 +84,9 @@ public class GameStateUI : MonoBehaviour
     {
         coinText.text = MapManager.Instance.coin.ToString();
         diamondText.text = MapManager.Instance.diamond.ToString();
+        GameManager.Instance.AddDiamond(MapManager.Instance.diamond);
+        GameManager.Instance.AddCoin(MapManager.Instance.coin);
+
     }
 
 
@@ -102,7 +103,7 @@ public class GameStateUI : MonoBehaviour
 
     public void ButtonClickBornUIClose()
     {
-        GameManager.Instance.AddDiamond(MapManager.Instance.diamond);
+        SetPickUpValue();
         ResetBornUI();
         bornUI.SetActive(false);
     }

@@ -21,9 +21,9 @@ public class CoinItemUI : MonoBehaviour
         this.value.text = value.ToString();
     }
     
-    public void SetPrice(int price)
+    public void SetPrice(string price)
     {
-        this.price.text = price.ToString();
+        this.price.text = price;
     }
 
     public void OnButtonBuy(int i, Action<int> action)

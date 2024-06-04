@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 3862576476934444734}
   m_Layer: 7
   m_Name: InsectBoss1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -258,18 +258,21 @@ MonoBehaviour:
   checkRadius: 1.68
   touchDamagePos: {fileID: 3678626984649548732}
   touchRadius: 3.85
-  touchDamage: 2
+  touchDamage: 3
   touchCooldown: 0.2
-  basicHealth: 99999
-  healthLevelUp: 10
-  healthLevelUpPercent: 10
+  isHealthByStage: 0
+  basicHealth: 207739
+  healthLevelUp: 0
+  healthLevelUpPercent: 0
   damageTimerCon: 0.1
   hurtEffectTimer: 0.1
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
-  amountOfEx: 0
-  radiusPointEx: 0
+  amountOfEnergy: 1
+  radiusPointDropEnergy: 15
+  coinDead: 1500
+  diamondDead: 15
   slowingTimer: 2
   slowingColor: {r: 0, g: 0.124176025, b: 1, a: 1}
   whatIsPlayer:
@@ -289,7 +292,7 @@ MonoBehaviour:
   amountOfShoot: 5
   shootCooldown: 1
   amoutOfBulletRan: {x: 15, y: 25}
-  bulletDamage: 0
+  bulletDamage: 3
   bulletSpeed: 13
   bulletTimeLife: 5
 --- !u!50 &1798063264284810156

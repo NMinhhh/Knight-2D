@@ -21,25 +21,25 @@ MonoBehaviour:
   - id: 1
     image: {fileID: -1516969294, guid: 47026237eb26d674aa002a36be7f5e50, type: 3}
     name: Virus No2
-    price: 50
+    price: 100
     isPurchased: 0
   - id: 2
     image: {fileID: 1260698552, guid: 47026237eb26d674aa002a36be7f5e50, type: 3}
     name: Virus No3
-    price: 100
+    price: 300
     isPurchased: 0
   - id: 3
     image: {fileID: 1441546110, guid: 47026237eb26d674aa002a36be7f5e50, type: 3}
     name: Virus No4
-    price: 300
+    price: 500
     isPurchased: 0
   - id: 4
     image: {fileID: -3262175, guid: 47026237eb26d674aa002a36be7f5e50, type: 3}
     name: Virus No5
-    price: 500
+    price: 600
     isPurchased: 0
   - id: 5
     image: {fileID: -1881881855, guid: 47026237eb26d674aa002a36be7f5e50, type: 3}
     name: Virus No6
-    price: 500
+    price: 600
     isPurchased: 0

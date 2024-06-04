@@ -5,7 +5,7 @@ using UnityEngine;
 public class SettingUI : MonoBehaviour
 {
     [SerializeField] private GameObject settingUI;
-
+    [SerializeField] private bool isTimeStop;
     void Start()
     {
         Time.timeScale = 1;
@@ -14,7 +14,15 @@ public class SettingUI : MonoBehaviour
     public void OpenSetting()
     {
         CanvasManager.Instance.OpenUI(settingUI);
-        Time.timeScale = 0;
+        TimeStop();
+    }
+
+    void TimeStop()
+    {
+        if (isTimeStop)
+            Time.timeScale = 0;
+        else
+            Time.timeScale = 1;
     }
 
     public void CloseSetting()

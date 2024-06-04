@@ -51,13 +51,13 @@ MonoBehaviour:
   - Type: 2
     image: {fileID: 677717553, guid: 5a8d4d72defdee84cbd9f68e708432ac, type: 3}
     price: 50
-    info: "T\u0103ng 30% t\u1ED1c ch\u1EA1y"
-    amount: 30
+    info: "T\u0103ng 20% t\u1ED1c ch\u1EA1y"
+    amount: 20
   - Type: 2
     image: {fileID: -1708161578, guid: 5a8d4d72defdee84cbd9f68e708432ac, type: 3}
-    price: 150
-    info: "T\u0103ng 50% t\u1ED1c ch\u1EA1y"
-    amount: 50
+    price: 120
+    info: "T\u0103ng 30% t\u1ED1c ch\u1EA1y"
+    amount: 30
   - Type: 3
     image: {fileID: -233807727, guid: 5a8d4d72defdee84cbd9f68e708432ac, type: 3}
     price: 50

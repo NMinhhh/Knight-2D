@@ -22,7 +22,7 @@ public class FloatingText : MonoBehaviour
         textMesh.SetText(text);
         textMesh.color = newColor;
         textColor = textMesh.color;
-        moveDir = new Vector2(.3f * dir, .3f) * 20f;
+        moveDir = new Vector2(Random.Range(-.3f, .3f), Random.Range(-.3f, .3f)) * 30f;
         sortingOrder++;
         textMesh.sortingOrder = sortingOrder;
     }

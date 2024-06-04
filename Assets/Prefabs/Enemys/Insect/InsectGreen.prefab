@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 5404790463792843007}
   m_Layer: 7
   m_Name: InsectGreen
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,23 +200,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFacingPlayer: 1
   isFlip: 0
-  speed: 3
+  speed: 4
   checkPlayerPos: {fileID: 9188277847606009978}
   checkRadius: 0.81
   touchDamagePos: {fileID: 7448356813784923118}
   touchRadius: 1.02
-  touchDamage: 2
+  touchDamage: 3
   touchCooldown: 0.5
-  basicHealth: 20
+  isHealthByStage: 1
+  basicHealth: 45
   healthLevelUp: 15
-  healthLevelUpPercent: 10
+  healthLevelUpPercent: 5
   damageTimerCon: 0.1
   hurtEffectTimer: 0.1
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
-  amountOfEx: 0
-  radiusPointEx: 0
+  amountOfEnergy: 1
+  radiusPointDropEnergy: 0
+  coinDead: 0
+  diamondDead: 0
   slowingTimer: 2
   slowingColor: {r: 0.028301716, g: 0.44079897, b: 1, a: 1}
   whatIsPlayer:
@@ -227,14 +230,14 @@ MonoBehaviour:
     m_Bits: 2048
   acidPref: {fileID: 4499679450366786224, guid: 9a767bdec5028d047ac1e961a080fac9, type: 3}
   acidDamage: 3
-  acidTimelife: 3
+  acidTimelife: 4
   bulletPref: {fileID: 6006662300566897192, guid: 9ddd0e1bbec26af49bdd1c88a203ed4c, type: 3}
   shootigPoint: {fileID: 8488002549744236996}
   checkPlayerDetected: {fileID: 9188277847606009978}
   checkPlayerDetectedSize: {x: 25, y: 13.5}
   bulletSpeed: 13
-  bulletDamage: 2
-  bulletTimeLife: 3
+  bulletDamage: 3
+  bulletTimeLife: 5
   shootCooldown: 5
   idleCooldown: 0.5
 --- !u!50 &5603260308773221196

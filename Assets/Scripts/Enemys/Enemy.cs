@@ -31,7 +31,8 @@ public class Enemy : MonoBehaviour
     [Space]
     [Space]
 
-    [Header("Hurt")]
+    [Header("Health and hurt")]
+    [SerializeField] protected bool isHealthByStage;
     [SerializeField] protected float basicHealth;
     [SerializeField] protected float healthLevelUp;
     [SerializeField] protected float healthLevelUpPercent;
@@ -52,8 +53,10 @@ public class Enemy : MonoBehaviour
 
     [Header("Dead")]
     [SerializeField] private GameObject particleBlood;
-    [SerializeField] protected int amountOfEx;
-    [SerializeField] protected float radiusPointEx;
+    [SerializeField] protected int amountOfEnergy;
+    [SerializeField] protected float radiusPointDropEnergy;
+    [SerializeField] protected int coinDead;
+    [SerializeField] protected int diamondDead;
     protected Vector3 dropItemPoint;
     [Space]
     [Space]
@@ -97,15 +100,17 @@ public class Enemy : MonoBehaviour
 
     public void SetHealth()
     {
-        maxHealth = MapManager.Instance.Calculate(basicHealth, healthLevelUp, healthLevelUpPercent, MapManager.Instance.stage);
+        if (isHealthByStage)
+            maxHealth = MapManager.Instance.Calculate(basicHealth, healthLevelUp, healthLevelUpPercent, MapManager.Instance.stage);
+        else
+            maxHealth = basicHealth;
         currentHealth = maxHealth;
         isImortal = false;
     }
 
     protected virtual void Update()
     {
-        if (target.GetComponent<Player>().isDie)
-            return;
+  
 
         if (isFacingPlayer && !isLock)
         {
@@ -151,13 +156,24 @@ public class Enemy : MonoBehaviour
 
     }
 
+    protected virtual void DropItem()
+    {
+        for (int i = 0; i < amountOfEnergy; i++)
+        {
+            dropItemPoint = Random.insideUnitCircle * radiusPointDropEnergy;
+            SpawnerManager.Instance.SpawnEnergy(transform.position + dropItemPoint);
+        }
+    }
+
+
     protected virtual void Dead()
     {
         Instantiate(particleBlood, transform.position, Quaternion.identity);
-        
+        DropItem();
         Destroy(gameObject);
         MapManager.Instance.AddKill();
-        SpawnerManager.Instance.SpawnEnergy(transform.position);
+        MapManager.Instance.PickUpCoin(coinDead);
+        MapManager.Instance.PickUpDiamond(diamondDead);
     }
 
 
@@ -277,6 +293,6 @@ public class Enemy : MonoBehaviour
     {
         Gizmos.DrawWireSphere(checkPlayerPos.position, checkRadius);
         Gizmos.DrawWireSphere(touchDamagePos.position, touchRadius);
-        Gizmos.DrawWireSphere(transform.position, radiusPointEx);
+        Gizmos.DrawWireSphere(transform.position, radiusPointDropEnergy);
     }
 }

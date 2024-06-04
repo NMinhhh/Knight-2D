@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Library:
-  - m_Name: BasicAnimation4Sprtie
-    m_Hash: 434793829
+  - m_Name: SlimeAnim
+    m_Hash: 936977695
     m_CategoryList: []
     m_OverrideEntries:
     - m_Name: Slime_0
@@ -40,5 +40,5 @@ MonoBehaviour:
     m_FromMain: 1
     m_EntryOverrideCount: 4
   m_PrimaryLibraryGUID: 96a51077b9909e443980558578a04783
-  m_ModificationHash: 638518018987994697
+  m_ModificationHash: 638527675439502706
   m_Version: 1

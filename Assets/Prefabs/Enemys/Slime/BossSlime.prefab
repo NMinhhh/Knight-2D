@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 7146416131822069058}
   m_Layer: 7
   m_Name: BossSlime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.97, y: 8.25, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 766476072280817614}
@@ -104,23 +104,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8597c6587f270438986ff6b2130770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4.5
+  isFacingPlayer: 0
+  isFlip: 0
+  speed: 4
   checkPlayerPos: {fileID: 766476072280817614}
   checkRadius: 1.23
   touchDamagePos: {fileID: 118481153906327054}
   touchRadius: 1.82
-  touchDamage: 5
+  touchDamage: 2
   touchCooldown: 0.5
-  basicHealth: 12335
-  healthLevelUp: 1550
-  healthLevelUpPercent: 20
+  isHealthByStage: 0
+  basicHealth: 191812
+  healthLevelUp: 0
+  healthLevelUpPercent: 0
   damageTimerCon: 0.1
   hurtEffectTimer: 0.1
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
-  amountOfEx: 0
-  radiusPointEx: 0
+  amountOfEnergy: 120
+  radiusPointDropEnergy: 10
+  coinDead: 1000
+  diamondDead: 10
   slowingTimer: 2
   slowingColor: {r: 0, g: 0.39521027, b: 1, a: 1}
   whatIsPlayer:
@@ -133,9 +138,10 @@ MonoBehaviour:
   - 4
   bullet: {fileID: 8372044904926041236, guid: 71bd759b600a9ae479dd366cb19df0f4, type: 3}
   amountOfBullet: 150
-  bulletDamage: 4
+  angleRan: {x: 10, y: 15}
+  bulletDamage: 2
   bulletSpeed: 13
-  timeLife: 3
+  timeLife: 5
   shootingCooldown: 0.01
 --- !u!50 &6524744429092736079
 Rigidbody2D:

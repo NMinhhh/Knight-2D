@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 6412858226775440448}
   m_Layer: 7
   m_Name: BossSlime2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,7 +64,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.1, y: 3.5, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8594857407546996178}
@@ -137,23 +137,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFacingPlayer: 0
   isFlip: 0
-  speed: 3
+  speed: 4
   checkPlayerPos: {fileID: 8594857407546996178}
   checkRadius: 1.16
   touchDamagePos: {fileID: 7330566735561132379}
   touchRadius: 1.73
-  touchDamage: 5
+  touchDamage: 2
   touchCooldown: 0.5
-  basicHealth: 9999999
-  healthLevelUp: 1
-  healthLevelUpPercent: 1
+  isHealthByStage: 0
+  basicHealth: 400428
+  healthLevelUp: 0
+  healthLevelUpPercent: 0
   damageTimerCon: 0.1
   hurtEffectTimer: 0.1
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
-  amountOfEx: 0
-  radiusPointEx: 0
+  amountOfEnergy: 200
+  radiusPointDropEnergy: 10
+  coinDead: 2000
+  diamondDead: 16
   slowingTimer: 2
   slowingColor: {r: 0.19182372, g: 0.395822, b: 1, a: 1}
   whatIsPlayer:
@@ -166,7 +169,7 @@ MonoBehaviour:
   - 5
   - 5
   objPref: {fileID: 680333918120943685, guid: fa80a4d7b8016fc4e917ef77bf883ac2, type: 3}
-  damageSkill: 3
+  damageSkill: 2
   objTimeLife: 1
   amountOfObj: 5
   signalObj: {fileID: 2804138993721818002, guid: b18fadb123f1ef54c86c84e37626f8d9, type: 3}
@@ -174,7 +177,7 @@ MonoBehaviour:
   intrinticCooldown: 4
   bullet: {fileID: 6303410531814515919, guid: d8f9aa0b61671ac42ae1af22d6f57e06, type: 3}
   amountOfBullet: 120
-  bulletDamage: 4
+  bulletDamage: 2
   bulletSpeed: 13
   timeLife: 3
   shootingCooldown: 0.01

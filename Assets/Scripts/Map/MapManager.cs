@@ -34,11 +34,11 @@ public class MapManager : MonoBehaviour
 
     private float timer = 1;
 
-    public int energy { get; private set; }
+    public int energy;
 
     public int coin { get; private set; }
 
-    public int diamond;
+    public int diamond { get; private set; }
 
     public int kill { get; private set; }
 

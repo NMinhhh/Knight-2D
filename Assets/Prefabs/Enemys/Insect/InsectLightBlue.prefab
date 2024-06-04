@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 877086972531450125}
   m_Layer: 7
   m_Name: InsectLightBlue
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,16 +113,19 @@ MonoBehaviour:
   touchRadius: 1.31
   touchDamage: 3
   touchCooldown: 0.5
-  basicHealth: 100
-  healthLevelUp: 10
-  healthLevelUpPercent: 10
+  isHealthByStage: 1
+  basicHealth: 45
+  healthLevelUp: 15
+  healthLevelUpPercent: 5
   damageTimerCon: 0.1
   hurtEffectTimer: 0.1
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
-  amountOfEx: 0
-  radiusPointEx: 0
+  amountOfEnergy: 1
+  radiusPointDropEnergy: 0
+  coinDead: 0
+  diamondDead: 0
   slowingTimer: 2
   slowingColor: {r: 0, g: 0.32154346, b: 1, a: 1}
   whatIsPlayer:
@@ -133,8 +136,7 @@ MonoBehaviour:
     m_Bits: 2048
   checkPlayerDetected: {fileID: 3975442289391833106}
   checkPlayerDetectedSize: {x: 25, y: 13}
-  check: 0
-  dashSpeed: 25
+  dashSpeed: 20
   distanceToStop: 1
   dashCooldown: 5
 --- !u!50 &5776122559644505882

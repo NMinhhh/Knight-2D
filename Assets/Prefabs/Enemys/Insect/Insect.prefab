@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3557691669145689911}
   m_Layer: 7
   m_Name: Insect
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: -2104547341
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: -219240042, guid: ac8a8ab7c2c06e141baf5ab1545f588a, type: 3}
+  m_Sprite: {fileID: -1517994227, guid: ac8a8ab7c2c06e141baf5ab1545f588a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,23 +106,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFacingPlayer: 1
   isFlip: 0
-  speed: 3
+  speed: 5
   checkPlayerPos: {fileID: 1160247236836917669}
   checkRadius: 0.82
   touchDamagePos: {fileID: 6862905068594699175}
   touchRadius: 1.2
-  touchDamage: 2
+  touchDamage: 3
   touchCooldown: 0.5
-  basicHealth: 20
+  isHealthByStage: 1
+  basicHealth: 35
   healthLevelUp: 15
-  healthLevelUpPercent: 10
+  healthLevelUpPercent: 5
   damageTimerCon: 0.1
   hurtEffectTimer: 0.1
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
-  amountOfEx: 1
-  radiusPointEx: 0
+  amountOfEnergy: 1
+  radiusPointDropEnergy: 0
+  coinDead: 0
+  diamondDead: 0
   slowingTimer: 2
   slowingColor: {r: 0.3233652, g: 0.60387003, b: 0.9433962, a: 1}
   whatIsPlayer:

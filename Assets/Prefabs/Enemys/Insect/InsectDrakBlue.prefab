@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 3956684979756624171}
   m_Layer: 7
   m_Name: InsectDrakBlue
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -206,16 +206,19 @@ MonoBehaviour:
   touchRadius: 1.26
   touchDamage: 2
   touchCooldown: 0.5
-  basicHealth: 50
-  healthLevelUp: 10
+  isHealthByStage: 1
+  basicHealth: 40
+  healthLevelUp: 15
   healthLevelUpPercent: 5
   damageTimerCon: 0.1
   hurtEffectTimer: 0.1
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
-  amountOfEx: 0
-  radiusPointEx: 0
+  amountOfEnergy: 1
+  radiusPointDropEnergy: 0
+  coinDead: 0
+  diamondDead: 0
   slowingTimer: 2
   slowingColor: {r: 0, g: 0.07142854, b: 1, a: 1}
   whatIsPlayer:
@@ -228,7 +231,7 @@ MonoBehaviour:
   checkPlayerDetectedSize: {x: 8, y: 1.43}
   attackPoint: {fileID: 6730170829224698687}
   attackSize: {x: 8.71, y: 1.39}
-  attackDamage: 0
+  attackDamage: 2
   attackCooldown: 3
 --- !u!50 &4486117030334904127
 Rigidbody2D:

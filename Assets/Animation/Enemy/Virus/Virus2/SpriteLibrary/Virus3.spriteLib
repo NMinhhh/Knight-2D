@@ -13,27 +13,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Library:
-  - m_Name: BasicAnimation
-    m_Hash: 155066203
+  - m_Name: Virus2_Anim
+    m_Hash: 607641061
     m_CategoryList: []
     m_OverrideEntries:
     - m_Name: Virut1_0
       m_Hash: 93529648
       m_Sprite: {fileID: 1427280789, guid: 02f7d7e278810254fb8caa7d176a573e, type: 3}
       m_FromMain: 1
-      m_SpriteOverride: {fileID: 1515887441, guid: 0e90b6489dd2dac4186ac099c15c655e, type: 3}
+      m_SpriteOverride: {fileID: 1301214083, guid: 9952b482dad74b54bbfa0b5b81846bdb, type: 3}
     - m_Name: Virut1_1
       m_Hash: 848565926
       m_Sprite: {fileID: -945994766, guid: 02f7d7e278810254fb8caa7d176a573e, type: 3}
       m_FromMain: 1
-      m_SpriteOverride: {fileID: 702503212, guid: 0e90b6489dd2dac4186ac099c15c655e, type: 3}
+      m_SpriteOverride: {fileID: -952390024, guid: 9952b482dad74b54bbfa0b5b81846bdb, type: 3}
     - m_Name: Virut1_2
       m_Hash: 731727644
       m_Sprite: {fileID: 39604889, guid: 02f7d7e278810254fb8caa7d176a573e, type: 3}
       m_FromMain: 1
-      m_SpriteOverride: {fileID: 1424040412, guid: 0e90b6489dd2dac4186ac099c15c655e, type: 3}
+      m_SpriteOverride: {fileID: 1284398673, guid: 9952b482dad74b54bbfa0b5b81846bdb, type: 3}
     m_FromMain: 1
     m_EntryOverrideCount: 3
   m_PrimaryLibraryGUID: 242e9e2feaaa4ea46bb93e0d69067e38
-  m_ModificationHash: 638517316087312650
+  m_ModificationHash: 638527671832298611
   m_Version: 1

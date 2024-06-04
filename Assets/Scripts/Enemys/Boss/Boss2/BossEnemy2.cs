@@ -6,6 +6,7 @@ using static UnityEditor.PlayerSettings;
 public class BossEnemy2 : BossEnemy
 {
     [Header("Shooting Bullet Skill")]
+    [SerializeField] private Transform shootingPoint;
     [SerializeField] private GameObject bullet;
     [SerializeField] private int amountOfBullet;
     private int currentAmountOfBullet;
@@ -17,6 +18,10 @@ public class BossEnemy2 : BossEnemy
     private NormalBullet script;
     private GameObject Go;
     private bool isShootingBulletSkill;
+
+    //Angle to shoot
+    private float currentAngle;
+    [SerializeField] private Vector2 angleRan;
 
     [Header("Make swawp")]
     [SerializeField] private GameObject swawp;
@@ -94,10 +99,17 @@ public class BossEnemy2 : BossEnemy
         }
     }
 
+    float GetAngleRandom()
+    {
+        return Random.Range(angleRan.x, angleRan.y);
+    }
+
     void SpawnBulletObj()
     {
         float angle = Mathf.Atan2(GetDir().y, GetDir().x) * Mathf.Rad2Deg;
-        Go = GameObject.Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, angle));
+        Debug.Log(angle);
+        shootingPoint.localEulerAngles = new Vector3(0, 0, GetAngleRandom() - 90 + angle);
+        Go = GameObject.Instantiate(bullet, shootingPoint.position, Quaternion.Euler(0, 0, shootingPoint.localEulerAngles.z));
         script = Go.GetComponent<NormalBullet>();
         script.CreateBullet(bulletDamage, bulletSpeed, timeLife);
     }

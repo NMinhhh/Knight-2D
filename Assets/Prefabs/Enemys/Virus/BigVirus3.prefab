@@ -141,19 +141,22 @@ MonoBehaviour:
   checkPlayerPos: {fileID: 4875636758603245710}
   checkRadius: 0.98
   touchDamagePos: {fileID: 328609428221856463}
-  touchRadius: 1.75
-  touchDamage: 2
+  touchRadius: 1.87
+  touchDamage: 1.5
   touchCooldown: 1
+  isHealthByStage: 1
   basicHealth: 150
   healthLevelUp: 75
-  healthLevelUpPercent: 10
+  healthLevelUpPercent: 5
   damageTimerCon: 0.1
   hurtEffectTimer: 0.1
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
-  amountOfEx: 1
-  radiusPointEx: 0
+  amountOfEnergy: 1
+  radiusPointDropEnergy: 0
+  coinDead: 0
+  diamondDead: 0
   slowingTimer: 0
   slowingColor: {r: 0, g: 0.46309614, b: 1, a: 1}
   whatIsPlayer:

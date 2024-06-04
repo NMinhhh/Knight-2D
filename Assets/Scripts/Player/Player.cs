@@ -5,14 +5,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] private int movementSpeed;
+    [SerializeField] private float movementSpeed;
     private float currenSpeed;
     private Vector2 movement;
 
     [Header("Health")]
-    [SerializeField] private int maxHealth;
+    [SerializeField] private float maxHealth;
     private float currentHelth;
-    private int health;
+    private float health;
 
     [Header("Hurt Timer")]
     [SerializeField] private float hurtTime;
@@ -46,14 +46,13 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
 
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         stats = GetComponent<PlayerStats>();
         isFacingRight = true;
-        //IndexSetting();
+        IndexSetting();
         ResetPlayer();
     }
 
@@ -62,12 +61,7 @@ public class Player : MonoBehaviour
         Movement();
     }
 
-    public void IndexSetting()
-    {
-        weaponSelected = GameManager.Instance.GetWeaponSelected();
-        maxHealth += (int)(maxHealth * weaponSelected.GetBunusHealthPercent());
-        movementSpeed += (int)(movementSpeed * weaponSelected.GetBunusMovementSpeedPercent());
-    }
+   
 
     void Movement()
     {
@@ -124,6 +118,7 @@ public class Player : MonoBehaviour
     IEnumerator Imortal()
     {
         isImortal = true;
+        currenSpeed = movementSpeed + movementSpeed / 2;
         for (int i = 0; i < numberOfFlash; i++)
         {
             sprite.color = new Color(.95f, .55f, .55f, 1);
@@ -131,6 +126,7 @@ public class Player : MonoBehaviour
             sprite.color = Color.white;
             yield return new WaitForSeconds(imortalTime / (numberOfFlash * 2));
         }
+        currenSpeed = movementSpeed;
         isImortal = false;
     }
 
@@ -139,24 +135,33 @@ public class Player : MonoBehaviour
         isDie = false;
         StartCoroutine(Imortal());
         currentHelth = maxHealth;
-        stats.UpdateHealth(0, health);
+        stats.UpdateHealth(health, health);
 
     }
 
     public void IncreaseSpeed(float amount)
     {
+        ResetPlayer();
         currenSpeed += movementSpeed * amount / 100;
     }
 
     public void AddHealth(float amout)
     {
+        ResetPlayer();
         health = maxHealth + (int)amout;
         currentHelth = health;
     }
 
+    public void IndexSetting()
+    {
+        weaponSelected = GameManager.Instance.GetWeaponSelected();
+        maxHealth = weaponSelected.maxHealth;
+        movementSpeed = weaponSelected.movementSpeed;
+    }
+
     public void ResetPlayer()
     {
-        health = maxHealth;
+        health = Mathf.FloorToInt(maxHealth);
         currentHelth = health;
         currenSpeed = movementSpeed;
         stats.UpdateHealth(currentHelth, health);

@@ -53,6 +53,8 @@ public class EnemyDash : Enemy
 
     void DashEffect()
     {
+        if (target.GetComponent<Player>().isDie)
+            return;
         GameObject obj = new GameObject();
         SpriteRenderer spriteEffect = obj.AddComponent<SpriteRenderer>();
         spriteEffect.sprite = spriteRenderer.sprite;

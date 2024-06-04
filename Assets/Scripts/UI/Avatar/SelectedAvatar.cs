@@ -33,7 +33,7 @@ public class SelectedAvatar : MonoBehaviour
         avatarData = GameData.Instance.GetAvatarData();
         GenerateAvatarUI();
         LayoutRebuilder.ForceRebuildLayoutImmediate(contentScrollView.GetComponent<GridLayoutGroup>().GetComponent<RectTransform>());
-        selectedID = GameManager.Instance.GetSelectedAvatarIndex();
+        selectedID = GameManager.Instance.GetSelectedAvatarID();
         SetAvatar(selectedID);
     }
 
@@ -45,7 +45,7 @@ public class SelectedAvatar : MonoBehaviour
         {
             Destroy(contentScrollView.GetChild(i).gameObject);
         }
-        for(int i = 0; i < GameManager.Instance.GetAllAvatarPurchasedIndex().Count; i++)
+        for(int i = 0; i < GameManager.Instance.GetAllAvatarPurchased().Count; i++)
         {
             int idx = i;
             int idxAvatarPurchased = GameManager.Instance.GetAvatarPurchased(i);
@@ -71,7 +71,7 @@ public class SelectedAvatar : MonoBehaviour
     void SelectedAvatarIndex(int id)
     {
         selectedID = id;
-        GameManager.Instance.ChangeAvatarIndex(selectedID);
+        GameManager.Instance.ChangeAvatarID(selectedID);
     }
 
     void SelectedPoint(int id)

@@ -15,6 +15,12 @@ public class GameData : MonoBehaviour
     [Header("Map Data")]
     [SerializeField] private MapData mapData;
 
+    [Header("Coin Data")]
+    [SerializeField] private CoinData coinData;
+
+    [Header("Diamod")]
+    [SerializeField] private CoinData diamondData;
+
     private void Awake()
     {
         if(Instance == null)
@@ -42,6 +48,10 @@ public class GameData : MonoBehaviour
 
     public MapData GetMapData() => mapData;
 
+    public CoinData GetCoinData() => coinData;
+
+    public CoinData GetDiamondData() => diamondData;
+
     public void SetDataGame()
     {
         SetWeaponData();
@@ -54,23 +64,27 @@ public class GameData : MonoBehaviour
         for (int i = 0; i < GameManager.Instance.GetAllWeaponPurchased().Count; i++)
         {
             int idxWeaponPurchased = GameManager.Instance.GetWeaponPurchased(i);
+            if(idxWeaponPurchased == GameManager.Instance.selectedWeaponIndex)
+                GameManager.Instance.SetWeaponSelected(weaponData.GetWeapon(idxWeaponPurchased));
             weaponData.WeaponPurchased(idxWeaponPurchased);
         }
     }
 
     void SetAvatarData()
     {
-        for (int i = 0; i < GameManager.Instance.GetAllAvatarPurchasedIndex().Count; i++)
+        for (int i = 0; i < GameManager.Instance.GetAllAvatarPurchased().Count; i++)
         {
             int idAvatarPurchased = GameManager.Instance.GetAvatarPurchased(i);
             avatarData.AvatarPurchased(idAvatarPurchased);
         }
     }
 
-    void SetMapData()
+    public void SetMapData()
     {
         for (int i = 0; i < GameManager.Instance.GetAllMapUnlock().Count; i++)
         {
+            if (i == GameData.Instance.mapData.GetMapLength())
+                return;
             int level = GameManager.Instance.GetMapUnlock(i);
             mapData.MapUnlock(level);
         }

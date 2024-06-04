@@ -50,7 +50,7 @@ public class PlayerShooting : MonoBehaviour
         reloadBullets = GetComponent<ReloadBullets>();
         if(isMuzzleFlash)
             anim = transform.Find("MuzzleFlash").GetComponent<Animator>();
-        
+        ResetWeaponDamage();
     }
 
     void Update()

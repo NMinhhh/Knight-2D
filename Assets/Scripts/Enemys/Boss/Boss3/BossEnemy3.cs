@@ -8,6 +8,7 @@ public class BossEnemy3 : BossEnemy
     [SerializeField] private GameObject bullet;
     [SerializeField] private int amountOfBullet;
     private int currentAmountOfBullet;
+    [SerializeField] private Vector2 angleRan;
     [SerializeField] private float bulletDamage;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private float timeLife;
@@ -75,7 +76,7 @@ public class BossEnemy3 : BossEnemy
 
     void SpawnBulletObj()
     {
-        angle += Random.Range(10,12);
+        angle += Random.Range(angleRan.x, angleRan.y);
         Go = GameObject.Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, angle));
         script = Go.GetComponent<NormalBullet>();
         script.CreateBullet(bulletDamage, bulletSpeed, timeLife);

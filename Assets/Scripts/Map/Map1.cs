@@ -8,6 +8,10 @@ public class Map1 : MonoBehaviour
     [Header("Map Level")]
     [SerializeField] private int mapLevel;
     [Space]
+
+    [Header("Bonus")]
+    [SerializeField] private int coinWin;
+    [SerializeField] private int diamondWin;
     [Space]
 
     [Header("Stage Data")]
@@ -113,6 +117,9 @@ public class Map1 : MonoBehaviour
         {
             GameManager.Instance.AddMapWin(mapLevel - 1);
             GameManager.Instance.AddMapUnlock(mapLevel);
+            GameData.Instance.SetMapData();
+            GameManager.Instance.AddCoin(coinWin);
+            GameManager.Instance.AddDiamond(diamondWin);
         }
         GameStateUI.Instance.OpenWinUI();
     }
@@ -174,15 +181,12 @@ public class Map1 : MonoBehaviour
     void EnemyAllDeath()
     {
         enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
-        attackDetail.damage = 10000;
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Cave"));
+        attackDetail.damage = 99999999;
         attackDetail.attackDir = transform;
         for (int i = 0; i < enemies.Count; i++)
         {
-            enemies[i].transform.SendMessage("Damage", attackDetail);
-            if (enemies[i] == null)
-            {
-                enemies.Remove(enemies[i]);
-            }
+            Destroy(enemies[i]);
         }
         enemies.Clear();
 

@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     bool mapState;
 
     //Avatar
-    public List<int> avatarPurchaseIndex = new List<int>();
+    public List<int> avatarPurchased = new List<int>();
 
     public int selectedAvatarIndex;
 
@@ -89,12 +89,12 @@ public class GameManager : MonoBehaviour
     }
 
     //Weapon Index
-    public int GetWeaponSelectedIndex()
+    public int GetWeaponSelectedID()
     {
         return selectedWeaponIndex;
     }
 
-    public void ChangeWeaponIndex(int idx)
+    public void ChangeWeaponID(int idx)
     {
         selectedWeaponIndex = idx;
     }
@@ -168,29 +168,29 @@ public class GameManager : MonoBehaviour
 
     //Avatar
 
-    public int GetSelectedAvatarIndex()
+    public int GetSelectedAvatarID()
     {
         return selectedAvatarIndex;
     }
 
-    public void ChangeAvatarIndex(int id)
+    public void ChangeAvatarID(int id)
     {
         selectedAvatarIndex = id;
     }
 
-    public List<int> GetAllAvatarPurchasedIndex()
+    public List<int> GetAllAvatarPurchased()
     {
-        return avatarPurchaseIndex;
+        return avatarPurchased;
     }
 
     public void AddAvatarPurchased(int id)
     {
-        avatarPurchaseIndex.Add(id);
+        avatarPurchased.Add(id);
     }
 
     public int GetAvatarPurchased(int idx)
     {
-        return avatarPurchaseIndex[idx]; 
+        return avatarPurchased[idx]; 
     }
 
     //Json
@@ -203,7 +203,7 @@ public class GameManager : MonoBehaviour
         this.selectedWeaponIndex = saveObj.selectedWeaponIndex;
         this.mapUnlock = saveObj.mapUnlock;
         this.mapWin = saveObj.mapWin;
-        this.avatarPurchaseIndex = saveObj.avatarPurchaseIndex;
+        this.avatarPurchased = saveObj.avatarPurchaseIndex;
         this.selectedAvatarIndex = saveObj.selectedAvatarIndex;
     }
 
@@ -215,7 +215,7 @@ public class GameManager : MonoBehaviour
         selectedWeaponIndex = 0;
         mapUnlock.Clear();
         mapWin.Clear();
-        avatarPurchaseIndex.Clear();
+        avatarPurchased.Clear();
         selectedAvatarIndex = 0;
 
     }

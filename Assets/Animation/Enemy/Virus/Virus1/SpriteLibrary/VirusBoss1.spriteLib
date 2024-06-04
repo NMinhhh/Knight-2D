@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Library:
-  - m_Name: BasicAnimation_2Sprite
-    m_Hash: 1058121320
+  - m_Name: Virus1_Anim
+    m_Hash: 581152587
     m_CategoryList: []
     m_OverrideEntries:
     - m_Name: Virut2_0
@@ -30,5 +30,5 @@ MonoBehaviour:
     m_FromMain: 1
     m_EntryOverrideCount: 2
   m_PrimaryLibraryGUID: c46e4927ead6a3b46aeababda291c080
-  m_ModificationHash: 638518863265180869
+  m_ModificationHash: 638527669879014316
   m_Version: 1
