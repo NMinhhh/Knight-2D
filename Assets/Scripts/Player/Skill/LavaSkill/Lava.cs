@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Lava : MonoBehaviour
 {
-    private float radius;
+    [SerializeField] private float radius;
     private float damage;
     private float timeLife;
 

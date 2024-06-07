@@ -5,7 +5,7 @@ using UnityEngine;
 public class ElectricSkill : MonoBehaviour
 {
     [Header("Electric Obj")]
-    [SerializeField] private GameObject[] electricsObj;
+    [SerializeField] private Electric[] electric;
     private Electric script;
 
     [Header("Cooldown")]
@@ -24,8 +24,8 @@ public class ElectricSkill : MonoBehaviour
     private float timeLifeCur;
     private bool isSkillOn;
     private bool isSkillOff;
-    private bool isSkillStay;
-
+    
+    [SerializeField] private List<GameObject> enemies;
     private int level;
 
     // Start is called before the first frame update
@@ -38,11 +38,11 @@ public class ElectricSkill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (level < 0) return;
+        if (level == 0) return;
 
         timer -= Time.deltaTime;
 
-        if (timer <= 0 && !isSkillOff && !isSkillOn && !isSkillStay)
+        if (timer <= 0 && !isSkillOff && !isSkillOn)
         {
             isSkillOn = true;
         }
@@ -50,16 +50,11 @@ public class ElectricSkill : MonoBehaviour
         if (isSkillOn)
         {
             StartSkill();
-            isSkillOn = false;
-            isSkillStay = true;
-        }
-        else if (isSkillStay)
-        {
             timeLifeCur -= Time.deltaTime;
             if (timeLifeCur <= 0)
             {
                 timeLifeCur = timeLife;
-                isSkillStay = false;
+                isSkillOn = false;
                 isSkillOff = true;
             }
         }
@@ -75,15 +70,38 @@ public class ElectricSkill : MonoBehaviour
     {
         this.level = level;
         damage = SkillManager.Instance.CalculateSkillDamage(damageLevelUp, damageLevelUpPercent, this.level);
+        for(int i = 0; i < level; i++)
+        {
+            electric[i].SetElectric(damage, damageTime);
+        }
     }
 
     void StartSkill()
     {
-        for(int i = 0; i < level; i++)
+        Collider2D[] hits = GetPositionInCam.Instance.GetEnemysPosition();
+        GameObject enemyRan;
+        if (hits.Length > 0)
         {
-            electricsObj[i].SetActive(true);
-            script = electricsObj[i].GetComponent<Electric>();
-            script.SetElectric(damage, damageTime);
+            for (int i = 0; i < level; i++)
+            {
+                enemyRan = hits[Random.Range(0, hits.Length)].gameObject;
+                if (!enemies.Contains(enemyRan) && enemies[i] == null)
+                {
+                    enemies[i] = enemyRan;
+                }
+            }
+        }
+        
+        for (int i = 0; i < level; i++)
+        {
+            if (enemies[i] != null)
+            {
+                electric[i].ElectricAttack(transform.position, enemies[i].transform.position, enemies[i]);
+            }
+            else
+            {
+                electric[i].Draw2dRay(transform.position, transform.position);
+            }
         }
     }
 
@@ -91,7 +109,7 @@ public class ElectricSkill : MonoBehaviour
     {
         for (int i = 0; i < level; i++)
         {
-            electricsObj[i].SetActive(false);
+            electric[i].Draw2dRay(transform.position, transform.position);
         }
     }
 

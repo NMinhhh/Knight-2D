@@ -10,6 +10,7 @@ public class SpawnerManager : MonoBehaviour
 
     [Header("SpawnEnemy")]
     [SerializeField] private GameObject iconSpawner;
+    [SerializeField] private Transform enemyHolder;
     SpriteRenderer spriteRenderer;
     [Space]
 
@@ -53,6 +54,7 @@ public class SpawnerManager : MonoBehaviour
             {
                 GameObject go = Instantiate(enemyObj.GetEnemyRan());
                 go.SetActive(false);
+                go.transform.parent = enemyHolder;
                 enemies.Add(go);
             }
         }

@@ -17,10 +17,6 @@ public class GunShootingSkill : MonoBehaviour
     [SerializeField] private float timeLife;
     [SerializeField] private int amountOfBullet;
 
-    [Range(1,10)]
-    [SerializeField] private int amountOfBulletLevelUp;
-    private int currentAmountOfBullet;
-
     [Header("Cooldown")]
     [SerializeField] private float cooldown;
     private float timer;

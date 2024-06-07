@@ -13,6 +13,8 @@ public class BossEnemy6 : BossEnemy
 
     private static int sortingOrder;
 
+    private List<GameObject> enemies = new List<GameObject>();
+
     [Header("Shooting bullet skill")]
     //Bullet pref
     [SerializeField] private GameObject bulletPref;
@@ -141,5 +143,24 @@ public class BossEnemy6 : BossEnemy
         yield return new WaitForSeconds(signalTimer);
         spawnObj.SetActive(true);
         Destroy(go);
+    }
+
+    void EnemyAllDeath()
+    {
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Cave"));
+
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            Destroy(enemies[i]);
+        }
+        enemies.Clear();
+
+    }
+
+    protected override void Dead()
+    {
+        base.Dead();
+        EnemyAllDeath();
     }
 }

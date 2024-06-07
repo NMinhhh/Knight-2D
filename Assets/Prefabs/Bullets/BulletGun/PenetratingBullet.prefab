@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8703495540521300980}
   - component: {fileID: 1292831025139629538}
-  - component: {fileID: 597989533759784702}
   - component: {fileID: 1348959874159721027}
+  - component: {fileID: 8786861705692071476}
   m_Layer: 9
   m_Name: PenetratingBullet
   m_TagString: Untagged
@@ -87,27 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &597989533759784702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2603398741598866655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0037af045e5cec9448605241ce18bfd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  checkPoint: {fileID: 5240212523965156208}
-  radius: 0.2
-  particle: {fileID: 5517925302273423775, guid: dfaa4fb2261b4f644aea945a38af897f, type: 3}
-  whatIsEnemy:
-    serializedVersion: 2
-    m_Bits: 128
-  whatIsWall:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!50 &1348959874159721027
 Rigidbody2D:
   serializedVersion: 4
@@ -135,6 +114,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &8786861705692071476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2603398741598866655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e772c48d4db68af4fa220da801d399d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkPoint: {fileID: 5240212523965156208}
+  radius: 0.18
+  particle: {fileID: 5679389616658180749, guid: 7baf57a88822571439be8ac87623ed56, type: 3}
+  amountOfEnemyCol: 5
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 128
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &2904523373670253535
 GameObject:
   m_ObjectHideFlags: 0

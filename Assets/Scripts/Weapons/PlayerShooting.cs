@@ -71,8 +71,7 @@ public class PlayerShooting : MonoBehaviour
 
     public void ResetWeaponDamage()
     {
-        if(weapon == null)
-            weapon = GameManager.Instance.GetWeaponSelected();
+        weapon = GameManager.Instance.GetWeaponSelected();
         currentDamage = weapon.damage;
     }
 
@@ -164,7 +163,7 @@ public class PlayerShooting : MonoBehaviour
     {
         GameObject explosiveBullet = Instantiate(weapon.bulletIcon, spawnPos.position, ro);
         ExplosiveBullet script = explosiveBullet.GetComponent<ExplosiveBullet>();
-        script.CreateBomb(this.currentDamage, weapon.speed, weapon.timeLife);
+        script.CreateBullet(this.currentDamage, weapon.speed, weapon.timeLife);
     }
 
     //===============================Penetratig Gun===============================
@@ -177,8 +176,8 @@ public class PlayerShooting : MonoBehaviour
     void SpawnPenetratingBullet(Transform spawnPos, Quaternion ro)
     {
         GameObject penetratingBullet = Instantiate(weapon.bulletIcon, spawnPos.position, ro);
-        Meteor script = penetratingBullet.GetComponent<Meteor>();
-        script.CreateMeteor(this.currentDamage, weapon.speed, weapon.timeLife);
+        PenetratingBullet script = penetratingBullet.GetComponent<PenetratingBullet>();
+        script.CreateBullet(this.currentDamage, weapon.speed, weapon.timeLife);
     }
 
     //===================================Laser Gun============================

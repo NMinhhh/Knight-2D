@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -37,7 +37,6 @@ public class Electric : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Attack();
         Animation();
     }
 
@@ -56,41 +55,30 @@ public class Electric : MonoBehaviour
         }
     }
 
-    void Attack()
+    public void ElectricAttack(Vector2 startPos, Vector2 endPos, GameObject go)
     {
-        //Get position enemy detected
-        Collider2D[] hits = GetPositionInCam.Instance.GetEnemysPosition();
-        if(hits.Length > 0 && enemyRamdom == null)
+        Draw2dRay(startPos, endPos);
+        timer += Time.deltaTime;
+        if(timer > .1f)
         {
-            enemyRamdom = hits[Random.Range(0, hits.Length)].gameObject;
+            Instantiate(particle, go.transform.position, Quaternion.identity);
+            timer = 0;
         }
-
-        if(enemyRamdom != null)
+        attackDetail.damage = damage;
+        attackDetail.attackDir = transform;
+        attackDetail.continousDamage = false;
+        damageTimeCur += Time.deltaTime;
+        if(damageTimeCur >= damageTime)
         {
-            Draw2dRay(transform.position, enemyRamdom.transform.position);
-            timer += Time.deltaTime;
-            if(timer > .1f)
+            if(go != null)
             {
-                Instantiate(particle, enemyRamdom.transform.position, Quaternion.identity);
-                timer = 0;
+                go.transform.SendMessage("Damage", attackDetail);
             }
-            attackDetail.damage = damage;
-            attackDetail.attackDir = transform;
-            attackDetail.continousDamage = false;
-            damageTimeCur += Time.deltaTime;
-            if(damageTimeCur >= damageTime)
-            {
-                enemyRamdom.transform.SendMessage("Damage", attackDetail);
-                damageTimeCur = 0;
-            }
-        }
-        else
-        {
-            Draw2dRay(transform.position, transform.position);
+            damageTimeCur = 0;
         }
     }
 
-    void Draw2dRay(Vector2 startPos, Vector2 endPos)
+    public void Draw2dRay(Vector2 startPos, Vector2 endPos)
     {
         lineRenderer.SetPosition(0, startPos);
         lineRenderer.SetPosition(1, endPos);

@@ -42,6 +42,12 @@ public class MapManager : MonoBehaviour
 
     public int kill { get; private set; }
 
+    public bool isLoss {  get; private set; }
+
+    private int diamondPay;
+
+    private Player player;
+
     #endregion
 
     #region Unity Function
@@ -49,14 +55,42 @@ public class MapManager : MonoBehaviour
     private void Start()
     {
         CanvasManager.Instance.EnergyUIActive();
+        player = GameObject.Find("Player").GetComponent<Player>();
+        diamondPay = 1;
     }
 
     private void Update()
     {
+        if (player.isDie && !isLoss)
+        {
+            isLoss = true;
+            GameStateUI.Instance.SetDiamondToBorn(diamondPay);
+            GameStateUI.Instance.ClickToBorn(Revive);
+            GameStateUI.Instance.OpenLossUI();
+        }
         Timer();
-
     }
 
+
+
+    #endregion
+
+    public void Revive()
+    {
+        if (GameManager.Instance.HasEnenoughDiamond(diamondPay))
+        {
+            GameManager.Instance.UseDiamond(diamondPay);
+            GameStateUI.Instance.CloseLossUI();
+        }
+        else
+        {
+            Debug.Log("Ko du kim cuong");
+            return;
+        }
+        diamondPay++;
+        player.Born();
+        isLoss = false;
+    }
 
     public void StageLevelUp()
     {
@@ -69,7 +103,6 @@ public class MapManager : MonoBehaviour
         stage++;
     }
 
-    #endregion
 
     public int Calculate(float basicIndex, float levelupIndex, float levelupIndexPercent, int level)
     {

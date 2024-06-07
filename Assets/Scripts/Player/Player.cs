@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
 
     private PlayerStats stats;
 
-    private Weapon weaponSelected;
+    public Weapon weaponSelected { get; private set; }
 
 
     //Componet
