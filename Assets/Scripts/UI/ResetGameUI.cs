@@ -48,16 +48,19 @@ public class ResetGameUI : MonoBehaviour
 
     public void OpenCheckToResetGame()
     {
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
         checkToResetUI.SetActive(true);
     }
 
     public void CloseCheckToResetUI()
     {
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
         checkToResetUI.SetActive(false);
     }
 
     void IsReset()
     {
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
         isReset = true;
         Time.timeScale = 1;
         resetUI.SetActive(true);

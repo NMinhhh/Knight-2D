@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Meteor : MonoBehaviour
 {
+    [Header("light")]
+    [SerializeField] private GameObject light2D;
     [Header("Point Damage")]
     [SerializeField] private Transform checkPoint;
     [SerializeField] private float radius;
@@ -30,6 +32,15 @@ public class Meteor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (DayNightCircle.Instance.isNight)
+        {
+            light2D.SetActive(true);
+        }
+        else
+        {
+            light2D.SetActive(false);
+        }
+
         Attack();
 
         timeLife -= Time.deltaTime;

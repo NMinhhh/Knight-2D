@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Lava : MonoBehaviour
 {
+    [Header("Light")]
+    [SerializeField] private GameObject light2D;
     [SerializeField] private float radius;
     private float damage;
     private float timeLife;
@@ -26,6 +28,15 @@ public class Lava : MonoBehaviour
 
     void Update()
     {
+        if (DayNightCircle.Instance.isNight)
+        {
+            light2D.SetActive(true);
+        }
+        else
+        {
+            light2D.SetActive(false);
+        }
+
         timer += Time.deltaTime;
         if(timer >= cooldown)
         {

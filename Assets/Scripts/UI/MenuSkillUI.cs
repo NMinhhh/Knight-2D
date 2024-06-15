@@ -13,6 +13,8 @@ public class MenuSkillUI : MonoBehaviour
     [Header("Info Item")]
     [SerializeField] private Text infoItemText;
     [SerializeField] private ScrollRect scrollRectItem;
+    [Header("Next Stage")]
+    [SerializeField] private Text nextStageText;
 
     public bool isMenuOp {  get; private set; }
 
@@ -31,6 +33,10 @@ public class MenuSkillUI : MonoBehaviour
     public void OpenMenuSkill()
     {
         this.menuSkillUI.SetActive(true);
+        if (MapManager.Instance.isBoss)
+            SetNextStageText(MapManager.Instance.stage + " (Boss)");
+        else
+            SetNextStageText(MapManager.Instance.stage.ToString());
         this.isMenuOp = true;
         Time.timeScale = 0;
     }
@@ -54,5 +60,11 @@ public class MenuSkillUI : MonoBehaviour
     public void ResetVerticelItem()
     {
         scrollRectItem.verticalNormalizedPosition = 1;
+    }
+
+    public void SetNextStageText(string text)
+    {
+        this.nextStageText.text = "";
+        this.nextStageText.text = "Stage : "+ text;
     }
 }

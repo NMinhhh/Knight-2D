@@ -17,52 +17,62 @@ public class AudioMixerManager : MonoBehaviour
         if (PlayerPrefs.HasKey(sound))
         {
             float soundValue = PlayerPrefs.GetFloat(sound);
-            SetSound(soundValue);
-            CheckVolume(soundObj, soundValue);
+            SetVolume(sound, soundValue);
         }
         if(PlayerPrefs.HasKey(music))
         {
             float musicValue = PlayerPrefs.GetFloat(music);
-            SetMusic(musicValue);
-            CheckVolume(musicObj, musicValue);
+            SetVolume(music, musicValue);
         }
     }
 
-    void CheckVolume(GameObject[] gameObjects, float value)
+    public void SetVolume(string name, float value)
     {
-        if(value == 0)
+        audioMixer.SetFloat(name, value);
+        PlayerPrefs.SetFloat(name, value);
+    }
+
+    public void SetSoundVolume(float value)
+    {
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
+        SetVolume(sound, value);
+        if (value == 0)
         {
-            SetActive(gameObjects[0]);
-            SetInActive(gameObjects[1]);
+            SetActive(soundObj[0]);
+            SetInActive(soundObj[1]);
         }
         else
         {
-            SetActive(gameObjects[1]);
-            SetInActive(gameObjects[0]);
+            SetActive(soundObj[1]);
+            SetInActive(soundObj[0]);
         }
     }
 
-    public void SetActive(GameObject go)
+    public void SetMusicVolume(float value)
+    {
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
+        SetVolume(music, value);
+        if (value == 0)
+        {
+            SetActive(musicObj[0]);
+            SetInActive(musicObj[1]);
+        }
+        else
+        {
+            SetActive(musicObj[1]);
+            SetInActive(musicObj[0]);
+        }
+    }
+
+    void SetActive(GameObject go)
     {
         go.gameObject.SetActive(true);
     }
 
-    public void SetInActive(GameObject go)
+    void SetInActive(GameObject go)
     {
         go.gameObject.SetActive(false);
     }
 
-    public void SetSound(float value)
-    {
-        audioMixer.SetFloat(sound, value);
-        PlayerPrefs.SetFloat(sound, value);
-    }
-
-    public void SetMusic(float value)
-    {
-        audioMixer.SetFloat(music, value);
-        PlayerPrefs.SetFloat(music, value);
-
-
-    }
+    
 }

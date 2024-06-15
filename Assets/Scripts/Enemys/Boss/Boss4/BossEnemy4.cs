@@ -110,7 +110,7 @@ public class BossEnemy4 : BossEnemy
         for (int i = 0; i < destination.Length; i++)
         {
             GameObject go = Instantiate(signalObj, destination[i], Quaternion.identity);
-            Destroy(go, signalTimer + objTimeLife);
+            Destroy(go, signalTimer);
         }
         yield return new WaitForSeconds(signalTimer);
         for (int i = 0; i < amountOfObj; i++)

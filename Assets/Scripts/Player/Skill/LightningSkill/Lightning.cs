@@ -23,6 +23,8 @@ public class Lightning : MonoBehaviour
     private float height;
     private float damage;
 
+    private bool canPlaySound;
+
     AttackDetail attackDetail;
     Vector2 size;
     float distance;
@@ -46,6 +48,8 @@ public class Lightning : MonoBehaviour
         }
         else
         {
+            if(canPlaySound)
+                SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Lightning);
             Attack();
             Instantiate(particle, attackPoint, Quaternion.identity);
             Instantiate(effect, attackPoint, Quaternion.identity);
@@ -75,6 +79,11 @@ public class Lightning : MonoBehaviour
         this.damage = damage;
     }
 
+    public void CanPlaySound()
+    {
+        canPlaySound = true;
+    }
+
     void Attack()
     {
         Collider2D[] hit = Physics2D.OverlapCircleAll(attackPoint, radius, whatIsEnemy);
@@ -88,12 +97,6 @@ public class Lightning : MonoBehaviour
                 col.transform.SendMessage("Damage", attackDetail);
             }
         }
-    }
-
-
-    void FinishAnimation()
-    {
-        Destroy(gameObject);
     }
 
     private void OnDrawGizmos()

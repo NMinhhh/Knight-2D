@@ -37,12 +37,12 @@ public class SelectionSkill : MonoBehaviour
     [SerializeField] private LightningSpawnSkill lightningSpawnSkill;
     [SerializeField] private BulletSpawnSkill bulletSpawnSkill;
     [SerializeField] private ElectricSkill electricSkill;
-    [SerializeField] private ProtectionSkill protectionSkill;
     [SerializeField] private MeteorSpawnSkill meteorSpawnSkill;
     [SerializeField] private GunShootingSkill gunShootingSkill;
     [SerializeField] private SlowingSkill slowingSkill;
     [SerializeField] private LavaSkill lavaSkill;
     [SerializeField] private LaserSkill laserSkill;
+    [SerializeField] private DiceSkill diceSkill;
     [Space]
 
     [Header("Generate Skill")]
@@ -243,10 +243,6 @@ public class SelectionSkill : MonoBehaviour
                 electricSkill.LevelUp(skillData.GetSkill(selectedIdSkill).level);
                 skillData.LevelUp(selectedIdSkill);
                 break;
-            case Skill.Name.Shield:
-                protectionSkill.LevelUp(skillData.GetSkill(selectedIdSkill).level);
-                skillData.LevelUp(selectedIdSkill);
-                break;
             case Skill.Name.Meteor:
                 meteorSpawnSkill.LevelUp(skillData.GetSkill(selectedIdSkill).level);
                 skillData.LevelUp(selectedIdSkill);
@@ -265,6 +261,10 @@ public class SelectionSkill : MonoBehaviour
                 break;
             case Skill.Name.Laser:
                 laserSkill.LevelUp(skillData.GetSkill(selectedIdSkill).level);
+                skillData.LevelUp(selectedIdSkill);
+                break;
+            case Skill.Name.Dice:
+                diceSkill.LevelUp(skillData.GetSkill(selectedIdSkill).level);
                 skillData.LevelUp(selectedIdSkill);
                 break;
 

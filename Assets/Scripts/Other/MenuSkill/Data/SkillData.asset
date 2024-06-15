@@ -75,11 +75,11 @@ MonoBehaviour:
       th\xF9"
     index:
     - "+ 5 vi\xEAn \u0111\u1EA1n,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+
-      12% s\xE1t th\u01B0\u01A1ng th\xEAm"
+      15% s\xE1t th\u01B0\u01A1ng th\xEAm"
     - "+ 5 vi\xEAn \u0111\u1EA1n,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+
-      12% s\xE1t th\u01B0\u01A1ng th\xEAm"
+      15% s\xE1t th\u01B0\u01A1ng th\xEAm"
     - "+ 5 vi\xEAn \u0111\u1EA1n,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+
-      12% s\xE1t th\u01B0\u01A1ng th\xEAm"
+      15% s\xE1t th\u01B0\u01A1ng th\xEAm"
   - skillName: 5
     level: 1
     maxLevel: 4
@@ -96,17 +96,6 @@ MonoBehaviour:
   - skillName: 6
     level: 1
     maxLevel: 4
-    image: {fileID: 1904745501, guid: ad71b33164e0ef34a9b50420b037e246, type: 3}
-    sizeImage: {x: 54, y: 140}
-    info: "T\u1EA1o 1 khi\xEAn b\u1EA3o v\u1EC7 ng\u01B0\u1EDDi ch\u01A1i trong 1,5s.
-      8s h\u1ED3i khi\xEAn"
-    index:
-    - "+ 1 khi\xEAn"
-    - "+ 1 khi\xEAn"
-    - "+ 1 khi\xEAn"
-  - skillName: 7
-    level: 1
-    maxLevel: 4
     image: {fileID: 124001520, guid: 827d968e1445d774d876b89decf92b96, type: 3}
     sizeImage: {x: 200, y: 200}
     info: "B\u1EAFn ra thi\xEAn th\u1EA1ch t\u1EA5n c\xF4ng xuy\xEAn c\xE1c k\u1EBB
@@ -118,7 +107,7 @@ MonoBehaviour:
       25% s\xE1t th\u01B0\u01A1ng th\xEAm"
     - "+ 1 thi\xEAn th\u1EA1ch,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+
       25% s\xE1t th\u01B0\u01A1ng th\xEAm"
-  - skillName: 8
+  - skillName: 7
     level: 1
     maxLevel: 4
     image: {fileID: -1060506470, guid: 84fa216efffe5d2469e5b4ba61605fbe, type: 3}
@@ -127,12 +116,12 @@ MonoBehaviour:
       k\u1EBB th\xF9"
     index:
     - "+ 1 kh\u1EA9u s\xFAng,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+
-      10% s\xE1t th\u01B0\u01A1ng th\xEAm"
+      5% s\xE1t th\u01B0\u01A1ng th\xEAm"
     - "+ 1 kh\u1EA9u s\xFAng,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+
-      10% s\xE1t th\u01B0\u01A1ng th\xEAm"
+      5% s\xE1t th\u01B0\u01A1ng th\xEAm"
     - "+ 1 kh\u1EA9u s\xFAng,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+
-      10% s\xE1t th\u01B0\u01A1ng th\xEAm"
-  - skillName: 9
+      5% s\xE1t th\u01B0\u01A1ng th\xEAm"
+  - skillName: 8
     level: 1
     maxLevel: 4
     image: {fileID: -1369152237, guid: 35eda4cb25fe3734885d8fa1cbd9d80f, type: 3}
@@ -143,7 +132,7 @@ MonoBehaviour:
     - "+ L\xE0m ch\u1EADm 18% t\u1ED1c \u0111\u1ED9 k\u1EBB th\xF9"
     - "+ L\xE0m ch\u1EADm 30% t\u1ED1c \u0111\u1ED9 k\u1EBB th\xF9"
     - "+ L\xE0m ch\u1EADm 45% t\u1ED1c \u0111\u1ED9 k\u1EBB th\xF9"
-  - skillName: 10
+  - skillName: 9
     level: 1
     maxLevel: 4
     image: {fileID: 2057521664, guid: c5b66477d37fc2349b9f1fb34f37a1c1, type: 3}
@@ -156,7 +145,7 @@ MonoBehaviour:
       theo c\u1EA5p,+ 12% s\xE1t th\u01B0\u01A1ng th\xEAm "
     - "+ T\u0103ng k\xEDch th\u01B0\u1EDBc dung nham,+ T\u0103ng s\xE1t th\u01B0\u01A1ng
       theo c\u1EA5p,+ 12% s\xE1t th\u01B0\u01A1ng th\xEAm "
-  - skillName: 11
+  - skillName: 10
     level: 1
     maxLevel: 4
     image: {fileID: -363205868, guid: c149da5e85ab6774c83f045482c8110a, type: 3}
@@ -169,3 +158,17 @@ MonoBehaviour:
       th\u01B0\u01A1ng th\xEAm"
     - "+ 1 laser,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p, + 30% s\xE1t
       th\u01B0\u01A1ng th\xEAm"
+  - skillName: 11
+    level: 1
+    maxLevel: 4
+    image: {fileID: 2101805888, guid: 62d6f7f2779c5824b8debe8d97a006d2, type: 3}
+    sizeImage: {x: 180, y: 180}
+    info: "N\xE9m ra 1 vi\xEAn x\xFAc x\u1EAFc c\xF3 kh\u1EA3 n\u0103ng n\u1EA3y
+      \u0111\u1EBFn nh\u1EEFng m\u1EE5c ti\xEAu g\u1EA7n \u0111\xF3."
+    index:
+    - "+ 1 x\xFAc x\u1EAFc,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p, + 15%
+      s\xE1t th\u01B0\u01A1ng th\xEAm"
+    - "+ 1 x\xFAc x\u1EAFc,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p, + 15%
+      s\xE1t th\u01B0\u01A1ng th\xEAm"
+    - "+ 1 x\xFAc x\u1EAFc,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p, + 15%
+      s\xE1t th\u01B0\u01A1ng th\xEAm"

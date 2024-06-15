@@ -16,33 +16,33 @@ MonoBehaviour:
   - Type: 0
     image: {fileID: 454620318, guid: 5a8d4d72defdee84cbd9f68e708432ac, type: 3}
     price: 20
-    info: "T\u0103ng 5 m\xE1u"
-    amount: 5
+    info: "T\u0103ng 10% m\xE1u"
+    amount: 10
   - Type: 0
     image: {fileID: 454620318, guid: 5a8d4d72defdee84cbd9f68e708432ac, type: 3}
     price: 50
-    info: "T\u0103ng 12m\xE1u"
-    amount: 12
+    info: "T\u0103ng 30% m\xE1u"
+    amount: 30
   - Type: 0
     image: {fileID: 2007220265, guid: 5a8d4d72defdee84cbd9f68e708432ac, type: 3}
     price: 100
-    info: "T\u0103ng 20 m\xE1u"
-    amount: 20
+    info: "T\u0103ng 50% m\xE1u"
+    amount: 50
   - Type: 1
     image: {fileID: 271066013, guid: 5a8d4d72defdee84cbd9f68e708432ac, type: 3}
     price: 20
-    info: "T\u0103ng 100% s\u1EE9c t\u1EA5n c\xF4ng cho v\u0169 kh\xED"
-    amount: 100
+    info: "T\u0103ng 30% s\u1EE9c t\u1EA5n c\xF4ng cho v\u0169 kh\xED"
+    amount: 30
   - Type: 1
     image: {fileID: 1679551867, guid: 5a8d4d72defdee84cbd9f68e708432ac, type: 3}
     price: 50
-    info: "T\u0103ng 150% t\u1EA5n c\xF4ng cho v\u0169 kh\xED"
-    amount: 150
+    info: "T\u0103ng 50% t\u1EA5n c\xF4ng cho v\u0169 kh\xED"
+    amount: 50
   - Type: 1
     image: {fileID: -713540164, guid: 5a8d4d72defdee84cbd9f68e708432ac, type: 3}
     price: 100
-    info: "T\u0103ng 200% t\u1EA5n c\xF4ng cho v\u0169 kh\xED"
-    amount: 200
+    info: "T\u0103ng 80% t\u1EA5n c\xF4ng cho v\u0169 kh\xED"
+    amount: 80
   - Type: 2
     image: {fileID: -212241947, guid: 5a8d4d72defdee84cbd9f68e708432ac, type: 3}
     price: 20
@@ -73,8 +73,3 @@ MonoBehaviour:
     price: 150
     info: "T\u0103ng 20 vi\xEAn \u0111\u1EA1n cho v\u0169 kh\xED"
     amount: 20
-  - Type: 3
-    image: {fileID: -2115284274, guid: 5a8d4d72defdee84cbd9f68e708432ac, type: 3}
-    price: 500
-    info: "T\u0103ng 50 vi\xEAn \u0111\u1EA1n cho v\u0169 kh\xED"
-    amount: 50

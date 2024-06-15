@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnergyCollection : MonoBehaviour
 {
+    [Header("Light")]
+    [SerializeField] private GameObject light2D;
 
     [Header("Rotation speed and cooldown")]
     [SerializeField] private float speedFlip;
@@ -36,7 +38,18 @@ public class EnergyCollection : MonoBehaviour
         player = GameObject.Find("Player").transform;
     }
 
-    // Update is called once per frame
+    private void Update()
+    {
+        if (DayNightCircle.Instance.isNight)
+        {
+            light2D.SetActive(true);
+        }
+        else
+        {
+            light2D.SetActive(false);
+        }
+    }
+
     void FixedUpdate()
     {
         destinationPoint = CanvasManager.Instance.GetDestinationEnergyPoint();

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class TabManager : MonoBehaviour
 {
+
     [SerializeField] private GameObject[] tabs;
     [SerializeField] private Image[] tabImages;
     [SerializeField] private Vector2[] tabIconSizeActive;
@@ -15,9 +16,15 @@ public class TabManager : MonoBehaviour
 
     private int currentId = 0;
     [SerializeField] private bool isIconEffect; 
-    public void SwitchTab(int id)
+    public void OnClickSwitchTab(int id)
     {
-        for(int i= 0; i< tabs.Length; i++)
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.ClickTab);
+        SwitchTab(id);
+    }
+
+    void SwitchTab(int id)
+    {
+        for (int i = 0; i < tabs.Length; i++)
         {
             tabImages[i].rectTransform.sizeDelta = sizeInActive;
             tabImages[i].sprite = inActiveTab;
@@ -29,7 +36,7 @@ public class TabManager : MonoBehaviour
                 tabs[id].SetActive(true);
                 tabImages[i].rectTransform.sizeDelta = sizeActive;
                 tabImages[i].sprite = activeTab;
-                if(isIconEffect)
+                if (isIconEffect)
                     Effect(id);
                 button.interactable = false;
             }

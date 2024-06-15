@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Light")]
+    [SerializeField] private GameObject light2D;
+
     [Header("Movement")]
     [SerializeField] private float movementSpeed;
     private float currenSpeed;
@@ -58,6 +61,14 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (DayNightCircle.Instance.isNight)
+        {
+            light2D.SetActive(true);
+        }
+        else
+        {
+            light2D.SetActive(false);
+        }
         Movement();
     }
 
@@ -89,7 +100,7 @@ public class Player : MonoBehaviour
 
     void Damage(AttackDetail attackDetail)
     {
-        if (isImortal || isDie || isProtection) return;
+        if (isImortal || isDie || isProtection || MapManager.Instance.isWin) return;
         currentHelth = Mathf.Clamp(currentHelth - attackDetail.damage, 0, health);
         stats.UpdateHealth(currentHelth, health);
         if (attackDetail.attackDir.position.x > transform.position.x)
@@ -118,7 +129,7 @@ public class Player : MonoBehaviour
     IEnumerator Imortal()
     {
         isImortal = true;
-        currenSpeed = movementSpeed + movementSpeed / 2;
+        currenSpeed = Mathf.Clamp(movementSpeed + movementSpeed / 2, 0, 12);
         for (int i = 0; i < numberOfFlash; i++)
         {
             sprite.color = new Color(.95f, .55f, .55f, 1);
@@ -148,7 +159,7 @@ public class Player : MonoBehaviour
     public void AddHealth(float amout)
     {
         ResetPlayer();
-        health = maxHealth + (int)amout;
+        health += maxHealth * amout / 100;
         currentHelth = health;
     }
 

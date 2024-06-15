@@ -18,8 +18,7 @@ public class MapManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-
+        SoundFXManager.Instance.Initialize();
     }
     #endregion
 
@@ -34,7 +33,7 @@ public class MapManager : MonoBehaviour
 
     private float timer = 1;
 
-    public int energy;
+    public int energy { get; private set; }
 
     public int coin { get; private set; }
 
@@ -42,7 +41,10 @@ public class MapManager : MonoBehaviour
 
     public int kill { get; private set; }
 
-    public bool isLoss {  get; private set; }
+    public bool isBoss {  get; private set; }
+
+    public bool isLose {  get; private set; }
+    public bool isWin {  get; private set; }
 
     private int diamondPay;
 
@@ -57,13 +59,16 @@ public class MapManager : MonoBehaviour
         CanvasManager.Instance.EnergyUIActive();
         player = GameObject.Find("Player").GetComponent<Player>();
         diamondPay = 1;
+        isWin = false;
+        isLose = false;
+        energy = 999999999;
     }
 
     private void Update()
     {
-        if (player.isDie && !isLoss)
+        if (player.isDie && !isLose && !isWin)
         {
-            isLoss = true;
+            isLose = true;
             GameStateUI.Instance.SetDiamondToBorn(diamondPay);
             GameStateUI.Instance.ClickToBorn(Revive);
             GameStateUI.Instance.OpenLossUI();
@@ -75,12 +80,22 @@ public class MapManager : MonoBehaviour
 
     #endregion
 
+    public void SetBossState(bool state)
+    {
+        isBoss = state;
+    }
+
+    public void Winner()
+    {
+        isWin = true;
+    }
+
     public void Revive()
     {
         if (GameManager.Instance.HasEnenoughDiamond(diamondPay))
         {
             GameManager.Instance.UseDiamond(diamondPay);
-            GameStateUI.Instance.CloseLossUI();
+            GameStateUI.Instance.CloseLoseUI();
         }
         else
         {
@@ -89,10 +104,15 @@ public class MapManager : MonoBehaviour
         }
         diamondPay++;
         player.Born();
-        isLoss = false;
+        isLose = false;
     }
 
     public void StageLevelUp()
+    {
+        stage++;
+    }
+
+    public void OpenOption()
     {
         if (!SelectionSkill.Instance.isAllSkillFullLevel)
         {
@@ -100,9 +120,7 @@ public class MapManager : MonoBehaviour
             MenuSkillUI.Instance.OpenMenuSkill();
             SelectionSkill.Instance.ResetItemUI();
         }
-        stage++;
     }
-
 
     public int Calculate(float basicIndex, float levelupIndex, float levelupIndexPercent, int level)
     {

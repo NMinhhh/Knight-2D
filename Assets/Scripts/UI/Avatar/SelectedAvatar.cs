@@ -18,12 +18,14 @@ public class SelectedAvatar : MonoBehaviour
 
     [Header("Selected Border")]
     [SerializeField] private GameObject border;
+    private bool isChooseBorder;
     [Space]
 
     [Header("Selected Avatar Image Current")]
     [SerializeField] private Image avatar;
 
     private int selectedID;
+    private int selectedPoint;
 
     [Header("Tab Avatar")]
     [SerializeField] private GameObject tabAvatarObj;
@@ -35,8 +37,35 @@ public class SelectedAvatar : MonoBehaviour
         LayoutRebuilder.ForceRebuildLayoutImmediate(contentScrollView.GetComponent<GridLayoutGroup>().GetComponent<RectTransform>());
         selectedID = GameManager.Instance.GetSelectedAvatarID();
         SetAvatar(selectedID);
+
+        StartCoroutine(Move(0));
     }
 
+    private void Update()
+    {
+        if (isChooseBorder)
+        {
+            if (Vector3.Distance(border.transform.localPosition, CellPoint(selectedPoint)) <= .1f)
+            {
+                isChooseBorder = false;
+                GameObject go = contentScrollView.GetChild(selectedPoint).gameObject;
+                go.transform.GetChild(1).gameObject.SetActive(true);
+                border.SetActive(false);
+            }
+        }
+    }
+
+    public void ChangeAvatar()
+    {
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
+        SetAvatar(selectedID);
+    }
+
+    void SetAvatar(int id)
+    {
+        GameManager.Instance.ChangeAvatarID(id);
+        avatar.sprite = avatarData.GetAvatar(id).image;
+    }
 
     public void GenerateAvatarUI()
     {
@@ -51,49 +80,30 @@ public class SelectedAvatar : MonoBehaviour
             int idxAvatarPurchased = GameManager.Instance.GetAvatarPurchased(i);
             Avatar avatar = avatarData.GetAvatar(idxAvatarPurchased);
             go = Instantiate(ItemTemplate, contentScrollView);
+            go.transform.GetChild(0).GetComponent<Image>().sprite = avatar.image;
             btn = go.transform.GetComponent<Button>();
-            btn.image.sprite = avatar.image;
             btn.onClick.AddListener(() => SelectedPoint(idx));
-            btn.onClick.AddListener(() => SelectedAvatarIndex(idxAvatarPurchased));
+            btn.onClick.AddListener(() => SelectedAvatarID(idxAvatarPurchased));
         }
     }
 
-    void SetAvatar(int id)
-    {
-        avatar.sprite = avatarData.GetAvatar(id).image;
-    }
-
-    public void SelectedClick()
-    {
-        SetAvatar(selectedID);
-    }
-
-    void SelectedAvatarIndex(int id)
+    void SelectedAvatarID(int id)
     {
         selectedID = id;
-        GameManager.Instance.ChangeAvatarID(selectedID);
     }
 
     void SelectedPoint(int id)
     {
-        if (!border.activeInHierarchy)
-        {
-            border.SetActive(true);
-            border.transform.localPosition = CellPoint(id);
-        }
-        else
-        {
-            StartCoroutine(Move(id));
-        }
-    }
-
-    Vector3 CellPoint(int id)
-    {
-        return contentScrollView.GetChild(id).GetComponent<RectTransform>().localPosition;
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
+        contentScrollView.GetChild(selectedPoint).GetChild(1).gameObject.SetActive(false);
+        border.SetActive(true);
+        selectedPoint = id;
+        StartCoroutine(Move(id));
     }
 
     IEnumerator Move(int id)
     {
+        isChooseBorder = true;
         float time = 0;
         float decreaseTime = 0.25f;
         while (time < decreaseTime)
@@ -104,14 +114,22 @@ public class SelectedAvatar : MonoBehaviour
         }
     }
 
+    Vector3 CellPoint(int id)
+    {
+        return contentScrollView.GetChild(id).GetComponent<RectTransform>().localPosition;
+    }
+
     public void OpenTabUI()
     {
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
         tabAvatarObj.SetActive(true);
     }
 
     public void CloseTabUI()
     {
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
         border.SetActive(false);
+        isChooseBorder = false;
         tabAvatarObj.SetActive(false);
     }
 

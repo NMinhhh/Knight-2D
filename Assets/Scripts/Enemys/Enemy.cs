@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Light")]
+    [SerializeField] private GameObject light2D;
+
     [Header("Facing the player and flip")]
     [SerializeField] private bool isFacingPlayer;
     [SerializeField] private bool isFlip;
@@ -72,7 +75,6 @@ public class Enemy : MonoBehaviour
 
     [Header("Layer Mask")]
     [SerializeField] protected LayerMask whatIsPlayer;
-    [SerializeField] protected LayerMask whatIsShield;
 
     protected int damageDir;
     protected int facingRight;
@@ -110,7 +112,14 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Update()
     {
-  
+        if (DayNightCircle.Instance.isNight)
+        {
+            light2D.SetActive(true);
+        }
+        else
+        {
+            light2D.SetActive(false);
+        }
 
         if (isFacingPlayer && !isLock)
         {
@@ -233,14 +242,6 @@ public class Enemy : MonoBehaviour
         attackDetail.attackDir = transform;
         attackDetail.damage = touchDamage;
         Collider2D hit = Physics2D.OverlapCircle(touchDamagePos.position, touchRadius, whatIsPlayer);
-        Collider2D hitShield = Physics2D.OverlapCircle(touchDamagePos.position, touchRadius, whatIsShield);
-
-        if (hitShield)
-        {
-            hitShield.transform.parent.SendMessage("DamageShield");
-            return;
-        }
-
         if (hit && touchTimer <= 0)
         {
             hit.transform.SendMessage("Damage", attackDetail);

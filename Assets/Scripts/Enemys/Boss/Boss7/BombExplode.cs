@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BombExplode : MonoBehaviour
 {
+    [Header("Light")]
+    [SerializeField] private GameObject light2D;
+
     [Header("Bullet prefs")]
     [SerializeField] private GameObject[] bulletPrefs;
     private GameObject go;
@@ -41,6 +44,15 @@ public class BombExplode : MonoBehaviour
 
     private void Update()
     {
+        if (DayNightCircle.Instance.isNight)
+        {
+            light2D.SetActive(true);
+        }
+        else
+        {
+            light2D.SetActive(false);
+        }
+
         transform.position = Vector3.MoveTowards(transform.position, destination, bombSpeed * Time.deltaTime);
         bombSpeed += bombSpeed * Time.deltaTime;
         if (Vector3.Distance(transform.position, destination) <= 0.1f && !isExplode)

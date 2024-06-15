@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PenetratingBullet : MonoBehaviour
 {
+    [Header("Light")]
+    [SerializeField] private GameObject light2D;
+    [Space]
+
     [Header("Point Damage")]
     [SerializeField] private Transform checkPoint;
     [SerializeField] private float radius;
@@ -42,6 +46,15 @@ public class PenetratingBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (DayNightCircle.Instance.isNight)
+        {
+            light2D.SetActive(true);
+        }
+        else
+        {
+            light2D.SetActive(false);
+        }
+
         Attack();
 
         timeLife -= Time.deltaTime;

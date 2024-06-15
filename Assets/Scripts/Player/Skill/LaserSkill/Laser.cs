@@ -1,22 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Laser : MonoBehaviour
 {
+    [Header("Light")]
+    [SerializeField] private GameObject light2D;
+
+    [Header("Info")]
     [SerializeField] private Transform attackPoint;
     [SerializeField] private Vector2 size;
     [SerializeField] private LayerMask whatIsEnemy;
     private float damage;
     private GameObject go;
 
+    [Header("Cooldown flash")]
     [SerializeField] private float cooldown;
     private float timer;
+
+    [SerializeField] private bool canPlaySound;
 
     private Animator anim;
 
     AttackDetail attackDetail;
-
 
     public bool isLaser {  get; private set; }
 
@@ -29,6 +36,15 @@ public class Laser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (DayNightCircle.Instance.isNight)
+        {
+            light2D.SetActive(true);
+        }
+        else
+        {
+            light2D.SetActive(false);
+        }
+
         if (!isLaser) return;
         timer += Time.deltaTime;
         if(go != null)
@@ -93,6 +109,13 @@ public class Laser : MonoBehaviour
         isLaser = false;
         anim.SetBool("ready", isLaser);
     }
+
+    void CanPlaySound()
+    {
+        if(canPlaySound)
+            SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Laser);
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(attackPoint.position, size);

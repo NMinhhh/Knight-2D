@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class DamageAnimation : MonoBehaviour
 {
+    [Header("Light")]
+    [SerializeField] private GameObject light2D;
+
     [SerializeField] private Transform damagePoint;
     private float damage;
     private float timeLife;
     [SerializeField] private float radius;
     [SerializeField] private LayerMask whatIsEnemy;
-    [SerializeField] private LayerMask whatIsShield;
     private AttackDetail attackDetail;
 
     private void Start()
@@ -17,17 +19,23 @@ public class DamageAnimation : MonoBehaviour
         Destroy(gameObject, timeLife);
     }
 
+    private void Update()
+    {
+        if (DayNightCircle.Instance.isNight)
+        {
+            light2D.SetActive(true);
+        }
+        else
+        {
+            light2D.SetActive(false);
+        }
+    }
+
     public void Attack()
     {
         Collider2D hit = Physics2D.OverlapCircle(damagePoint.position, radius, whatIsEnemy);
-        Collider2D hitShield = Physics2D.OverlapCircle(damagePoint.position, radius, whatIsShield);
         attackDetail.attackDir = transform;
         attackDetail.damage = damage;
-        if (hitShield)
-        {
-            hitShield.transform.SendMessage("DamageShield");
-            return;
-        }
         if (hit)
         {
             hit.transform.SendMessage("Damage", attackDetail);

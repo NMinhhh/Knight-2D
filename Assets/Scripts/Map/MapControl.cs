@@ -5,6 +5,7 @@ using UnityEngine;
 public class MapControl : MonoBehaviour
 {
     [SerializeField] private GameObject[] maps;
+    [SerializeField] private GameObject[] mapMusics;
 
     private int selectedMap;
     private void Start()
@@ -15,6 +16,7 @@ public class MapControl : MonoBehaviour
 
     void MapActive(int level)
     {
+        mapMusics[level].SetActive(true);
         maps[level].SetActive(true);
     }
 

@@ -10,7 +10,7 @@ public class SkillManager : MonoBehaviour
 
     Weapon weapon;
 
-    void Start()
+    void Awake()
     {
         if (Instance == null)
             Instance = this;

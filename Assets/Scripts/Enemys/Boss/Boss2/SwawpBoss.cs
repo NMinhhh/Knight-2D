@@ -6,13 +6,15 @@ using UnityEngine.U2D;
 
 public class SwawpBoss : MonoBehaviour
 {
+    [Header("Light")]
+    [SerializeField] private GameObject light2D;
+
     private Vector3 destination;
     private float speed;
     private float damage;
     private float timeLife;
     [SerializeField] private float radiusDamage;
     [SerializeField] private LayerMask whatIsPlayer;
-    [SerializeField] private LayerMask whatIsShield;
     private Animator anim;
     AttackDetail attackDetail;
 
@@ -24,6 +26,15 @@ public class SwawpBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (DayNightCircle.Instance.isNight)
+        {
+            light2D.SetActive(true);
+        }
+        else
+        {
+            light2D.SetActive(false);
+        }
+
         transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
         if (Check())
         {
@@ -44,14 +55,8 @@ public class SwawpBoss : MonoBehaviour
     void Attack()
     {
         Collider2D hit = Physics2D.OverlapCircle(transform.position, radiusDamage, whatIsPlayer);
-        Collider2D hitShield = Physics2D.OverlapCircle(transform.position, radiusDamage, whatIsShield);
         attackDetail.attackDir = transform;
         attackDetail.damage = damage;
-        if (hitShield)
-        {
-            hitShield.transform.parent.SendMessage("DamageShield");
-            return;
-        }
         if (hit)
         {
             hit.transform.SendMessage("Damage", attackDetail);

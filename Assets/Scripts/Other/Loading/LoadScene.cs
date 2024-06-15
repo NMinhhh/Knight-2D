@@ -10,4 +10,5 @@ public class LoadScene : MonoBehaviour
         Time.timeScale = 1.0f;
         Loader.LoadScene(name);
     }
+
 }

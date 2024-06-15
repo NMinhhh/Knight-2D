@@ -7,8 +7,31 @@ public class SoundFXManager : MonoBehaviour
     public static SoundFXManager Instance {  get; private set; }
 
     [SerializeField] private AudioSource audioSource;
+    public enum Sound
+    {
+        Win,
+        Lose,
+        Click,
+        ClickTab,
+        Buy,
+        Shoot,
+        Laser,
+        RocketExplosion,
+        Lightning,
+        DiceHit,
+        GunMachine,
+        Electric,
+        Throw,
+        BulletExplodeSkill,
+        SawHit
+    }
 
-    private void Start()
+    private Dictionary<Sound, float> soundTimerDictionary;
+
+    [SerializeField] private List<SoundAudioClip> soundList;
+
+
+    private void Awake()
     {
         if(Instance == null)
         {
@@ -20,13 +43,81 @@ public class SoundFXManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void CreateAudioClip(AudioClip clip, Transform pos, float volume)
+
+    public void Initialize()
     {
-        AudioSource audio = Instantiate(audioSource, pos.position, Quaternion.identity);
-        audio.clip = clip;
-        audio.volume = volume;
-        audio.Play();
-        float length = audio.clip.length;
-        Destroy(audio.gameObject, length);
+        soundTimerDictionary = new Dictionary<Sound, float>();
+        soundTimerDictionary[Sound.Shoot] = 0;
+        soundTimerDictionary[Sound.Electric] = 0;
+        soundTimerDictionary[Sound.SawHit] = 0;
+    }
+
+    public void PlaySound(Sound sound)
+    {
+        if (CanPlaySound(sound))
+        {
+            AudioSource audio = Instantiate(audioSource, transform.position, Quaternion.identity);
+            audio.clip = GetSound(sound);
+            audio.Play();
+            float length = audio.clip.length;
+            Destroy(audio.gameObject, length);
+        }
+        
+    }
+
+    public bool CanPlaySound(Sound sound)
+    {
+        switch(sound)
+        {
+            default:
+                return true;
+            case Sound.GunMachine:
+                return CheckCanPlaySound(sound);
+            case Sound.Electric:
+                return CheckCanPlaySound(sound);
+            case Sound.SawHit:
+                return CheckCanPlaySound(sound);
+        }
+    }
+
+    bool CheckCanPlaySound(Sound sound)
+    {
+        if (soundTimerDictionary.ContainsKey(sound))
+        {
+            float lastTimePlayed = soundTimerDictionary[sound];
+            float timerMax = GetSound(sound).length;
+            if (lastTimePlayed + timerMax < Time.time)
+            {
+                soundTimerDictionary[sound] = Time.time;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public AudioClip GetSound(Sound sound)
+    {
+        foreach(SoundAudioClip s in soundList)
+        {
+            if(s.sound == sound)
+            {
+                return s.audioClip;
+            }
+        }
+        return null;
     }
 }
+[System.Serializable]
+public class SoundAudioClip
+{
+    public SoundFXManager.Sound sound;
+    public AudioClip audioClip;
+}
+

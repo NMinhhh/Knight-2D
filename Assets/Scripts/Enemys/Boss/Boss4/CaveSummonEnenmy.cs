@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class CaveSummonEnenmy : MonoBehaviour
 {
+    [Header("Light")]
+    [SerializeField] private GameObject light2D;
+
+    [Header("Cave Info")]
     [SerializeField] private GameObject[] go;
     [SerializeField] private int amount;
     [SerializeField] private float cooldown;
@@ -12,7 +16,16 @@ public class CaveSummonEnenmy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(amount <= 0)
+        if (DayNightCircle.Instance.isNight)
+        {
+            light2D.SetActive(true);
+        }
+        else
+        {
+            light2D.SetActive(false);
+        }
+
+        if (amount <= 0)
         {
             Destroy(gameObject);
         }

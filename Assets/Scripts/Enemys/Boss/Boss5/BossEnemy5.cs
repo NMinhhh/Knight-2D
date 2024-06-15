@@ -128,7 +128,7 @@ public class BossEnemy5 : BossEnemy
             summonEnenmyScript.CreateCave(enemys, amountOfEnemy, summonCooldown);
         }
         isMove = true;
-        ChangeSkill(0);
+        ChangeSkillRandom();
     }
 
      void EnemyAllDeath()

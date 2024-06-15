@@ -82,7 +82,7 @@ public class PlayerShooting : MonoBehaviour
             timer = 0;
             if(anim)
                 anim.SetTrigger("shoot");
-            SoundFXManager.Instance.CreateAudioClip(clip, attackPoint[0], .5f);
+            SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Shoot);
             Shooting(gunType);
             reloadBullets.UpdateBullets();
         }

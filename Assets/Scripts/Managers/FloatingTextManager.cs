@@ -5,10 +5,9 @@ using UnityEngine;
 public class FloatingTextManager : MonoBehaviour
 {
     public static FloatingTextManager Instance {  get; private set; }
-    private GameObject GO; 
+    private GameObject GO;
 
-
-    private void Start()
+    private void Awake()
     {
         if (Instance == null)
             Instance = this;

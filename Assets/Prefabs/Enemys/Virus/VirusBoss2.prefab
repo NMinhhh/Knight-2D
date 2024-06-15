@@ -39,6 +39,7 @@ Transform:
   - {fileID: 7019784205807756223}
   - {fileID: 5072260816642114942}
   - {fileID: 7680962994370311988}
+  - {fileID: 3284711435554939666}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1055657573433939513
@@ -105,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48933c3dddd4f7843ac24e9933c400bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  light2D: {fileID: 4852224802757722209}
   isFacingPlayer: 0
   isFlip: 1
   speed: 4
@@ -112,7 +114,7 @@ MonoBehaviour:
   checkRadius: 1.35
   touchDamagePos: {fileID: 5072260816642114942}
   touchRadius: 3.23
-  touchDamage: 1.5
+  touchDamage: 2
   touchCooldown: 1
   isHealthByStage: 0
   basicHealth: 216398
@@ -124,23 +126,20 @@ MonoBehaviour:
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
   amountOfEnergy: 200
-  radiusPointDropEnergy: 10
-  coinDead: 800
+  radiusPointDropEnergy: 15
+  coinDead: 1000
   diamondDead: 10
   slowingTimer: 2
   slowingColor: {r: 0, g: 0.4927628, b: 1, a: 1}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  whatIsShield:
-    serializedVersion: 2
-    m_Bits: 2048
   cooldownSkills:
   - 3
   - 3
   shootingPoint: {fileID: 7680962994370311988}
   bullet: {fileID: 2008042944277217167, guid: 3fc7ec2476cce24409c48fe2cab6cf70, type: 3}
-  amountOfBullet: 20
+  amountOfBullet: 25
   bulletDamage: 1.5
   bulletSpeed: 13
   timeLife: 5
@@ -148,7 +147,7 @@ MonoBehaviour:
   angleRan: {x: 60, y: 120}
   swawp: {fileID: 2863268492341516025, guid: c45da8eef95671a49a14490612f83a18, type: 3}
   amountOfSwawp: 4
-  swawpDamage: 2
+  swawpDamage: 1.5
   swawpSpeedFly: 30
   timeLifeSwawp: 5
   signObj: {fileID: 2804138993721818002, guid: b18fadb123f1ef54c86c84e37626f8d9, type: 3}
@@ -359,3 +358,85 @@ Transform:
   m_Children: []
   m_Father: {fileID: 907772270908379892}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4852224802757722209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3284711435554939666}
+  - component: {fileID: 3913277301822303128}
+  m_Layer: 7
+  m_Name: Light 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3284711435554939666
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4852224802757722209}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 907772270908379892}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3913277301822303128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4852224802757722209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 1
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_LightVolumeIntensity: 1
+  m_LightVolumeIntensityEnabled: 0
+  m_ApplyToSortingLayers: 00000000ad7978c4414ed22a51bffe836d01ac52f3278f82ed223546ff71f1fdf184e508
+  m_LightCookieSprite: {fileID: 0}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 3
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowIntensityEnabled: 0
+  m_ShadowIntensity: 0.75
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_LocalBounds:
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 9
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}

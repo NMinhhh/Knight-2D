@@ -1,5 +1,87 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &36965413181696684
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2479780912686825610}
+  - component: {fileID: 2268000493461289447}
+  m_Layer: 7
+  m_Name: Light 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2479780912686825610
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36965413181696684}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1448933915361331393}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2268000493461289447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36965413181696684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 1
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.4
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_LightVolumeIntensity: 1
+  m_LightVolumeIntensityEnabled: 0
+  m_ApplyToSortingLayers: 00000000ad7978c4414ed22a51bffe836d01ac52f3278f82ed223546ff71f1fdf184e508
+  m_LightCookieSprite: {fileID: 0}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 3
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowIntensityEnabled: 0
+  m_ShadowIntensity: 0.75
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_LocalBounds:
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 10
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &1518394960224042185
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,6 +184,7 @@ Transform:
   - {fileID: 5280654327536429625}
   - {fileID: 11000828575467246}
   - {fileID: 4107984722385010991}
+  - {fileID: 2479780912686825610}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7916379371826551842
@@ -168,6 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb15ec0e9a585024286b73c83d8beb89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  light2D: {fileID: 36965413181696684}
   isFacingPlayer: 1
   isFlip: 0
   speed: 4
@@ -186,7 +270,7 @@ MonoBehaviour:
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
-  amountOfEnergy: 1
+  amountOfEnergy: 300
   radiusPointDropEnergy: 15
   coinDead: 4500
   diamondDead: 30
@@ -195,12 +279,9 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  whatIsShield:
-    serializedVersion: 2
-    m_Bits: 2048
   cooldownSkills:
-  - 8
   - 5
+  - 10
   bulletPref: {fileID: 4981898343582636895, guid: 4cb780a4298051946a50301f16d3ed6b, type: 3}
   shootingPoint:
   - {fileID: 11000828575467246}
@@ -209,11 +290,11 @@ MonoBehaviour:
   amoutOfBulletRan: {x: 50, y: 80}
   bulletDamage: 3
   bulletSpeed: 13
-  bulletTimeLife: 5
+  bulletTimeLife: 10
   angleRan: {x: 10, y: 20}
   bombExplodePref: {fileID: 8054797671242093306, guid: 541fa37fb0490a84c8212549ff3e9978, type: 3}
   bombSpeed: 20
-  bulletBombDamage: 2.5
+  bulletBombDamage: 3
   delayExplosion: {x: 1, y: 2}
   amountOfBomb: 3
   amountOfBulletInBomb: 10
@@ -222,12 +303,12 @@ MonoBehaviour:
   cavePref: {fileID: 2327767039087373662, guid: 47b32065e2785be4c998ce47af32e87d, type: 3}
   amountOfCave: 4
   enemys:
-  - {fileID: 1560575506662191858, guid: bcef6917471193d46b17c5a0d920c901, type: 3}
-  - {fileID: 7277557635134430477, guid: 46549b70a243a3f4e98ab4c694b2a053, type: 3}
+  - {fileID: 1560575506662191858, guid: ba657ffc0b3e7eb4b9a09b6a2948b077, type: 3}
+  - {fileID: 7277557635134430477, guid: 85b5f06b07bcd07458eee10102187007, type: 3}
   - {fileID: 3323175708455616319, guid: 9a8d69a74e91d8c4abb7bab4fb3480a1, type: 3}
-  - {fileID: 8995746049146793397, guid: d746ff53f8fcadc4da9c5f1878f5f31f, type: 3}
-  - {fileID: 489224733829539740, guid: e468ad0867f499a4cbaf103dcb611d49, type: 3}
-  - {fileID: 2037897880958217304, guid: 63b0f16f37c6191438e26a3a467428d2, type: 3}
+  - {fileID: 8995746049146793397, guid: ab6062143722b72429fe062b90192b73, type: 3}
+  - {fileID: 489224733829539740, guid: d2cc00f572e182d47acbfee28149c69a, type: 3}
+  - {fileID: 2037897880958217304, guid: ddb3189e856374a4386bc25884083079, type: 3}
   amountOfEnemy: 6
   summonCooldown: 0.5
   signalObj: {fileID: 2804138993721818002, guid: b18fadb123f1ef54c86c84e37626f8d9, type: 3}

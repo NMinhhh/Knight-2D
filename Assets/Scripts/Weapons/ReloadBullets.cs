@@ -18,6 +18,7 @@ public class ReloadBullets : MonoBehaviour
     {
         ResetBullet();
         currentReloadTimer = weapon.reload;
+        statsBullet.reloadImage.sprite = weapon.image;
         statsBullet.amountOfBulletText.text = weapon.bullet.ToString();
         statsBullet.reloadImage.fillAmount = 0;
     }

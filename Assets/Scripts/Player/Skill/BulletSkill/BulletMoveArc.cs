@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BulletMoveArc : MonoBehaviour
 {
+    [Header("Light")]
+    [SerializeField] private GameObject light2D;
+
     [Header("Animation")]
     [SerializeField] private Texture[] textures;
     private int animationStep;
@@ -38,7 +41,17 @@ public class BulletMoveArc : MonoBehaviour
 
     void Update()
     {
-        if(go != null)
+
+        if (DayNightCircle.Instance.isNight)
+        {
+            light2D.SetActive(true);
+        }
+        else
+        {
+            light2D.SetActive(false);
+        }
+
+        if (go != null)
         {
             points[2] = go.transform.position;
         }
@@ -76,6 +89,7 @@ public class BulletMoveArc : MonoBehaviour
         attackDetail.continousDamage = false;
         if(Vector3.Distance(transform.position,points[2]) <= .1f)
         {
+            SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.BulletExplodeSkill);
             Collider2D hit = Physics2D.OverlapCircle(transform.position, radius, whatIsEnemy);
             if (hit)
             {

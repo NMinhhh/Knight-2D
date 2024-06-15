@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class NormalBullet : MonoBehaviour
 {
+    [Header("Light")]
+    [SerializeField] private GameObject light2D;
+
     [SerializeField] private LayerMask whatIsEnemy;
-    [SerializeField] private LayerMask whatIsShield;
     private float speed;
     private float timeLife;
     private Rigidbody2D rb;
@@ -23,7 +25,16 @@ public class NormalBullet : MonoBehaviour
     }
     private void Update()
     {
-        if(isDamage)
+        if (DayNightCircle.Instance.isNight)
+        {
+            light2D.SetActive(true);
+        }
+        else
+        {
+            light2D.SetActive(false);
+        }
+
+        if (isDamage)
         {
             Destroy(gameObject);
         }
@@ -42,14 +53,8 @@ public class NormalBullet : MonoBehaviour
 
     void Attack()
     {
-        Collider2D hitShield = Physics2D.OverlapBox(transform.position, sizecheck, transform.eulerAngles.z, whatIsShield);
         Collider2D enemy = Physics2D.OverlapBox(transform.position, sizecheck, transform.eulerAngles.z, whatIsEnemy);
-        if (hitShield)
-        {
-            isDamage = true;
-            hitShield.transform.parent.SendMessage("DamageShield");
-            return;
-        }else if(enemy)
+         if(enemy)
         {
             isDamage = true;
             enemy.transform.SendMessage("Damage", attackDetail);

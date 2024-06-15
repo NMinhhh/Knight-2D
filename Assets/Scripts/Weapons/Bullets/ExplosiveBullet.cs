@@ -5,6 +5,10 @@ using static Cinemachine.DocumentationSortingAttribute;
 
 public class ExplosiveBullet : MonoBehaviour
 {
+    [Header("Light")]
+    [SerializeField] private GameObject light2D;
+    [Space]
+
     [SerializeField] private LayerMask whatIsEnemy;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float radius;
@@ -33,7 +37,16 @@ public class ExplosiveBullet : MonoBehaviour
 
     private void Update()
     {
-        if(!isDamage)
+        if (DayNightCircle.Instance.isNight)
+        {
+            light2D.SetActive(true);
+        }
+        else
+        {
+            light2D.SetActive(false);
+        }
+
+        if (!isDamage)
             Attack();
     }
 
@@ -74,7 +87,7 @@ public class ExplosiveBullet : MonoBehaviour
 
         for (int i = 0; i < amountOfBullet; i++)
         {
-            if (enemys.Length > 0 && amountOfEnemy < enemys.Length)
+            if (enemys.Length > 0 && amountOfEnemy < enemys.Length && listEnemy.Count > 0)
             {
                 amountOfEnemy++;
                 enemyRam = listEnemy[Random.Range(0, listEnemy.Count)];

@@ -34,7 +34,7 @@ public class MeteorSpawnSkill : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer < 0 && level > 0)
         {
-            SetSkill(level);
+            MeteorSpawner();
             timer = cooldown;
         }
     }
@@ -45,14 +45,14 @@ public class MeteorSpawnSkill : MonoBehaviour
         damage = SkillManager.Instance.CalculateSkillDamage(damageLevelUp, damageLevelUpPercent, this.level);
     }
 
-    void SetSkill(int dir)
+    void MeteorSpawner()
     {
         float rotationZ;
         Vector3 direction;
         int amountOfEnemy = 0;
         GameObject enemyRam;
         Collider2D[] enemys = GetPositionInCam.Instance.GetEnemysPosition();
-        for (int i = 0; i < dir; i++)
+        for (int i = 0; i < this.level; i++)
         {
             if (enemys.Length > 0 && amountOfEnemy < enemys.Length)
             {

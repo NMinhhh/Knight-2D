@@ -21,6 +21,10 @@ public class Profile : MonoBehaviour
 
     void Start()
     {
+        foreach(GameObject go in guns)
+        {
+            go.SetActive(false);
+        }
         guns[GameManager.Instance.selectedWeaponIndex].SetActive(true);
     }
 

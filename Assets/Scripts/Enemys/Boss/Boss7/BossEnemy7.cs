@@ -31,7 +31,7 @@ public class BossEnemy7 : BossEnemy
     private bool changeDir;
 
 
-    [Header("Create bombexplode skill")]
+    [Header("Create Bombexplode Intrinsic")]
     //bomb pref
     [SerializeField] private GameObject bombExplodePref;
 
@@ -214,7 +214,7 @@ public class BossEnemy7 : BossEnemy
             summonEnenmyScript.CreateCave(enemys, amountOfEnemy, summonCooldown);
         }
         isMove = true;
-        ChangeSkillRandom();
+        ChangeSkill(0);
     }
 
     void EnemyAllDeath()

@@ -32,7 +32,7 @@ public class PlayerDie : MonoBehaviour
         if(GameManager.Instance.HasEnenoughDiamond(diamondPay)) 
         {
             GameManager.Instance.UseDiamond(diamondPay);
-            GameStateUI.Instance.CloseLossUI();
+            GameStateUI.Instance.CloseLoseUI();
         }
         else
         {

@@ -13,12 +13,12 @@ public class Skill
         Lighting,
         Shooting,
         Electric,
-        Shield,
         Meteor,
         Gun,
         Slow,
         Lava,
-        Laser
+        Laser,
+        Dice
     }
 
     public Name skillName;

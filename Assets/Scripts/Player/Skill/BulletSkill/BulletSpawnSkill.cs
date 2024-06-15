@@ -49,7 +49,7 @@ public class BulletSpawnSkill : MonoBehaviour
             cooldownShoting += Time.deltaTime;
             if(cooldownShoting >= 0.1f && amountOfBulletSpawnCur > 0)
             {
-                SetSkill();
+                SpawnBullet();
                 cooldownShoting = 0;
                 amountOfBulletSpawnCur -= 1;
             }else if(amountOfBulletSpawnCur == 0)
@@ -69,30 +69,24 @@ public class BulletSpawnSkill : MonoBehaviour
         amountOfBulletSpawnCur = amountOfBulletSpawn;
     }
 
-    void SetSkill()
+    void SpawnBullet()
     {
         Vector3 point1, point2;
-        float rotationZ;
-        Vector3 direction;
         GameObject enemyRam = null;
         Collider2D[] enemy = GetPositionInCam.Instance.GetEnemysPosition();
         if(enemy.Length > 0)
         {
             enemyRam = enemy[Random.Range(0,enemy.Length)].gameObject;
-            direction = (enemyRam.transform.position - transform.position).normalized;
-            rotationZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             point2 = Vector3.one;
         }
         else
         {
-            rotationZ = Random.Range(0, 360);
             point2 = GetPositionInCam.Instance.GetPositionInArea();
         }
 
         Vector3 p = Random.insideUnitCircle * radius;
         point1 = transform.position + p;
 
-        transform.eulerAngles = new Vector3(0, 0, rotationZ);
         go = Instantiate(bullet, transform.position, Quaternion.identity);
         script = go.GetComponent<BulletMoveArc>();
 

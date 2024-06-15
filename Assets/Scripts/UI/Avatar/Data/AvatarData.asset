@@ -37,7 +37,7 @@ MonoBehaviour:
     image: {fileID: -3262175, guid: 47026237eb26d674aa002a36be7f5e50, type: 3}
     name: Virus No5
     price: 600
-    isPurchased: 0
+    isPurchased: 1
   - id: 5
     image: {fileID: -1881881855, guid: 47026237eb26d674aa002a36be7f5e50, type: 3}
     name: Virus No6

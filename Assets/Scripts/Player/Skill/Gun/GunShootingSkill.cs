@@ -10,7 +10,7 @@ public class GunShootingSkill : MonoBehaviour
 
     [Header("Info")]
     [SerializeField] private float damageLevelUp;
-    [Range(10, 100)]
+    [Range(0, 100)]
     [SerializeField] private float damageLevelUpPercent;
     private float damage;
     [SerializeField] private float speed;

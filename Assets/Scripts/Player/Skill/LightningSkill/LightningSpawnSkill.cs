@@ -58,9 +58,11 @@ public class LightningSpawnSkill : MonoBehaviour
             {
                 pos = GetPositionInCam.Instance.GetPositionInArea();
             }
-            go = Instantiate(lightning, new Vector3(pos.x, pos.y + 20, 0), Quaternion.identity);
+            go = Instantiate(lightning, new Vector3(pos.x, pos.y + 30, 0), Quaternion.identity);
             script = go.GetComponent<Lightning>();
             script.Set(pos, damage);
+            if (i == 0)
+                script.CanPlaySound();
         }
     }
 }

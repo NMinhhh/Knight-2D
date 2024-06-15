@@ -44,14 +44,8 @@ public class EnemyMeleeAttack : Enemy
     public void MeleeAttack()
     {
         Collider2D player = Physics2D.OverlapBox(attackPoint.position, attackSize, transform.eulerAngles.z, whatIsPlayer);
-        Collider2D shield = Physics2D.OverlapBox(attackPoint.position, attackSize, transform.eulerAngles.z, whatIsShield);
         meleeAttackDetail.damage = attackDamage;
         meleeAttackDetail.attackDir = transform;
-        if (shield)
-        {
-            shield.transform.SendMessage("DamageShield");
-            return;
-        }
         if (player)
         {
             player.transform.SendMessage("Damage", meleeAttackDetail);

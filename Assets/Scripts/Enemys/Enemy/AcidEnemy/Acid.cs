@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Acid : MonoBehaviour
 {
+    [Header("Light")]
+    [SerializeField] private GameObject light2D;
+
     private float damage;
     private float timeLife;
     [SerializeField] private float radius;
     [SerializeField] private LayerMask whatIsPlayer;
-    [SerializeField] private LayerMask whatIsShield;
 
     AttackDetail attackDetail;
     void Start()
@@ -20,20 +22,23 @@ public class Acid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (DayNightCircle.Instance.isNight)
+        {
+            light2D.SetActive(true);
+        }
+        else
+        {
+            light2D.SetActive(false);
+        }
+
         Attack();
     }
 
     public void Attack()
     {
         Collider2D player = Physics2D.OverlapCircle(transform.position, radius, whatIsPlayer);
-        Collider2D shield = Physics2D.OverlapCircle(transform.position, radius, whatIsShield);
         attackDetail.damage = damage;
         attackDetail.attackDir = transform;
-        if (shield)
-        {
-            shield.transform.SendMessage("DamageShield");
-            return;
-        }
         if (player)
         {
             player.transform.SendMessage("Damage", attackDetail);

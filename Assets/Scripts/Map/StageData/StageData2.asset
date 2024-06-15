@@ -167,6 +167,8 @@ MonoBehaviour:
       amountOfEnemy: 15
     - enemyPref:
       - {fileID: 2507449915888841542, guid: eedcbd9f72731b44bb4f6c82cf537967, type: 3}
+      - {fileID: 1606928569046898189, guid: 3295144b8a2d42d418cd1918755519be, type: 3}
+      - {fileID: 2465061123090160100, guid: a8a0c4fe6853d2f4fbd699f1f2020e8d, type: 3}
       amountOfEnemy: 2
     isBoss: 0
     cooldown: 0.3
@@ -181,6 +183,8 @@ MonoBehaviour:
       amountOfEnemy: 15
     - enemyPref:
       - {fileID: 2507449915888841542, guid: eedcbd9f72731b44bb4f6c82cf537967, type: 3}
+      - {fileID: 1606928569046898189, guid: 3295144b8a2d42d418cd1918755519be, type: 3}
+      - {fileID: 2465061123090160100, guid: a8a0c4fe6853d2f4fbd699f1f2020e8d, type: 3}
       amountOfEnemy: 3
     isBoss: 0
     cooldown: 0.3
@@ -201,6 +205,8 @@ MonoBehaviour:
       amountOfEnemy: 16
     - enemyPref:
       - {fileID: 2507449915888841542, guid: eedcbd9f72731b44bb4f6c82cf537967, type: 3}
+      - {fileID: 1606928569046898189, guid: 3295144b8a2d42d418cd1918755519be, type: 3}
+      - {fileID: 2465061123090160100, guid: a8a0c4fe6853d2f4fbd699f1f2020e8d, type: 3}
       amountOfEnemy: 4
     isBoss: 0
     cooldown: 0.3
@@ -215,6 +221,8 @@ MonoBehaviour:
       amountOfEnemy: 17
     - enemyPref:
       - {fileID: 2507449915888841542, guid: eedcbd9f72731b44bb4f6c82cf537967, type: 3}
+      - {fileID: 1606928569046898189, guid: 3295144b8a2d42d418cd1918755519be, type: 3}
+      - {fileID: 2465061123090160100, guid: a8a0c4fe6853d2f4fbd699f1f2020e8d, type: 3}
       amountOfEnemy: 5
     isBoss: 0
     cooldown: 0.3
@@ -229,6 +237,8 @@ MonoBehaviour:
       amountOfEnemy: 19
     - enemyPref:
       - {fileID: 2507449915888841542, guid: eedcbd9f72731b44bb4f6c82cf537967, type: 3}
+      - {fileID: 1606928569046898189, guid: 3295144b8a2d42d418cd1918755519be, type: 3}
+      - {fileID: 2465061123090160100, guid: a8a0c4fe6853d2f4fbd699f1f2020e8d, type: 3}
       amountOfEnemy: 5
     isBoss: 0
     cooldown: 0.3
@@ -243,6 +253,8 @@ MonoBehaviour:
       amountOfEnemy: 20
     - enemyPref:
       - {fileID: 2507449915888841542, guid: eedcbd9f72731b44bb4f6c82cf537967, type: 3}
+      - {fileID: 1606928569046898189, guid: 3295144b8a2d42d418cd1918755519be, type: 3}
+      - {fileID: 2465061123090160100, guid: a8a0c4fe6853d2f4fbd699f1f2020e8d, type: 3}
       amountOfEnemy: 6
     isBoss: 0
     cooldown: 0.3
@@ -257,6 +269,8 @@ MonoBehaviour:
       amountOfEnemy: 25
     - enemyPref:
       - {fileID: 2507449915888841542, guid: eedcbd9f72731b44bb4f6c82cf537967, type: 3}
+      - {fileID: 1606928569046898189, guid: 3295144b8a2d42d418cd1918755519be, type: 3}
+      - {fileID: 2465061123090160100, guid: a8a0c4fe6853d2f4fbd699f1f2020e8d, type: 3}
       amountOfEnemy: 6
     isBoss: 0
     cooldown: 0.3
@@ -271,6 +285,8 @@ MonoBehaviour:
       amountOfEnemy: 30
     - enemyPref:
       - {fileID: 2507449915888841542, guid: eedcbd9f72731b44bb4f6c82cf537967, type: 3}
+      - {fileID: 1606928569046898189, guid: 3295144b8a2d42d418cd1918755519be, type: 3}
+      - {fileID: 2465061123090160100, guid: a8a0c4fe6853d2f4fbd699f1f2020e8d, type: 3}
       amountOfEnemy: 6
     isBoss: 0
     cooldown: 0.3

@@ -31,6 +31,7 @@ public class Map1 : MonoBehaviour
     [SerializeField] private float cooldownEndStageTimer;
     private float endStageTimer;
     private bool isChangeStage;
+    private bool isLastStage;
     [Space]
     [Space]
 
@@ -40,17 +41,13 @@ public class Map1 : MonoBehaviour
     private float timer;
     private bool isBoss;
 
-    private List<GameObject> enemies;
 
     private List<GameObject> items;
 
     [SerializeField] private int amountAllEnemySpawn;
 
-    AttackDetail attackDetail;
-
     void Start()
     {
-        enemies = new List<GameObject>();
         items = new List<GameObject>();
         isFinishStage = true;
     }
@@ -58,11 +55,30 @@ public class Map1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (!isBoss)
         {
             if (!isFinishStage)
             {
                 ControlSpawn();
+            }
+            else if (isLastStage)
+            {
+                if (SpawnerManager.Instance.CheckListEnemy())
+                {
+                    RecieveItem();
+                    if (!isWin)
+                    {
+                        isWin = true;
+                        MapManager.Instance.Winner();
+                    }
+                    endStageTimer -= Time.deltaTime;
+                    if (endStageTimer <= 0)
+                    {
+                        endStageTimer = cooldownEndStageTimer;
+                        MapWinner();
+                    }
+                }
             }
             else
             {
@@ -75,10 +91,7 @@ public class Map1 : MonoBehaviour
                         SetUpStage();
                         startStageTimer = Time.time;
                         isChangeStage = true;
-                        if (isWin) 
-                            CheckToWin();
-                        else
-                            stageUI.OpenStageUI();
+                        stageUI.OpenStageUI();
                         endStageTimer = cooldownEndStageTimer;
                     }
 
@@ -94,7 +107,7 @@ public class Map1 : MonoBehaviour
         else
         {
             timer += Time.deltaTime;
-            if(timer >= warningTime)
+            if (timer >= warningTime)
             {
                 stageUI.CloseWarningBossUI();
                 isBoss = false;
@@ -110,16 +123,16 @@ public class Map1 : MonoBehaviour
     }
 
 
-    void CheckToWin()
+    void MapWinner()
     {
-        Debug.Log("you win");
         if (!GameManager.Instance.GetMapState())
         {
+            GameManager.Instance.SetMapState(true);
             GameManager.Instance.AddMapWin(mapLevel - 1);
             GameManager.Instance.AddMapUnlock(mapLevel);
             GameData.Instance.SetMapData();
-            GameManager.Instance.AddCoin(coinWin);
-            GameManager.Instance.AddDiamond(diamondWin);
+            MapManager.Instance.PickUpCoin(coinWin);
+            MapManager.Instance.PickUpDiamond(diamondWin);
         }
         GameStateUI.Instance.OpenWinUI();
     }
@@ -146,13 +159,11 @@ public class Map1 : MonoBehaviour
     {
         MapManager.Instance.StageLevelUp();
         int i = MapManager.Instance.stage - 1;
-        if(i == stageData.GetStageLength())
-        {
-            isWin = true;
-            return;
-        }
         currentStage = stageData.GetStage(i);
         SpawnerManager.Instance.GenerateEnemy(currentStage);
+        MapManager.Instance.SetBossState(currentStage.isBoss);
+        MapManager.Instance.OpenOption();
+
     }
 
     void ChangeState()
@@ -160,6 +171,14 @@ public class Map1 : MonoBehaviour
         if (currentStage.isBoss)
         {
             isBoss = true;
+        }
+        else
+        {
+            isBoss = false;
+        }
+        if (MapManager.Instance.stage == stageData.GetStageLength())
+        {
+            isLastStage = true;
         }
         isChangeStage = false;
         isFinishStage = false;
@@ -176,20 +195,6 @@ public class Map1 : MonoBehaviour
             items[i].transform.SendMessage("CanMove");
         }
         items.Clear();
-    }
-
-    void EnemyAllDeath()
-    {
-        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
-        enemies.AddRange(GameObject.FindGameObjectsWithTag("Cave"));
-        attackDetail.damage = 99999999;
-        attackDetail.attackDir = transform;
-        for (int i = 0; i < enemies.Count; i++)
-        {
-            Destroy(enemies[i]);
-        }
-        enemies.Clear();
-
     }
 
 }

@@ -8,7 +8,7 @@ public class GameStateUI : MonoBehaviour
 {
     public static GameStateUI Instance {  get; private set; }
     [Header("Loss")]
-    [SerializeField] private GameObject loss;
+    [SerializeField] private GameObject gameStateUI;
     [SerializeField] private Text coinText;
     [SerializeField] private Text diamondText;
     [SerializeField] private GameObject[] gameStateTitle;
@@ -39,7 +39,7 @@ public class GameStateUI : MonoBehaviour
             Destroy(gameObject);
         }
         timeText.text = second.ToString();
-        CloseLossUI();
+        CloseLoseUI();
     }
 
     // Update is called once per frame
@@ -55,28 +55,29 @@ public class GameStateUI : MonoBehaviour
     {
         SetPickUpValue();
         gameStateTitle[0].SetActive(true);
-        loss.SetActive(true);
+        gameStateUI.SetActive(true);
         Time.timeScale = 0;
         
     }
 
     public void OpenLossUI()
     {
+        Debug.Log("sda");
         gameStateTitle[1].SetActive(true);
         bornUI.SetActive(true);
-        loss.SetActive(true);
+        gameStateUI.SetActive(true);
         isCheckTimer = true;
         Time.timeScale = 0;
     }
 
-    public void CloseLossUI()
+    public void CloseLoseUI()
     {
         foreach (GameObject item in gameStateTitle)
         {
             item.SetActive(false);
         }
         ResetBornUI();
-        loss.SetActive(false);
+        gameStateUI.SetActive(false);
         Time.timeScale = 1;
     }
 
@@ -105,7 +106,6 @@ public class GameStateUI : MonoBehaviour
     {
         SetPickUpValue();
         ResetBornUI();
-        bornUI.SetActive(false);
     }
 
     void ResetBornUI()
@@ -113,6 +113,7 @@ public class GameStateUI : MonoBehaviour
         isCheckTimer = false;
         second = 8;
         timeText.text = second.ToString();
+        bornUI.SetActive(false);
     }
 
     private void Timer()

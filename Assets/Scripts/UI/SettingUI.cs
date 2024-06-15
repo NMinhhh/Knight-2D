@@ -13,6 +13,7 @@ public class SettingUI : MonoBehaviour
 
     public void OpenSetting()
     {
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
         CanvasManager.Instance.OpenUI(settingUI);
         TimeStop();
     }
@@ -27,6 +28,7 @@ public class SettingUI : MonoBehaviour
 
     public void CloseSetting()
     {
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
         if (GameObject.Find("MenuSkill") != null)
         {
             if (MenuSkillUI.Instance.isMenuOp)

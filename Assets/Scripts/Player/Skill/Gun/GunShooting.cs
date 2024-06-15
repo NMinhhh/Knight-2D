@@ -22,10 +22,14 @@ public class GunShooting : MonoBehaviour
     private float timer;
 
     private Vector3 direction;
+
     public float angle { get; private set; }
 
     private GameObject enemyRam;
-    private float timeRam;
+    [SerializeField] private float timeChageTarget;
+    private float currentTimeChage;
+
+    [SerializeField] private bool canPlaySound;
 
     private Animator anim;
 
@@ -39,17 +43,15 @@ public class GunShooting : MonoBehaviour
     void Update()
     {
         HandleGunRotationEnemy();
-        Shooting();
-        
     }
 
     void HandleGunRotationEnemy()
     {
         Collider2D[] enemys = GetPositionInCam.Instance.GetEnemysPosition();
-        timeRam += Time.deltaTime;
-        if(enemyRam == null || timeRam >= 4)
+        currentTimeChage += Time.deltaTime;
+        if(enemyRam == null || currentTimeChage >= timeChageTarget)
         {
-            timeRam = 0;
+            currentTimeChage = 0;
             if (enemys.Length <= 0)
                 return;
             enemyRam = enemys[Random.Range(0, enemys.Length)].gameObject;
@@ -57,6 +59,7 @@ public class GunShooting : MonoBehaviour
         else if(enemyRam != null)
         {
             HandleGunRotation(enemyRam.transform.position);
+            Shooting();
 
         }
     }
@@ -83,8 +86,10 @@ public class GunShooting : MonoBehaviour
     void Shooting()
     {
         timer += Time.deltaTime;
-        if(timer > cooldownShooting && enemyRam != null && amountOfBulletCur > 0) 
+        if(timer > cooldownShooting && amountOfBulletCur > 0) 
         {
+            if(canPlaySound)
+                SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.GunMachine);
             anim.SetTrigger("shoot");
             SpawnBullet(shootingPoint, shootingPoint.rotation);
             amountOfBulletCur--;

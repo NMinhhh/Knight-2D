@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LaserBullet : MonoBehaviour
 {
+    [Header("Light")]
+    [SerializeField] private GameObject light2D;
+
     [SerializeField] private Transform attackPoint;
     [SerializeField] private Vector2 size;
     [SerializeField] private LayerMask whatIsEnemy;
@@ -27,6 +30,15 @@ public class LaserBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (DayNightCircle.Instance.isNight)
+        {
+            light2D.SetActive(true);
+        }
+        else
+        {
+            light2D.SetActive(false);
+        }
+
         if (!isLaser) return;
         timer += Time.deltaTime;
         if (timer >= cooldown)

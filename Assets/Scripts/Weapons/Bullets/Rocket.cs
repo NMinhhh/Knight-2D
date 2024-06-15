@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
+    [Header("Light")]
+    [SerializeField] private GameObject[] light2Ds;
+    [Space]
+
+    [Header("Info")]
     [SerializeField] private LayerMask whatIsEnemy;
-    [SerializeField] private LayerMask whatIsShield;
     [SerializeField] private Transform checkPoint;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float radius;
@@ -29,7 +33,24 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isDamage)
+        if (DayNightCircle.Instance.isNight)
+        {
+            foreach(GameObject light2D in light2Ds)
+            {
+                light2D.SetActive(true);
+
+            }
+        }
+        else
+        {
+            foreach (GameObject light2D in light2Ds)
+            {
+                light2D.SetActive(false);
+
+            }
+        }
+
+        if (isDamage)
         {
             rb.velocity = Vector3.zero;
             anim.SetBool("explode", true);
@@ -59,13 +80,7 @@ public class Rocket : MonoBehaviour
     protected virtual void Attack()
     {
         Collider2D[] enemy = Physics2D.OverlapCircleAll(attackPoint.position, radiusDamage, whatIsEnemy);
-        Collider2D hitShield = Physics2D.OverlapCircle(checkPoint.position, radius, whatIsShield);
         attackDetail.continousDamage = false;
-        if (hitShield)
-        {
-            hitShield.transform.parent.SendMessage("DamageShield");
-            return;
-        }
         foreach(Collider2D col in enemy)
         {
             if(col)
@@ -81,6 +96,11 @@ public class Rocket : MonoBehaviour
         attackDetail.damage = damage;
         this.speed = speed;
         this.timeLife = timeLife;
+    }
+
+    void PlaySound()
+    {
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.RocketExplosion);
     }
 
     void DestroyGO()

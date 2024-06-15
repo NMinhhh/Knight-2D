@@ -84,6 +84,7 @@ public class Shop : MonoBehaviour
 
     void OpenDeatailWeaponUI(int idx)
     {
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
         Weapon weapon = weaponData.GetWeapon(idx);
         detailWeaponUI.SetNameText(weapon.name);
         detailWeaponUI.SetImage(weapon.image);
@@ -93,8 +94,10 @@ public class Shop : MonoBehaviour
     }
 
 
-    public void CloseDetailWeaponUI()
+    public void CloseDetailWeaponUI(bool isPlaySound)
     {
+        if(isPlaySound)
+            SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
         detailWeaponUI.gameObject.SetActive(false);
     }
 
@@ -103,6 +106,7 @@ public class Shop : MonoBehaviour
         Weapon weapon = weaponData.GetWeapon(idx);
         if (GameManager.Instance.HasEnoughCoins(weapon.price))
         {
+            SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Buy);
             GameManager.Instance.UseCoins(weapon.price);
             GameManager.Instance.AddWeaponPurchasedIndex(idx);
             weaponData.WeaponPurchased(idx);
@@ -110,12 +114,14 @@ public class Shop : MonoBehaviour
         }
         else
         {
+            SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
         }
 
     }
 
     void EquipWeapon(int idx)
     {
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
         //Get newWeaponUI
         WeaponItemUI newWeaponItemUI = GetWeaponItemUI(idx);
         //Get oldWeaponUI
@@ -181,6 +187,8 @@ public class Shop : MonoBehaviour
         Avatar avatar = avatarData.GetAvatar(idx);
         if (GameManager.Instance.HasEnoughCoins(avatar.price))
         {
+            GameManager.Instance.UseCoins(avatar.price);
+            SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Buy);
             avatarData.AvatarPurchased(idx);
             GameManager.Instance.AddAvatarPurchased(idx);
             int count = avatarContent.childCount;
@@ -194,6 +202,10 @@ public class Shop : MonoBehaviour
             }
             GenerateAvatarItemUI();
             selectedAvatar.GenerateAvatarUI();
+        }
+        else
+        {
+            SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
         }
     }
 
@@ -221,8 +233,13 @@ public class Shop : MonoBehaviour
         Coin coin = coinData.GetCoin(idx);
         if (GameManager.Instance.HasEnenoughDiamond(coin.coinPrice))
         {
+            SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Buy);
             GameManager.Instance.UseDiamond(coin.coinPrice);
             GameManager.Instance.AddCoin(coin.value);
+        }
+        else
+        {
+            SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
         }
     }
 
@@ -249,8 +266,13 @@ public class Shop : MonoBehaviour
         Coin diamond = diamondData.GetCoin(idx);
         if (GameManager.Instance.HasEnenoughDiamond(diamond.coinPrice))
         {
+            SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Buy);
             GameManager.Instance.UseDiamond(diamond.coinPrice);
             GameManager.Instance.AddCoin(diamond.value);
+        }
+        else
+        {
+            SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
         }
     }
 

@@ -96,6 +96,7 @@ public class ElectricSkill : MonoBehaviour
         {
             if (enemies[i] != null)
             {
+                SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Electric);
                 electric[i].ElectricAttack(transform.position, enemies[i].transform.position, enemies[i]);
             }
             else

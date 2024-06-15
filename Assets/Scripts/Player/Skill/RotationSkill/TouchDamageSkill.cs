@@ -33,6 +33,7 @@ public class TouchDamageSkill : MonoBehaviour
         {
             if (col)
             {
+                SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.SawHit);
                 col.transform.SendMessage("Damage", attackDetail);
             }
         }
