@@ -17,7 +17,7 @@ MonoBehaviour:
     level: 1
     maxLevel: 4
     image: {fileID: 21300000, guid: 4fc5372eb143d74459356d3217a33609, type: 3}
-    sizeImage: {x: 160, y: 160}
+    sizeImage: {x: 200, y: 200}
     info: "T\u1EA1o 1 shuriken quay xung quanh ng\u01B0\u1EDDi ch\u01A1i"
     index:
     - "+ 1 shuriken,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+ 10% s\xE1t
@@ -27,10 +27,10 @@ MonoBehaviour:
     - "+ 1 shuriken,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+ 10% s\xE1t
       th\u01B0\u01A1ng th\xEAm"
   - skillName: 1
-    level: 1
+    level: 2
     maxLevel: 4
     image: {fileID: 21300000, guid: 4875493f74e862f46bcdafaa88e5d213, type: 3}
-    sizeImage: {x: 160, y: 160}
+    sizeImage: {x: 210, y: 210}
     info: "N\xE9m ra 1 bomerang v\u1EC1 ph\xEDa k\u1EBB \u0111\u1ECBch. Bomerang
       s\u1EBD bay \u0111i v\xE0 bay v\u1EC1 ng\u01B0\u1EDDi ch\u01A1i"
     index:
@@ -44,7 +44,7 @@ MonoBehaviour:
     level: 1
     maxLevel: 4
     image: {fileID: -777054742, guid: fdb96f8a53671fa49a3637de6b3af0a8, type: 3}
-    sizeImage: {x: 230, y: 230}
+    sizeImage: {x: 280, y: 280}
     info: "B\u1EAFn ra 1 t\xEAn l\u1EEDa v\u1EC1 ph\xEDa k\u1EBB \u0111\u1ECBch"
     index:
     - "+ 1 t\xEAn l\u1EEDa,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+ 35%
@@ -57,7 +57,7 @@ MonoBehaviour:
     level: 1
     maxLevel: 4
     image: {fileID: 69081836, guid: c0ff9631ce378e749afbb7346f445ad6, type: 3}
-    sizeImage: {x: 160, y: 160}
+    sizeImage: {x: 210, y: 210}
     info: "T\u1EA1o 1 tia s\xE9t \u0111\xE1nh v\xE0o k\u1EBB th\xF9"
     index:
     - "+ 1 tia s\xE9t,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+ 25% s\xE1t
@@ -70,7 +70,7 @@ MonoBehaviour:
     level: 1
     maxLevel: 4
     image: {fileID: 1842416947, guid: 02730ddcb87e5eb45b3e6c5c14c4f75a, type: 3}
-    sizeImage: {x: 264, y: 60}
+    sizeImage: {x: 293, y: 66}
     info: "B\u1EAFn ra 5 vi\xEAn \u0111\u1EA1n ph\xE9p thu\u1EADt v\xE0o k\u1EBB
       th\xF9"
     index:
@@ -84,7 +84,7 @@ MonoBehaviour:
     level: 1
     maxLevel: 4
     image: {fileID: 21300000, guid: ec25d255b092fde4d8e0640ae7e6e84e, type: 3}
-    sizeImage: {x: 230, y: 230}
+    sizeImage: {x: 327, y: 327}
     info: "T\u1EA1o 1 d\xF2ng \u0111i\u1EC7n t\u1EA5n c\xF4ng k\u1EBB th\xF9"
     index:
     - "+ 1 d\xF2ng \u0111i\u1EC7n,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+
@@ -97,7 +97,7 @@ MonoBehaviour:
     level: 1
     maxLevel: 4
     image: {fileID: 124001520, guid: 827d968e1445d774d876b89decf92b96, type: 3}
-    sizeImage: {x: 200, y: 200}
+    sizeImage: {x: 327, y: 327}
     info: "B\u1EAFn ra thi\xEAn th\u1EA1ch t\u1EA5n c\xF4ng xuy\xEAn c\xE1c k\u1EBB
       th\xF9"
     index:
@@ -111,7 +111,7 @@ MonoBehaviour:
     level: 1
     maxLevel: 4
     image: {fileID: -1060506470, guid: 84fa216efffe5d2469e5b4ba61605fbe, type: 3}
-    sizeImage: {x: 190, y: 102}
+    sizeImage: {x: 240, y: 130}
     info: "Th\xEAm 1 kh\u1EA9u s\xFAng b\u1EAFn ra 10 vi\xEAn \u0111\u1EA1n v\xE0o
       k\u1EBB th\xF9"
     index:
@@ -125,7 +125,7 @@ MonoBehaviour:
     level: 1
     maxLevel: 4
     image: {fileID: -1369152237, guid: 35eda4cb25fe3734885d8fa1cbd9d80f, type: 3}
-    sizeImage: {x: 160, y: 160}
+    sizeImage: {x: 210, y: 210}
     info: "T\u1EA1o v\xF9ng l\xE0m ch\u1EADm 10% t\u1ED1c \u0111\u1ED9 c\u1EE7a k\u1EBB
       th\xF9"
     index:
@@ -136,7 +136,7 @@ MonoBehaviour:
     level: 1
     maxLevel: 4
     image: {fileID: 2057521664, guid: c5b66477d37fc2349b9f1fb34f37a1c1, type: 3}
-    sizeImage: {x: 160, y: 160}
+    sizeImage: {x: 210, y: 210}
     info: "T\u1EA1o 1 v\xF9ng dung nham \u0111\u1ED1t k\u1EBB th\xF9 \u0111i v\xE0o"
     index:
     - "+ T\u0103ng k\xEDch th\u01B0\u1EDBc dung nham,+ T\u0103ng s\xE1t th\u01B0\u01A1ng
@@ -149,7 +149,7 @@ MonoBehaviour:
     level: 1
     maxLevel: 4
     image: {fileID: -363205868, guid: c149da5e85ab6774c83f045482c8110a, type: 3}
-    sizeImage: {x: 230, y: 230}
+    sizeImage: {x: 327, y: 327}
     info: "B\u1EAFn ra 1 tia laser g\xE2y s\xE1t th\u01B0\u01A1ng"
     index:
     - "+ 1 laser,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p, + 30% s\xE1t
@@ -162,7 +162,7 @@ MonoBehaviour:
     level: 1
     maxLevel: 4
     image: {fileID: 2101805888, guid: 62d6f7f2779c5824b8debe8d97a006d2, type: 3}
-    sizeImage: {x: 180, y: 180}
+    sizeImage: {x: 210, y: 210}
     info: "N\xE9m ra 1 vi\xEAn x\xFAc x\u1EAFc c\xF3 kh\u1EA3 n\u0103ng n\u1EA3y
       \u0111\u1EBFn nh\u1EEFng m\u1EE5c ti\xEAu g\u1EA7n \u0111\xF3."
     index:

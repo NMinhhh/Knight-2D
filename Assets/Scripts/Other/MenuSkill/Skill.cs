@@ -10,7 +10,7 @@ public class Skill
         Shuriken,
         Bomerang,
         Roket,
-        Lighting,
+        Lightning,
         Shooting,
         Electric,
         Meteor,

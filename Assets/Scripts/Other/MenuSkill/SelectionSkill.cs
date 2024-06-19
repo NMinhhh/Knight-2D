@@ -231,7 +231,7 @@ public class SelectionSkill : MonoBehaviour
                 rocketSpawnSkill.LevelUp(skillData.GetSkill(selectedIdSkill).level);
                 skillData.LevelUp(selectedIdSkill);
                 break;
-            case Skill.Name.Lighting:
+            case Skill.Name.Lightning:
                 lightningSpawnSkill.LevelUp(skillData.GetSkill(selectedIdSkill).level);
                 skillData.LevelUp(selectedIdSkill);
                 break;

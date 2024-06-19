@@ -82,7 +82,7 @@ public class PlayerShooting : MonoBehaviour
             timer = 0;
             if(anim)
                 anim.SetTrigger("shoot");
-            SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Shoot);
+
             Shooting(gunType);
             reloadBullets.UpdateBullets();
         }
@@ -117,6 +117,7 @@ public class PlayerShooting : MonoBehaviour
 
     void NormalGunShoot()
     {
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.NormalGun);
         SpawnNormalBullet(attackPoint[0], attackPoint[0].rotation);
     }
 
@@ -131,6 +132,7 @@ public class PlayerShooting : MonoBehaviour
 
     void ShotingGunShoot()
     {
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.ShotingGun);
         foreach (Transform pos in attackPoint)
         {
             SpawnNormalBullet(pos, pos.rotation);
@@ -141,6 +143,7 @@ public class PlayerShooting : MonoBehaviour
 
     void RoketGunShoot()
     {
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.RoketGun);
         SpawnRocket(attackPoint[0], attackPoint[0].rotation);
     }
 
@@ -156,6 +159,7 @@ public class PlayerShooting : MonoBehaviour
 
     void BulletExplodeGunShoot()
     {
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.BulletExplodeGun);
         SpawnExplosiveBbullet(attackPoint[0], attackPoint[0].rotation);
     }
 
@@ -170,6 +174,7 @@ public class PlayerShooting : MonoBehaviour
 
     void PenetratingGunShoot()
     {
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.PenetratingGun);
         SpawnPenetratingBullet(attackPoint[0], attackPoint[0].rotation);
     }
 

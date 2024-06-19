@@ -8,7 +8,7 @@ public class GameStateUI : MonoBehaviour
 {
     public static GameStateUI Instance {  get; private set; }
     [Header("Loss")]
-    [SerializeField] private GameObject gameStateUI;
+    [SerializeField] private GameObject stateUI;
     [SerializeField] private Text coinText;
     [SerializeField] private Text diamondText;
     [SerializeField] private GameObject[] gameStateTitle;
@@ -55,17 +55,16 @@ public class GameStateUI : MonoBehaviour
     {
         SetPickUpValue();
         gameStateTitle[0].SetActive(true);
-        gameStateUI.SetActive(true);
+        stateUI.SetActive(true);
         Time.timeScale = 0;
         
     }
 
     public void OpenLossUI()
     {
-        Debug.Log("sda");
         gameStateTitle[1].SetActive(true);
         bornUI.SetActive(true);
-        gameStateUI.SetActive(true);
+        stateUI.SetActive(true);
         isCheckTimer = true;
         Time.timeScale = 0;
     }
@@ -77,7 +76,7 @@ public class GameStateUI : MonoBehaviour
             item.SetActive(false);
         }
         ResetBornUI();
-        gameStateUI.SetActive(false);
+        stateUI.SetActive(false);
         Time.timeScale = 1;
     }
 

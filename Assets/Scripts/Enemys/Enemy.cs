@@ -180,7 +180,6 @@ public class Enemy : MonoBehaviour
         Instantiate(particleBlood, transform.position, Quaternion.identity);
         DropItem();
         Destroy(gameObject);
-        MapManager.Instance.AddKill();
         MapManager.Instance.PickUpCoin(coinDead);
         MapManager.Instance.PickUpDiamond(diamondDead);
     }

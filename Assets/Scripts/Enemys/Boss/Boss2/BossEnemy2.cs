@@ -107,7 +107,6 @@ public class BossEnemy2 : BossEnemy
     void SpawnBulletObj()
     {
         float angle = Mathf.Atan2(GetDir().y, GetDir().x) * Mathf.Rad2Deg;
-        Debug.Log(angle);
         shootingPoint.localEulerAngles = new Vector3(0, 0, GetAngleRandom() - 90 + angle);
         Go = GameObject.Instantiate(bullet, shootingPoint.position, Quaternion.Euler(0, 0, shootingPoint.localEulerAngles.z));
         script = Go.GetComponent<NormalBullet>();
@@ -142,7 +141,7 @@ public class BossEnemy2 : BossEnemy
         for (int i = 0; i < destination.Length; i++)
         {
             GameObject go = Instantiate(signObj, destination[i], Quaternion.identity);
-            Destroy(go, timerSign + 2);
+            Destroy(go, timerSign);
         }
         yield return new WaitForSeconds(timerSign);
         for (int i = 0; i < amountOfSwawp; i++)

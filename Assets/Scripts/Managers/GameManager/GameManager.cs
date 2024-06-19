@@ -27,9 +27,10 @@ public class GameManager : MonoBehaviour
     bool mapState;
 
     //Avatar
-    public List<int> avatarPurchased = new List<int>();
+    public List<int> avatarPurchaseIndex = new List<int>();
 
     public int selectedAvatarIndex;
+
 
     void Awake()
     {
@@ -42,7 +43,9 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
     }
+
     //Coin
     public void UseCoins(int amount)
     {
@@ -180,18 +183,19 @@ public class GameManager : MonoBehaviour
 
     public List<int> GetAllAvatarPurchased()
     {
-        return avatarPurchased;
+        return avatarPurchaseIndex;
     }
 
     public void AddAvatarPurchased(int id)
     {
-        avatarPurchased.Add(id);
+        avatarPurchaseIndex.Add(id);
     }
 
     public int GetAvatarPurchased(int idx)
     {
-        return avatarPurchased[idx]; 
+        return avatarPurchaseIndex[idx]; 
     }
+
 
     //Json
     public void FromJson(string stringSave)
@@ -203,7 +207,7 @@ public class GameManager : MonoBehaviour
         this.selectedWeaponIndex = saveObj.selectedWeaponIndex;
         this.mapUnlock = saveObj.mapUnlock;
         this.mapWin = saveObj.mapWin;
-        this.avatarPurchased = saveObj.avatarPurchaseIndex;
+        this.avatarPurchaseIndex = saveObj.avatarPurchaseIndex;
         this.selectedAvatarIndex = saveObj.selectedAvatarIndex;
     }
 
@@ -215,7 +219,7 @@ public class GameManager : MonoBehaviour
         selectedWeaponIndex = 0;
         mapUnlock.Clear();
         mapWin.Clear();
-        avatarPurchased.Clear();
+        avatarPurchaseIndex.Clear();
         selectedAvatarIndex = 0;
 
     }

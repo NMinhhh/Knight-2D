@@ -19,7 +19,7 @@ public class GameData : MonoBehaviour
     [SerializeField] private CoinData coinData;
 
     [Header("Diamod")]
-    [SerializeField] private CoinData diamondData;
+    [SerializeField] private DiamondData diamondData;
 
     private void Awake()
     {
@@ -50,7 +50,7 @@ public class GameData : MonoBehaviour
 
     public CoinData GetCoinData() => coinData;
 
-    public CoinData GetDiamondData() => diamondData;
+    public DiamondData GetDiamondData() => diamondData;
 
     public void SetDataGame()
     {

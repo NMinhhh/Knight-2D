@@ -90,6 +90,11 @@ public class LaserBullet : MonoBehaviour
         anim.SetBool("ready", isLaser);
     }
 
+    void PlaySound()
+    {
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.LaserGun);
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(attackPoint.position, size);

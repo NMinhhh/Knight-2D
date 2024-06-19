@@ -9,6 +9,7 @@ public class SettingUI : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
+        settingUI.SetActive(false);
     }
 
     public void OpenSetting()

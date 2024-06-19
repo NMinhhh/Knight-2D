@@ -11,4 +11,11 @@ public class LoadScene : MonoBehaviour
         Loader.LoadScene(name);
     }
 
+    public void LoadAndPlaySound(string name)
+    {
+        //SaveManager.Instance.SaveGame();
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
+        Time.timeScale = 1.0f;
+        Loader.LoadScene(name);
+    }
 }

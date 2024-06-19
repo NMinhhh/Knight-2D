@@ -13,3 +13,4 @@ public class GameSaveData
     public List<int> avatarPurchaseIndex = new List<int>();
     public int selectedAvatarIndex;
 }
+

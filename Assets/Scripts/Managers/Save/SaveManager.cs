@@ -30,14 +30,14 @@ public class SaveManager : MonoBehaviour
         //SaveGame();
     }
 
-    private string GetSaveName(string nameData)
+    public string GetSaveName(string nameData)
     {
         return SaveManager.Save + "_" + nameData;
     }
 
     public void LoadSaveGame()
     {
-        string stringSave = SaveSystem.Load(GetSaveName("CoinManager"));
+        string stringSave = SaveSystem.Load(GetSaveName("GameManager"));
         if(stringSave != null) 
         { 
             GameManager.Instance.FromJson(stringSave);
@@ -53,15 +53,15 @@ public class SaveManager : MonoBehaviour
     public void SaveGame()
     {
         string saveString = JsonUtility.ToJson(GameManager.Instance);
-        SaveSystem.Save(GetSaveName("CoinManager"), saveString);
+        SaveSystem.Save(GetSaveName("GameManager"), saveString);
     }
 
     public void ResetGame()
     {
-        string stringSave = SaveSystem.Load(GetSaveName("CoinManager"));
+        string stringSave = SaveSystem.Load(GetSaveName("GameManager"));
         if (stringSave != null)
         {
-            SaveSystem.DeleteFileSave(GetSaveName("CoinManager"));
+            SaveSystem.DeleteFileSave(GetSaveName("GameManager"));
         }
         GameManager.Instance.ResetValue();
         LoadSaveGame();

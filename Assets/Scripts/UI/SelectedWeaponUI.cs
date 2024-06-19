@@ -8,7 +8,6 @@ public class SelectedWeaponUI : MonoBehaviour
     public static SelectedWeaponUI Instance;
     [SerializeField] private WeaponObject weaponData;
     [SerializeField] private Image image;
-    [SerializeField] private Text nameText;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +25,6 @@ public class SelectedWeaponUI : MonoBehaviour
     {
         Weapon weapon = weaponData.GetWeapon(GameManager.Instance.GetWeaponSelectedID());
         image.sprite = weapon.image;
-        nameText.text = weapon.name;
     }
 
 

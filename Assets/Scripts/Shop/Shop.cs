@@ -30,7 +30,7 @@ public class Shop : MonoBehaviour
     [SerializeField] private GameObject diamondItemTemplate;
     [SerializeField] private Transform diamondContent;
 
-    CoinData diamondData;
+    DiamondData diamondData;
 
     void Start() 
     {
@@ -245,6 +245,7 @@ public class Shop : MonoBehaviour
 
     #endregion
 
+
     #region Diamond
 
     void GenerateDiamondItemUI()
@@ -252,28 +253,28 @@ public class Shop : MonoBehaviour
         for (int i = 0; i < diamondData.GetLength(); i++)
         {
             int idx = i;
-            Coin diamond = diamondData.GetCoin(idx);
-            CoinItemUI diamondItemUI = Instantiate(diamondItemTemplate, diamondContent).GetComponent<CoinItemUI>();
+            Diamond diamond = diamondData.GetDiamond(idx);
+            DiamondItemUI diamondItemUI = Instantiate(diamondItemTemplate, diamondContent).GetComponent<DiamondItemUI>();
+            diamondItemUI.SetId(idx);
             diamondItemUI.SetImage(diamond.image);
             diamondItemUI.SetValue(diamond.value);
-            diamondItemUI.SetPrice("$ " + diamond.diamindPrice);
-            diamondItemUI.OnButtonBuy(idx, BuyDiamondItem);
+            diamondItemUI.StartTimer(diamond.hour, diamond.minute, diamond.second);
+            diamondItemUI.OnButtonReward(idx, DiamondReward);
         }
     }
 
-    void BuyDiamondItem(int idx)
+    void DiamondReward(int idx)
     {
-        Coin diamond = diamondData.GetCoin(idx);
-        if (GameManager.Instance.HasEnenoughDiamond(diamond.coinPrice))
-        {
-            SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Buy);
-            GameManager.Instance.UseDiamond(diamond.coinPrice);
-            GameManager.Instance.AddCoin(diamond.value);
-        }
-        else
-        {
-            SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
-        }
+        Diamond diamond = diamondData.GetDiamond(idx);
+        DiamondItemUI diamondItemUI = GetDiamondItemUI(idx);
+        diamondItemUI.ResetTimer(diamond.hour, diamond.minute, diamond.second);
+        GameManager.Instance.AddDiamond(diamond.value);
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
+    }
+
+    public DiamondItemUI GetDiamondItemUI(int i)
+    {
+        return diamondContent.GetChild(i).GetComponent<DiamondItemUI>();
     }
 
     #endregion

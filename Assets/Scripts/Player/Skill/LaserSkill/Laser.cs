@@ -113,7 +113,7 @@ public class Laser : MonoBehaviour
     void CanPlaySound()
     {
         if(canPlaySound)
-            SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Laser);
+            SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.LaserSkill);
     }
 
     private void OnDrawGizmos()

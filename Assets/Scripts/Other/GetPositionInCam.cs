@@ -10,12 +10,16 @@ public class GetPositionInCam : MonoBehaviour
     private Vector2 sizeBox;
     [SerializeField] private LayerMask whatIsEnemy;
 
-    private void Start()
+    private void Awake()
     {
         if (Instance == null)
             Instance = this;
         else
             Destroy(gameObject);
+    }
+
+    private void Start()
+    {
         sizeBox = new Vector2(boxCollider.bounds.size.x, boxCollider.bounds.size.y);
     }
 

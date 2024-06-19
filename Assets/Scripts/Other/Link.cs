@@ -13,6 +13,7 @@ public class Link : MonoBehaviour
 
     public void Facebook()
     {
+        SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
         StartCoroutine(OpenFacebook());
     }
 

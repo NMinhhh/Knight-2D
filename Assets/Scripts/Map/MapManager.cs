@@ -26,20 +26,11 @@ public class MapManager : MonoBehaviour
 
     public int stage { get; private set; }
 
-
-    //Time in game
-    public int minutes { get; private set; }
-    public int seconds { get; private set; }
-
-    private float timer = 1;
-
     public int energy { get; private set; }
 
     public int coin { get; private set; }
 
     public int diamond { get; private set; }
-
-    public int kill { get; private set; }
 
     public bool isBoss {  get; private set; }
 
@@ -61,7 +52,6 @@ public class MapManager : MonoBehaviour
         diamondPay = 1;
         isWin = false;
         isLose = false;
-        energy = 999999999;
     }
 
     private void Update()
@@ -73,7 +63,6 @@ public class MapManager : MonoBehaviour
             GameStateUI.Instance.ClickToBorn(Revive);
             GameStateUI.Instance.OpenLossUI();
         }
-        Timer();
     }
 
 
@@ -127,27 +116,6 @@ public class MapManager : MonoBehaviour
         return Mathf.CeilToInt((basicIndex + (levelupIndex * (level - 1))) * Mathf.Pow((1 + levelupIndexPercent / 100), (level - 1)));
     }
 
-    #region Time in Game
-
-    void Timer()
-    {
-        timer -= Time.deltaTime;
-        if (timer <= 0)
-        {
-            timer = 1;
-            seconds++;
-            if (seconds == 60)
-            {
-                minutes++;
-                seconds = 0;
-            }
-        }
-    }
-
-    #endregion
-
-
-
     #region Coin 
 
     public void PickUpCoin(int amount)
@@ -158,15 +126,6 @@ public class MapManager : MonoBehaviour
     public void PickUpDiamond(int amount)
     {
         diamond += amount;
-    }
-
-    #endregion
-
-    #region Kill
-
-    public void AddKill()
-    {
-        kill += 1;
     }
 
     #endregion

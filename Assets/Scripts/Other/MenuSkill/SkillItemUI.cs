@@ -18,11 +18,6 @@ public class SkillItemUI : MonoBehaviour
     private Animator anim;
     private int level;
 
-    private void Update()
-    {
-        
-    }
-
     public void SetNameText(string nameText)
     {
         this.nameText.text = nameText;

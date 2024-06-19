@@ -30,6 +30,6 @@ public class MapItemUI : MonoBehaviour
     {
         btn.onClick.RemoveAllListeners();
         btn.onClick.AddListener(() => action(level));
-        btn.onClick.AddListener(() => loadScene.Load(SceneIndexs.GAMEPLAY.ToString()));
+        btn.onClick.AddListener(() => loadScene.LoadAndPlaySound(SceneIndexs.GAMEPLAY.ToString()));
     }
 }

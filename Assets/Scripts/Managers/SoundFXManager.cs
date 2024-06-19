@@ -14,8 +14,7 @@ public class SoundFXManager : MonoBehaviour
         Click,
         ClickTab,
         Buy,
-        Shoot,
-        Laser,
+        LaserSkill,
         RocketExplosion,
         Lightning,
         DiceHit,
@@ -23,7 +22,13 @@ public class SoundFXManager : MonoBehaviour
         Electric,
         Throw,
         BulletExplodeSkill,
-        SawHit
+        SawHit,
+        LaserGun,
+        NormalGun,
+        ShotingGun,
+        PenetratingGun,
+        RoketGun,
+        BulletExplodeGun,
     }
 
     private Dictionary<Sound, float> soundTimerDictionary;
@@ -47,7 +52,7 @@ public class SoundFXManager : MonoBehaviour
     public void Initialize()
     {
         soundTimerDictionary = new Dictionary<Sound, float>();
-        soundTimerDictionary[Sound.Shoot] = 0;
+        soundTimerDictionary[Sound.NormalGun] = 0;
         soundTimerDictionary[Sound.Electric] = 0;
         soundTimerDictionary[Sound.SawHit] = 0;
     }
