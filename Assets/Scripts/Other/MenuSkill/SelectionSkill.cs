@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,6 +48,9 @@ public class SelectionSkill : MonoBehaviour
     [Header("Generate Skill")]
     [SerializeField] private GameObject itemSkillTemplate;
     [SerializeField] private Transform contentSkill;
+
+    [Header("Anim No Chose Skill")]
+    [SerializeField] private Animator noChoseSkill;
 
     private List<int> idSkill;
     private List<int> randomIdSkill;
@@ -213,7 +216,7 @@ public class SelectionSkill : MonoBehaviour
     {
         if (!isChooseSkill)
         {
-            Debug.Log("Chon ky nang di ban oi!!!");   
+            noChoseSkill.SetTrigger("noChoseSkill");   
             return;
         }
         isChooseSkill = false;
@@ -349,7 +352,7 @@ public class SelectionSkill : MonoBehaviour
     {
         if (!isChooseItem)
         {
-            Debug.Log("Chon item de mua ban oi");
+            MenuSkillUI.Instance.SetInfoItem("Chọn vật phẩm cần mua");
             return;
         }
         ItemUI itemUI = GetItemUI(selectedIdItem);
@@ -362,7 +365,7 @@ public class SelectionSkill : MonoBehaviour
         }
         else
         {
-            Debug.Log("Khong du nang luong!!!");
+            MenuSkillUI.Instance.SetInfoItem("Không đủ năng lượng!!!");
         }
     }
 

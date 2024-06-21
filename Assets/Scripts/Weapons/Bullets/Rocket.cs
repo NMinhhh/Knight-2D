@@ -9,18 +9,23 @@ public class Rocket : MonoBehaviour
     [Space]
 
     [Header("Info")]
-    [SerializeField] private LayerMask whatIsEnemy;
     [SerializeField] private Transform checkPoint;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float radius;
     [SerializeField] private float radiusDamage;
     protected float speed;
     protected float timeLife;
+    private bool isDamage;
+    [Space]
+
+    [Header("Layer")]
+    [SerializeField] private LayerMask whatIsEnemy;
+    [SerializeField] private LayerMask whatIsDeathZone;
+
     protected AttackDetail attackDetail;
 
     private Animator anim;
     private Rigidbody2D rb;
-    private bool isDamage;
 
     void Start()
     {
@@ -50,31 +55,38 @@ public class Rocket : MonoBehaviour
             }
         }
 
+        timeLife -= Time.deltaTime;
         if (isDamage)
         {
             rb.velocity = Vector3.zero;
             anim.SetBool("explode", true);
         }
-        else
+        else if(CheckDeathZone() || timeLife <= 0)
         {
-            Destroy(gameObject, timeLife);
+            Destroy(gameObject);
         }
-        attackDetail.attackDir = transform;
+
     }
 
     private void FixedUpdate()
     {
-        Check();
+        CheckEnemy();
     }
 
-    void Check()
+    void CheckEnemy()
     {
         Collider2D enemy = Physics2D.OverlapCircle(checkPoint.position, radius, whatIsEnemy);
+        attackDetail.attackDir = transform;
         if (enemy && !isDamage)
         {
             isDamage = true;
         }
      
+    }
+
+    bool CheckDeathZone()
+    {
+        return Physics2D.OverlapCircle(checkPoint.position, radius, whatIsDeathZone);
     }
 
     protected virtual void Attack()

@@ -31,17 +31,17 @@ MonoBehaviour:
   - Type: 1
     image: {fileID: 271066013, guid: 5a8d4d72defdee84cbd9f68e708432ac, type: 3}
     price: 20
-    info: "T\u0103ng 30% s\u1EE9c t\u1EA5n c\xF4ng cho v\u0169 kh\xED"
+    info: "T\u0103ng 30% s\xE1t th\u01B0\u01A1ng cho v\u0169 kh\xED"
     amount: 30
   - Type: 1
     image: {fileID: 1679551867, guid: 5a8d4d72defdee84cbd9f68e708432ac, type: 3}
     price: 50
-    info: "T\u0103ng 50% t\u1EA5n c\xF4ng cho v\u0169 kh\xED"
+    info: "T\u0103ng 50% s\xE1t th\u01B0\u01A1ng cho v\u0169 kh\xED"
     amount: 50
   - Type: 1
     image: {fileID: -713540164, guid: 5a8d4d72defdee84cbd9f68e708432ac, type: 3}
     price: 100
-    info: "T\u0103ng 80% t\u1EA5n c\xF4ng cho v\u0169 kh\xED"
+    info: "T\u0103ng 80% s\xE1t th\u01B0\u01A1ng cho v\u0169 kh\xED"
     amount: 80
   - Type: 2
     image: {fileID: -212241947, guid: 5a8d4d72defdee84cbd9f68e708432ac, type: 3}

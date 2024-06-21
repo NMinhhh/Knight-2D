@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,17 +30,17 @@ public class WeaponItemUI : MonoBehaviour
 
     public void SetWeaponDamage(string damageText)
     {
-        this.damageText.text = "Damage: " + damageText;
+        this.damageText.text = "Sát thương: " + damageText;
     }
 
     public void SetWeaponBullets(string bulletsText)
     {
-        this.bullets.text ="Bullet: " + bulletsText;
+        this.bullets.text ="Số lượng đạn: " + bulletsText;
     }
 
     public void SetWeaponReload(string reloadText)
     {
-        this.reloadText.text ="Reload: " + reloadText+"s";
+        this.reloadText.text ="Nạp đạn: " + reloadText+"s";
     }
 
     public void SetWeaponPrice(string priceText)
@@ -58,7 +58,7 @@ public class WeaponItemUI : MonoBehaviour
     {
         button.interactable = true;
         button.image.sprite = btnEquipSprite;
-        price.text = "Equip";
+        price.text = "Trang bị";
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() => action(idx));
     }
@@ -67,7 +67,7 @@ public class WeaponItemUI : MonoBehaviour
     {
         button.image.sprite = btnEquipSprite;
         button.interactable = false;
-        price.text = "UnEquip";
+        price.text = "Trang bị";
     }
 
     public void OnClickDetailButton(int idx, Action<int> action)

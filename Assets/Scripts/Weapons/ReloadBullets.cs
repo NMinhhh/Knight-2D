@@ -18,7 +18,7 @@ public class ReloadBullets : MonoBehaviour
     {
         ResetBullet();
         currentReloadTimer = weapon.reload;
-        statsBullet.reloadImage.sprite = weapon.image;
+        statsBullet.weaponIcon.sprite = weapon.image;
         statsBullet.amountOfBulletText.text = weapon.bullet.ToString();
         statsBullet.reloadImage.fillAmount = 0;
     }
@@ -36,8 +36,7 @@ public class ReloadBullets : MonoBehaviour
 
     public void ResetBullet()
     {
-        if(weapon == null)
-            weapon = GameManager.Instance.GetWeaponSelected();
+        weapon = GameManager.Instance.GetWeaponSelected();
         amountOfBullet = weapon.bullet;
         amountOfBulletMax = amountOfBullet;
     }

@@ -125,11 +125,9 @@ MonoBehaviour:
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
   amountOfEnergy: 200
-  radiusPointDropEnergy: 15
   coinDead: 2800
   diamondDead: 20
   slowingTimer: 2
-  slowingColor: {r: 0, g: 0.4933915, b: 1, a: 1}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
@@ -141,8 +139,9 @@ MonoBehaviour:
   - {fileID: 7388974732351681410, guid: b9c93683d56f96c4b9c059644b937a31, type: 3}
   - {fileID: 2534683322770734101, guid: 583d23f8bbe42e84fbd99374a50ee5ac, type: 3}
   bulletDamage: 3
-  bulletSpeed: 18
-  bulletTimeLife: 10
+  bulletSpeed: 15
+  bulletTimeLife: 15
+  intrinsicCooldown: 0.1
   cavePref: {fileID: 2327767039087373662, guid: 47b32065e2785be4c998ce47af32e87d, type: 3}
   amountOfCave: 3
   enemys:
@@ -152,7 +151,7 @@ MonoBehaviour:
   - {fileID: 489224733829539740, guid: d2cc00f572e182d47acbfee28149c69a, type: 3}
   - {fileID: 2037897880958217304, guid: ddb3189e856374a4386bc25884083079, type: 3}
   amountOfEnemy: 5
-  summonCooldown: 0.5
+  summonCooldown: 1
   signalObj: {fileID: 2804138993721818002, guid: b18fadb123f1ef54c86c84e37626f8d9, type: 3}
   signalTimer: 1
   dashSpeed: 25

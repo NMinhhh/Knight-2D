@@ -190,7 +190,7 @@ MonoBehaviour:
   bombSpeed: 0
   bulletDamage: 0
   bulletSpeed: 15
-  bulletTimeLife: 10
+  bulletTimeLife: 15
   amountOfBullet: 5
 --- !u!95 &2189096476741107770
 Animator:

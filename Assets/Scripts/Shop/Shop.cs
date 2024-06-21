@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -88,7 +88,7 @@ public class Shop : MonoBehaviour
         Weapon weapon = weaponData.GetWeapon(idx);
         detailWeaponUI.SetNameText(weapon.name);
         detailWeaponUI.SetImage(weapon.image);
-        detailWeaponUI.SetIndexText($"Damage: {weapon.damage},Bullet: {weapon.bullet},Reload: {weapon.reload},Speed: {weapon.movementSpeed},Health: {weapon.maxHealth}");
+        detailWeaponUI.SetIndexText($"Sát thương: {weapon.damage},Số lượng đạn: {weapon.bullet},Nạp đạn: {weapon.reload},Tốc độ di chuyển: {weapon.movementSpeed},Máu: {weapon.maxHealth}");
         detailWeaponUI.SetInfoText(weapon.info);
         detailWeaponUI.gameObject.SetActive(true);
     }

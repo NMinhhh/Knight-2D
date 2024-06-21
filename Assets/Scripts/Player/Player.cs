@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float movementSpeed;
     private float currenSpeed;
+    private float speed;
     private Vector2 movement;
 
     [Header("Health")]
@@ -31,6 +32,8 @@ public class Player : MonoBehaviour
     [Space]
     [SerializeField] private GameObject floatingText;
     [SerializeField] private Color floatingTextColor;
+    [SerializeField] private Transform handleWeapon;
+    private SpriteRenderer weaponSpriteRenderer;
 
     //Other Variable
     public bool isFacingRight {  get; private set; }
@@ -43,7 +46,6 @@ public class Player : MonoBehaviour
     private PlayerStats stats;
 
     public Weapon weaponSelected { get; private set; }
-
 
     //Componet
     private Rigidbody2D rb;
@@ -128,24 +130,42 @@ public class Player : MonoBehaviour
 
     IEnumerator Imortal()
     {
+        GetSpriteWeapon();
         isImortal = true;
-        currenSpeed = Mathf.Clamp(movementSpeed + movementSpeed / 2, 0, 12);
+        currenSpeed = 12;
         for (int i = 0; i < numberOfFlash; i++)
         {
             sprite.color = new Color(.95f, .55f, .55f, 1);
+            weaponSpriteRenderer.color = new Color(.95f, .55f, .55f, 1);
             yield return new WaitForSeconds(imortalTime / (numberOfFlash * 2));
             sprite.color = Color.white;
+            weaponSpriteRenderer.color = Color.white;
             yield return new WaitForSeconds(imortalTime / (numberOfFlash * 2));
         }
-        currenSpeed = movementSpeed;
+        currenSpeed = speed;
         isImortal = false;
+    }
+
+    void GetSpriteWeapon()
+    {
+        if (weaponSpriteRenderer == null)
+        {
+            int count = handleWeapon.childCount;
+            for(int i = 0; i < count; i++)
+            {
+                if (handleWeapon.GetChild(i).gameObject.activeInHierarchy)
+                {
+                    weaponSpriteRenderer = handleWeapon.GetChild(i).GetComponent<SpriteRenderer>();
+                }
+            }
+        }
     }
 
     public void Born()
     {
         isDie = false;
         StartCoroutine(Imortal());
-        currentHelth = maxHealth;
+        currentHelth = health;
         stats.UpdateHealth(health, health);
 
     }
@@ -153,7 +173,8 @@ public class Player : MonoBehaviour
     public void IncreaseSpeed(float amount)
     {
         ResetPlayer();
-        currenSpeed += movementSpeed * amount / 100;
+        speed += movementSpeed * amount / 100;
+        currenSpeed = speed;
     }
 
     public void AddHealth(float amout)
@@ -173,8 +194,9 @@ public class Player : MonoBehaviour
     public void ResetPlayer()
     {
         health = Mathf.FloorToInt(maxHealth);
+        speed = movementSpeed;
         currentHelth = health;
-        currenSpeed = movementSpeed;
+        currenSpeed = speed;
         stats.UpdateHealth(currentHelth, health);
 
     }

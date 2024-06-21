@@ -20,11 +20,13 @@ public class PenetratingBullet : MonoBehaviour
 
     [SerializeField] private int amountOfEnemyCol;
     private int currentAmountOfEnemyCol;
+    [Space]
+
+    [Header("Layer")]
+    [SerializeField] private LayerMask whatIsEnemy;
+    [SerializeField] private LayerMask whatIsDeathZone;
 
     private List<GameObject> listEnemyCol;
-
-    [SerializeField] private LayerMask whatIsEnemy;
-    [SerializeField] private LayerMask whatIsWall;
 
     private Rigidbody2D rb;
 
@@ -58,22 +60,15 @@ public class PenetratingBullet : MonoBehaviour
         Attack();
 
         timeLife -= Time.deltaTime;
-        if (timeLife <= 0 || currentAmountOfEnemyCol <= 0)
+        if (CheckDeathZone() || timeLife <= 0 || currentAmountOfEnemyCol <= 0)
         {
             Destroy(gameObject);
         }
     }
 
-    bool CheckWall()
+    bool CheckDeathZone()
     {
-        return Physics2D.OverlapCircle(checkPoint.position, radius, whatIsWall);
-    }
-
-    public void CreateBullet(float damage, float speed, float timeLife)
-    {
-        this.damage = damage;
-        this.speed = speed;
-        this.timeLife = timeLife;
+        return Physics2D.OverlapCircle(checkPoint.position, radius, whatIsDeathZone);
     }
 
     public void AddEnemyCol(GameObject enemyCol)
@@ -97,6 +92,13 @@ public class PenetratingBullet : MonoBehaviour
                 col.transform.SendMessage("Damage", attackDetail);
             }
         }
+    }
+
+    public void CreateBullet(float damage, float speed, float timeLife)
+    {
+        this.damage = damage;
+        this.speed = speed;
+        this.timeLife = timeLife;
     }
 
     private void OnDrawGizmos()

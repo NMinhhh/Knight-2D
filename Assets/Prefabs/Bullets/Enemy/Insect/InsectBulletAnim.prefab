@@ -188,6 +188,9 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 64
+  whatIsDeathZone:
+    serializedVersion: 2
+    m_Bits: 1024
   sizecheck: {x: 0.71, y: 0.65}
 --- !u!50 &8635492767921746447
 Rigidbody2D:

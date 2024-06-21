@@ -47,7 +47,6 @@ public class MapManager : MonoBehaviour
 
     private void Start()
     {
-        CanvasManager.Instance.EnergyUIActive();
         player = GameObject.Find("Player").GetComponent<Player>();
         diamondPay = 1;
         isWin = false;
@@ -88,7 +87,7 @@ public class MapManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Ko du kim cuong");
+            GameStateUI.Instance.NoEnoughDiamond();
             return;
         }
         diamondPay++;
@@ -137,9 +136,9 @@ public class MapManager : MonoBehaviour
         return energy >= amount;
     }
 
-    public void AddEnergy()
+    public void AddEnergy(int amount)
     {
-        energy += 1;
+        energy += amount;
     }
 
     public void UseEnergy(int amount)

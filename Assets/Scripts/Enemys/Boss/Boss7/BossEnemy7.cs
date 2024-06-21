@@ -162,7 +162,7 @@ public class BossEnemy7 : BossEnemy
         if (!changeDir)
         {
             currentAngle += GetAngle();
-            if (currentAngle >= 120)
+            if (currentAngle >= 150)
             {
                 changeDir = true;
                 currentAngle -= GetAngle();
@@ -171,7 +171,7 @@ public class BossEnemy7 : BossEnemy
         else
         {
             currentAngle -= GetAngle();
-            if (currentAngle <= 0)
+            if (currentAngle <= 30)
             {
                 changeDir = false;
                 currentAngle += GetAngle();
@@ -180,7 +180,7 @@ public class BossEnemy7 : BossEnemy
         foreach (Transform point in shootingPoint)
         {
             point.localEulerAngles = new Vector3(0, 0, currentAngle - 90 + transform.localEulerAngles.z);
-            bulletGo = GameObject.Instantiate(bulletPref, point.transform.position, Quaternion.Euler((point == shootingPoint[0] ? 0 : 180), 0, point.localEulerAngles.z));
+            bulletGo = GameObject.Instantiate(bulletPref, point.transform.position, Quaternion.Euler(0, 0, point.localEulerAngles.z));
             bulletScript = bulletGo.GetComponent<NormalBullet>();
             bulletScript.CreateBullet(bulletDamage, bulletSpeed, bulletTimeLife);
         }
@@ -193,7 +193,7 @@ public class BossEnemy7 : BossEnemy
         Vector3[] destination = new Vector3[amountOfCave];
         for (int i = 0; i < amountOfCave; i++)
         {
-            destination[i] = GetPositionInCam.Instance.GetPositionInArea();
+            destination[i] = SpawnerManager.Instance.GetRandomSpawnPosition();
         }
         return destination;
     }
@@ -254,7 +254,7 @@ public class BossEnemy7 : BossEnemy
     void SpawnBombObj()
     {
         Vector3 destination;
-        destination = GetPositionInCam.Instance.GetPositionInArea();
+        destination = SpawnerManager.Instance.GetRandomSpawnPosition();
         bombExplodeGo = Instantiate(bombExplodePref, transform.position, Quaternion.identity);
         bombExplodeScript = bombExplodeGo.GetComponent<BombExplode>();
         bombExplodeScript.CreateBomb(destination, bombSpeed, Random.Range(delayExplosion.x, delayExplosion.y), bulletBombDamage, amountOfBulletInBomb);

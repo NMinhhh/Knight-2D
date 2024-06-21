@@ -34,6 +34,7 @@ public class AcidEnemyRangeAttack : AcidEnemy
     protected override void Start()
     {
         base.Start();
+        shootTimer = shootCooldown;
     }
 
     protected override void Update()

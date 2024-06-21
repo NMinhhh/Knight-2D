@@ -118,18 +118,16 @@ MonoBehaviour:
   isHealthByStage: 1
   basicHealth: 200
   healthLevelUp: 90
-  healthLevelUpPercent: 5
+  healthLevelUpPercent: 8
   damageTimerCon: 0.1
   hurtEffectTimer: 0.1
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
   amountOfEnergy: 1
-  radiusPointDropEnergy: 0
   coinDead: 0
   diamondDead: 0
   slowingTimer: 2
-  slowingColor: {r: 0.13850313, g: 0.43042514, b: 0.93710685, a: 1}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
@@ -139,8 +137,8 @@ MonoBehaviour:
   checkPlayerDetectedSize: {x: 52, y: 20}
   bulletSpeed: 12
   bulletDamage: 2
-  bulletTimeLife: 10
-  shootCooldown: 5
+  bulletTimeLife: 15
+  shootCooldown: 3
   idleCooldown: 0.5
 --- !u!50 &2059813883859736856
 Rigidbody2D:

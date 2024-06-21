@@ -215,7 +215,10 @@ MonoBehaviour:
   - {fileID: 1996348873, guid: 62d6f7f2779c5824b8debe8d97a006d2, type: 3}
   powerForce: 50
   radius: 0.5
-  radiusCheck: 10
+  radiusCheck: 13
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 128
+  whatIsDeathZone:
+    serializedVersion: 2
+    m_Bits: 1024

@@ -130,6 +130,9 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 64
+  whatIsDeathZone:
+    serializedVersion: 2
+    m_Bits: 1024
   sizecheck: {x: 0.79, y: 0.47}
 --- !u!1 &3386289131637855024
 GameObject:

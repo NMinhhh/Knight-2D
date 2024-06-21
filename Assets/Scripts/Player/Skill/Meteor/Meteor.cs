@@ -16,12 +16,14 @@ public class Meteor : MonoBehaviour
     [Space]
     [Space]
 
+    [Header("Layer")]
     [SerializeField] private LayerMask whatIsEnemy;
-    [SerializeField] private LayerMask whatIsWall;
+    [SerializeField] private LayerMask whatIsDeathZone;
 
     private Rigidbody2D rb;
 
     AttackDetail attackDetail;
+
     void Start()
     {
         attackDetail.attackDir = transform;
@@ -44,24 +46,16 @@ public class Meteor : MonoBehaviour
         Attack();
 
         timeLife -= Time.deltaTime;
-        if(timeLife <= 0 || CheckWall())
+        if(timeLife <= 0 || CheckDeathZone())
         {
             Destroy(gameObject);
         }
     }
 
-    bool CheckWall()
+    bool CheckDeathZone()
     {
-        return Physics2D.OverlapCircle(checkPoint.position, radius, whatIsWall);
+        return Physics2D.OverlapCircle(checkPoint.position, radius, whatIsDeathZone);
     }
-
-    public void CreateMeteor(float damage, float speed, float timeLife)
-    {
-        this.damage = damage;
-        this.speed = speed;
-        this.timeLife = timeLife;
-    }
-
 
     void Attack()
     {
@@ -74,6 +68,13 @@ public class Meteor : MonoBehaviour
             Instantiate(particle, hit.transform.position, Quaternion.identity);
             hit.transform.SendMessage("Damage", attackDetail);
         }
+    }
+
+    public void CreateMeteor(float damage, float speed, float timeLife)
+    {
+        this.damage = damage;
+        this.speed = speed;
+        this.timeLife = timeLife;
     }
 
     private void OnDrawGizmos()

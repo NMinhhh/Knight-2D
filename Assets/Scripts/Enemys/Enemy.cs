@@ -57,16 +57,13 @@ public class Enemy : MonoBehaviour
     [Header("Dead")]
     [SerializeField] private GameObject particleBlood;
     [SerializeField] protected int amountOfEnergy;
-    [SerializeField] protected float radiusPointDropEnergy;
     [SerializeField] protected int coinDead;
     [SerializeField] protected int diamondDead;
-    protected Vector3 dropItemPoint;
     [Space]
     [Space]
 
     [Header("Slowing")]
     [SerializeField] private float slowingTimer;
-    [SerializeField] private Color slowingColor;
     private bool isSlowingEffect;
     private float slowingTimerCur;
     private float decreseaSpeedPercent;
@@ -143,7 +140,7 @@ public class Enemy : MonoBehaviour
         currentDamageTimeCon -= Time.deltaTime;
 
         if (isSlowingEffect)
-            SlowingEffect();
+            Slowing();
     }
 
     void IsSlowingEffect(int percent)
@@ -153,35 +150,24 @@ public class Enemy : MonoBehaviour
         this.decreseaSpeedPercent = percent;
     }
 
-    void SlowingEffect()
+    void Slowing()
     {
         slowingTimerCur -= Time.deltaTime;
-        spriteRenderer.color = slowingColor;
         if (slowingTimerCur <= 0)
         {
-            spriteRenderer.color = new Color(1, 1, 1, 1);
             isSlowingEffect = false;
         }
 
-    }
-
-    protected virtual void DropItem()
-    {
-        for (int i = 0; i < amountOfEnergy; i++)
-        {
-            dropItemPoint = Random.insideUnitCircle * radiusPointDropEnergy;
-            SpawnerManager.Instance.SpawnEnergy(transform.position + dropItemPoint);
-        }
     }
 
 
     protected virtual void Dead()
     {
         Instantiate(particleBlood, transform.position, Quaternion.identity);
-        DropItem();
         Destroy(gameObject);
         MapManager.Instance.PickUpCoin(coinDead);
         MapManager.Instance.PickUpDiamond(diamondDead);
+        MapManager.Instance.AddEnergy(amountOfEnergy);
     }
 
 
@@ -293,6 +279,5 @@ public class Enemy : MonoBehaviour
     {
         Gizmos.DrawWireSphere(checkPlayerPos.position, checkRadius);
         Gizmos.DrawWireSphere(touchDamagePos.position, touchRadius);
-        Gizmos.DrawWireSphere(transform.position, radiusPointDropEnergy);
     }
 }

@@ -117,7 +117,7 @@ public class BossEnemy4 : BossEnemy
         {
             go = Instantiate(objPref, destination[i], Quaternion.identity);
             damageAnimScript = go.GetComponent<DamageAnimation>();
-            damageAnimScript.CreateObj(damageDir, objTimeLife);
+            damageAnimScript.CreateObj(damageSkill, objTimeLife);
         }
     }
 

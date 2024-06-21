@@ -16,7 +16,7 @@ MonoBehaviour:
   - id: 0
     image: {fileID: -507544236, guid: 47026237eb26d674aa002a36be7f5e50, type: 3}
     name: Virus No1
-    price: 10
+    price: 100
     isPurchased: 1
   - id: 1
     image: {fileID: -1516969294, guid: 47026237eb26d674aa002a36be7f5e50, type: 3}
@@ -26,20 +26,85 @@ MonoBehaviour:
   - id: 2
     image: {fileID: 1260698552, guid: 47026237eb26d674aa002a36be7f5e50, type: 3}
     name: Virus No3
-    price: 300
+    price: 100
     isPurchased: 0
   - id: 3
     image: {fileID: 1441546110, guid: 47026237eb26d674aa002a36be7f5e50, type: 3}
     name: Virus No4
-    price: 500
+    price: 100
     isPurchased: 0
   - id: 4
     image: {fileID: -3262175, guid: 47026237eb26d674aa002a36be7f5e50, type: 3}
     name: Virus No5
-    price: 600
-    isPurchased: 1
+    price: 100
+    isPurchased: 0
   - id: 5
     image: {fileID: -1881881855, guid: 47026237eb26d674aa002a36be7f5e50, type: 3}
     name: Virus No6
-    price: 600
+    price: 100
+    isPurchased: 0
+  - id: 6
+    image: {fileID: -1002718963, guid: 494ca23d37c4d4b4bac171801273bf1f, type: 3}
+    name: Slime No1
+    price: 100
+    isPurchased: 0
+  - id: 7
+    image: {fileID: -993766781, guid: f541d865d1cd68e4e911b7b789a36541, type: 3}
+    name: Slime No2
+    price: 100
+    isPurchased: 0
+  - id: 8
+    image: {fileID: 1532518887, guid: a2e0924af69a21143ba307ea93218d8f, type: 3}
+    name: Slime No3
+    price: 100
+    isPurchased: 0
+  - id: 9
+    image: {fileID: -1508429722, guid: a2e0924af69a21143ba307ea93218d8f, type: 3}
+    name: Slime No4
+    price: 100
+    isPurchased: 0
+  - id: 10
+    image: {fileID: 824552930, guid: 938546f9762a2b14e9bd9f4f78a7880c, type: 3}
+    name: Slime No5
+    price: 100
+    isPurchased: 0
+  - id: 11
+    image: {fileID: -1779313570, guid: da588671f6f43094db2dded480abbf6c, type: 3}
+    name: Slime No6
+    price: 100
+    isPurchased: 0
+  - id: 12
+    image: {fileID: -219240042, guid: ac8a8ab7c2c06e141baf5ab1545f588a, type: 3}
+    name: Insect No1
+    price: 100
+    isPurchased: 0
+  - id: 13
+    image: {fileID: 1807438355, guid: 071fbcc1314dc97498c4672812c37228, type: 3}
+    name: Insect No2
+    price: 100
+    isPurchased: 0
+  - id: 14
+    image: {fileID: -170513865, guid: 57de25cbc142c03418f6c7150cd956db, type: 3}
+    name: Insect No3
+    price: 100
+    isPurchased: 0
+  - id: 15
+    image: {fileID: 621686925, guid: 2bd3fdac1a4983246ba668b694a66496, type: 3}
+    name: Insect No4
+    price: 100
+    isPurchased: 0
+  - id: 16
+    image: {fileID: -2103811822, guid: 6e38f8a9028e3c842b441db1e3dad937, type: 3}
+    name: Insect No5
+    price: 100
+    isPurchased: 0
+  - id: 17
+    image: {fileID: 1093159623, guid: 884c6a0cbbb3f024faaf1fbd4f3e243f, type: 3}
+    name: Insect No6
+    price: 100
+    isPurchased: 0
+  - id: 18
+    image: {fileID: -1879344194, guid: cb83f74eced1e4849ae1aee94a817451, type: 3}
+    name: Insect No7
+    price: 100
     isPurchased: 0

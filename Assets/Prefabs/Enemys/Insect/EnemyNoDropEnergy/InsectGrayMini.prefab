@@ -113,10 +113,10 @@ MonoBehaviour:
   checkRadius: 0.55
   touchDamagePos: {fileID: 1112420182560122787}
   touchRadius: 1
-  touchDamage: 1
+  touchDamage: 3
   touchCooldown: 0.5
   isHealthByStage: 0
-  basicHealth: 264
+  basicHealth: 364
   healthLevelUp: 0
   healthLevelUpPercent: 0
   damageTimerCon: 0.1
@@ -125,11 +125,9 @@ MonoBehaviour:
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
   amountOfEnergy: 0
-  radiusPointDropEnergy: 0
   coinDead: 0
   diamondDead: 0
   slowingTimer: 2
-  slowingColor: {r: 0.3233652, g: 0.60387003, b: 0.9433962, a: 1}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64

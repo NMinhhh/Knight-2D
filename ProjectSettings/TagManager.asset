@@ -5,8 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - Item
   - Cave
+  - Music
+  - SoundUI
+  - SoundGamePlay
   layers:
   - Default
   - TransparentFX
@@ -18,9 +20,9 @@ TagManager:
   - Enemy
   - Wall
   - Bullet
-  - Store
-  - Shield
-  - Laser
+  - DeathZone
+  - 
+  - 
   - 
   - 
   - 

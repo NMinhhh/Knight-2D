@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -61,6 +61,7 @@ public class ResetGameUI : MonoBehaviour
     void IsReset()
     {
         SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
+        SoundFXManager.Instance.StopMusic();
         isReset = true;
         Time.timeScale = 1;
         resetUI.SetActive(true);
@@ -71,7 +72,7 @@ public class ResetGameUI : MonoBehaviour
         currentResetTimer += Time.deltaTime;
         if(currentResetTimer > resetTimer)
         {
-            SetResetText("Reset game thanh cong");
+            SetResetText("Reset game thành công!");
             currentDelayTimer += Time.deltaTime;
             if(currentDelayTimer > delayTimer)
             {
@@ -82,7 +83,7 @@ public class ResetGameUI : MonoBehaviour
         }
         else
         {
-            SetResetText("Dang reset game, vui long doi...");
+            SetResetText("Đang reset game, vui lòng đợi...");
         }
     }
 

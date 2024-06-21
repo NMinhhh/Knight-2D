@@ -217,9 +217,9 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 128
-  whatIsWall:
+  whatIsDeathZone:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1024
 --- !u!1 &2904523373670253535
 GameObject:
   m_ObjectHideFlags: 0

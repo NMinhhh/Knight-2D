@@ -212,4 +212,7 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 128
+  whatIsDeathZone:
+    serializedVersion: 2
+    m_Bits: 1024
   sizecheck: {x: 0.5, y: 0.19}

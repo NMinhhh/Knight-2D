@@ -66,7 +66,6 @@ public class Map1 : MonoBehaviour
             {
                 if (SpawnerManager.Instance.CheckListEnemy())
                 {
-                    RecieveItem();
                     if (!isWin)
                     {
                         isWin = true;
@@ -84,7 +83,6 @@ public class Map1 : MonoBehaviour
             {
                 if (SpawnerManager.Instance.CheckListEnemy() && !isChangeStage)
                 {
-                    RecieveItem();
                     endStageTimer -= Time.deltaTime;
                     if (endStageTimer <= 0)
                     {
@@ -127,9 +125,12 @@ public class Map1 : MonoBehaviour
     {
         if (!GameManager.Instance.GetMapState())
         {
+            if(mapLevel < GameData.Instance.GetMapData().GetMapLength())
+            {
+                GameManager.Instance.AddMapUnlock(mapLevel);
+            }
             GameManager.Instance.SetMapState(true);
             GameManager.Instance.AddMapWin(mapLevel - 1);
-            GameManager.Instance.AddMapUnlock(mapLevel);
             GameData.Instance.SetMapData();
             MapManager.Instance.PickUpCoin(coinWin);
             MapManager.Instance.PickUpDiamond(diamondWin);
@@ -185,16 +186,6 @@ public class Map1 : MonoBehaviour
         enemyIndex = 0;
         spawnCooldown = 0;
         stageUI.CloseStageUI();
-    }
-
-    void RecieveItem()
-    {
-        items.AddRange(GameObject.FindGameObjectsWithTag("Item"));
-        for (int i = 0;i < items.Count;i++)
-        {
-            items[i].transform.SendMessage("CanMove");
-        }
-        items.Clear();
     }
 
 }

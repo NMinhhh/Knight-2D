@@ -20,14 +20,14 @@ MonoBehaviour:
     sizeImage: {x: 200, y: 200}
     info: "T\u1EA1o 1 shuriken quay xung quanh ng\u01B0\u1EDDi ch\u01A1i"
     index:
-    - "+ 1 shuriken,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+ 10% s\xE1t
+    - "+ 1 shuriken,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+ 8% s\xE1t
       th\u01B0\u01A1ng th\xEAm"
-    - "+ 1 shuriken,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+ 10% s\xE1t
+    - "+ 1 shuriken,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+ 8% s\xE1t
       th\u01B0\u01A1ng th\xEAm"
-    - "+ 1 shuriken,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+ 10% s\xE1t
+    - "+ 1 shuriken,+ T\u0103ng s\xE1t th\u01B0\u01A1ng theo c\u1EA5p,+ 8% s\xE1t
       th\u01B0\u01A1ng th\xEAm"
   - skillName: 1
-    level: 2
+    level: 1
     maxLevel: 4
     image: {fileID: 21300000, guid: 4875493f74e862f46bcdafaa88e5d213, type: 3}
     sizeImage: {x: 210, y: 210}
@@ -126,12 +126,15 @@ MonoBehaviour:
     maxLevel: 4
     image: {fileID: -1369152237, guid: 35eda4cb25fe3734885d8fa1cbd9d80f, type: 3}
     sizeImage: {x: 210, y: 210}
-    info: "T\u1EA1o v\xF9ng l\xE0m ch\u1EADm 10% t\u1ED1c \u0111\u1ED9 c\u1EE7a k\u1EBB
-      th\xF9"
+    info: "T\u1EA1o v\xF9ng l\xE0m ch\u1EADm 10% t\u1ED1c \u0111\u1ED9 v\xE0 g\xE2y
+      s\xE1t th\u01B0\u01A1ng l\xEAn k\u1EBB th\xF9"
     index:
-    - "+ L\xE0m ch\u1EADm 18% t\u1ED1c \u0111\u1ED9 k\u1EBB th\xF9"
-    - "+ L\xE0m ch\u1EADm 30% t\u1ED1c \u0111\u1ED9 k\u1EBB th\xF9"
-    - "+ L\xE0m ch\u1EADm 45% t\u1ED1c \u0111\u1ED9 k\u1EBB th\xF9"
+    - "+ L\xE0m ch\u1EADm 18% t\u1ED1c \u0111\u1ED9 k\u1EBB th\xF9,+ T\u0103ng s\xE1t
+      th\u01B0\u01A1ng theo c\u1EA5p,+ 5% s\xE1t th\u01B0\u01A1ng th\xEAm"
+    - "+ L\xE0m ch\u1EADm 30% t\u1ED1c \u0111\u1ED9 k\u1EBB th\xF9,+ T\u0103ng s\xE1t
+      th\u01B0\u01A1ng theo c\u1EA5p,+ 5% s\xE1t th\u01B0\u01A1ng th\xEAm"
+    - "+ L\xE0m ch\u1EADm 45% t\u1ED1c \u0111\u1ED9 k\u1EBB th\xF9,+ T\u0103ng s\xE1t
+      th\u01B0\u01A1ng theo c\u1EA5p,+ 5% s\xE1t th\u01B0\u01A1ng th\xEAm"
   - skillName: 9
     level: 1
     maxLevel: 4

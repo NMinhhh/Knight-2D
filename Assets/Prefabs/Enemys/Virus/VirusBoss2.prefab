@@ -126,11 +126,9 @@ MonoBehaviour:
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
   amountOfEnergy: 200
-  radiusPointDropEnergy: 15
   coinDead: 1000
   diamondDead: 10
   slowingTimer: 2
-  slowingColor: {r: 0, g: 0.4927628, b: 1, a: 1}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
@@ -142,7 +140,7 @@ MonoBehaviour:
   amountOfBullet: 25
   bulletDamage: 1.5
   bulletSpeed: 13
-  timeLife: 5
+  timeLife: 15
   shootingCooldown: 0.1
   angleRan: {x: 60, y: 120}
   swawp: {fileID: 2863268492341516025, guid: c45da8eef95671a49a14490612f83a18, type: 3}

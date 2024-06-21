@@ -19,9 +19,9 @@ public class GameStateUI : MonoBehaviour
     [Header("Born UI")]
     [SerializeField] private GameObject bornUI;
     [SerializeField] private Text diamondPayText;
-    [SerializeField] private Button btnClose;
     [SerializeField] private Button btnToBorn;
     [SerializeField] private Text timeText;
+    [SerializeField] private GameObject noEnoughDiamond;
     private bool isCheckTimer;
     private float timer = 1;
     private float second = 8;
@@ -53,28 +53,34 @@ public class GameStateUI : MonoBehaviour
 
     public void OpenWinUI()
     {
+        SoundFXManager.Instance.StopMusic();
         SetPickUpValue();
         gameStateTitle[0].SetActive(true);
         stateUI.SetActive(true);
+        gameStateTitle[0].transform.GetChild(2).GetComponent<AudioSource>().Play();
         Time.timeScale = 0;
         
     }
 
     public void OpenLossUI()
     {
+        SoundFXManager.Instance.StopMusic();
         gameStateTitle[1].SetActive(true);
         bornUI.SetActive(true);
         stateUI.SetActive(true);
+        gameStateTitle[1].transform.GetChild(2).GetComponent<AudioSource>().Play();
         isCheckTimer = true;
         Time.timeScale = 0;
     }
 
     public void CloseLoseUI()
     {
-        foreach (GameObject item in gameStateTitle)
+        foreach (GameObject title in gameStateTitle)
         {
-            item.SetActive(false);
+            title.SetActive(false);
+            title.transform.GetChild(2).GetComponent<AudioSource>().Stop();
         }
+        SoundFXManager.Instance.PlayMusic();
         ResetBornUI();
         stateUI.SetActive(false);
         Time.timeScale = 1;
@@ -107,11 +113,17 @@ public class GameStateUI : MonoBehaviour
         ResetBornUI();
     }
 
+    public void NoEnoughDiamond()
+    {
+        noEnoughDiamond.SetActive(true);
+    }
+
     void ResetBornUI()
     {
         isCheckTimer = false;
         second = 8;
         timeText.text = second.ToString();
+        noEnoughDiamond.SetActive(false);
         bornUI.SetActive(false);
     }
 

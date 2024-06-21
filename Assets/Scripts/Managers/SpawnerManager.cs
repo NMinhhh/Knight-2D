@@ -19,9 +19,6 @@ public class SpawnerManager : MonoBehaviour
     private List<GameObject> enemyCheck = new List<GameObject>();
     private List<GameObject> enemies = new List<GameObject>();
 
-    [Header("Energy pref")]
-    [SerializeField] private GameObject energy;
-
     private void Awake()
     {
         if(Instance == null)
@@ -32,11 +29,6 @@ public class SpawnerManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    public void SpawnEnemy(GameObject enemy, float delayTimer)
-    {
-        StartCoroutine(Spawn(enemy, delayTimer));
     }
 
     public int GetListEnemyCount()
@@ -88,20 +80,6 @@ public class SpawnerManager : MonoBehaviour
         enemy.SetActive(true);
     }
 
-    IEnumerator Spawn(GameObject enemy, float delayTimer)
-    {
-        GameObject go = Instantiate(iconSpawner, GetRandomSpawnPosition(), Quaternion.identity);
-        GameObject spawnGo = Instantiate(enemy, go.transform.position, Quaternion.identity);
-        spawnGo.SetActive(false);
-        spriteRenderer = spawnGo.GetComponent<SpriteRenderer>();
-        sortingOrder++;
-        spriteRenderer.sortingOrder = sortingOrder;
-        enemyCheck.Add(spawnGo);    
-        yield return new WaitForSeconds(delayTimer);
-        spawnGo.SetActive(true);
-        Destroy(go);
-    }
-
     public bool CheckListEnemy()
     {
         for (int i = 0; i < enemyCheck.Count; i++)
@@ -112,11 +90,6 @@ public class SpawnerManager : MonoBehaviour
             }
         }
         return enemyCheck.Count == 0;
-    }
-
-    public void SpawnEnergy(Vector2 pos)
-    {
-        Instantiate(energy, pos, Quaternion.identity);
     }
 
 

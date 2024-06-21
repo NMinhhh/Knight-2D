@@ -271,11 +271,9 @@ MonoBehaviour:
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
   amountOfEnergy: 100
-  radiusPointDropEnergy: 15
   coinDead: 500
   diamondDead: 5
   slowingTimer: 2
-  slowingColor: {r: 0.17295581, g: 0.6232785, b: 1, a: 1}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
@@ -288,7 +286,7 @@ MonoBehaviour:
   amountOfBullet: 5
   bulletDamage: 1.5
   bulletSpeed: 25
-  timeLife: 5
+  timeLife: 15
   shootingCooldown: 0.3
 --- !u!50 &5607816810349676187
 Rigidbody2D:

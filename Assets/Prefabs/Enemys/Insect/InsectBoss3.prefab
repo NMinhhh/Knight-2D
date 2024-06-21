@@ -271,11 +271,9 @@ MonoBehaviour:
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 913645698501638283, guid: 51b82a9cf41d56348bd460be1b79635f, type: 3}
   amountOfEnergy: 300
-  radiusPointDropEnergy: 15
   coinDead: 4500
   diamondDead: 30
   slowingTimer: 2
-  slowingColor: {r: 0, g: 0.3521664, b: 1, a: 1}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
@@ -290,13 +288,13 @@ MonoBehaviour:
   amoutOfBulletRan: {x: 50, y: 80}
   bulletDamage: 3
   bulletSpeed: 13
-  bulletTimeLife: 10
+  bulletTimeLife: 15
   angleRan: {x: 10, y: 20}
   bombExplodePref: {fileID: 8054797671242093306, guid: 541fa37fb0490a84c8212549ff3e9978, type: 3}
-  bombSpeed: 20
+  bombSpeed: 25
   bulletBombDamage: 3
-  delayExplosion: {x: 1, y: 2}
-  amountOfBomb: 3
+  delayExplosion: {x: 1, y: 3}
+  amountOfBomb: 5
   amountOfBulletInBomb: 10
   createBombCooldown: 1
   createBombSkillCooldown: 5
@@ -310,7 +308,7 @@ MonoBehaviour:
   - {fileID: 489224733829539740, guid: d2cc00f572e182d47acbfee28149c69a, type: 3}
   - {fileID: 2037897880958217304, guid: ddb3189e856374a4386bc25884083079, type: 3}
   amountOfEnemy: 6
-  summonCooldown: 0.5
+  summonCooldown: 1
   signalObj: {fileID: 2804138993721818002, guid: b18fadb123f1ef54c86c84e37626f8d9, type: 3}
   signalTimer: 1
 --- !u!50 &7750916860263160333

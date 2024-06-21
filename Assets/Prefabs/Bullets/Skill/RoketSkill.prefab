@@ -221,13 +221,16 @@ MonoBehaviour:
   - {fileID: 7178959583822711673}
   - {fileID: 4022121408501650503}
   - {fileID: 6976180393274464464}
-  whatIsEnemy:
-    serializedVersion: 2
-    m_Bits: 128
   checkPoint: {fileID: 2948264345931369008}
   attackPoint: {fileID: 1953970231804651720}
   radius: 0.55
-  radiusDamage: 3.6
+  radiusDamage: 4.89
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 128
+  whatIsDeathZone:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!50 &8350784367916115250
 Rigidbody2D:
   serializedVersion: 4

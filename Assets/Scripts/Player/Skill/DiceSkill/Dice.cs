@@ -6,20 +6,27 @@ public class Dice : MonoBehaviour
 {
     [Header("Light")]
     [SerializeField] private GameObject light2D;
+    [Space]
 
     [Header("Sprite to change")]
     [SerializeField] private Sprite[] skins;
+    [Space]
 
     [Header("Bounce Force")]
     [SerializeField] private float powerForce;
     private float damage;
     private float speed;
     private float timeLife;
+    [Space]
+
     [Header("Radius Check")]
     [SerializeField] private float radius;
     [SerializeField] private float radiusCheck;
+    [Space]
+
     [Header("Layer")]
     [SerializeField] private LayerMask whatIsEnemy;
+    [SerializeField] private LayerMask whatIsDeathZone;
 
     GameObject go;
 
@@ -61,7 +68,7 @@ public class Dice : MonoBehaviour
         {
             Attack();
             timeLife -= Time.deltaTime;
-            if(timeLife <= 0)
+            if(timeLife <= 0 || CheckDeathZone())
             {
                 Destroy(gameObject);
             }
@@ -79,11 +86,9 @@ public class Dice : MonoBehaviour
         }
     }
 
-    public void CreateDice(float damage, float speed, float timeLife)
+    bool CheckDeathZone()
     {
-        this.damage = damage;
-        this.speed = speed;
-        this.timeLife = timeLife;
+        return Physics2D.OverlapCircle(transform.position, radiusCheck, whatIsDeathZone);
     }
 
     void Bounce()
@@ -139,6 +144,13 @@ public class Dice : MonoBehaviour
             enemyCol.transform.SendMessage("Damage", attackDetail);
             listEnemyCol.Add(enemyCol.gameObject);
         }
+    }
+
+    public void CreateDice(float damage, float speed, float timeLife)
+    {
+        this.damage = damage;
+        this.speed = speed;
+        this.timeLife = timeLife;
     }
 
     private void OnDrawGizmos()

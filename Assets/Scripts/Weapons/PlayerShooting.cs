@@ -36,11 +36,6 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private AudioClip clip;
     [Space]
 
-    [Header("Muzzle Flash")]
-    [SerializeField] private bool isMuzzleFlash;
-
-    private Animator anim;
-
     Weapon weapon;
 
     private float currentDamage;
@@ -48,8 +43,6 @@ public class PlayerShooting : MonoBehaviour
     private void Start()
     {
         reloadBullets = GetComponent<ReloadBullets>();
-        if(isMuzzleFlash)
-            anim = transform.Find("MuzzleFlash").GetComponent<Animator>();
         ResetWeaponDamage();
     }
 
@@ -80,9 +73,6 @@ public class PlayerShooting : MonoBehaviour
         if (timer >= weapon.cooldown && reloadBullets.amountOfBullet > 0)
         {
             timer = 0;
-            if(anim)
-                anim.SetTrigger("shoot");
-
             Shooting(gunType);
             reloadBullets.UpdateBullets();
         }

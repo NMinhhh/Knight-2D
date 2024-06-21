@@ -190,9 +190,9 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 128
-  whatIsWall:
+  whatIsDeathZone:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1024
 --- !u!50 &2292563420016249243
 Rigidbody2D:
   serializedVersion: 4

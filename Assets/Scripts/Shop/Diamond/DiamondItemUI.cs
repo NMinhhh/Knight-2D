@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -63,7 +63,7 @@ public class DiamondItemUI : MonoBehaviour
     {
         GameData.Instance.GetDiamondData().GetDiamond(id).secondTimeLeft = 0;
         totalSecondLeft = 0;
-        timerText.text = "Reward";
+        timerText.text = "Nhận";
         btn.interactable = true;
     }
 

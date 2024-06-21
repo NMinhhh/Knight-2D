@@ -118,18 +118,16 @@ MonoBehaviour:
   isHealthByStage: 1
   basicHealth: 20
   healthLevelUp: 7
-  healthLevelUpPercent: 5
+  healthLevelUpPercent: 10
   damageTimerCon: 0.1
   hurtEffectTimer: 0.1
   floatingText: {fileID: 7847912362891611960, guid: bed61a85faf1a324280f58227254baba, type: 3}
   floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
   particleBlood: {fileID: 4106987093756705936, guid: 12d9bf5c1629fb646b58ec6b3cb57839, type: 3}
   amountOfEnergy: 1
-  radiusPointDropEnergy: 0
   coinDead: 0
   diamondDead: 0
   slowingTimer: 2
-  slowingColor: {r: 0, g: 0.5311723, b: 1, a: 1}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64

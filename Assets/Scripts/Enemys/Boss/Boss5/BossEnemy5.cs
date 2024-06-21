@@ -11,7 +11,10 @@ public class BossEnemy5 : BossEnemy
     [SerializeField] private float bulletDamage;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private float bulletTimeLife;
+    [SerializeField] private float intrinsicCooldown;
+    private float currentIntrinsicCooldown;
     private float angle;
+    private bool isIntrinsic;
     [Space]
 
     [Header("Cave Summon Enemy Skill")]
@@ -45,7 +48,12 @@ public class BossEnemy5 : BossEnemy
     protected override void RecieveDamage(AttackDetail attackDetail)
     {
         base.RecieveDamage(attackDetail);
-        SpawnBullet();
+        if (isIntrinsic)
+        {
+            isIntrinsic = false; 
+            currentIntrinsicCooldown = intrinsicCooldown;
+            SpawnBullet();
+        }
     }
 
     protected override void Start()
@@ -81,6 +89,16 @@ public class BossEnemy5 : BossEnemy
         {
             Dash(dashSpeed);
         }
+
+        if (!isIntrinsic)
+        {
+            currentIntrinsicCooldown -= Time.deltaTime;
+            if (currentIntrinsicCooldown <= 0)
+            {
+                isIntrinsic = true;
+            }
+        }
+        
     }
 
     //==================================Intrintic============================================
@@ -107,7 +125,7 @@ public class BossEnemy5 : BossEnemy
         Vector3[] destination = new Vector3[amountOfCave];
         for (int i = 0; i < amountOfCave; i++)
         {
-            destination[i] = GetPositionInCam.Instance.GetPositionInArea();
+            destination[i] = SpawnerManager.Instance.GetRandomSpawnPosition();
         }
         return destination;
     }

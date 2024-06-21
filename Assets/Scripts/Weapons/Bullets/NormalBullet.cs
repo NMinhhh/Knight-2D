@@ -6,8 +6,11 @@ public class NormalBullet : MonoBehaviour
 {
     [Header("Light")]
     [SerializeField] private GameObject light2D;
+    [Space]
 
+    [Header("Layer")]
     [SerializeField] private LayerMask whatIsEnemy;
+    [SerializeField] private LayerMask whatIsDeathZone;
     private float speed;
     private float timeLife;
     private Rigidbody2D rb;
@@ -15,7 +18,6 @@ public class NormalBullet : MonoBehaviour
     [SerializeField] private Vector2 sizecheck;
     private AttackDetail attackDetail;
 
-    private bool isWall;
     private bool isDamage;
     void Start()
     {
@@ -34,16 +36,12 @@ public class NormalBullet : MonoBehaviour
             light2D.SetActive(false);
         }
 
-        if (isDamage)
+        timeLife -= Time.deltaTime;
+        if(isDamage || CheckDeathZone() || timeLife <= 0)
         {
             Destroy(gameObject);
         }
-        else
-        {
-            Destroy(gameObject, timeLife);
-        }
-        attackDetail.attackDir = transform;
-        attackDetail.continousDamage = false;
+
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -54,12 +52,18 @@ public class NormalBullet : MonoBehaviour
     void Attack()
     {
         Collider2D enemy = Physics2D.OverlapBox(transform.position, sizecheck, transform.eulerAngles.z, whatIsEnemy);
-         if(enemy)
+        attackDetail.attackDir = transform;
+        attackDetail.continousDamage = false;
+        if (enemy)
         {
             isDamage = true;
             enemy.transform.SendMessage("Damage", attackDetail);
         }
-       
+    }
+
+    bool CheckDeathZone()
+    {
+        return Physics2D.OverlapBox(transform.position, sizecheck, transform.eulerAngles.z, whatIsDeathZone); ;
     }
 
     public void CreateBullet(float damage, float speed, float timeLife)

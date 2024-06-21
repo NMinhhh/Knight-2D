@@ -16,11 +16,6 @@ public class SelectedAvatar : MonoBehaviour
     private Button btn;
     [Space]
 
-    [Header("Selected Border")]
-    [SerializeField] private GameObject border;
-    private bool isChooseBorder;
-    [Space]
-
     [Header("Selected Avatar Image Current")]
     [SerializeField] private Image avatar;
 
@@ -34,26 +29,10 @@ public class SelectedAvatar : MonoBehaviour
     {
         avatarData = GameData.Instance.GetAvatarData();
         GenerateAvatarUI();
-        LayoutRebuilder.ForceRebuildLayoutImmediate(contentScrollView.GetComponent<GridLayoutGroup>().GetComponent<RectTransform>());
         selectedID = GameManager.Instance.GetSelectedAvatarID();
         SetAvatar(selectedID);
-
-        StartCoroutine(Move(0));
     }
 
-    private void Update()
-    {
-        if (isChooseBorder)
-        {
-            if (Vector3.Distance(border.transform.localPosition, CellPoint(selectedPoint)) <= .1f)
-            {
-                isChooseBorder = false;
-                GameObject go = contentScrollView.GetChild(selectedPoint).gameObject;
-                go.transform.GetChild(1).gameObject.SetActive(true);
-                border.SetActive(false);
-            }
-        }
-    }
 
     public void ChangeAvatar()
     {
@@ -92,31 +71,12 @@ public class SelectedAvatar : MonoBehaviour
         selectedID = id;
     }
 
-    void SelectedPoint(int id)
+    void SelectedPoint(int i)
     {
         SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
         contentScrollView.GetChild(selectedPoint).GetChild(1).gameObject.SetActive(false);
-        border.SetActive(true);
-        selectedPoint = id;
-        StartCoroutine(Move(id));
-    }
-
-    IEnumerator Move(int id)
-    {
-        isChooseBorder = true;
-        float time = 0;
-        float decreaseTime = 0.25f;
-        while (time < decreaseTime)
-        {
-            time += Time.deltaTime;
-            border.transform.localPosition = Vector3.Lerp(border.transform.localPosition, CellPoint(id), time / decreaseTime);
-            yield return null;
-        }
-    }
-
-    Vector3 CellPoint(int id)
-    {
-        return contentScrollView.GetChild(id).GetComponent<RectTransform>().localPosition;
+        contentScrollView.GetChild(i).GetChild(1).gameObject.SetActive(true);
+        selectedPoint = i;
     }
 
     public void OpenTabUI()
@@ -128,8 +88,6 @@ public class SelectedAvatar : MonoBehaviour
     public void CloseTabUI()
     {
         SoundFXManager.Instance.PlaySound(SoundFXManager.Sound.Click);
-        border.SetActive(false);
-        isChooseBorder = false;
         tabAvatarObj.SetActive(false);
     }
 

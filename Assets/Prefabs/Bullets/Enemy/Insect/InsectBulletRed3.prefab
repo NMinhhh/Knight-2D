@@ -51,6 +51,9 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 64
+  whatIsDeathZone:
+    serializedVersion: 2
+    m_Bits: 1024
   sizecheck: {x: 1.07, y: 0.41}
 --- !u!212 &5209542027658912634
 SpriteRenderer:

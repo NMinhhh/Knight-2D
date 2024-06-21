@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class SlowingSkill : MonoBehaviour
 {
-    [Header("Percent decresea speed")]
+    [Header("Info")]
     [Range(0,100)]
     [SerializeField] private float[] slowingSpeedPercent;
     private float currentSlowingSpeedPercent;
+    [SerializeField] private float damageLevelUp;
+    [Range(0, 100)]
+    [SerializeField] private float damageLevelUpPercent;
+    private float damage;
+
+    [Header("Cooldown")]
+    [SerializeField] private float cooldown;
+    private float timer;
+
+    [Space]
     [Header("Radius check enemy")]
     [SerializeField] private float radius;
 
@@ -16,19 +26,30 @@ public class SlowingSkill : MonoBehaviour
 
     private bool isSkill;
 
+    private int level;
+
     private Animator anim;
 
-    private int level;
+    private AttackDetail attackDetail;
 
     void Start()
     {
         anim = GetComponent<Animator>();
+        attackDetail.attackDir = transform;
+        timer = cooldown;
     }
 
     void Update()
     {
         if (!isSkill) return;
         Slowing();
+
+        timer += Time.deltaTime;
+        if (timer >= cooldown)
+        {
+            Attack();
+            timer = 0;
+        }
     }
 
     public void LevelUp(int level)
@@ -39,13 +60,25 @@ public class SlowingSkill : MonoBehaviour
             isSkill = true;
             anim.SetBool("isSkill", isSkill);
         }
-        UpdateCooldown();
+        currentSlowingSpeedPercent = slowingSpeedPercent[this.level - 1];
+        damage = SkillManager.Instance.CalculateSkillDamage(damageLevelUp, damageLevelUpPercent, this.level);
 
     }
 
-    void UpdateCooldown()
+    void Attack()
     {
-        currentSlowingSpeedPercent = slowingSpeedPercent[level - 1];
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius, whatIsEnemy);
+        attackDetail.damage = damage;
+        attackDetail.attackDir = transform;
+        attackDetail.continousDamage = false;
+
+        foreach (Collider2D hit in hits)
+        {
+            if (hit)
+            {
+                hit.transform.SendMessage("Damage", attackDetail);
+            }
+        }
     }
 
     public void Slowing()

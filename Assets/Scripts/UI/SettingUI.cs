@@ -22,7 +22,10 @@ public class SettingUI : MonoBehaviour
     void TimeStop()
     {
         if (isTimeStop)
+        {
             Time.timeScale = 0;
+            SoundFXManager.Instance.StopAudio();
+        }
         else
             Time.timeScale = 1;
     }
@@ -42,6 +45,10 @@ public class SettingUI : MonoBehaviour
         else
         {
             Time.timeScale = 1;
+        }
+        if (isTimeStop)
+        {
+            SoundFXManager.Instance.PlayAudio();
         }
         CanvasManager.Instance.CloseUI(settingUI);
     }
