@@ -92,7 +92,6 @@ public class GameStateUI : MonoBehaviour
         diamondText.text = MapManager.Instance.diamond.ToString();
         GameManager.Instance.AddDiamond(MapManager.Instance.diamond);
         GameManager.Instance.AddCoin(MapManager.Instance.coin);
-
     }
 
 

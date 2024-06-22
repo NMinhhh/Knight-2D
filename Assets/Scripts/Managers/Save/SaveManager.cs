@@ -54,6 +54,8 @@ public class SaveManager : MonoBehaviour
             GameManager.Instance.AddWeaponPurchasedIndex(0);
             GameManager.Instance.AddMapUnlock(0);
             GameManager.Instance.AddAvatarPurchased(0);
+            GameManager.Instance.AddCoin(1000000);
+            GameManager.Instance.AddDiamond(1000000);
         }
     }
 
