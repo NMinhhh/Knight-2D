@@ -81,13 +81,11 @@ public class DiamondItemUI : MonoBehaviour
                 totalSecondLeft = timer.TotalSeconds;
                 isProgress = true;
                 btn.interactable = false;
-                return;
             }
             else
             {
                 isProgress = false;
                 Reward();
-                return;
             }
         }
         else

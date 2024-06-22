@@ -88,7 +88,7 @@ public class Dice : MonoBehaviour
 
     bool CheckDeathZone()
     {
-        return Physics2D.OverlapCircle(transform.position, radiusCheck, whatIsDeathZone);
+        return Physics2D.OverlapCircle(transform.position, radius, whatIsDeathZone);
     }
 
     void Bounce()
@@ -152,7 +152,7 @@ public class Dice : MonoBehaviour
         this.speed = speed;
         this.timeLife = timeLife;
     }
-
+    
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, radius);

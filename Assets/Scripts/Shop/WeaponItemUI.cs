@@ -67,7 +67,7 @@ public class WeaponItemUI : MonoBehaviour
     {
         button.image.sprite = btnEquipSprite;
         button.interactable = false;
-        price.text = "Trang bị";
+        price.text = "Gỡ";
     }
 
     public void OnClickDetailButton(int idx, Action<int> action)

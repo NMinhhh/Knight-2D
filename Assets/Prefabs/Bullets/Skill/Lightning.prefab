@@ -108,4 +108,4 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 128
-  value: 1
+  value: 2

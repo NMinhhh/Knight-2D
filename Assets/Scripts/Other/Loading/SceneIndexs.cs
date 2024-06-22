@@ -4,8 +4,8 @@ using UnityEngine;
 
 public enum SceneIndexs
 {
-    LOADING = 0,
-    HOME = 1,
+    HOME = 0,
+    LOADING = 1,
     GAMEPLAY = 2,
     LEVEL = 3
 }

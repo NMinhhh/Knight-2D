@@ -25,9 +25,16 @@ public class SaveManager : MonoBehaviour
         SaveSystem.Init();
     }
 
-    private void OnApplicationQuit()
+    private void OnApplicationPause(bool pause)
     {
-        SaveGame();
+        if(pause)
+            SaveGame();
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        if(!focus)
+            SaveGame();
     }
 
     public string GetSaveName(string nameData)

@@ -23,7 +23,7 @@ public class DetailWeaponUI : MonoBehaviour
     public void SetIndexText(string indexText)
     {
         this.indexText.text = "";
-        string[] text = indexText.Split(',');
+        string[] text = indexText.Split('/');
         for (int i = 0; i < text.Length; i++)
         {
             this.indexText.text += text[i] + '\n';
