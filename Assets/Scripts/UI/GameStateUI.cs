@@ -39,7 +39,7 @@ public class GameStateUI : MonoBehaviour
             Destroy(gameObject);
         }
         timeText.text = second.ToString();
-        CloseLoseUI();
+        CloseLossUI();
     }
 
     // Update is called once per frame
@@ -73,7 +73,7 @@ public class GameStateUI : MonoBehaviour
         Time.timeScale = 0;
     }
 
-    public void CloseLoseUI()
+    public void CloseLossUI()
     {
         foreach (GameObject title in gameStateTitle)
         {

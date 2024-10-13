@@ -83,7 +83,7 @@ public class MapManager : MonoBehaviour
         if (GameManager.Instance.HasEnenoughDiamond(diamondPay))
         {
             GameManager.Instance.UseDiamond(diamondPay);
-            GameStateUI.Instance.CloseLoseUI();
+            GameStateUI.Instance.CloseLossUI();
         }
         else
         {
